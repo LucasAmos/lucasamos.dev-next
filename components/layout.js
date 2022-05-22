@@ -8,7 +8,7 @@ export default function Layout({ children, home }) {
           {children}
           {!home && (
             <Link href="/">
-              <a className="sm: text-2xl lg:text-xl">← Back to home</a>
+              <a className="text-3xl sm:text-2xl md:text-xl">← Back to home</a>
             </Link>
           )}
         </div>
