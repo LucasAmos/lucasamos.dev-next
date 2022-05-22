@@ -28,7 +28,10 @@ export default function Post({ postData }) {
           <div>
             <Date dateString={postData.date} />
           </div>
-          <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+          <div
+            className="text-3xl md:text-lg lg:text-lg"
+            dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
+          />
         </article>
       </div>
     </Layout>
