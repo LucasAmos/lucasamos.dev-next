@@ -1,0 +1,25 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 400;
+  src: local(''), url('/fonts/Inter-italic.latin.var.woff2') format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  src: local(''), url('/fonts/Inter-roman.latin.var.woff2') format('woff');
+}
+
+.prose code[class*='language-'] {
+  font-size: 0.8rem;
+}
+
+.prose {
+  max-width: 768px;
+}
