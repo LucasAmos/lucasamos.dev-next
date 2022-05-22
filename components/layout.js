@@ -7,7 +7,7 @@ export default function Layout({ children, home }) {
         {children}
         {!home && (
           <Link href="/">
-            <a className="pl-12 pb-20 md:pb-10 text-4xl sm:text-2xl md:text-xl">
+            <a className="pl-12 md:pl-5 pb-20 md:pb-10 text-4xl sm:text-2xl md:text-xl">
               ← Back to home
             </a>
           </Link>
