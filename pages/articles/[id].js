@@ -23,7 +23,7 @@ export default function Post({ postData }) {
         <meta property="og:description" content={title} />
       </Head>
       <div>
-        <article className="prose p-12">
+        <article className="prose p-12 md:p-6">
           <h1 className="font-Inter text-5xl sm:text-4xl">{postData.title}</h1>
           <div className="text-4xl md:text-xl text-slate-500">
             <Date dateString={postData.date} />
