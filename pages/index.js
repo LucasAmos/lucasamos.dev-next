@@ -40,11 +40,10 @@ export default function Home({ allPostsData }) {
         <div>
           <p className="pb-4">
             Hi, I'm an AWS & Terraform certified Senior Cloud Software Engineer.
-            I'm based in Scotland and work at one of Europe's and fastest
-            growing full service digital delivery consultancies. I learn new
-            technologies at lightspeed and work with whatever tool is best for
-            the job. My stack of choice is React, Node.js, TypeScript, Jest, AWS
-            and Terraform.
+            I'm based in Scotland and work at one of Europe's largest and
+            fastest growing full service digital delivery consultancies. My
+            stack of choice is React, Node.js, TypeScript, Jest, AWS and
+            Terraform.
           </p>
           <p className="pb-2">
             I have a Masters degree in Advanced Computer Science from the
