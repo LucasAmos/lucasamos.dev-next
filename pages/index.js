@@ -31,7 +31,7 @@ export default function Home({ allPostsData }) {
         <meta property="og:author" content="Lucas Amos" />
       </Head>
 
-      <div className="max-w-[768px] text-lg">
+      <div className="max-w-[768px] ">
         <div className="flex justify-between">
           <h1 className="font-Inter text-[#1a202c] tracking-tight text-4xl font-medium pb-10">
             Lucas Amos

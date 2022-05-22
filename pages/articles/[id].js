@@ -22,14 +22,14 @@ export default function Post({ postData }) {
         <meta property="og:title" content={title} />
         <meta property="og:description" content={title} />
       </Head>
-      <div className="">
+      <div>
         <article className="prose">
-          <h1>{postData.title}</h1>
-          <div>
+          <h1 className="text-5xl sm:text-4xl">{postData.title}</h1>
+          <div className="text-4xl md:text-xl text-slate-500">
             <Date dateString={postData.date} />
           </div>
           <div
-            className="text-3xl md:text-lg lg:text-lg"
+            className="text-mob md:text-lg lg:text-lg"
             dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
           />
         </article>

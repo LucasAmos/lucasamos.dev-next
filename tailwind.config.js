@@ -8,6 +8,9 @@ module.exports = {
       fontFamily: {
         Inter: ["Inter"],
       },
+      fontSize: {
+        mob: "2em",
+      },
     },
   },
 
