@@ -51,8 +51,8 @@ export default function Home({ allPostsData }) {
             teaching an introductory course in web development.
           </p>
           <p className="pb-2">
-            When I'm not writing dank code I like to take photos and watch
-            Formula One while enjoying one of Scotland's many fine craft beers.
+            When I'm not writing code I like to take photos and watch Formula
+            One while enjoying one of Scotland's many fine craft beers.
           </p>
         </div>
 
