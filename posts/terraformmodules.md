@@ -67,6 +67,6 @@ module "name" {
 ## Get the code
 
 This module is published in a public GitHub repository so no git authentication is
-required, if you chooose to store the code in a private repository you'll need to
+required, if you choose to store the code in a private repository you'll need to
 provide your git credentials in the usual way. As always you can access all of the code
 [here](https://github.com/LucasAmos/terraform-blog/tree/main/cloudwatch-alarm/lambda)
