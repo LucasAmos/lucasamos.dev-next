@@ -22,7 +22,7 @@ After some research it became clear that the solution was to store the module co
 
 ## Creating the module
 
-The module code itself is relatively simple, an aws_cloudwatch_metric_alarm resource that takes a function name as its only parameter. This will trigger a cloudwatch alarm if a Lambda execution error occurs within any 60 second period. This alarm could easily be extended to push each alarm to an SNS topic for real time notifications.
+The module code itself is relatively simple, an **aws_cloudwatch_metric_alarm** resource that takes a function name as its only parameter. This will trigger a cloudwatch alarm if a Lambda execution error occurs within any 60 second period. This alarm could easily be extended to push each alarm to an SNS topic for real time notifications.
 
 ```javascript
 resource "aws_cloudwatch_metric_alarm" "function_error" {

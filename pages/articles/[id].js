@@ -29,7 +29,7 @@ export default function Post({ postData }) {
             <Date dateString={postData.date} />
           </div>
           <div
-            className="text-mob md:text-lg lg:text-lg"
+            className=" break-words text-mob md:text-lg lg:text-lg"
             dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
           />
         </article>
