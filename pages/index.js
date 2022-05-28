@@ -38,25 +38,25 @@ export default function Home({ allPostsData }) {
           </h1>
         </div>
         <div>
-          <p className="pb-4">
+          <p className="pb-4 text-xl">
             Hi, I'm an AWS & Terraform certified Senior Cloud Software Engineer.
             I'm based in Scotland and work at one of Europe's largest and
             fastest growing full service digital delivery consultancies. My
             stack of choice is React, Node.js, TypeScript, Jest, AWS and
             Terraform.
           </p>
-          <p className="pb-2">
+          <p className="pb-2  text-xl">
             I have a Masters degree in Advanced Computer Science from the
             University of St Andrews where I worked with Code First:Girls
             teaching an introductory course in web development.
           </p>
-          <p className="pb-2">
+          <p className="pb-2  text-xl">
             When I'm not writing code I like to take photos and watch Formula
             One while enjoying one of Scotland's many fine craft beers.
           </p>
         </div>
 
-        <div className="flex">
+        <div className="flex text-xl">
           <SocialLink
             text="LinkedIn"
             href="https://www.linkedin.com/in/lucasamos/"
@@ -70,15 +70,14 @@ export default function Home({ allPostsData }) {
 
         <hr className="mt-6" />
         <div className="pt-10">
-          <h1 className="font-medium  text-4xl pb-4 text-slate-900">Posts</h1>
+          <h1 className="text-3xl pb-4 text-slate-900">Posts</h1>
           {allPostsData.map(({ id, date, title, subtitle }) => (
             <div className="pb-10" key={title}>
               <Link href={`/articles/${id}`}>
                 <a>
-                  <h1 className="font-semibold text-2xl pb-2 hover:underline text-slate-800">
+                  <h1 className="text-lg font-semibold mb-1 hover:underline text-slate-800">
                     {title}
                   </h1>
-                  <h2 className="pb-1">{subtitle}</h2>
                   <div className="text-slate-500">
                     <Date dateString={date} />
                   </div>
