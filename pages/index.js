@@ -39,11 +39,18 @@ export default function Home({ allPostsData }) {
         </div>
         <div>
           <p className="pb-4 text-xl">
-            Hi, I'm an AWS & Terraform certified Senior Cloud Software Engineer.
-            I'm based in Scotland and work at one of Europe's largest and
-            fastest growing full service digital delivery consultancies. My
-            stack of choice is React, Node.js, TypeScript, Jest, AWS and
-            Terraform.
+            Hi, I'm an AWS & Terraform{" "}
+            <a
+              className="underline text-slate-800 hover:text-slate-500 hover:cursor-pointer"
+              href="https://www.credly.com/users/lucas-amos.8e6fff20/badges"
+              target="_blank"
+            >
+              certified
+            </a>{" "}
+            Senior Cloud Software Engineer. I'm based in Scotland and work at
+            one of Europe's largest and fastest growing full service digital
+            delivery consultancies. My stack of choice is React, Node.js,
+            TypeScript, Jest, AWS and Terraform.
           </p>
           <p className="pb-2  text-xl">
             I have a Masters degree in Advanced Computer Science from the
