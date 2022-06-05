@@ -1,11 +1,11 @@
 ---
 title: Eight things I learned managing GitHub infrastructure using Terraform
-subtitle: 'Use Infrastructure as Code to manage your AWS resources but make sure to watch out for these pitfalls'
-date: '2021-12-30'
+subtitle: "Use Infrastructure as Code to manage your AWS resources but make sure to watch out for these pitfalls"
+date: "2021-12-30"
 previewImage: images/terraform.png
 ---
 
-### Recently I've been using Terraform for managing Infrastructure as Code. It's agreat tool but the learning curve can be a little steep at times, here are some of the things I've learned and my tips for creating infrastructure as efficiently as possible.
+### Recently I've been using Terraform for managing Infrastructure as Code. It's a great tool but the learning curve can be a little steep at times, here are some of the things I've learned and my tips for creating infrastructure as efficiently as possible.
 
 &NewLine;&NewLine;
 

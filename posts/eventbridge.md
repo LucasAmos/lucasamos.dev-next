@@ -1,7 +1,7 @@
 ---
 title: Using EventBridge to unlock AWS event-driven architectures
-subtitle: 'Run code in response to events and decouple your applications'
-date: '2020-09-19'
+subtitle: "Run code in response to events and decouple your applications"
+date: "2020-09-19"
 previewImage: images/jest.png
 ---
 
@@ -18,7 +18,7 @@ such as Zendesk or create rules that forward matching AWS events
 to targets such as SNS or Lambda.
 
 In this example we will create an EventBridge rule that is
-triggred when a Lambda function is created, but only when the
+triggered when a Lambda function is created, but only when the
 Lambda's runtime is Python3.8. We will then store the event
 details in a DynamoDB table. Follow the next steps to get
 started.
@@ -42,7 +42,7 @@ events.
 
 First create a DynamoDB table named
 **eventbridge-notifier** with a Partition Key of
-**id** We will use thos to store data about matched
+**id** We will use those to store data about matched
 events.
 
 Next create a NodeJS function with the following code. This will
@@ -54,9 +54,9 @@ Make sure to add the correct permissions to the Function so that
 it can write to the DynamoDB table.
 
 ```javascript
-const AWS = require('aws-sdk');
-AWS.config.update({ region: 'eu-west-1' });
-const docClient = new AWS.DynamoDB.DocumentClient({ apiVersion: '2012-08-10' });
+const AWS = require("aws-sdk");
+AWS.config.update({ region: "eu-west-1" });
+const docClient = new AWS.DynamoDB.DocumentClient({ apiVersion: "2012-08-10" });
 
 exports.handler = async (event) => {
   try {
@@ -65,7 +65,7 @@ exports.handler = async (event) => {
     const { functionName, runtime } = requestParameters;
 
     const params = {
-      TableName: 'eventbridge-notifier',
+      TableName: "eventbridge-notifier",
       Item: {
         id: id,
         time: eventTime,
@@ -78,7 +78,7 @@ exports.handler = async (event) => {
     };
 
     await docClient.put(params).promise();
-    return 'success';
+    return "success";
   } catch (e) {
     return {
       statusCode: e.statusCode,
@@ -94,7 +94,7 @@ The next step is to create an EventBridge rule for the event
 that we want to match. Visit the EventBridge console and click{" "}
 <b>create rule</b>. Here we have the option to choose from
 pre-defined patterns. As these are not provided for every
-service we will create our own rule. Whis will match a Lambda
+service we will create our own rule. This will match a Lambda
 CreateFunction event but only when the Function's runtime is
 Python3.8
 
@@ -157,7 +157,7 @@ can see that the event is not recorded in the DynamoDB table.
 ## What else can I use EventBridge for?
 
 In this example we've set up a rule that matches an event that
-originates from an AWS service. We've triggerred a Function to
+originates from an AWS service. We've triggered a Function to
 record the event in a DynamoDB table when a Python3.8 Lambda
 Function is created. However EventBridge can also connect to
 third party services such as Zendesk, Datadog, or Pagerduty.

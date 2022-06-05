@@ -1,7 +1,7 @@
 ---
 title: Create a web scraping API using AWS Lambda and API Gateway
 subtitle: 'Get authoritative near real-time stock market data without an expensive license "'
-date: '2021-09-22'
+date: "2021-09-22"
 previewImage: images/gatewaylambda.png
 ---
 
@@ -66,7 +66,9 @@ async function getMarkets(): Promise<Market[]> {
 #### By filtering the information returned by the **getMarkets()** function we can obtain the price of an individual market.
 
 ```javascript
-async function fetchMarket(event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> {
+async function fetchMarket(
+  event: APIGatewayProxyEvent
+): Promise<APIGatewayProxyResult> {
   const { pathParameters } = event;
 
   if (pathParameters && pathParameters.id) {
@@ -82,13 +84,13 @@ async function fetchMarket(event: APIGatewayProxyEvent): Promise<APIGatewayProxy
     } else {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'invalid symbol' }),
+        body: JSON.stringify({ error: "invalid symbol" }),
       };
     }
   }
   return {
     statusCode: 500,
-    body: JSON.stringify({ error: 'bad error' }),
+    body: JSON.stringify({ error: "bad error" }),
   };
 }
 ```
@@ -97,10 +99,10 @@ async function fetchMarket(event: APIGatewayProxyEvent): Promise<APIGatewayProxy
 
 ### Deploying to AWS using API Gateway and Lambda
 
-Once the two functions have been written, they should be properly configured in **index.js** to return reponses as JSON strings. This is required by Lambda and API gateway. The functions can then be deployed using the following CloudFormation file.
+Once the two functions have been written, they should be properly configured in **index.js** to return responses as JSON strings. This is required by Lambda and API gateway. The functions can then be deployed using the following CloudFormation file.
 
 ```yaml
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: AWS SAM product API
 Resources:
@@ -142,7 +144,7 @@ Resources:
 
 ### Consuming the API
 
-We now have two endpoints, one that will return the full list of market data and one that will return a single market indice. Of course scraping a website for every request is inefficient and this code should be refactored to regularly invoke the Lambda function via an AWS scheduled event and store the results in a DynamoDB database. The API Gateway can then serve the data directly from the database.
+We now have two endpoints, one that will return the full list of market data and one that will return a single market index. Of course scraping a website for every request is inefficient and this code should be refactored to regularly invoke the Lambda function via an AWS scheduled event and store the results in a DynamoDB database. The API Gateway can then serve the data directly from the database.
 
 **https://xxxxxx.execute-api.eu-west-1.amazonaws.com/prod/markets**
 

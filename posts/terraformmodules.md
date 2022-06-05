@@ -18,7 +18,7 @@ I saw two possible solutions:
 
 2. Create a new repository for the module along with a map of all the function names, iterating over the map to create an alarm for each. This would require manually updating the map every time a new function is created in one of the other repositories, likely resulting in people forgetting to add monitoring to new Lambdas.
 
-After some research it became clear that the solution was to store the module code in a seperate repository which could then be used as the [module source](https://www.terraform.io/language/modules/sources#modules-in-package-sub-directories)
+After some research it became clear that the solution was to store the module code in a separate repository which could then be used as the [module source](https://www.terraform.io/language/modules/sources#modules-in-package-sub-directories)
 
 ## Creating the module
 

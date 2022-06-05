@@ -1,7 +1,7 @@
 ---
-title: 'Why I rewrote my website using Gatsby and why you should too'
-subtitle: 'Blazing fast load times, built on react and with image optimization as standard'
-date: '2020-05-05'
+title: "Why I rewrote my website using Gatsby and why you should too"
+subtitle: "Blazing fast load times, built on react and with image optimization as standard"
+date: "2020-05-05"
 previewImage: images/terraform.png
 ---
 
@@ -16,9 +16,9 @@ generating the HTML and reducing the processing required by the end user's devic
 ## Speed
 
 Not only does Gatsby increase speed by shifting page generation to build time it
-further increases speed by prefetching resources, this is done in two main ways.
+further increases speed by pre-fetching resources, this is done in two main ways.
 
-- When a page finishes loading, Gatsby begins prefetching resources for internal
+- When a page finishes loading, Gatsby begins pre-fetching resources for internal
   pages the user may navigate to, this is done at a low priority.
 
 - When a link is hovered over, Gatsby will fetch the resources for that page at a
@@ -31,7 +31,7 @@ Migrating my website to Gatsby has reduced its load time so much that
 
 [Google pagespeed](https://developers.google.com/speed/pagespeed/insights/) ranks it at 100%!
 
-![google pagespeed](/images/lighthouse.jpg 'Google pagespeed')
+![google pagespeed](/images/lighthouse.jpg "Google pagespeed")
 
 ## Page previews
 
@@ -78,7 +78,7 @@ Gatsby is built with a plugin architecture that allows you to easily use Node.js
 packages that implement Gatsby APIs.
 
 My favourite is [gatsby-image](https://www.gatsbyjs.org/packages/gatsby-image/) which
-does lots of cool things like lazyloading low resolution images and then fading in
+does lots of cool things like lazy loading low resolution images and then fading in
 the higher resolution images to speed up page loads, it even reserves space in the
 DOM so that the page doesn't jump about once the image has loaded! It also has
 functionality to send .webp images to browsers that support the format while falling

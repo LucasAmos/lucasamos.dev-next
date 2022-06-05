@@ -1,7 +1,7 @@
 ---
-title: 'Implementing caching to reduce AWS Secrets Manager costs'
-subtitle: 'Only make API calls when Lambda cold starts or scales out'
-date: '2020-10-09'
+title: "Implementing caching to reduce AWS Secrets Manager costs"
+subtitle: "Only make API calls when Lambda cold starts or scales out"
+date: "2020-10-09"
 previewImage: images/secretsmanager.png
 ---
 
@@ -15,8 +15,8 @@ AWS [Secrets manager](https://aws.amazon.com/secrets-manager/) is a service that
 
 ### If Secrets Manager is so great then why do I need to use caching?
 
-Secrets Manager massively simplifies the management of credentials but if an API call must be made everytime a Lambda is invoked latency will be added to your application. Add to this the costs for making requests to the Secrets Manager API and it's clear that caching the API response is something we should employ. In fact it's such a useful pattern that AWS has created a
-[Java caching library](https://aws.amazon.com/blogs/security/use-aws-secrets-manager-client-side-caching-libraries-to-improve-the-availability-and-latency-of-using-your-secrets/). Unfortunately there is no libaray for Node or Python so we will have to create our own
+Secrets Manager massively simplifies the management of credentials but if an API call must be made every time a Lambda is invoked latency will be added to your application. Add to this the costs for making requests to the Secrets Manager API and it's clear that caching the API response is something we should employ. In fact it's such a useful pattern that AWS has created a
+[Java caching library](https://aws.amazon.com/blogs/security/use-aws-secrets-manager-client-side-caching-libraries-to-improve-the-availability-and-latency-of-using-your-secrets/). Unfortunately there is no library for Node or Python so we will have to create our own
 
 ### Creating a secret
 
@@ -28,7 +28,7 @@ Before we can implement our own caching solution we first need to create a secre
 
 Before every Lambda invocation we will call a bootstrap function to perform the following actions.
 Check if the secret is stored in the Lambda's environment variables.
-If the secret is not present, make an API call to Secrets Manager and store the result in an evironment variable.
+If the secret is not present, make an API call to Secrets Manager and store the result in an environment variable.
 
 As environment variables are persisted between Lambda invocations this process will ensure that API calls to Secrets Manager are only made when a Lambda cold starts or is recycled.
 
@@ -41,19 +41,21 @@ The bootstrap code below functions in the following way:
 - Lines 8 and 13 will print to the console and allow us to see when the secret is fetched from the cache and when it is fetched from Secrets Manager.
 
 ```javascript
-const AWS = require('aws-sdk');
-const client = new AWS.SecretsManager({ region: 'eu-west-1' });
+const AWS = require("aws-sdk");
+const client = new AWS.SecretsManager({ region: "eu-west-1" });
 
 async function getSecret() {
-  const secret = process.env['STORED_SECRET'];
+  const secret = process.env["STORED_SECRET"];
 
   if (secret) {
-    console.log('*** SECRET WAS IN THE CACHE');
+    console.log("*** SECRET WAS IN THE CACHE");
     return secret;
   }
 
-  const { SecretString } = await client.getSecretValue({ SecretId: process.env.SECRET_ID }).promise();
-  console.log('*** SECRET WAS FETCHED FROM SECRETS MANAGER');
+  const { SecretString } = await client
+    .getSecretValue({ SecretId: process.env.SECRET_ID })
+    .promise();
+  console.log("*** SECRET WAS FETCHED FROM SECRETS MANAGER");
   return SecretString;
 }
 
@@ -70,7 +72,7 @@ module.exports = { bootstrap };
 #### Now we can test our bootstrapping code by invoking it in our Lambda function
 
 ```javascript
-const { bootstrap } = require('./bootstrap/bootstrap');
+const { bootstrap } = require("./bootstrap/bootstrap");
 
 exports.handler = async function handler(event) {
   await bootstrap();

@@ -1,9 +1,9 @@
 ---
-title: 'Testing an express API using SuperTest'
-subtitle: 'Testing is an essential part of any application. Learn
+title: "Testing an express API using SuperTest"
+subtitle: "Testing is an essential part of any application. Learn
   how to use SuperTest to ensure that your Express API functions as intended and
-  confidently make changes to your code without breaking it'
-date: '2020-05-28'
+  confidently make changes to your code without breaking it"
+date: "2020-05-28"
 previewImage: images/supertest.png
 ---
 
@@ -28,8 +28,8 @@ First create a new node project using **yarn init**. We will require two package
 First we need to create the express app that will serve up our endpoints, this is also where we can configure any middleware that the app will use. In this case we will be using the body-parser library so that we can easily handle the request body. Make sure to export the app variable as we will need to use this in our tests.
 
 ```js
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require("express");
+const bodyParser = require("body-parser");
 let app;
 app = express();
 app.use(bodyParser.json());
@@ -46,26 +46,26 @@ The controller is where the API routes are defined and where any application log
 In this example we will just hard code some boilerplate responses but in your app you will want to mock any database calls using Jest, you can read all about mocking [here](https://jestjs.io/docs/en/mock-functions.html).
 
 ```js
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
-router.get('/', function (req, res) {
-  return res.json('Return all the users');
+router.get("/", function (req, res) {
+  return res.json("Return all the users");
 });
 
-router.get('/:id', function (req, res) {
-  if (req.params.id === 'user1') {
-    return res.json('user 1 returned');
+router.get("/:id", function (req, res) {
+  if (req.params.id === "user1") {
+    return res.json("user 1 returned");
   }
-  return res.status(404).json('user not found');
+  return res.status(404).json("user not found");
 });
 
-router.post('/', function (req, res) {
+router.post("/", function (req, res) {
   let content = req.body;
   if (content.id) {
-    return res.status(201).json({ id: 'user1' });
+    return res.status(201).json({ id: "user1" });
   }
-  return res.status(400).json('User could not be created');
+  return res.status(400).json("User could not be created");
 });
 
 module.exports = router;
@@ -80,11 +80,11 @@ Once we have imported all of the required files and libraries we can continue to
 In the **beforeAll** function we will tell our express app to use the userController that we defined. In the **afterAll** function we will stop the app from listening when all our tests have finished, this will prevent any resource leaks.
 
 ```js
-const request = require('supertest');
-const userController = require('../controllers/user');
-const app = require('../app');
+const request = require("supertest");
+const userController = require("../controllers/user");
+const app = require("../app");
 
-describe('User controller', () => {
+describe("User controller", () => {
   beforeAll(() => {
     app.use(userController);
   });
@@ -108,10 +108,10 @@ Once we have stored the response we can perform test assertions on it using Jest
 SuperTest runs asynchronously so make sure to use the **async/await** syntax when writing your tests. Some linters recommend using the promise syntax when writing async tests but I prefer using the **done()** function as it makes tests more readable. Don't forget to call **done()** at the end of the test otherwise Jest will not be able to determine when the test has finished running and it will time out.
 
 ```js
-test('GET / endpoint returns all users', async (done) => {
-  const res = await request(app).get('/');
+test("GET / endpoint returns all users", async (done) => {
+  const res = await request(app).get("/");
   const { body, statusCode } = res;
-  expect(body).toEqual('Return all the users');
+  expect(body).toEqual("Return all the users");
   expect(statusCode).toEqual(200);
   done();
 });
@@ -124,11 +124,11 @@ test('GET / endpoint returns all users', async (done) => {
 Testing the GET user endpoint is similar to the previous test; pass in the **/user1** path to the SuperTest **.get()** function.
 
 ```js
-test('GET /:id endpoint returns the correct user', async (done) => {
-  const res = await request(app).get('/user1');
+test("GET /:id endpoint returns the correct user", async (done) => {
+  const res = await request(app).get("/user1");
   const { body, statusCode } = res;
 
-  expect(body).toEqual('user 1 returned');
+  expect(body).toEqual("user 1 returned");
   expect(statusCode).toEqual(200);
   done();
 });
@@ -141,11 +141,11 @@ test('GET /:id endpoint returns the correct user', async (done) => {
 When testing an API it is good practice to test both the expected successful response and the expected unsuccessful response. Here we will test that the correct response body and status code are returned when the id of a non existent user is passed as a path parameter.
 
 ```js
-test('GET /:id endpoint returns the correct error', async (done) => {
-  const res = await request(app).get('/user2');
+test("GET /:id endpoint returns the correct error", async (done) => {
+  const res = await request(app).get("/user2");
   const { body, statusCode } = res;
 
-  expect(body).toEqual('user not found');
+  expect(body).toEqual("user not found");
   expect(statusCode).toEqual(404);
   done();
 });
@@ -161,12 +161,15 @@ We will also need to set the type of data that will be sending to the API endpoi
 Finally we can use the **.send()** function to specify the request body, other HTTP requests such as **PUT** and **PATCH** are executed in the same way using their relevant functions.
 
 ```js
-jest('POST / endpoint returns the correct response', async (done) => {
-  const res = await request(app).post('/').set('Accept', 'application/json').send({
-    id: 'user1',
-  });
+jest("POST / endpoint returns the correct response", async (done) => {
+  const res = await request(app)
+    .post("/")
+    .set("Accept", "application/json")
+    .send({
+      id: "user1",
+    });
   const { body, statusCode } = res;
-  expect(body).toEqual({ id: 'user1' });
+  expect(body).toEqual({ id: "user1" });
   expect(statusCode).toEqual(201);
   done();
 });
@@ -174,6 +177,6 @@ jest('POST / endpoint returns the correct response', async (done) => {
 
 ## Overview
 
-This is a basic introduction to SuperTest, a great library for testing your API. When testing a production API you will want to use the mocking features of Jest to replace any database calls or requests to third party API such as AWS Cognito. Another good practice is to write an [OpenAPI](https://swagger.io/specification/) specifiction for your API, this way you can validate a request before it even reaches your controller and return meaningful errors should the request be in the incorrect format, this will be covered in a future blog post!
+This is a basic introduction to SuperTest, a great library for testing your API. When testing a production API you will want to use the mocking features of Jest to replace any database calls or requests to third party API such as AWS Cognito. Another good practice is to write an [OpenAPI](https://swagger.io/specification/) specification for your API, this way you can validate a request before it even reaches your controller and return meaningful errors should the request be in the incorrect format, this will be covered in a future blog post!
 
 As always you can view all of the code on [GitHub](https://github.com/LucasAmos/AWS/tree/master/SuperTest)

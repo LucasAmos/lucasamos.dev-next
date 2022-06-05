@@ -1,7 +1,7 @@
 ---
-title: 'How to create chainable functions using Javascript'
-subtitle: 'something().pretty().cool().is().happening().here()'
-date: '2020-08-02'
+title: "How to create chainable functions using Javascript"
+subtitle: "something().pretty().cool().is().happening().here()"
+date: "2020-08-02"
 previewImage: images/javascript.png
 ---
 
@@ -14,7 +14,7 @@ previewImage: images/javascript.png
 This doesn't look too bad but nesting function calls like this can quickly become unreadable. The semantics of the code only makes things worse as it reads from left to right whereas the data flows from right to left. Just avoid this.
 
 ```javascript
-const word = new Word('string');
+const word = new Word("string");
 
 word.functionOne(word.functionTwo(word.functionThree()));
 ```
@@ -26,7 +26,7 @@ This is more readable but your productivity will plummet if you have to write al
 ```js
 const word = new Word();
 
-const result1 = word.functionOne('string');
+const result1 = word.functionOne("string");
 const result2 = word.functionOTwo(result1);
 const result3 = word.functionThree(result2);
 ```
@@ -70,7 +70,7 @@ class Word {
     return this;
   }
   reverse() {
-    this.str = this.str.split('').reverse().join('');
+    this.str = this.str.split("").reverse().join("");
     return this;
   }
 }
@@ -78,10 +78,10 @@ class Word {
 
 ## Using the chainable function calls
 
-Chaining the function calls together is simple. First we use the **new** operator to create a new instance of the **Word** class, remembering to initialise it with acoolstring. Then we can chain together as many funtion calls as we want. Remember, you will always need to call the **getWord()** function to return the final result of the function calls as all of the other functions will return the class instance.
+Chaining the function calls together is simple. First we use the **new** operator to create a new instance of the **Word** class, remembering to initialise it with acoolstring. Then we can chain together as many function calls as we want. Remember, you will always need to call the **getWord()** function to return the final result of the function calls as all of the other functions will return the class instance.
 
 ```js
-const word = new Word('acoolstring');
+const word = new Word("acoolstring");
 console.log(word.capitalise().double().reverse().getWord());
 ```
 
