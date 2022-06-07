@@ -148,4 +148,4 @@ describe("When the handler is invoked with an event", () => {
 
 Using this pattern we are able to create strong unit and integration tests that run
 independently of the AWS dependencies in our code. check out the code on
-[GitHub] (https://github.com/LucasAmos/AWS/tree/master/mockingwithjest)
+[GitHub](https://github.com/LucasAmos/AWS/tree/master/mockingwithjest)
