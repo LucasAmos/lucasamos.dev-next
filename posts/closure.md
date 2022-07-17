@@ -1,11 +1,11 @@
 ---
 title: "Javascript closures. What, why and how"
-subtitle: "todo"
+subtitle: "Simulate private variables using closures"
 date: "2022-07-17"
 previewImage: images/javascript.png
 ---
 
-## What is a closure and why would I want to use one?
+### What is a closure and why would I want to use one?
 
 A JavaScript closure is a programming construct that allows a function to be permanently associated with the scope within which it was declared, the effect of this it to facilitate the creation of functions with access to long lived private variables.
 
@@ -33,7 +33,7 @@ console.log(count);
 
 We can attempt to resolve this by moving the **count** variable inside the **add** function.
 
-```js
+```javascript
 function add(value) {
   let count = 0;
 
