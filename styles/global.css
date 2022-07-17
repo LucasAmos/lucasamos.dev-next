@@ -19,8 +19,12 @@
 .prose code[class*="language-"] {
   font-size: 0.8rem;
 }
-
 .prose {
   max-width: 768px;
   color: #000;
+}
+
+code[class*="language-hide"],
+pre[class*="language-hide"] {
+  visibility: hidden;
 }

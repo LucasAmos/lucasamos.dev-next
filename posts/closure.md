@@ -95,3 +95,7 @@ When the **additionFactory** function is called the in-scope local variables suc
 Learn more about using closures to simulate [private methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields) and how to use [private classes methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields#private_methods)
 
 ES2022 also includes support for [private class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields)
+
+```hide
+stats count(\*) as count by eventSource, eventName, requestParameters.bucketName, userIdentity.sessionContext.sessionIssuer.
+```
