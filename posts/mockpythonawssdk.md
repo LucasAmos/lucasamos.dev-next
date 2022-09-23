@@ -2,7 +2,7 @@
 title: "Mocking the AWS SDK with Python"
 subtitle: "Never hit those API endpoints"
 date: "2022-09-22"
-previewImage: images/aws.png
+previewImage: images/awspython.png
 ---
 
 Over the past few months I have been working extensively with [AWS QuickSight](https://aws.amazon.com/quicksight/) to create a multi-account data platform. Recently I needed to peform a task at the end of a glue workflow, this meant that I would need to write the code in Python and not my usual language of choice TypeScript. The script itself was simple enough but when it came to testing, [moto](https://github.com/spulec/moto) the library that I usually use didn't have an implementation for the API call that I needed. This article will explain how I used the AWS SDK's built in helper functions to mock the API calls.
