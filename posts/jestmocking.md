@@ -16,7 +16,7 @@ untestable. Furthermore, as the S3 API is outside of our control we aren't reall
 concerned with testing its functionality, what we really want to test is the code we
 have written to make use of the API response.
 
-Mocking is the solution to this problem, by replacing or §i>mocking</i> the AWS S3
+Mocking is the solution to this problem, by replacing or <i>mocking</i> the AWS S3
 SDK we can replace the API calls with our own implementation, for example, returning
 a list of objects or returning an empty response so that we can test how our code
 behaves whatever response that API returns. By mocking the AWS SDK we will be able

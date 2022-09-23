@@ -49,8 +49,8 @@ export default function Home({ allPostsData }) {
             </a>{" "}
             Senior Cloud Software Engineer. I'm based in Scotland and work at
             one of Europe's largest and fastest growing full service digital
-            delivery consultancies. My stack of choice is React, Node.js,
-            TypeScript, Jest, AWS and Terraform.
+            delivery consultancies. My stack of choice is AWS, Node, TypeScript,
+            Jest, Terraform and React.
           </p>
           <p className="pb-2  text-xl">
             I have a Masters degree in Advanced Computer Science from the
