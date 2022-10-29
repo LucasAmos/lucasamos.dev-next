@@ -1,5 +1,5 @@
 ---
-title: A cloudwatch log insights query to retrieve bucket access history
+title: Retrieving bucket access history via cloudwatch log insights
 subtitle: "Query your logs for auditing and informational purposes"
 date: "2022-06-07"
 previewImage: images/aws.png

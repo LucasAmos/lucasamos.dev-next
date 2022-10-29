@@ -1,5 +1,5 @@
 ---
-title: "Implementing caching to reduce AWS Secrets Manager costs"
+title: "Reducing Secrets Manager costs via caching"
 subtitle: "Only make API calls when Lambda cold starts or scales out"
 date: "2020-10-09"
 previewImage: images/secretsmanager.png

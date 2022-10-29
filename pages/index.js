@@ -1,9 +1,17 @@
 import Head from "next/head";
+import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Layout, { siteTitle } from "../components/layout";
 import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
 import Date from "../components/date";
+import lucas from "../public/images/lucas3.jpeg";
 
+import {
+  faLinkedin,
+  faGithub,
+  faFlickr,
+} from "@fortawesome/free-brands-svg-icons";
 const SocialLink = ({ text, href }) => {
   return (
     <Link href={href}>
@@ -22,7 +30,7 @@ export default function Home({ allPostsData }) {
   return (
     <Layout home>
       <Head>
-        <title>{siteTitle}</title>
+        <title>Lucas Amos</title>
 
         <meta property="og:image" content="images/lucas.jpeg" />
         <meta property="og:title" content={title} />
@@ -31,68 +39,88 @@ export default function Home({ allPostsData }) {
         <meta property="og:author" content="Lucas Amos" />
       </Head>
 
-      <div className="max-w-[768px] pl-6 pr-6 pt-6">
-        <div className="flex justify-between">
-          <h1 className="font-Inter text-[#1a202c] tracking-tight text-4xl font-medium pb-10">
-            Lucas Amos
-          </h1>
-        </div>
-        <div>
-          <p className="pb-4 text-xl">
-            Hi, I'm an AWS & Terraform{" "}
+      <div className="lg:grid sm:grid-cols-1 lg:grid-cols-5 gap-4 max-w-[1500px] lg:ml-20 ml-5 mr-5 mt-5 sm:mt-0">
+        <div className="lg:col-span-1">
+          <div className="lg:grid lg:grid-cols-1 grid-cols-2">
+            <div className="col-span-1 float-left mr-10">
+              <div
+                className="rounded-full radius overflow-hidden lg:w-[130px] lg:h-[130px] w-[80px] h-[80px]"
+                style={{
+                  boxShadow:
+                    "0 0 0 3px #18981a, 0 0 0 6px #880990, 0 0 0 9px #4a2051",
+                }}
+              >
+                <Image src={lucas} alt="image of lucas amos"></Image>
+              </div>
+            </div>
+            <div className="col-span-1">
+              <h3 className="lg:pt-5 text-2xl font-bold text-slate-700">
+                Lucas Amos
+              </h3>
+              <h4>Full-Stack Cloud Software Engineer</h4>
+            </div>
+          </div>
+          <div className="hidden lg:block">
+            <a href="https://www.linkedin.com/in/lucasamos/" target="_blank">
+              <div>
+                <FontAwesomeIcon
+                  icon={faLinkedin}
+                  className="fa-lg text-[#007bb6] mr-2 mt-3"
+                />
+                LinkedIn
+              </div>
+            </a>
+            <a href="https://github.com/LucasAmos/" target="_blank">
+              <div>
+                <FontAwesomeIcon
+                  icon={faGithub}
+                  className="fa-lg text-[#383738] mr-1 mt-3 right-px relative"
+                />
+                GitHub
+              </div>
+            </a>
             <a
-              className="underline text-slate-800 hover:text-slate-500 hover:cursor-pointer"
-              href="https://www.credly.com/users/lucas-amos.8e6fff20/badges"
+              href="https://www.flickr.com/photos/181849230@N04/"
               target="_blank"
             >
-              certified
-            </a>{" "}
-            Senior Cloud Software Engineer. I'm based in Scotland and work at
-            one of Europe's largest and fastest growing full service digital
-            delivery consultancies. My stack of choice is AWS, Node, TypeScript,
-            Jest, Terraform and React.
-          </p>
-          <p className="pb-2  text-xl">
-            I have a Masters degree in Advanced Computer Science from the
-            University of St Andrews where I worked with Code First:Girls
-            teaching an introductory course in web development.
-          </p>
-          <p className="pb-2  text-xl">
-            When I'm not writing code I like to take photos and watch Formula
-            One while enjoying one of Scotland's many fine craft beers.
-          </p>
+              <div>
+                <FontAwesomeIcon
+                  icon={faFlickr}
+                  className="fa-lg text-[#000000] mr-2 mt-3"
+                />
+                Flickr
+              </div>
+            </a>
+          </div>
         </div>
 
-        <div className="flex text-xl">
-          <SocialLink
-            text="LinkedIn"
-            href="https://www.linkedin.com/in/lucasamos/"
-          />
-          <SocialLink text="GitHub" href="https://github.com/LucasAmos/" />
-          <SocialLink
-            text="flickr"
-            href="https://www.flickr.com/photos/181849230@N04/"
-          />
-        </div>
+        <div className="lg:col-span-3 mt-10 lg:mt-0">
+          {/* <div className="flex justify-between"> */}
+          <h1 className="font-Inter text-[#1a202c] tracking-tight text-2xl font-medium">
+            Recent posts
+          </h1>
+          {/* </div> */}
 
-        <hr className="mt-6" />
-        <div className="pt-10">
-          <h1 className="text-3xl pb-4 text-slate-900">Posts</h1>
-          {allPostsData.map(({ id, date, title, subtitle }) => (
-            <div className="pb-10" key={title}>
-              <Link href={`/articles/${id}`}>
-                <a>
-                  <h1 className="text-lg font-semibold mb-1 hover:underline text-slate-800">
-                    {title}
-                  </h1>
-                  <div className="text-slate-500">
-                    <Date dateString={date} />
-                  </div>
-                </a>
-              </Link>
-            </div>
-          ))}
+          <hr className="mt-4" />
+          <div className="pt-10">
+            {allPostsData.map(({ id, date, title, subtitle }) => (
+              <div className="pb-10" key={title}>
+                <Link href={`/articles/${id}`}>
+                  <a>
+                    <h1 className="text-2xl font-semibold mb-1 hover:underline underline text-purple-700  transition-all duration-1000 hover:text-purple-900">
+                      {title}
+                    </h1>
+                    <div className="text-slate-700 text-sm mb-1">
+                      <Date dateString={date} />
+                    </div>
+                    <div>{subtitle}</div>
+                  </a>
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
+        <div className="lg:col-span-1" />
       </div>
     </Layout>
   );

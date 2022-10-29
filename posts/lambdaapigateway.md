@@ -1,5 +1,5 @@
 ---
-title: Create a web scraping API using AWS Lambda and API Gateway
+title: Web scraping using AWS Lambda and API Gateway
 subtitle: 'Get authoritative near real-time stock market data without an expensive license "'
 date: "2021-09-22"
 previewImage: images/gatewaylambda.png
