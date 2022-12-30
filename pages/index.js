@@ -45,7 +45,7 @@ export default function Home({ allPostsData }) {
                     </div>
                   </div>
                 </div>
-                <div>{subtitle}</div>
+                <div className="break-words">{subtitle}</div>
               </a>
             </Link>
           </div>

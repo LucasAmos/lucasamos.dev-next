@@ -13,7 +13,7 @@ export default function Sidebar() {
     <div className="lg:col-span-1m pt-2.5">
       <div className="lg:sticky lg:top-5 relative">
         <div className="lg:grid lg:grid-cols-1 grid-cols-2">
-          <div className="col-span-1 float-left mr-10 ">
+          <div className="col-span-1 float-left mr-10">
             <Link href="/">
               <div
                 className="cursor-pointer rounded-full radius overflow-hidden lg:w-[130px] lg:h-[130px] w-[80px] h-[80px]"
@@ -22,9 +22,7 @@ export default function Sidebar() {
                     "0 0 0 3px #18981a, 0 0 0 6px #880990, 0 0 0 9px #4a2051",
                 }}
               >
-                <div className="transition-opacity ease-in duration-300 hover:opacity-100 opacity-90">
-                  <Image src={lucas} alt="image of lucas amos"></Image>
-                </div>
+                <Image src={lucas} alt="image of lucas amos" />
               </div>
             </Link>
           </div>
