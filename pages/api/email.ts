@@ -4,7 +4,13 @@ import {
   SendEmailCommandInput,
 } from "@aws-sdk/client-sesv2";
 
-const client = new SESv2Client({ region: "eu-west-2" });
+const client = new SESv2Client({
+  region: "eu-west-2",
+  credentials: {
+    accessKeyId: process.env.ACCESS_KEY_ID,
+    secretAccessKey: process.env.SECRET_ACCESS_KEY,
+  },
+});
 
 export default async (req, res) => {
   const { name, email, message } = req.body;
