@@ -22,7 +22,11 @@ export default function Sidebar() {
                     "0 0 0 3px #18981a, 0 0 0 6px #880990, 0 0 0 9px #4a2051",
                 }}
               >
-                <Image src={lucas} alt="image of lucas amos" />
+                <Image
+                  placeholder="blur"
+                  src={lucas}
+                  alt="image of lucas amos"
+                />
               </div>
             </Link>
           </div>
