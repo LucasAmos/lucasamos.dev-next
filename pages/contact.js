@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Layout from "../components/layout";
 import { useState } from "react";
-import { set } from "date-fns";
 const title = "Lucas Amos: AWS certified Senior Cloud Software Engineer";
 
 export default function Contact() {

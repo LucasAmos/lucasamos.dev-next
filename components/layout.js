@@ -13,8 +13,9 @@ export default function Layout({ children, home }) {
     <>
       <nav className="flex sm:justify-center space-x-4 float-right sm:m-4 m-4">
         {[
-          ["About", "/about"],
-          ["Contact", "/contact"],
+          ["Posts", "/"],
+          ["About me", "/about"],
+          // ["Contact", "/contact"],
         ].map(([title, url]) => (
           <a
             key={title}
