@@ -40,19 +40,35 @@ export default function About() {
       </ul>
       <div className="md:w-8/12 lg:w-10/12 w-10/12">
         <div className="w-1/5 float-left">
-          <Image src={awsdeveloper} alt="" />
+          <Image
+            src={awsdeveloper}
+            placeholder="blur"
+            alt="aws developer associate certifiction"
+          />
         </div>
         <div className="w-1/5 float-left">
-          <Image src={awssolutions} alt="" />
+          <Image
+            src={awssolutions}
+            placeholder="blur"
+            alt="aws solutions architect associate certifiction"
+          />
         </div>
         <div className="w-1/5 float-left">
-          <Image src={awssysops} alt="" />
+          <Image
+            src={awssysops}
+            placeholder="blur"
+            alt="aws sys ops associate certifiction"
+          />
         </div>
         <div className="w-1/5 float-left">
-          <Image src={terraform} alt="" />
+          <Image
+            src={terraform}
+            placeholder="blur"
+            alt="terraform associate certifiction"
+          />
         </div>
         <div className="w-1/5 float-left">
-          <Image src={scrum} alt="" />
+          <Image src={scrum} placeholder="blur" alt="scrum psm1 certifiction" />
         </div>
       </div>
     </Layout>
