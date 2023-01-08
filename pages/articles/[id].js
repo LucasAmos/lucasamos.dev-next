@@ -10,7 +10,6 @@ export default function Post({ postData }) {
     <Layout>
       <Head>
         <title>{postData.title}</title>
-
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css"
@@ -22,10 +21,11 @@ export default function Post({ postData }) {
         <meta property="og:title" content={title} />
         <meta property="og:description" content={title} />
       </Head>
+
       <div>
-        <article className="prose p-12 md:p-6 m-auto">
-          <h1 className="font-Inter text-5xl sm:text-4xl">{postData.title}</h1>
-          <div className="text-4xl md:text-xl text-slate-500">
+        <article className="prose">
+          <h1 className="font-Inter text-3xl sm:text-4xl">{postData.title}</h1>
+          <div className="text-2xl md:text-xl text-slate-500">
             <Date dateString={postData.date} />
           </div>
           <div

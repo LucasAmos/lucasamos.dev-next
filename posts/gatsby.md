@@ -36,7 +36,7 @@ Migrating my website to Gatsby has reduced its load time so much that
 ## Page previews
 
 The main motivating factor for rewriting my site using Gatsby was that when sharing
-a blog post on LinkedIn the preview image and description was always derived from
+a blog post on LinkedIn the preview image and description were always derived from
 the metadata for the site's index page. Because React only generates a page when it
 is requested this causes issues for some web crawlers. Using Gatsby and [react-helmet](https://www.gatsbyjs.org/packages/gatsby-plugin-react-helmet/") I was able to add the necessary metadata to every page on my site and generate
 individual previews for each page.
