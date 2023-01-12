@@ -28,25 +28,23 @@ export default function Home({ allPostsData }) {
         {allPostsData.map(({ id, date, title, subtitle, readingTime }) => (
           <div className="pb-10" key={title}>
             <Link href={`/articles/${id}`}>
-              <a>
-                <h1 className="text-2xl font-semibold mb-1 hover:underline underline text-purple-700  transition-all duration-1000 hover:text-purple-900">
-                  {title}
-                </h1>
-                <div className="text-slate-700 text-sm mb-1">
-                  <div className="clear-both">
-                    <div className="float-left">
-                      <FontAwesomeIcon icon={faCalendarAlt} className="pr-2" />
-                    </div>
-                    <div className="float-left pr-5">
-                      <Date dateString={date} />
-                    </div>
-                    <div>
-                      <ReadingTime time={readingTime} />
-                    </div>
+              <h1 className="text-2xl font-semibold mb-1 hover:underline underline text-purple-700  transition-all duration-1000 hover:text-purple-900">
+                {title}
+              </h1>
+              <div className="text-slate-700 text-sm mb-1">
+                <div className="clear-both">
+                  <div className="float-left">
+                    <FontAwesomeIcon icon={faCalendarAlt} className="pr-2" />
+                  </div>
+                  <div className="float-left pr-5">
+                    <Date dateString={date} />
+                  </div>
+                  <div>
+                    <ReadingTime time={readingTime} />
                   </div>
                 </div>
-                <div className="break-words">{subtitle}</div>
-              </a>
+              </div>
+              <div className="break-words">{subtitle}</div>
             </Link>
           </div>
         ))}
