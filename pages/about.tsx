@@ -38,7 +38,7 @@ export default function About() {
         <li className="mb-1">Tailwind</li>
         <li className="mb-1">Node</li>
       </ul>
-      <div className="md:w-8/12 lg:w-10/12 w-10/12">
+      <div className="md:w-8/12 lg:w-11/12 w-12/12 ">
         <div className="w-1/5 float-left">
           <Image
             src={awsdeveloper}
