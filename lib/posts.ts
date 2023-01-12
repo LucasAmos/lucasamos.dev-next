@@ -20,11 +20,16 @@ export function getSortedPostsData() {
 
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents);
-
+    const { data } = matterResult;
+    const { title, subtitle, date, previewImage } = data;
     // Combine the data with the id
     return {
       readingTime: calculateReadingTime(matterResult.content),
       id,
+      title,
+      subtitle,
+      date,
+      previewImage,
       ...matterResult.data,
     };
   });

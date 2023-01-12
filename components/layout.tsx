@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Sidebar from "../pages/sidebar";
+import Sidebar from "../pages/Sidebar";
 
 // The following import prevents a Font Awesome icon server-side rendering bug,
 // where the icons flash from a very large icon down to a properly sized one:
@@ -15,7 +15,7 @@ export default function Layout({ children, home }) {
         {[
           ["Posts", "/"],
           ["About me", "/about"],
-          // ["Contact", "/contact"],
+          ["Contact", "/contact"],
         ].map(([title, url]) => (
           <a
             key={title}
