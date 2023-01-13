@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Sidebar from "../pages/Sidebar";
+import Sidebar from "../pages/sidebar";
 
 // The following import prevents a Font Awesome icon server-side rendering bug,
 // where the icons flash from a very large icon down to a properly sized one:
@@ -23,7 +23,7 @@ export default function Layout({ children, home }) {
             className="md:!mr-[50px] text-xl group transition duration-300 rounded-lg text-slate-700 font-medium"
           >
             {title}
-            <span className="block max-w-0 group-hover:max-w-full  transition-all duration-500 h-1 bg-purple-700"></span>
+            <span className="block max-w-0 md:group-hover:max-w-full  transition-all duration-500 h-1 bg-purple-700"></span>
           </a>
         ))}
       </nav>
