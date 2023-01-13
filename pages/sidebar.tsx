@@ -38,7 +38,7 @@ export default function Sidebar() {
           </div>
         </div>
         <div className="hidden lg:block">
-          <a href="https://www.linkedin.com/in/lucasamos/" target="_blank">
+          <Link href="https://www.linkedin.com/in/lucasamos/" target="_blank">
             <div>
               <FontAwesomeIcon
                 icon={faLinkedin}
@@ -46,8 +46,8 @@ export default function Sidebar() {
               />
               LinkedIn
             </div>
-          </a>
-          <a href="https://github.com/LucasAmos/" target="_blank">
+          </Link>
+          <Link href="https://github.com/LucasAmos/" target="_blank">
             <div>
               <FontAwesomeIcon
                 icon={faGithub}
@@ -55,8 +55,8 @@ export default function Sidebar() {
               />
               GitHub
             </div>
-          </a>
-          <a
+          </Link>
+          <Link
             href="https://www.flickr.com/photos/181849230@N04/"
             target="_blank"
           >
@@ -67,7 +67,7 @@ export default function Sidebar() {
               />
               Flickr
             </div>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

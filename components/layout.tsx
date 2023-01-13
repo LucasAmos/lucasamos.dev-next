@@ -17,14 +17,14 @@ export default function Layout({ children, home }) {
           ["About me", "/about"],
           ["Contact", "/contact"],
         ].map(([title, url]) => (
-          <a
+          <Link
             key={title}
             href={url}
             className="md:!mr-[50px] text-xl group transition duration-300 rounded-lg text-slate-700 font-medium"
           >
             {title}
             <span className="block max-w-0 md:group-hover:max-w-full  transition-all duration-500 h-1 bg-purple-700"></span>
-          </a>
+          </Link>
         ))}
       </nav>
       <div className="clear-both">
