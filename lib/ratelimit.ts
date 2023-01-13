@@ -22,9 +22,7 @@ export async function rateLimit(ip: string): Promise<boolean> {
     await PutRequests(ip, [new Date()], ddbClient);
     return true;
   } else {
-    const record = await getPastRequests(ip, ddbClient);
     const yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
-
     const previousRequests = filterDates(record, yesterday);
     if (previousRequests.length < 5) {
       await PutRequests(ip, previousRequests.concat([new Date()]), ddbClient);

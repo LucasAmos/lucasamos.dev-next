@@ -138,8 +138,12 @@ describe("PutRequests", () => {
 });
 
 describe("getPastRequests", () => {
+  beforeEach(() => {
+    ddbMock.resetHistory();
+  });
   test("Returns an array of dates", async () => {
     const res = await getPastRequests("192.168.0.1", ddbMock);
+    expect(ddbMock.commandCalls(GetItemCommand)).toHaveLength(1);
     expect(res).toEqual([
       new Date("2023-01-10T19:19:50.670Z"),
       new Date("2023-01-10T19:19:50.670Z"),
@@ -148,6 +152,7 @@ describe("getPastRequests", () => {
 
   test("Returns an array of dates 2", async () => {
     const res = await getPastRequests("192.168.0.0", ddbMock);
+    expect(ddbMock.commandCalls(GetItemCommand)).toHaveLength(1);
     expect(res).toEqual(null);
   });
 });
@@ -159,6 +164,7 @@ describe("rateLimit", () => {
   test("should return true when no rate limit records exist and should add record", async () => {
     const res = await rateLimit("192.168.0.0");
     expect(res).toEqual(true);
+    expect(ddbMock.commandCalls(GetItemCommand)).toHaveLength(1);
     expect(ddbMock.commandCalls(PutItemCommand)).toHaveLength(1);
     expect(ddbMock.commandCalls(PutItemCommand)[0]["args"][0]["input"]).toEqual(
       {
@@ -173,11 +179,13 @@ describe("rateLimit", () => {
 
   test("should reject request when 5 requests have happened in the previous day", async () => {
     const res = await rateLimit("192.168.0.4");
+    expect(ddbMock.commandCalls(GetItemCommand)).toHaveLength(1);
     expect(res).toEqual(false);
   });
 
   test("should allow request when less than 5 requests have happened in the previous day", async () => {
     const res = await rateLimit("192.168.0.3");
+    expect(ddbMock.commandCalls(GetItemCommand)).toHaveLength(1);
     expect(ddbMock.commandCalls(PutItemCommand)).toHaveLength(1);
     expect(ddbMock.commandCalls(PutItemCommand)[0]["args"][0]["input"]).toEqual(
       {
