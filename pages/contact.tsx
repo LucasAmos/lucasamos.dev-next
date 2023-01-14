@@ -52,9 +52,7 @@ export default function Contact() {
         <meta property="og:url" content="www.lucasamos.dev" />
         <meta property="og:author" content="Lucas Amos" />
       </Head>
-      <h1 className="font-Inter text-[#1a202c] tracking-tight text-2xl font-medium mb-5">
-        Send me an email
-      </h1>
+      <h1 className="font-Inter text-[#1a202c] tracking-tight text-2xl font-medium mb-5">Send me an email</h1>
       <form className="flex flex-col" onSubmit={sendEmail}>
         <div className="bg-slate-100 rounded pt-1 md:w-5/6 mb-5">
           <label className="pl-3">
@@ -110,9 +108,7 @@ export default function Contact() {
           )}
 
           {success && (
-            <div className="sm:ml-5 text-green-700 weight font-semibold inline-block">
-              Thank you for your email
-            </div>
+            <div className="sm:ml-5 text-green-700 weight font-semibold inline-block">Thank you for your email</div>
           )}
         </div>
       </form>

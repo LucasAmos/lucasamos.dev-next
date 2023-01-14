@@ -1,9 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import {
-  SESv2Client,
-  SendEmailCommand,
-  SendEmailCommandInput,
-} from "@aws-sdk/client-sesv2";
+import { SESv2Client, SendEmailCommand, SendEmailCommandInput } from "@aws-sdk/client-sesv2";
 
 const client = new SESv2Client({
   region: "eu-west-2",
@@ -15,10 +11,7 @@ const client = new SESv2Client({
 
 type Override<T1, T2> = Omit<T1, keyof T2> & T2;
 
-export type EmailApiRequest = Override<
-  NextApiRequest,
-  { body: EmailRequestBody }
->;
+export type EmailApiRequest = Override<NextApiRequest, { body: EmailRequestBody }>;
 
 export type EmailRequestBody = {
   name: string;

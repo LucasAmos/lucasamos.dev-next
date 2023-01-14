@@ -19,13 +19,13 @@ export async function rateLimit(ip: string): Promise<boolean> {
   const record = await getPastRequests(ip, ddbClient);
 
   if (record === null) {
-    await PutRequests(ip, [new Date()], ddbClient);
+    await putRequests(ip, [new Date()], ddbClient);
     return true;
   } else {
     const yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
     const previousRequests = filterDates(record, yesterday);
     if (previousRequests.length < 5) {
-      await PutRequests(ip, previousRequests.concat([new Date()]), ddbClient);
+      await putRequests(ip, previousRequests.concat([new Date()]), ddbClient);
       return true;
     } else {
       return false;
@@ -39,7 +39,7 @@ export function filterDates(dates: Date[], startDate: Date): Date[] {
   });
 }
 
-export async function PutRequests(
+export async function putRequests(
   ip: string,
   dates: Date[],
   client: any
@@ -51,10 +51,7 @@ export async function PutRequests(
   return client.send(new PutItemCommand(putItemParams));
 }
 
-export async function getPastRequests(
-  ip: string,
-  client: any
-): Promise<Date[]> {
+export async function getPastRequests(ip: string, client: any): Promise<Date[]> {
   const getItemParams: GetItemCommandInput = {
     TableName: "rate-limits",
     Key: {

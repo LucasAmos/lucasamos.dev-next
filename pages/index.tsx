@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+import React from "react";
 import Head from "next/head";
 import Layout from "../components/layout";
 import ReadingTime from "../components/readingTime";
@@ -61,3 +63,7 @@ export async function getStaticProps() {
     },
   };
 }
+
+Home.propTypes = {
+  allPostsData: PropTypes.array,
+};
