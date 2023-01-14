@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+import React from "react";
 import Link from "next/link";
 import Sidebar from "../pages/sidebar";
 
@@ -6,7 +8,7 @@ import Sidebar from "../pages/sidebar";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 // Prevent fontawesome from adding its CSS since we did it manually above:
 import { config } from "@fortawesome/fontawesome-svg-core";
-config.autoAddCss = false; /* eslint-disable import/first */
+config.autoAddCss = false;
 
 export default function Layout({ children, home }) {
   return (
@@ -39,3 +41,10 @@ export default function Layout({ children, home }) {
     </>
   );
 }
+
+Layout.displayName = "Layout";
+
+Layout.propTypes = {
+  children: PropTypes.node,
+  home: PropTypes.bool,
+};

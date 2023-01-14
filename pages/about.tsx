@@ -24,9 +24,8 @@ export default function About() {
       </h1>
 
       <p className="text-lg mb-2">
-        I'm a Cloud Software Engineed based in Scotland with a deep interest in
-        serverless technologies, particulary AWS. I have broad experience across
-        the entire stack including
+        I{"'"}m a Cloud Software Engineed based in Scotland with a deep interest in serverless
+        technologies, particulary AWS. I have broad experience across the entire stack including
       </p>
 
       <ul className="ml-5 list-disc mb-5">
@@ -40,11 +39,7 @@ export default function About() {
       </ul>
       <div className="md:w-8/12 lg:w-11/12 w-12/12 ">
         <div className="w-1/5 float-left mb-10">
-          <Image
-            src={awsdeveloper}
-            placeholder="blur"
-            alt="aws developer associate certifiction"
-          />
+          <Image src={awsdeveloper} placeholder="blur" alt="aws developer associate certifiction" />
         </div>
         <div className="w-1/5 float-left">
           <Image
@@ -54,18 +49,10 @@ export default function About() {
           />
         </div>
         <div className="w-1/5 float-left">
-          <Image
-            src={awssysops}
-            placeholder="blur"
-            alt="aws sys ops associate certifiction"
-          />
+          <Image src={awssysops} placeholder="blur" alt="aws sys ops associate certifiction" />
         </div>
         <div className="w-1/5 float-left">
-          <Image
-            src={terraform}
-            placeholder="blur"
-            alt="terraform associate certifiction"
-          />
+          <Image src={terraform} placeholder="blur" alt="terraform associate certifiction" />
         </div>
         <div className="w-1/5 float-left">
           <Image src={scrum} placeholder="blur" alt="scrum psm1 certifiction" />

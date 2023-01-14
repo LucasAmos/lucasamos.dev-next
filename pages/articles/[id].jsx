@@ -1,3 +1,5 @@
+import React from "react";
+import PropTypes from "prop-types";
 import Layout from "../../components/layout";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import Head from "next/head";
@@ -54,3 +56,7 @@ export async function getStaticProps({ params }) {
     },
   };
 }
+
+Post.propTypes = {
+  postData: PropTypes.object,
+};
