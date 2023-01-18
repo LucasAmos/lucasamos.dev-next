@@ -24,18 +24,18 @@ const About: React.FC = () => {
       </h1>
 
       <p className="text-lg mb-2">
-        I{"'"}m a Cloud Software Engineed based in Scotland with a deep interest in serverless
-        technologies, particulary AWS. I have broad experience across the entire stack including
+        I{"'"}m a Senior Cloud Software Engineer based in Scotland with a deep interest in AWS &
+        serverless technologies. I have broad experience across the entire stack including
       </p>
 
       <ul className="ml-5 list-disc mb-5">
         <li className="mb-1">AWS</li>
         <li className="mb-1">Terraform</li>
         <li className="mb-1">TypeScript</li>
+        <li className="mb-1">Node</li>
         <li className="mb-1">Python</li>
         <li className="mb-1">Next.js</li>
         <li className="mb-1">Tailwind</li>
-        <li className="mb-1">Node</li>
       </ul>
       <div className="md:w-8/12 lg:w-11/12 w-12/12 ">
         <div className="w-1/5 float-left mb-10">
