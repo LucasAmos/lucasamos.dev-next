@@ -8,9 +8,9 @@ import awssolutions from "../public/images/certs/solutions.png";
 import terraform from "../public/images/certs/terraform.png";
 import scrum from "../public/images/certs/scrum.png";
 
-export default function About() {
+const About: React.FC = () => {
   return (
-    <Layout home>
+    <Layout>
       <Head>
         <title>Lucas Amos</title>
         <meta property="og:image" content="images/lucas.jpeg" />
@@ -60,4 +60,6 @@ export default function About() {
       </div>
     </Layout>
   );
-}
+};
+
+export default About;

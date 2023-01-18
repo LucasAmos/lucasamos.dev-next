@@ -1,12 +1,25 @@
 import React from "react";
+import { GetStaticProps, GetStaticPaths } from "next";
 import PropTypes from "prop-types";
 import Layout from "../../components/layout";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import Head from "next/head";
 import Date from "../../components/date";
+import { ParsedUrlQuery } from "querystring";
 
-export default function Post({ postData }) {
-  const { title, previewImage } = postData;
+const PostPropTypes = {
+  postData: {
+    title: PropTypes.string,
+    previewImage: PropTypes.string,
+    date: PropTypes.string,
+    contentHtml: PropTypes.string,
+  },
+};
+
+type PostTypes = PropTypes.InferProps<typeof PostPropTypes>;
+
+const Post: React.FC = ({ postData }: PostTypes) => {
+  const { previewImage, title } = postData;
 
   return (
     <Layout>
@@ -38,25 +51,29 @@ export default function Post({ postData }) {
       </div>
     </Layout>
   );
-}
+};
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPostIds();
   return {
     paths,
     fallback: false,
   };
+};
+
+interface Params extends ParsedUrlQuery {
+  id: string;
 }
 
-export async function getStaticProps({ params }) {
-  const postData = await getPostData(params.id);
+export const getStaticProps: GetStaticProps<object, Params> = async ({ params }) => {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const postData = await getPostData(params!.id);
   return {
     props: {
       postData,
     },
   };
-}
-
-Post.propTypes = {
-  postData: PropTypes.object,
 };
+
+Post.propTypes = PostPropTypes;
+export default Post;

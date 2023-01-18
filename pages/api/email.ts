@@ -4,8 +4,8 @@ import { SESv2Client, SendEmailCommand, SendEmailCommandInput } from "@aws-sdk/c
 const client = new SESv2Client({
   region: "eu-west-2",
   credentials: {
-    accessKeyId: process.env.ACCESS_KEY_ID,
-    secretAccessKey: process.env.SECRET_ACCESS_KEY,
+    accessKeyId: process.env.ACCESS_KEY_ID || "",
+    secretAccessKey: process.env.SECRET_ACCESS_KEY || "",
   },
 });
 
@@ -19,13 +19,13 @@ export type EmailRequestBody = {
   message: string;
 };
 
-export default async (req: EmailApiRequest, res: NextApiResponse) => {
+export default async (req: EmailApiRequest, res: NextApiResponse): Promise<void> => {
   const { name, email, message } = req.body;
 
   const params: SendEmailCommandInput = {
     FromEmailAddress: process.env.EMAIL,
     Destination: {
-      ToAddresses: [process.env.EMAIL],
+      ToAddresses: [process.env.EMAIL || ""],
     },
     Content: {
       Simple: {

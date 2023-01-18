@@ -4,7 +4,7 @@ import lucas from "../public/images/lucas3.jpeg";
 import Link from "next/link";
 import { faLinkedin, faGithub, faFlickr } from "@fortawesome/free-brands-svg-icons";
 
-export default function Sidebar() {
+export default function Sidebar(): React.ReactElement {
   return (
     <div className="lg:col-span-1m pt-2.5">
       <div className="lg:sticky lg:top-5 relative">
@@ -23,7 +23,7 @@ export default function Sidebar() {
           </div>
           <div className="col-span-1">
             <h3 className="lg:pt-5 text-2xl font-bold text-slate-700">Lucas Amos</h3>
-            <h4>Cloud Software Engineer</h4>
+            <h4 data-testid="heading4">Cloud Software Engineer</h4>
           </div>
         </div>
         <div className="hidden lg:block">

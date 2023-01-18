@@ -1,5 +1,6 @@
-import PropTypes from "prop-types";
 import React from "react";
+import { GetStaticProps } from "next";
+import PropTypes from "prop-types";
 import Head from "next/head";
 import Layout from "../components/layout";
 import ReadingTime from "../components/readingTime";
@@ -10,9 +11,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 const title = "Lucas Amos: AWS certified Senior Cloud Software Engineer";
 
-export default function Home({ allPostsData }) {
+type PostsData = {
+  id: string;
+  date: string;
+  title: string;
+  subtitle: string;
+  readingTime: string;
+};
+
+export default function Home({ allPostsData }: { allPostsData: PostsData[] }): React.ReactElement {
   return (
-    <Layout home>
+    <Layout>
       <Head>
         <title>Lucas Amos</title>
         <meta property="og:image" content="images/lucas.jpeg" />
@@ -55,14 +64,13 @@ export default function Home({ allPostsData }) {
   );
 }
 
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
-      allPostsData,
+      allPostsData: getSortedPostsData(),
     },
   };
-}
+};
 
 Home.propTypes = {
   allPostsData: PropTypes.array,

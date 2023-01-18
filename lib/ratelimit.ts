@@ -11,8 +11,8 @@ export async function rateLimit(ip: string): Promise<boolean> {
   const ddbClient = new DynamoDBClient({
     region: "eu-west-2",
     credentials: {
-      accessKeyId: process.env.ACCESS_KEY_ID,
-      secretAccessKey: process.env.SECRET_ACCESS_KEY,
+      accessKeyId: process.env.ACCESS_KEY_ID || "",
+      secretAccessKey: process.env.SECRET_ACCESS_KEY || "",
     },
   });
 
@@ -42,7 +42,7 @@ export function filterDates(dates: Date[], startDate: Date): Date[] {
 export async function putRequests(
   ip: string,
   dates: Date[],
-  client: any
+  client: DynamoDBClient
 ): Promise<PutItemCommandOutput> {
   const putItemParams: PutItemCommandInput = {
     TableName: "rate-limits",
@@ -51,7 +51,7 @@ export async function putRequests(
   return client.send(new PutItemCommand(putItemParams));
 }
 
-export async function getPastRequests(ip: string, client: any): Promise<Date[]> {
+export async function getPastRequests(ip: string, client: DynamoDBClient): Promise<Date[] | null> {
   const getItemParams: GetItemCommandInput = {
     TableName: "rate-limits",
     Key: {
@@ -64,7 +64,7 @@ export async function getPastRequests(ip: string, client: any): Promise<Date[]> 
   const res = await client.send(new GetItemCommand(getItemParams));
 
   if (res?.Item?.log?.S) {
-    return JSON.parse(res.Item.log.S).map((date) => new Date(date));
+    return JSON.parse(res.Item.log.S).map((date: string) => new Date(date));
   }
   return null;
 }

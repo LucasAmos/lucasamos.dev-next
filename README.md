@@ -1,1 +1,3 @@
-This is a final template for [Learn Next.js](https://nextjs.org/learn).
+### Testing
+
+https://github.com/blues/sparrow-starter used as base config

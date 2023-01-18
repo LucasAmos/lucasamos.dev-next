@@ -10,7 +10,13 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
-export default function Layout({ children, home }) {
+const LayoutPropTypes = {
+  children: PropTypes.node,
+};
+
+type LayoutTypes = PropTypes.InferProps<typeof LayoutPropTypes>;
+
+const Layout: React.FunctionComponent<LayoutTypes> = ({ children }: LayoutTypes) => {
   return (
     <>
       <nav className="flex sm:justify-center space-x-4 float-right sm:m-4 m-4">
@@ -40,11 +46,10 @@ export default function Layout({ children, home }) {
       </div>
     </>
   );
-}
+};
+
+export default Layout;
 
 Layout.displayName = "Layout";
 
-Layout.propTypes = {
-  children: PropTypes.node,
-  home: PropTypes.bool,
-};
+Layout.propTypes = LayoutPropTypes;

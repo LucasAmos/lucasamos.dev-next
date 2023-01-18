@@ -7,11 +7,24 @@ import { calculateReadingTime } from "./utils";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
-export function getSortedPostsData() {
+type PostData = {
+  id: string;
+  contentHtml: string;
+};
+type AllPostsData = {
+  readingTime: number;
+  id: string;
+  title: string;
+  subtitle: string;
+  date: string;
+  previewImage: string;
+};
+
+export function getSortedPostsData(): AllPostsData[] {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
-    // Remove ".md" from file name to get id
+    // Re move ".md" from file name to get id
     const id = fileName.replace(/\.md$/, "");
 
     // Read markdown file as string
@@ -43,7 +56,7 @@ export function getSortedPostsData() {
   });
 }
 
-export function getAllPostIds() {
+export function getAllPostIds(): { params: { id: string } }[] {
   const fileNames = fs.readdirSync(postsDirectory);
   return fileNames.map((fileName) => {
     return {
@@ -54,7 +67,7 @@ export function getAllPostIds() {
   });
 }
 
-export async function getPostData(id) {
+export async function getPostData(id: string): Promise<PostData> {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
@@ -64,6 +77,7 @@ export async function getPostData(id) {
   // Use remark to convert markdown into HTML string
   const processedContent = await remark()
     .use(html, { sanitize: false })
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     .use(require("remark-prism"), {})
     .process(matterResult.content);
   const contentHtml = processedContent.toString();
