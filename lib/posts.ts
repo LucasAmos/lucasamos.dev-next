@@ -47,13 +47,17 @@ export function getSortedPostsData(): AllPostsData[] {
     };
   });
   // Sort posts by date
-  return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1;
-    } else {
-      return -1;
-    }
-  });
+  return allPostsData
+    .sort((a, b) => {
+      if (a.date < b.date) {
+        return 1;
+      } else {
+        return -1;
+      }
+    })
+    .filter((p) => {
+      return new Date(p.date) <= new Date();
+    });
 }
 
 export function getAllPostIds(): { params: { id: string } }[] {
