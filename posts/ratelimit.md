@@ -7,7 +7,7 @@ previewImage: images/Nextjs.png
 
 ## Creating a rate limiter
 
-I recently used the AWS Simple Email Service and Next.js API routes to add an [email contact form](https://www.lucasamos.dev/contact) to my website. I decided to add a rate limiter protect the API endpoints from malicious bulk requests that could generate excessive AWS costs.
+I recently used the AWS Simple Email Service and Next.js API routes to add an [email contact form](https://www.lucasamos.dev/contact) to my website. I decided to add a rate limiter that would track the IP addresses of requests and protect the API endpoints from malicious bulk requests that could generate excessive AWS costs.
 
 ### Sending an email
 
