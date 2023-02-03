@@ -17,9 +17,10 @@ export async function middleware(request: MiddlewareRequest): Promise<NextRespon
     const allowRequest = await rateLimit(request.ip);
 
     if (allowRequest === false) {
-      const url = request.nextUrl.clone();
-      url.pathname = "/api/tooManyRequests";
-      return NextResponse.rewrite(url);
+      return new NextResponse(JSON.stringify({ success: false, message: "Rate limit exceeded" }), {
+        status: 429,
+        headers: { "content-type": "application/json" },
+      });
     }
     return NextResponse.next();
   }

@@ -11,8 +11,8 @@ export async function rateLimit(ip: string): Promise<boolean> {
   const ddbClient = new DynamoDBClient({
     region: "eu-west-2",
     credentials: {
-      accessKeyId: process.env.ACCESS_KEY_ID || "",
-      secretAccessKey: process.env.SECRET_ACCESS_KEY || "",
+      accessKeyId: process.env.ACCESS_KEY_ID,
+      secretAccessKey: process.env.SECRET_ACCESS_KEY,
     },
   });
 
