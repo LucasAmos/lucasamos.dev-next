@@ -2,7 +2,7 @@
 title: Creating an API rate limiter using Next.js middleware
 subtitle: "Protect your endpoints"
 date: "2023-02-03"
-previewImage: images/nextjs.png
+previewImage: images/Nextjs.png
 ---
 
 ## Creating a rate limiter
