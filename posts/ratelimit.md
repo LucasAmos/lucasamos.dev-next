@@ -70,7 +70,7 @@ export default async (req: EmailApiRequest, res: NextApiResponse): Promise<void>
 
 ### Next.js middleware
 
-The function **middleware** in [middleware.ts](https://github.com/LucasAmos/lucasamos.dev-next/blob/master/middleware.ts) intercepts every api request and allows the request to be rejected or redirected. Creating a function **rateLimit** that receives the origin ip address for each request allows logic to be implemented for rejecting the request with a `429` error if too many requests have occurred within the specified time period.
+The function **middleware** in [middleware.ts](https://github.com/LucasAmos/lucasamos.dev-next/blob/master/middleware.ts) intercepts every api request and allows the request to be rejected or redirected. Creating a function **rateLimit** that receives the origin ip address for each request allows logic to be implemented for rejecting the request with a **429** error if too many requests have occurred within the specified time period.
 
 ```js
 export type MiddlewareRequest = Override<
