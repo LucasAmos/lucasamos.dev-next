@@ -16,7 +16,7 @@ Type 'string | undefined' is not assignable to type 'string'.
 
 ![Environment variables with error](/images/tsenvvars1.png)
 
-This can be resolved by Typing process.env in the NodeJS Namespace. We do this by creating the file **additional.d.ts** in the root directory are definining the environment variable types.
+This can be resolved by Typing process.env in the NodeJS Namespace. We do this by creating the file **additional.d.ts** in the root directory and definining the environment variable types.
 
 ```js
 declare namespace NodeJS {
@@ -28,6 +28,8 @@ declare namespace NodeJS {
 }
 ```
 
+<br/>
+
 Make sure to add **additional.d.ts** to the **includes** array of **tsconfig.json**
 
 ```js
@@ -37,6 +39,7 @@ Make sure to add **additional.d.ts** to the **includes** array of **tsconfig.jso
 }
 ```
 
-The error is now gone
+<br/>
 
+The error is now gone
 ![Environment variables with error fixed](/images/tsenvvars2.png)
