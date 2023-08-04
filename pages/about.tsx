@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Layout from "../components/layout";
 const title = "Lucas Amos: AWS certified Senior Cloud Software Engineer";
+import awsdevopspro from "../public/images/certs/devopspro.png";
 import awsdeveloper from "../public/images/certs/developer.png";
 import awssysops from "../public/images/certs/sysops.png";
 import awssolutions from "../public/images/certs/solutions.png";
@@ -38,23 +39,26 @@ const About: React.FC = () => {
         <li className="mb-1">Tailwind</li>
       </ul>
       <div className="md:w-8/12 lg:w-11/12 w-12/12 ">
-        <div className="w-1/5 float-left mb-10">
+        <div className="md:w-1/6  w-1/3  float-left ">
+          <Image src={awsdevopspro} placeholder="blur" alt="aws developer associate certifiction" />
+        </div>
+        <div className="md:w-1/6  w-1/3 float-left ">
           <Image src={awsdeveloper} placeholder="blur" alt="aws developer associate certifiction" />
         </div>
-        <div className="w-1/5 float-left">
+        <div className="md:w-1/6  w-1/3 float-left">
           <Image
             src={awssolutions}
             placeholder="blur"
             alt="aws solutions architect associate certifiction"
           />
         </div>
-        <div className="w-1/5 float-left">
+        <div className="md:w-1/6 w-1/3 sm:mt-10 md:mt-0  float-left">
           <Image src={awssysops} placeholder="blur" alt="aws sys ops associate certifiction" />
         </div>
-        <div className="w-1/5 float-left">
+        <div className="md:w-1/6  w-1/3 sm:mt-10 md:mt-0 float-left">
           <Image src={terraform} placeholder="blur" alt="terraform associate certifiction" />
         </div>
-        <div className="w-1/5 float-left">
+        <div className="md:w-1/6  w-1/3 sm:mt-10 md:mt-0 float-left">
           <Image src={scrum} placeholder="blur" alt="scrum psm1 certifiction" />
         </div>
       </div>
