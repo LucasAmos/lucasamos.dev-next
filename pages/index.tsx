@@ -30,7 +30,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsData[] }): R
         <meta property="og:url" content="www.lucasamos.dev" />
         <meta property="og:author" content="Lucas Amos" />
       </Head>
-      <h1 className="font-Inter text-[#1a202c] tracking-tight text-2xl font-medium">
+      <h1 className="font-Inter text-2xl font-medium tracking-tight text-[#1a202c]">
         Recent posts
       </h1>
 
@@ -39,10 +39,10 @@ export default function Home({ allPostsData }: { allPostsData: PostsData[] }): R
         {allPostsData.map(({ id, date, title, subtitle, readingTime }) => (
           <div className="pb-10" key={title}>
             <Link href={`/articles/${id}`}>
-              <h1 className="text-2xl font-semibold mb-1 hover:underline underline text-purple-700  transition-all duration-1000 hover:text-purple-900">
+              <h1 className="mb-1 text-2xl font-semibold text-purple-700 underline transition-all  duration-1000 hover:text-purple-900 hover:underline">
                 {title}
               </h1>
-              <div className="text-slate-700 text-sm mb-1">
+              <div className="mb-1 text-sm text-slate-700">
                 <div className="clear-both">
                   <div className="float-left">
                     <FontAwesomeIcon icon={faCalendarAlt} className="pr-2" />

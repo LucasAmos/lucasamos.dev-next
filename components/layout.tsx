@@ -19,7 +19,7 @@ type LayoutTypes = PropTypes.InferProps<typeof LayoutPropTypes>;
 const Layout: React.FunctionComponent<LayoutTypes> = ({ children }: LayoutTypes) => {
   return (
     <>
-      <nav className="flex sm:justify-center space-x-4 float-right sm:m-4 m-4">
+      <nav className="float-right m-4 flex space-x-4 sm:m-4 sm:justify-center">
         {[
           ["Posts", "/"],
           ["About me", "/about"],
@@ -28,20 +28,20 @@ const Layout: React.FunctionComponent<LayoutTypes> = ({ children }: LayoutTypes)
           <Link
             key={title}
             href={url}
-            className="md:!mr-[50px] text-xl group transition duration-300 rounded-lg text-slate-700 font-medium"
+            className="group rounded-lg text-xl font-medium text-slate-700 transition duration-300 md:!mr-[50px]"
           >
             {title}
-            <span className="block max-w-0 md:group-hover:max-w-full  transition-all duration-500 h-1 bg-purple-700"></span>
+            <span className="block h-1 max-w-0  bg-purple-700 transition-all duration-500 md:group-hover:max-w-full"></span>
           </Link>
         ))}
       </nav>
       <div className="clear-both">
         <hr />
       </div>
-      <div className="max-w-[1380px] m-auto">
-        <div className="p-5 lg:grid sm:grid-cols-1 lg:grid-cols-5 gap-4 max-w-[1500px] lg:ml-20  mt-5 lg:pt-10 sm:mt-0">
+      <div className="m-auto max-w-[1380px]">
+        <div className="mt-5 max-w-[1500px] gap-4 p-5 sm:mt-0 sm:grid-cols-1 lg:ml-20  lg:grid lg:grid-cols-5 lg:pt-10">
           <Sidebar />
-          <div className="lg:col-span-3 mt-14 lg:mt-0">{children}</div>
+          <div className="mt-14 lg:col-span-3 lg:mt-0">{children}</div>
         </div>
       </div>
     </>

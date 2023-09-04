@@ -24,6 +24,15 @@
   color: #000;
 }
 
+.prose a {
+  color: rgb(126 34 206);
+}
+
+.prose a:hover {
+  color: rgb(88 28 135);
+  transition: 0.5s;
+}
+
 code[class*="language-hide"],
 pre[class*="language-hide"] {
   visibility: hidden;
