@@ -1,7 +1,7 @@
 ---
 title: "Using nodejs source maps with AWS Lambda"
 subtitle: "Debug your code even when it is minified"
-date: "2023-09-05"
+date: "2023-09-04"
 previewImage: images/lambda.png
 ---
 
