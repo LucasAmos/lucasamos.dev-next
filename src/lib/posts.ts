@@ -5,7 +5,7 @@ import { remark } from "remark";
 import html from "remark-html";
 import { calculateReadingTime } from "./utils";
 
-const postsDirectory = path.join(process.cwd(), "posts");
+const postsDirectory = path.join(process.cwd(), "src/posts");
 
 type PostData = {
   id: string;
