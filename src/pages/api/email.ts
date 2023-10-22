@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/nextjs";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { SESv2Client, SendEmailCommand, SendEmailCommandInput } from "@aws-sdk/client-sesv2";
 
@@ -49,7 +50,7 @@ export default async (req: EmailApiRequest, res: NextApiResponse): Promise<void>
     await client.send(command);
     res.status(200).json("success");
   } catch (error) {
-    console.log(error);
+    Sentry.captureException(error);
     res.status(500).json(JSON.stringify({ error: "Email was not sent" }));
   }
 };
