@@ -78,3 +78,7 @@ terraform.rc
 .terraform.lock.hcl
 # Sentry Config File
 .sentryclirc
+
+/out
+*.hcl
+.deploy/.terraform

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import lucas from "../public/images/lucas3.jpeg";
+import lucas from "../../public/images/lucas3.jpeg";
 import Link from "next/link";
 import { faLinkedin, faGithub, faFlickr } from "@fortawesome/free-brands-svg-icons";
 

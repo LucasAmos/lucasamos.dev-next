@@ -2,12 +2,12 @@ import Head from "next/head";
 import Image from "next/image";
 import Layout from "../components/layout";
 const title = "Lucas Amos: AWS certified Senior Cloud Software Engineer";
-import awsdevopspro from "../public/images/certs/devopspro.png";
-import awsdeveloper from "../public/images/certs/developer.png";
-import awssysops from "../public/images/certs/sysops.png";
-import awssolutions from "../public/images/certs/solutions.png";
-import terraform from "../public/images/certs/terraform.png";
-import scrum from "../public/images/certs/scrum.png";
+import awsdevopspro from "../../public/images/certs/devopspro.png";
+import awsdeveloper from "../../public/images/certs/developer.png";
+import awssysops from "../../public/images/certs/sysops.png";
+import awssolutions from "../../public/images/certs/solutions.png";
+import terraform from "../../public/images/certs/terraform.png";
+import scrum from "../../public/images/certs/scrum.png";
 
 const About: React.FC = () => {
   return (
