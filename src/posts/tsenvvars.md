@@ -2,7 +2,7 @@
 title: How to type NodeJS environment variables using TypeScript
 subtitle: Fix the error Type 'undefined' is not assignable to type 'string'
 date: "2023-02-04"
-previewImage: images/typescript.png
+previewImage: images/typescript1.png
 ---
 
 ## Type 'undefined' is not assignable to type 'string'
