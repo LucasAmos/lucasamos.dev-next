@@ -2,7 +2,7 @@
 title: "Why I rewrote my website using Gatsby"
 subtitle: "Blazing fast load times, built on react and with image optimization as standard"
 date: "2020-05-05"
-previewImage: images/terraform.png
+previewImage: images/gatsby.jpeg
 ---
 
 ## What is a static site generator?
