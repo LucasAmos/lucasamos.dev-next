@@ -25,13 +25,6 @@ const Post: React.FC = ({ postData }: PostTypes) => {
     <Layout>
       <Head>
         <title>{postData.title}</title>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css"
-          integrity="sha512-ML8rkwYTFNcblPFx+VLgFIT2boa6f8DDP6p6go4+FT0/mJ8DCbCgi6S0UdjtzB3hKCr1zhU+YVB0AHhIloZP8Q=="
-          crossOrigin="anonymous"
-          referrerPolicy="no-referrer"
-        />
         <meta property="og:image" content={`/${previewImage}`} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={title} />
@@ -40,7 +33,7 @@ const Post: React.FC = ({ postData }: PostTypes) => {
       <div>
         <article className="prose">
           <h1 className="font-Inter text-3xl sm:text-4xl">{postData.title}</h1>
-          <div className="text-2xl md:text-xl text-slate-500">
+          <div className="text-2xl text-slate-500 md:text-xl">
             <Date dateString={postData.date} />
           </div>
           <div
