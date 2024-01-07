@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import Link from "next/link";
 import Sidebar from "../pages/sidebar";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // The following import prevents a Font Awesome icon server-side rendering bug,
 // where the icons flash from a very large icon down to a properly sized one:
@@ -42,6 +43,7 @@ const Layout: React.FunctionComponent<LayoutTypes> = ({ children }: LayoutTypes)
         <div className="mt-5 max-w-[1500px] gap-4 p-5 sm:mt-0 sm:grid-cols-1 lg:ml-20  lg:grid lg:grid-cols-5 lg:pt-10">
           <Sidebar />
           <div className="mt-14 lg:col-span-3 lg:mt-0">{children}</div>
+          <SpeedInsights />
         </div>
       </div>
     </>
