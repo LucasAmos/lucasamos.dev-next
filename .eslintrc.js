@@ -6,7 +6,7 @@ module.exports = {
   },
   parserOptions: { ecmaVersion: 8 },
   ignorePatterns: ["node_modules/*", ".next/*", ".out/*", "!.prettierrc.js"],
-  extends: ["eslint:recommended", "plugin:tailwindcss/recommended"],
+  extends: ["eslint:recommended", "plugin:tailwindcss/recommended", "prettier"],
   overrides: [
     {
       files: ["**/*.ts", "**/*.tsx"],
