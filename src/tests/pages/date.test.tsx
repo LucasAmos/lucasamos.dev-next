@@ -17,7 +17,7 @@ describe("Date", () => {
   it("renders correct date", () => {
     render(<Date dateString="2020-09-19" />);
 
-    const date: any = screen.getByTestId("date");
+    const date: HTMLElement = screen.getByTestId("date");
 
     expect(date).toHaveTextContent("September 19, 2020");
   });

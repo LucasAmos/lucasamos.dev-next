@@ -58,15 +58,15 @@ const Contact: React.FC = () => {
         <meta property="og:url" content="www.lucasamos.dev" />
         <meta property="og:author" content="Lucas Amos" />
       </Head>
-      <h1 className="font-Inter text-[#1a202c] tracking-tight text-2xl font-medium mb-5">
+      <h1 className="mb-5 font-Inter text-2xl font-medium tracking-tight text-[#1a202c]">
         Send me an email
       </h1>
       <form className="flex flex-col" onSubmit={sendEmail}>
-        <div className="bg-slate-100 rounded pt-1 md:w-5/6 mb-5">
+        <div className="mb-5 rounded bg-slate-100 pt-1 md:w-5/6">
           <label className="pl-3">
             Name:
             <input
-              className="outline-none  bg-slate-100 rounded w-full pl-3 pb-3"
+              className="w-full  rounded bg-slate-100 pb-3 pl-3 outline-none"
               type="text"
               value={name}
               required
@@ -76,11 +76,11 @@ const Contact: React.FC = () => {
             />
           </label>
         </div>
-        <div className="bg-slate-100 rounded pt-1 md:w-5/6 mb-5">
+        <div className="mb-5 rounded bg-slate-100 pt-1 md:w-5/6">
           <label className="pl-3">
             Email:
             <input
-              className="outline-none  bg-slate-100 rounded w-full pl-3 pb-3"
+              className="w-full  rounded bg-slate-100 pb-3 pl-3 outline-none"
               type="email"
               value={email}
               required
@@ -90,11 +90,11 @@ const Contact: React.FC = () => {
             />
           </label>
         </div>
-        <div className="bg-slate-100 rounded pt-1 md:w-5/6 mb-5">
+        <div className="mb-5 rounded bg-slate-100 pt-1 md:w-5/6">
           <label className="pl-3">
             Message:
             <textarea
-              className="outline-none  bg-slate-100 rounded w-full pl-3 pb-3"
+              className="w-full  rounded bg-slate-100 pb-3 pl-3 outline-none"
               value={message}
               required
               onChange={(e) => {
@@ -105,19 +105,19 @@ const Contact: React.FC = () => {
         </div>
         <div>
           <input
-            className="disabled:opacity-50 bg-slate-300 disabled:hover:bg-slate-300 hover:bg-slate-100 rounded w-[150px] h-[40px] cursor-pointer"
+            className="h-[40px] w-[150px] cursor-pointer rounded bg-slate-300 hover:bg-slate-100 disabled:opacity-50 disabled:hover:bg-slate-300"
             type="submit"
             value="Submit"
             disabled={loading}
           />
           {error && (
-            <div className="sm:ml-5 text-red-700 weight font-semibold inline-block">
+            <div className="inline-block font-semibold text-red-700 sm:ml-5">
               Email could not be sent, please try again
             </div>
           )}
 
           {success && (
-            <div className="sm:ml-5 text-green-700 weight font-semibold inline-block">
+            <div className="inline-block font-semibold text-green-700 sm:ml-5">
               Thank you for your email
             </div>
           )}
