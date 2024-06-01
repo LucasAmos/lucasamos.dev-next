@@ -24,9 +24,9 @@ export default async (req: EmailApiRequest, res: NextApiResponse): Promise<void>
   const { name, email, message } = req.body;
 
   const params: SendEmailCommandInput = {
-    FromEmailAddress: process.env.EMAIL,
+    FromEmailAddress: process.env.FROM_EMAIL,
     Destination: {
-      ToAddresses: [process.env.EMAIL],
+      ToAddresses: [process.env.TO_EMAIL],
     },
     Content: {
       Simple: {
