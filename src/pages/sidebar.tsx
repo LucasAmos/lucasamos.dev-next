@@ -2,7 +2,7 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import lucas from "../../public/images/lucas3.jpeg";
 import Link from "next/link";
-import { faLinkedin, faGithub, faFlickr } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faFlickr } from "@fortawesome/free-brands-svg-icons";
 
 export default function Sidebar(): React.ReactElement {
   return (
@@ -27,12 +27,6 @@ export default function Sidebar(): React.ReactElement {
           </div>
         </div>
         <div className="hidden lg:block">
-          <Link href="https://www.linkedin.com/in/lucasamos/" target="_blank">
-            <div>
-              <FontAwesomeIcon icon={faLinkedin} className="fa-lg mr-2 mt-3 text-[#007bb6]" />
-              LinkedIn
-            </div>
-          </Link>
           <Link href="https://github.com/LucasAmos/" target="_blank">
             <div>
               <FontAwesomeIcon
