@@ -1,6 +1,6 @@
 ---
 title: "Track application expenses using AWS Cost Explorer "
-subtitle: "Tag resources using User-defined cost allocation tags"
+subtitle: "Improve efficiency and optimise your cloud spending"
 date: "2024-06-25"
 previewImage: images/aws.png
 ---
