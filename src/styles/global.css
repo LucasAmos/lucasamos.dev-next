@@ -3,17 +3,23 @@
 @import "tailwindcss/utilities";
 
 @font-face {
+  font-display: swap;
   font-family: "Inter";
   font-style: italic;
   font-weight: 400;
-  src: local(""), url("../../public/fonts/Inter-italic.latin.var.woff2") format("woff");
+  src:
+    local(""),
+    url("../../public/fonts/Inter-italic.latin.var.woff2") format("woff");
 }
 
 @font-face {
+  font-display: swap;
   font-family: "Inter";
   font-style: normal;
   font-weight: 600;
-  src: local(""), url("../../public/fonts/Inter-roman.latin.var.woff2") format("woff");
+  src:
+    local(""),
+    url("../../public/fonts/Inter-roman.latin.var.woff2") format("woff");
 }
 
 .prose code[class*="language-"] {
