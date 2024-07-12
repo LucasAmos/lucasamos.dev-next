@@ -5,7 +5,7 @@ date: "2024-07-12"
 previewImage: images/faas.png
 ---
 
-#### Click below to read upcoming my paper that will be published in the 17th IEEE International Conference on Cloud Computing
+#### Click below to read my paper that will be published in the 17th IEEE International Conference on Cloud Computing
 
 <br/>
 <a href="/pdfs/State_Of_FaaS_Accepted_Version.pdf" target="_blank" rel="noopener" >
