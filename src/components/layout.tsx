@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import Sidebar from "../pages/sidebar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Banner from "./banner";
 
 // The following import prevents a Font Awesome icon server-side rendering bug,
 // where the icons flash from a very large icon down to a properly sized one:
@@ -20,6 +21,7 @@ type LayoutTypes = PropTypes.InferProps<typeof LayoutPropTypes>;
 const Layout: React.FunctionComponent<LayoutTypes> = ({ children }: LayoutTypes) => {
   return (
     <>
+      <Banner />
       <nav className="float-right m-4 flex space-x-4 sm:m-4 sm:justify-center">
         {[
           ["Posts", "/"],

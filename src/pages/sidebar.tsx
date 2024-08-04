@@ -7,12 +7,12 @@ import { faGithub, faFlickr } from "@fortawesome/free-brands-svg-icons";
 export default function Sidebar(): React.ReactElement {
   return (
     <div className="pt-2.5 lg:col-span-1">
-      <div className="relative lg:sticky lg:top-5">
+      <div className="relative lg:sticky lg:top-14">
         <div className="grid-cols-2 lg:grid lg:grid-cols-1">
           <div className="col-span-1 float-left mr-10">
             <Link href="/" legacyBehavior>
               <div
-                className="h-[80px] w-[80px] cursor-pointer overflow-hidden rounded-full lg:h-[130px] lg:w-[130px]"
+                className="size-[80px] cursor-pointer overflow-hidden rounded-full lg:size-[130px]"
                 style={{
                   boxShadow: "0 0 0 3px #18981a, 0 0 0 6px #880990, 0 0 0 9px #4a2051",
                 }}
