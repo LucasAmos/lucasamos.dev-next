@@ -14,7 +14,7 @@ const Banner: React.FunctionComponent = () => {
 
   if (!hidden) {
     return (
-      <div className="sticky top-0 flex items-center justify-between bg-slate-100  dark:bg-slate-800 ">
+      <div className="sticky top-0 z-10 flex items-center justify-between bg-slate-100  dark:bg-slate-800 ">
         <div className="flex grow justify-center text-center text-lg font-semibold">
           <Link href="/articles/faas">Read my IEEE CLOUD paper on The State of FaaS</Link>
         </div>
