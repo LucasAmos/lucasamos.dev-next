@@ -8,7 +8,7 @@ previewImage: images/faas.png
 #### Click below to read my paper that was presented at the 17th IEEE International Conference on Cloud Computing in Shenzhen, China
 
 <br/>
-<a href="/pdfs/State_Of_FaaS_Accepted_Version.pdf" target="_blank" rel="noopener" >
+<a href="https://arxiv.org/abs/2408.03021" target="_blank" rel="noopener" >
 <div style="border: 2px solid #0000ff54; padding: 0.5rem; max-width: 500px">
 <img src="/images/faaslarge.png">
 </div>
