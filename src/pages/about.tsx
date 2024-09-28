@@ -11,7 +11,7 @@ import scrum from "../../public/images/certs/scrum.png";
 import aston from "../../public/images/uni/aston.png";
 import standrews from "../../public/images/uni/standrews.png";
 
-const title = "Lucas Amos: AWS certified Senior Cloud Software Engineer";
+const title = "Lucas Amos: AWS Application Architect";
 
 const About: React.FC = () => {
   return (
@@ -28,7 +28,7 @@ const About: React.FC = () => {
         About me
       </h1>
       <p className="mb-2 text-lg">
-        I{"'"}m a Senior Cloud Software Engineer based in Scotland with a deep interest in AWS &
+        I{"'"}m an AWS Application Architect based in Scotland with a deep interest in cloud &
         serverless technologies.
       </p>
       <p className="mb-2 text-lg">

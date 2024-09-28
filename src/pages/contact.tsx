@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Layout from "../components/layout";
 import { useState } from "react";
-const title = "Lucas Amos: AWS certified Senior Cloud Software Engineer";
+const title = "Lucas Amos: AWS Application Architect";
 
 const Contact: React.FC = () => {
   // export default function Contact() {

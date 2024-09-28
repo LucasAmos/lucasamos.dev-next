@@ -9,7 +9,7 @@ import Link from "next/link";
 import Date from "../components/date";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
-const title = "Lucas Amos: AWS certified Senior Cloud Software Engineer";
+const title = "Lucas Amos: AWS Application Architect";
 
 type PostsData = {
   id: string;
