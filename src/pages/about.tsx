@@ -18,7 +18,7 @@ const About: React.FC = () => {
     <Layout>
       <Head>
         <title>Lucas Amos</title>
-        <meta property="og:image" content="images/lucas.jpg" />
+        <meta property="og:image" content="images/lucasnew.jpg" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={title} />
         <meta property="og:url" content="www.lucasamos.dev" />
