@@ -24,7 +24,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsData[] }): R
     <Layout>
       <Head>
         <title>Lucas Amos</title>
-        <meta property="og:image" content="images/lucas.jpeg" />
+        <meta property="og:image" content="images/lucas.jpg" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={title} />
         <meta property="og:url" content="www.lucasamos.dev" />
