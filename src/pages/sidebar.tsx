@@ -36,12 +36,12 @@ export default function Sidebar(): React.ReactElement {
               GitHub
             </div>
           </Link>
-          <Link href="https://www.flickr.com/photos/181849230@N04/" target="_blank">
+          {/* <Link href="https://www.flickr.com/photos/181849230@N04/" target="_blank">
             <div>
               <FontAwesomeIcon icon={faFlickr} className="fa-lg mr-2 mt-3 text-[#000000]" />
               Flickr
             </div>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>
