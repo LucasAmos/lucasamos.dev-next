@@ -3,8 +3,6 @@ import Image from "next/image";
 import Layout from "../components/layout";
 import Link from "next/link";
 import awsdevopspro from "../../public/images/certs/devopspro.png";
-import awsdeveloper from "../../public/images/certs/developer.png";
-import awssysops from "../../public/images/certs/sysops.png";
 import awssolutions from "../../public/images/certs/solutions.png";
 import terraform from "../../public/images/certs/terraform.png";
 import scrum from "../../public/images/certs/scrum.png";
@@ -28,7 +26,7 @@ const About: React.FC = () => {
         About me
       </h1>
       <p className="mb-2 text-lg">
-        I{"'"}m an AWS Application Architect based in Scotland with a deep interest in cloud &
+        I{"'"}m an Senior Software Engineer based in Scotland with a deep interest in cloud &
         serverless technologies.
       </p>
       <p className="mb-2 text-lg">
@@ -60,33 +58,29 @@ const About: React.FC = () => {
       </ul>
       <div className="w-full md:w-8/12 lg:w-11/12 ">
         <div className="float-left w-1/3  md:w-1/5 ">
-          <Image src={standrews} placeholder="blur" alt="scrum psm1 certifiction" />
-        </div>
-        <div className="float-left w-1/3  md:w-1/5 ">
-          <Image src={aston} placeholder="blur" alt="scrum psm1 certifiction" />
-        </div>
-
-        <div className="float-left w-1/3  md:w-1/5 ">
           <Image src={awsdevopspro} placeholder="blur" alt="aws devops professional certifiction" />
         </div>
-        <div className="float-left w-1/3 md:w-1/5 ">
-          <Image src={awsdeveloper} placeholder="blur" alt="aws developer associate certifiction" />
-        </div>
-        <div className="float-left w-1/3 md:w-1/5">
+        <div className="float-left w-1/3  md:w-1/5 ">
           <Image
             src={awssolutions}
             placeholder="blur"
             alt="aws solutions architect associate certifiction"
           />
         </div>
-        <div className="float-left w-1/3 md:w-1/5 ">
-          <Image src={awssysops} placeholder="blur" alt="aws sys ops associate certifiction" />
-        </div>
-        <div className="float-left  mt-5 w-1/3 sm:mt-10 md:mt-0 md:w-1/5">
+
+        <div className="float-left w-1/3  md:w-1/5 ">
           <Image src={terraform} placeholder="blur" alt="terraform associate certifiction" />
         </div>
-        <div className="float-left  mt-5 w-1/3 sm:mt-10 md:mt-0 md:w-1/5">
+        <div className="float-left w-1/3 md:w-1/5">
           <Image src={scrum} placeholder="blur" alt="scrum psm1 certifiction" />
+        </div>
+
+        <div className="float-left  mt-5 w-1/3 sm:mt-10 md:mt-0 md:w-1/5">
+          <Image src={standrews} placeholder="blur" alt="scrum psm1 certifiction" />
+        </div>
+        <div className="float-left  mt-5 w-1/3 sm:mt-10 md:mt-0 md:w-1/5">
+          {" "}
+          <Image src={aston} placeholder="blur" alt="scrum psm1 certifiction" />
         </div>
       </div>
     </Layout>
