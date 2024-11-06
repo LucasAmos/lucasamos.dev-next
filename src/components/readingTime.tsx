@@ -10,7 +10,7 @@ type ReadingTimeProps = {
 function ReadingTime({ time }: ReadingTimeProps): React.ReactElement {
   return (
     <>
-      <FontAwesomeIcon icon={faClock} /> <text>{time} minute read</text>
+      <FontAwesomeIcon icon={faClock} /> <span>{time} minute read</span>
     </>
   );
 }

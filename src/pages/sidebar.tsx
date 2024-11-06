@@ -33,7 +33,7 @@ export default function Sidebar(): React.ReactElement {
               icon={faGithub}
               className="fa-lg relative right-px mr-1 mt-3 text-[#383738]"
             />
-            <text>GitHub</text>
+            <span>GitHub</span>
           </Link>
           {/* <Link href="https://www.flickr.com/photos/181849230@N04/" target="_blank">
             <div>
