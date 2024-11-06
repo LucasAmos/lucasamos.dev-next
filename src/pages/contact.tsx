@@ -111,15 +111,15 @@ const Contact: React.FC = () => {
             disabled={loading}
           />
           {error && (
-            <div className="inline-block font-semibold text-red-700 sm:ml-5">
+            <h2 className="inline-block font-semibold text-red-700 sm:ml-5">
               Email could not be sent, please try again
-            </div>
+            </h2>
           )}
 
           {success && (
-            <div className="inline-block font-semibold text-green-700 sm:ml-5">
+            <h2 className="inline-block font-semibold text-green-700 sm:ml-5">
               Thank you for your email
-            </div>
+            </h2>
           )}
         </div>
       </form>

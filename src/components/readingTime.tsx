@@ -7,11 +7,11 @@ type ReadingTimeProps = {
   time: string;
 };
 
-export default function ReadingTime({ time }: ReadingTimeProps): React.ReactElement {
+function ReadingTime({ time }: ReadingTimeProps): React.ReactElement {
   return (
-    <div>
-      <FontAwesomeIcon icon={faClock} /> {time} minute read
-    </div>
+    <>
+      <FontAwesomeIcon icon={faClock} /> <text>{time} minute read</text>
+    </>
   );
 }
 
@@ -20,3 +20,4 @@ ReadingTime.displayName = "ReadingTime";
 ReadingTime.propTypes = {
   time: PropTypes.number,
 };
+export default ReadingTime;

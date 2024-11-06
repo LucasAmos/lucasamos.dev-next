@@ -24,7 +24,7 @@ const Banner: React.FunctionComponent = () => {
             Read my IEEE CLOUD paper on The State of FaaS
           </Link>
         </div>
-        <div className="float-right cursor-pointer p-2">
+        <div className="float-right cursor-pointer p-2" role="button">
           <FontAwesomeIcon
             icon={faCircleXmark}
             size="xl"

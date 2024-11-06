@@ -67,19 +67,16 @@ const About: React.FC = () => {
             alt="aws solutions architect associate certifiction"
           />
         </div>
-
         <div className="float-left w-1/3  md:w-1/5 ">
           <Image src={terraform} placeholder="blur" alt="terraform associate certifiction" />
         </div>
         <div className="float-left w-1/3 md:w-1/5">
           <Image src={scrum} placeholder="blur" alt="scrum psm1 certifiction" />
         </div>
-
         <div className="float-left  mt-5 w-1/3 sm:mt-10 md:mt-0 md:w-1/5">
           <Image src={standrews} placeholder="blur" alt="scrum psm1 certifiction" />
         </div>
         <div className="float-left  mt-5 w-1/3 sm:mt-10 md:mt-0 md:w-1/5">
-          {" "}
           <Image src={aston} placeholder="blur" alt="scrum psm1 certifiction" />
         </div>
       </div>
