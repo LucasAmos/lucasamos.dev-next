@@ -2,6 +2,7 @@
 
 ### Tech stack
 
+- Vercel
 - Next.js
 - React
 - TypeScript
@@ -13,6 +14,7 @@
 
 ### Key features
 
+- Deployed using Vercel CI/CD on repository push
 - Blog posts written with markdown
 - Code syntax highlighting provided by `remark-prism`
 - Contact form powered by NextJS API routes & AWS SES
