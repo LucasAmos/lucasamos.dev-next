@@ -18,7 +18,13 @@ export default function Sidebar(): React.ReactElement {
                   boxShadow: "0 0 0 3px #18981a, 0 0 0 6px #880990, 0 0 0 9px #4a2051",
                 }}
               >
-                <Image priority placeholder="blur" src={lucas} alt="image of lucas amos" />
+                <Image
+                  priority
+                  placeholder="blur"
+                  src={lucas}
+                  alt="image of lucas amos"
+                  sizes="(max-width: 768px) 20vw, (max-width: 1200px) 20vw, 30vw"
+                />
               </div>
             </Link>
           </div>
