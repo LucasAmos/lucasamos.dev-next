@@ -34,7 +34,7 @@ function Post({ postData }: PostTypes): ReactNode {
             <Date dateString={postData.date} />
           </div>
           <div
-            className=" break-words text-mob md:text-lg lg:text-lg"
+            className="text-mob md:text-lg lg:text-lg"
             dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
           />
         </article>
