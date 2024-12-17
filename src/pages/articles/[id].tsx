@@ -1,12 +1,12 @@
-import { ReactNode } from "react";
+import { lazy, ReactNode } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Layout from "../../components/layout";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import Head from "next/head";
-import Date from "../../components/date";
 import { ParsedUrlQuery } from "querystring";
+import Date from "../../components/date";
 
-interface PostTypes {
+interface IPost {
   postData: {
     title: string;
     previewImage: string;
@@ -15,7 +15,9 @@ interface PostTypes {
   };
 }
 
-function Post({ postData }: PostTypes): ReactNode {
+const HTML = lazy(() => import("../../components/html"));
+
+export default function Post({ postData }: IPost): ReactNode {
   const { previewImage, title } = postData;
 
   return (
@@ -26,17 +28,13 @@ function Post({ postData }: PostTypes): ReactNode {
         <meta property="og:title" content={title} />
         <meta property="og:description" content={title} />
       </Head>
-
       <div>
         <article className="prose">
           <h1 className="font-Inter text-3xl sm:text-4xl">{postData.title}</h1>
           <div className="text-2xl text-slate-500 md:text-xl">
             <Date dateString={postData.date} />
           </div>
-          <div
-            className=" break-words text-mob md:text-lg lg:text-lg"
-            dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
-          />
+          <HTML contentHtml={postData.contentHtml} />
         </article>
       </div>
     </Layout>
@@ -64,5 +62,3 @@ export const getStaticProps: GetStaticProps<object, Params> = async ({ params })
     },
   };
 };
-
-export default Post;
