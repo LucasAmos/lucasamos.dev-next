@@ -1,5 +1,4 @@
-import PropTypes from "prop-types";
-import React from "react";
+import React, { ReactNode } from "react";
 import Link from "next/link";
 import Sidebar from "../pages/sidebar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -11,13 +10,11 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
-const LayoutPropTypes = {
-  children: PropTypes.node,
-};
+interface LayoutProps {
+  children: ReactNode;
+}
 
-type LayoutTypes = PropTypes.InferProps<typeof LayoutPropTypes>;
-
-const Layout: React.FunctionComponent<LayoutTypes> = ({ children }: LayoutTypes) => {
+const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
   return (
     <>
       <nav className="float-right m-4 flex space-x-4 sm:m-4 sm:justify-center">
@@ -53,5 +50,3 @@ const Layout: React.FunctionComponent<LayoutTypes> = ({ children }: LayoutTypes)
 export default Layout;
 
 Layout.displayName = "Layout";
-
-Layout.propTypes = LayoutPropTypes;

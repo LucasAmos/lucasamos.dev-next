@@ -83,3 +83,6 @@ terraform.rc
 *.hcl
 .deploy/.terraform
 .sentryclirc
+
+# Sentry Config File
+.env.sentry-build-plugin
