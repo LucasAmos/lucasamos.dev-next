@@ -3,9 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import lucas from "../../public/images/lucasnew.jpg";
 import Link from "next/link";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-// import {  faFlickr } from "@fortawesome/free-brands-svg-icons";
+import { faFlickr } from "@fortawesome/free-brands-svg-icons";
+import { ReactNode } from "react";
 
-export default function Sidebar(): React.ReactElement {
+export default function Sidebar(): ReactNode {
   return (
     <div className="pt-2.5 lg:col-span-1">
       <div className="relative lg:sticky lg:top-14">
@@ -41,12 +42,12 @@ export default function Sidebar(): React.ReactElement {
             />
             <span>GitHub</span>
           </Link>
-          {/* <Link href="https://www.flickr.com/photos/181849230@N04/" target="_blank">
+          <Link href="https://www.flickr.com/photos/181849230@N04/" target="_blank">
             <div>
               <FontAwesomeIcon icon={faFlickr} className="fa-lg mr-2 mt-3 text-[#000000]" />
               Flickr
             </div>
-          </Link> */}
+          </Link>
         </div>
       </div>
     </div>

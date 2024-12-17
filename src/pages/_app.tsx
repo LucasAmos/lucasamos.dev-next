@@ -1,14 +1,7 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import PropTypes from "prop-types";
-import React from "react";
+import { ReactNode } from "react";
+import { AppProps } from "next/app";
 import "../styles/global.css";
 
-export default function App({ Component, pageProps }: { Component: any; pageProps: any }) {
+export default function App({ Component, pageProps }: AppProps): ReactNode {
   return <Component {...pageProps} />;
 }
-
-App.propTypes = {
-  Component: PropTypes.any,
-  pageProps: PropTypes.any,
-};

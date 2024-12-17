@@ -1,24 +1,21 @@
-import React from "react";
+import { ReactNode } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
-import PropTypes from "prop-types";
 import Layout from "../../components/layout";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import Head from "next/head";
 import Date from "../../components/date";
 import { ParsedUrlQuery } from "querystring";
 
-const PostPropTypes = {
+interface PostTypes {
   postData: {
-    title: PropTypes.string,
-    previewImage: PropTypes.string,
-    date: PropTypes.string,
-    contentHtml: PropTypes.string,
-  },
-};
+    title: string;
+    previewImage: string;
+    date: string;
+    contentHtml: string;
+  };
+}
 
-type PostTypes = PropTypes.InferProps<typeof PostPropTypes>;
-
-const Post: React.FC = ({ postData }: PostTypes) => {
+function Post({ postData }: PostTypes): ReactNode {
   const { previewImage, title } = postData;
 
   return (
@@ -44,7 +41,7 @@ const Post: React.FC = ({ postData }: PostTypes) => {
       </div>
     </Layout>
   );
-};
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPostIds();
@@ -68,5 +65,4 @@ export const getStaticProps: GetStaticProps<object, Params> = async ({ params })
   };
 };
 
-Post.propTypes = PostPropTypes;
 export default Post;

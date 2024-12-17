@@ -1,10 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<time
-  data-testid="date"
-  dateTime="2020-09-19"
->
-  September 19, 2020
-</time>
+<div>
+  <time
+    data-testid="date"
+    datetime="2020-09-19"
+  >
+    September 19, 2020
+  </time>
+</div>
 `;

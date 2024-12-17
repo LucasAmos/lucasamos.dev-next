@@ -1,14 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { ReactNode } from "react";
 import { parseISO, format } from "date-fns";
 
-const DatePropTypes = {
-  dateString: PropTypes.string.isRequired,
-};
-
-type DateTypes = PropTypes.InferProps<typeof DatePropTypes>;
-
-const Date: React.FunctionComponent<DateTypes> = ({ dateString }) => {
+const Date = ({ dateString }: { dateString: string }): ReactNode => {
   const date = parseISO(dateString);
   return (
     <time data-testid="date" dateTime={dateString}>
@@ -18,5 +11,3 @@ const Date: React.FunctionComponent<DateTypes> = ({ dateString }) => {
 };
 
 export default Date;
-
-Date.propTypes = DatePropTypes;

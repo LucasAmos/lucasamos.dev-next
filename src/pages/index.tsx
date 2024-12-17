@@ -1,6 +1,5 @@
-import React from "react";
+import { ReactNode } from "react";
 import { GetStaticProps } from "next";
-import PropTypes from "prop-types";
 import Head from "next/head";
 import Layout from "../components/layout";
 import ReadingTime from "../components/readingTime";
@@ -19,7 +18,11 @@ type PostsData = {
   readingTime: string;
 };
 
-export default function Home({ allPostsData }: { allPostsData: PostsData[] }): React.ReactElement {
+interface HomeProps {
+  allPostsData: PostsData[];
+}
+
+export default function Home({ allPostsData }: HomeProps): ReactNode {
   return (
     <Layout>
       <Head>
@@ -70,8 +73,4 @@ export const getStaticProps: GetStaticProps = async () => {
       allPostsData: getSortedPostsData(),
     },
   };
-};
-
-Home.propTypes = {
-  allPostsData: PropTypes.array,
 };
