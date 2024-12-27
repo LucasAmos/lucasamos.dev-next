@@ -26,8 +26,8 @@ const About: React.FC = () => {
         About me
       </h1>
       <p className="mb-2 text-lg">
-        I{"'"}m an Senior Software Engineer based in Scotland with a deep interest in cloud &
-        serverless technologies.
+        I am a Senior Software Engineer based in Scotland with a deep interest in cloud & serverless
+        technologies.
       </p>
       <p className="mb-2 text-lg">
         I hold an Undergraduate degree in Computing Science from Aston University and a Masters
