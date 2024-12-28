@@ -4,8 +4,6 @@ import Layout from "../components/layout";
 import Link from "next/link";
 import awsdevopspro from "../../public/images/certs/devopspro.png";
 import awssolutions from "../../public/images/certs/solutions.png";
-import terraform from "../../public/images/certs/terraform.png";
-import scrum from "../../public/images/certs/scrum.png";
 import aston from "../../public/images/uni/aston.png";
 import standrews from "../../public/images/uni/standrews.png";
 
