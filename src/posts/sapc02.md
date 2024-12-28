@@ -41,7 +41,7 @@ Other resources that I used were
    These practice questions were well written
 
 5. [Jon Bonso - AWS Certified Solutions Architect Professional Practice Exam](https://www.udemy.com/course/aws-solutions-architect-professional-practice-exams-sap-c02)  
-   These practice questions were best written and the closest to those in exam
+   These practice questions were the best written and the closest to those in the exam
 
 **Books**
 
