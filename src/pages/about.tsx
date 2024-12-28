@@ -57,27 +57,21 @@ const About: React.FC = () => {
         <li className="mb-1">Contentful</li>
       </ul>
       <div className="w-full md:w-8/12 lg:w-11/12 ">
-        <div className="float-left w-1/3  md:w-1/5 ">
+        <div className="float-left w-1/2 sm:w-1/4">
+          <Image src={standrews} placeholder="blur" alt="st andrews university logo" />
+        </div>
+        <div className="float-left w-1/2 sm:w-1/4">
+          <Image src={aston} placeholder="blur" alt="aston university logo" />
+        </div>
+        <div className="float-left w-1/2 sm:w-1/4">
           <Image src={awsdevopspro} placeholder="blur" alt="aws devops professional certifiction" />
         </div>
-        <div className="float-left w-1/3  md:w-1/5 ">
+        <div className="float-left w-1/2 sm:w-1/4">
           <Image
             src={awssolutions}
             placeholder="blur"
             alt="aws solutions architect associate certifiction"
           />
-        </div>
-        <div className="float-left w-1/3  md:w-1/5 ">
-          <Image src={terraform} placeholder="blur" alt="terraform associate certifiction" />
-        </div>
-        <div className="float-left w-1/3 md:w-1/5">
-          <Image src={scrum} placeholder="blur" alt="scrum psm1 certifiction" />
-        </div>
-        <div className="float-left  mt-5 w-1/3 sm:mt-10 md:mt-0 md:w-1/5">
-          <Image src={standrews} placeholder="blur" alt="scrum psm1 certifiction" />
-        </div>
-        <div className="float-left  mt-5 w-1/3 sm:mt-10 md:mt-0 md:w-1/5">
-          <Image src={aston} placeholder="blur" alt="scrum psm1 certifiction" />
         </div>
       </div>
     </Layout>
