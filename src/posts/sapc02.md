@@ -2,7 +2,7 @@
 title: "Passing the AWS Solutions Architect Professional exam"
 subtitle: "How I passed one of the most difficult AWS exams in a month"
 date: "2024-12-27"
-previewImage: images/faas.png
+previewImage: images/aws.png
 ---
 
 I recently gained the [AWS Solutions Architect Professional](https://aws.amazon.com/certification/certified-solutions-architect-professional/) (SAP-C02) certification, here are my thoughts
