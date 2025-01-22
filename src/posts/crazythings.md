@@ -25,7 +25,7 @@ Obviously I am not naming any companies here, firstly that would be unprofession
 
 8. I joined Big Bank B, in my first refinement session the developers assigned 3 story points to changing the text on a button. Yep it was one of those places. Legacy banks are where good developers go to die.
 
-9. Cloud company implemented their flagship product using DynamoDB and every database query was a scan. I created indexes and refactored 7 out of the 8 scans into queries. However, the most important scan matched on 3 column values and could be refactored. The table had thousands of new entries added every day, you can guess how that worked out.
+9. Cloud company implemented their flagship product using DynamoDB and every database query was a scan. I created indexes and refactored 7 out of the 8 scans into queries. However, the most important scan matched on 3 column values and could not be refactored. The table had thousands of new entries added every day, you can guess how that worked out.
 
 10. Global distributor spent years paying 100s of Ks a year for a licenses for an enterprise software offering but due to technical immaturity and a lack of expertise they were unable to migrate away from the free community edition that they were running of the same piece of software. A year later they made 5 senior engineers redundant as they needed to save money.
 
