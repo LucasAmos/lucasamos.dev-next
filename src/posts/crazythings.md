@@ -32,3 +32,5 @@ Obviously I am not naming any companies here, firstly that would be unprofession
 11. Global distributor ran self managed container orchestration platform on EC2, the version of the software was deprecated many years earlier and the platform had zero scaling. When the business wanted to run large tests all developer CI/CD pipelines were frozen and when they were resumed queues of over an hour were common due to the lack of scaling. The EC2 instances sat idle between 5pm and 9am helping to pay for Bezos's second yacht.
 
 12. Big Bank A had a globally distributed team (Glasgow, London, Northampton, Pune). In one daily scrum call with ten people on the call a developer in Glasgow spent 30 minutes pair photoshopping with a developer in Pune trying to correct the aspect ratios of a splash screen image so that a diverse carousel of people could be created.
+
+13. Global distributor had an "Engineering practice" team who specialised in two things: creating confluence pages and making their own homebrew version of Snyk but crap. Their output was the definition of a false economy and "disguised unemployment".
