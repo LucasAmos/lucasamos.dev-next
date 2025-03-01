@@ -1,6 +1,6 @@
 ---
 title: "The State of FaaS"
-subtitle: "Paper in press to be published in the 17th IEEE International Conference on Cloud Computing (CLOUD). IEEE Computer Society"
+subtitle: "I have published my first academic paper in IEEE International Conference on Cloud Computing!"
 date: "2024-07-12"
 previewImage: images/faas.png
 ---
