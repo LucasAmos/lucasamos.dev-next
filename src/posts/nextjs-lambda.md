@@ -44,7 +44,9 @@ PORT: 8000
 RUST_LOG: info
 ```
 
-4. Add the AWS Lambda Web Adapter layer **arn:aws:lambda:eu-west-2:753240598075:layer:LambdaAdapterLayerX86:24**
+4. Add the AWS Lambda Web Adapter layer **arn:aws:lambda:eu-west-2**
+   **:753240598075:layer:**
+   **LambdaAdapterLayerX86:24**
 
 ## Create the S3 bucket
 
