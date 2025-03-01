@@ -156,4 +156,4 @@ Run the following commands
 
 Now the Next.JS application can be accessed via the CloudFront Distribution domain name; all assets in the directory **\_next/static/\*\*** will be cached in cloudfront and all server requests will be handled by the Lambda function.
 
-(The code for this application is availble on GitHub)[https://github.com/LucasAmos/AWS/tree/master/aws-nextjs-lambda]
+[The code for this application is availble on GitHub](https://github.com/LucasAmos/AWS/tree/master/aws-nextjs-lambda)
