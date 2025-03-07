@@ -13,7 +13,7 @@ As Morrissey says "the news contrives to frighten you... to make you feel your m
 
 Now I wasn't wasting time reading the news I had the time to achieve the following.
 
-1. Published my first academic paper [The State of FaaS: An analysis of public Functions-as-a-Service providers](https://arxiv.org/abs/2408.03021) in the proceeding of the 2024 IEEE 17th International Conference on Cloud Computing, one of world's most prestigious academic journals.
+1. Published my first academic paper [The State of FaaS: An analysis of public Functions-as-a-Service providers](https://arxiv.org/abs/2408.03021) in the proceedings of the 2024 IEEE 17th International Conference on Cloud Computing, one of world's most prestigious academic journals.
 
 2. Gained the AWS Solutions Architect Professional certification, arguably the AWS certification that requires the most detailed and broad knowledge.
 
