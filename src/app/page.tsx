@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { GetStaticProps } from "next";
 import Head from "next/head";
 import Layout from "../components/layout";
 import ReadingTime from "../components/readingTime";
@@ -10,19 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 const title = "Lucas Amos: AWS Application Architect";
 
-type PostsData = {
-  id: string;
-  date: string;
-  title: string;
-  subtitle: string;
-  readingTime: string;
-};
-
-interface HomeProps {
-  allPostsData: PostsData[];
-}
-
-export default function Home({ allPostsData }: HomeProps): ReactNode {
+export default function Home(): ReactNode {
+  const allPostsData = getSortedPostsData();
   return (
     <Layout>
       <Head>
@@ -66,11 +54,3 @@ export default function Home({ allPostsData }: HomeProps): ReactNode {
     </Layout>
   );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    props: {
-      allPostsData: getSortedPostsData(),
-    },
-  };
-};

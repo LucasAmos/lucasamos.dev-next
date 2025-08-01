@@ -12,7 +12,7 @@ export default function Sidebar(): ReactNode {
       <div className="relative lg:sticky lg:top-14">
         <div className="grid-cols-2 lg:grid lg:grid-cols-1">
           <div className="col-span-1 float-left mr-10">
-            <Link href="/" legacyBehavior>
+            <Link href="/">
               <div
                 className="size-[80px] cursor-pointer overflow-hidden rounded-full lg:size-[130px]"
                 style={{
