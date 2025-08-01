@@ -4,6 +4,9 @@ const config = {
   eslint: {
     // ignoreDuringBuilds: true,
   },
+  experimental: {
+    serverComponentsExternalPackages: ["remark-prism"],
+  },
 };
 
 // Injected content via Sentry wizard below

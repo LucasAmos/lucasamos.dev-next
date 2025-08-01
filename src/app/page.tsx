@@ -11,6 +11,7 @@ const title = "Lucas Amos: AWS Application Architect";
 
 export default function Home(): ReactNode {
   const allPostsData = getSortedPostsData();
+  console.log(allPostsData);
   return (
     <Layout>
       <Head>

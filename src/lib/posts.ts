@@ -8,7 +8,12 @@ import { calculateReadingTime } from "./utils";
 const postsDirectory = path.join(process.cwd(), "src/posts");
 
 type PostData = {
+  readingTime: number;
   id: string;
+  title: string;
+  subtitle: string;
+  date: string;
+  previewImage: string;
   contentHtml: string;
 };
 type AllPostsData = {
@@ -90,6 +95,12 @@ export async function getPostData(id: string): Promise<PostData> {
   return {
     id,
     contentHtml,
-    ...matterResult.data,
+    ...(matterResult.data as {
+      title: string;
+      subtitle: string;
+      date: string;
+      previewImage: string;
+      readingTime: number;
+    }),
   };
 }
