@@ -1,11 +1,11 @@
 import Head from "next/head";
 import Image from "next/image";
-import Layout from "../components/layout";
+import Layout from "../../components/layout";
 import Link from "next/link";
-import awsdevopspro from "../../public/images/certs/devopspro.png";
-import awssolutions from "../../public/images/certs/solutions.png";
-import aston from "../../public/images/uni/aston.png";
-import standrews from "../../public/images/uni/standrews.png";
+import awsdevopspro from "../../../public/images/certs/devopspro.png";
+import awssolutions from "../../../public/images/certs/solutions.png";
+import aston from "../../../public/images/uni/aston.png";
+import standrews from "../../../public/images/uni/standrews.png";
 
 const title = "Lucas Amos: AWS Application Architect";
 
