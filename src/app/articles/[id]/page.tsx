@@ -4,6 +4,7 @@ import { getAllPostIds, getPostData } from "../../../lib/posts";
 import Head from "next/head";
 import Date from "../../../components/date";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function Post({ params }: any) {
   const { title, previewImage, date, contentHtml } = await getPostData(params!.id);
 
