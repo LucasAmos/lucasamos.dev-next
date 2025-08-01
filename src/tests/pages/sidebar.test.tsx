@@ -3,7 +3,7 @@
  */
 
 import { render } from "@testing-library/react";
-import Sidebar from "../../pages/sidebar";
+import Sidebar from "../../components/sidebar";
 import "@testing-library/jest-dom";
 
 describe("Sidebar", () => {

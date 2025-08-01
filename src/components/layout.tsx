@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import Link from "next/link";
-import Sidebar from "../pages/sidebar";
+import Sidebar from "./sidebar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // The following import prevents a Font Awesome icon server-side rendering bug,
