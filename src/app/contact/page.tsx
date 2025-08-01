@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import Head from "next/head";
-import Layout from "../../components/layout";
 import { useState } from "react";
 const title = "Lucas Amos: AWS Application Architect";
 
@@ -49,7 +48,7 @@ const Contact: React.FC = () => {
   }
 
   return (
-    <Layout>
+    <>
       <Head>
         <title>Lucas Amos</title>
         <meta property="og:image" content="images/lucasnew.jpg" />
@@ -123,7 +122,7 @@ const Contact: React.FC = () => {
           )}
         </div>
       </form>
-    </Layout>
+    </>
   );
 };
 

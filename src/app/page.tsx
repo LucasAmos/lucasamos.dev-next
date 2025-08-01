@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import Head from "next/head";
-import Layout from "../components/layout";
 import ReadingTime from "../components/readingTime";
 import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
@@ -12,7 +11,7 @@ const title = "Lucas Amos: AWS Application Architect";
 export default function Home(): ReactNode {
   const allPostsData = getSortedPostsData();
   return (
-    <Layout>
+    <>
       <Head>
         <title>Lucas Amos</title>
         <meta property="og:image" content="images/lucasnew.jpg" />
@@ -51,6 +50,6 @@ export default function Home(): ReactNode {
           </div>
         ))}
       </div>
-    </Layout>
+    </>
   );
 }

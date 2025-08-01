@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-import Layout from "../../components/layout";
 import Link from "next/link";
 import awsdevopspro from "../../../public/images/certs/devopspro.png";
 import awssolutions from "../../../public/images/certs/solutions.png";
@@ -11,7 +10,7 @@ const title = "Lucas Amos: AWS Application Architect";
 
 const About: React.FC = () => {
   return (
-    <Layout>
+    <>
       <Head>
         <title>Lucas Amos</title>
         <meta property="og:image" content="images/lucasnew.jpg" />
@@ -72,7 +71,7 @@ const About: React.FC = () => {
           />
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

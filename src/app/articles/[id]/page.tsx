@@ -1,4 +1,3 @@
-import Layout from "../../../components/layout";
 import { getAllPostIds, getPostData, IPost } from "../../../lib/posts";
 import Head from "next/head";
 import Date from "../../../components/date";
@@ -16,7 +15,7 @@ export default async function Page({
   const { title, previewImage, date, contentHtml } = await getPostData(id);
 
   return (
-    <Layout>
+    <>
       <Head>
         <title>{title}</title>
         <meta property="og:image" content={`/${previewImage}`} />
@@ -36,7 +35,7 @@ export default async function Page({
           />
         </article>
       </div>
-    </Layout>
+    </>
   );
 }
 

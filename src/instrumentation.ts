@@ -7,7 +7,7 @@ export async function register() {
   }
 
   if (process.env.NEXT_RUNTIME === "browser") {
-    await import("../sentry.client.config");
+    await import("../instrumentation-client");
   }
 
   if (process.env.NEXT_RUNTIME === "edge") {
