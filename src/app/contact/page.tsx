@@ -1,6 +1,7 @@
+"use client";
 import React from "react";
 import Head from "next/head";
-import Layout from "../components/layout";
+import Layout from "../../components/layout";
 import { useState } from "react";
 const title = "Lucas Amos: AWS Application Architect";
 
