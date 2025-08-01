@@ -1,5 +1,6 @@
+export const dynamic = "force-static";
+
 import { getAllPostIds, getPostData, IPost } from "../../../lib/posts";
-import Head from "next/head";
 import Date from "../../../components/date";
 
 interface IPageProps {
@@ -12,17 +13,10 @@ export default async function Page({
   params: Promise<IPageProps>;
 }): Promise<JSX.Element> {
   const { id } = await params;
-  const { title, previewImage, date, contentHtml } = await getPostData(id);
+  const { title, date, contentHtml } = await getPostData(id);
 
   return (
     <>
-      <Head>
-        <title>{title}</title>
-        <meta property="og:image" content={`/${previewImage}`} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={title} />
-      </Head>
-
       <div>
         <article className="prose">
           <h1 className="font-Inter text-3xl sm:text-4xl">{title}</h1>
