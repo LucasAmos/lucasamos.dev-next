@@ -1,5 +1,4 @@
 import * as Sentry from "@sentry/nextjs";
-import type { NextApiRequest } from "next";
 import { SESv2Client, SendEmailCommand, SendEmailCommandInput } from "@aws-sdk/client-sesv2";
 
 const client = new SESv2Client({
@@ -10,10 +9,6 @@ const client = new SESv2Client({
   },
 });
 
-type Override<T1, T2> = Omit<T1, keyof T2> & T2;
-
-export type EmailApiRequest = Override<NextApiRequest, { body: EmailRequestBody }>;
-
 export type EmailRequestBody = {
   name: string;
   email: string;
@@ -21,8 +16,8 @@ export type EmailRequestBody = {
 };
 
 export async function POST(req: Request): Promise<Response> {
-  // @ts-expect-error WIP
-  const { name, email, message } = req.body;
+  const body = (await req.json()) as EmailRequestBody;
+  const { name, email, message } = body;
 
   const params: SendEmailCommandInput = {
     FromEmailAddress: process.env.FROM_EMAIL,
@@ -56,9 +51,6 @@ export async function POST(req: Request): Promise<Response> {
   } catch (error) {
     Sentry.captureException(error);
 
-    return new Response(JSON.stringify({ error: "Email was not sent" }), {
-      status: 500,
-      statusText: "success",
-    });
+    return Response.json({ status: 500, error: "Email was not sent" });
   }
 }

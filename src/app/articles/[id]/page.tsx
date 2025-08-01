@@ -1,12 +1,19 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import Layout from "../../../components/layout";
-import { getAllPostIds, getPostData } from "../../../lib/posts";
+import { getAllPostIds, getPostData, IPost } from "../../../lib/posts";
 import Head from "next/head";
 import Date from "../../../components/date";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default async function Post({ params }: any) {
-  const { title, previewImage, date, contentHtml } = await getPostData(params!.id);
+interface IPageProps {
+  id: string;
+}
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<IPageProps>;
+}): Promise<JSX.Element> {
+  const { id } = await params;
+  const { title, previewImage, date, contentHtml } = await getPostData(id);
 
   return (
     <Layout>
@@ -33,6 +40,6 @@ export default async function Post({ params }: any) {
   );
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<IPost[]> {
   return getAllPostIds();
 }

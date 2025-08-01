@@ -6,7 +6,6 @@ import { useState } from "react";
 const title = "Lucas Amos: AWS Application Architect";
 
 const Contact: React.FC = () => {
-  // export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");

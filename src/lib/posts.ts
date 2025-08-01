@@ -65,7 +65,11 @@ export function getSortedPostsData(): AllPostsData[] {
     });
 }
 
-export function getAllPostIds(): { params: { id: string } }[] {
+export interface IPost {
+  params: { id: string };
+}
+
+export function getAllPostIds(): IPost[] {
   const fileNames = fs.readdirSync(postsDirectory);
   return fileNames.map((fileName) => {
     return {
