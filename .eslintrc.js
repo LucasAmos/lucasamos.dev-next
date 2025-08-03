@@ -23,6 +23,7 @@ module.exports = {
         "plugin:react-hooks/recommended",
         "plugin:jsx-a11y/recommended",
         "plugin:prettier/recommended",
+        "plugin:@next/next/recommended",
       ],
       rules: {
         "prettier/prettier": ["error", {}, { usePrettierrc: true }],

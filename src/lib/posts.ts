@@ -9,7 +9,7 @@ const postsDirectory = path.join(process.cwd(), "src/posts");
 
 type PostData = {
   readingTime: number;
-  id: string;
+  slug: string;
   title: string;
   subtitle: string;
   date: string;
@@ -18,7 +18,7 @@ type PostData = {
 };
 type AllPostsData = {
   readingTime: number;
-  id: string;
+  slug: string;
   title: string;
   subtitle: string;
   date: string;
@@ -30,7 +30,7 @@ export function getSortedPostsData(): AllPostsData[] {
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
     // Re move ".md" from file name to get id
-    const id = fileName.replace(/\.md$/, "");
+    const slug = fileName.replace(/\.md$/, "");
 
     // Read markdown file as string
     const fullPath = path.join(postsDirectory, fileName);
@@ -43,7 +43,7 @@ export function getSortedPostsData(): AllPostsData[] {
     // Combine the data with the id
     return {
       readingTime: calculateReadingTime(matterResult.content),
-      id,
+      slug,
       title,
       subtitle,
       date,
@@ -66,7 +66,7 @@ export function getSortedPostsData(): AllPostsData[] {
 }
 
 export interface IPost {
-  params: { id: string };
+  params: { slug: string };
 }
 
 export function getAllPostIds(): IPost[] {
@@ -74,14 +74,14 @@ export function getAllPostIds(): IPost[] {
   return fileNames.map((fileName) => {
     return {
       params: {
-        id: fileName.replace(/\.md$/, ""),
+        slug: fileName.replace(/\.md$/, ""),
       },
     };
   });
 }
 
-export async function getPostData(id: string): Promise<PostData> {
-  const fullPath = path.join(postsDirectory, `${id}.md`);
+export async function getPostData(slug: string): Promise<PostData> {
+  const fullPath = path.join(postsDirectory, `${slug}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
   // Use gray-matter to parse the post metadata section
@@ -97,7 +97,7 @@ export async function getPostData(id: string): Promise<PostData> {
 
   // Combine the data with the id and contentHtml
   return {
-    id,
+    slug,
     contentHtml,
     ...(matterResult.data as {
       title: string;

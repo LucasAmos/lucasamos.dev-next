@@ -1,8 +1,5 @@
 "use client";
-import React from "react";
-import Head from "next/head";
-import { useState } from "react";
-const title = "Lucas Amos: AWS Application Architect";
+import React, { useState } from "react";
 
 const Contact: React.FC = () => {
   const [name, setName] = useState("");
@@ -49,14 +46,6 @@ const Contact: React.FC = () => {
 
   return (
     <>
-      <Head>
-        <title>Lucas Amos</title>
-        <meta property="og:image" content="images/lucasnew.jpg" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={title} />
-        <meta property="og:url" content="www.lucasamos.dev" />
-        <meta property="og:author" content="Lucas Amos" />
-      </Head>
       <h1 className="mb-5 font-Inter text-2xl font-medium tracking-tight text-[#1a202c]">
         Send me an email
       </h1>
