@@ -27,7 +27,8 @@ The key parts of the query are as follows
 2. **filter eventSource == 's3.amazonaws.com'** I'm only concerned with S3 events
 3. **filter requestParameters.bucketName == 'lucas-test-bucket'** This narrows the results down to a single bucket and probably makes the previous filter clause redundant
 4. **stats count(\*) as count by** This works similarly to DISTINCT in an SQL query and groups the results into unique rows that makes the results much more concise
-5. **userIdentity.sessionContext.sessionIssuer.userName** This is the name of the role that accessed the bucket and is what I need to add to the bucket policy
+5. **userIdentity.sessionContext.
+   sessionIssuer.userName** This is the name of the role that accessed the bucket and is what I need to add to the bucket policy
 
 As you can see, the following results provide all of the information I need to identify not only which principals accessed the bucket but which operations they performed, allowing me to follow the [principle of least privilege](https://docs.aws.amazon.com/lambda/latest/operatorguide/least-privilege.html) when creating the bucket policy.
 
