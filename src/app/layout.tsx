@@ -2,26 +2,26 @@ import React from "react";
 import Link from "next/link";
 import Sidebar from "../components/sidebar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import type { Metadata } from "next";
-import * as Sentry from "@sentry/nextjs";
 import "../styles/global.css";
 
-export function generateMetadata(): Metadata {
-  return {
-    title: "Lucas Amos",
-    description: "AWS application architect",
-    other: {
-      ...Sentry.getTraceData(),
-    },
-  };
-}
+import "../styles/global.css";
 
 // The following import prevents a Font Awesome icon server-side rendering bug,
 // where the icons flash from a very large icon down to a properly sized one:
 import "@fortawesome/fontawesome-svg-core/styles.css";
 // Prevent fontawesome from adding its CSS since we did it manually above:
 import { config } from "@fortawesome/fontawesome-svg-core";
+import { Metadata } from "next";
 config.autoAddCss = false;
+
+export const metadata: Metadata = {
+  openGraph: {
+    title: "Lucas Amos - AWS application architect",
+    description: "Lucas Amos",
+    authors: ["Lucas Amos"],
+    images: ["https://www.lucasamos.dev/images/lucas.JPG"],
+  },
+};
 
 export default function Layout({ children }: { children: React.ReactNode }): JSX.Element {
   return (

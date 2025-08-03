@@ -17,7 +17,6 @@
     "@fortawesome/free-regular-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@sentry/nextjs": "^10.0.0",
     "@tailwindcss/typography": "^0.5.10",
     "@types/react-dom": "^19.0.2",
     "autoprefixer": "^10.4.18",

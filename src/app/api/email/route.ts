@@ -1,4 +1,3 @@
-import * as Sentry from "@sentry/nextjs";
 import { SESv2Client, SendEmailCommand, SendEmailCommandInput } from "@aws-sdk/client-sesv2";
 
 const client = new SESv2Client({
@@ -49,8 +48,6 @@ export async function POST(req: Request): Promise<Response> {
       statusText: "success",
     });
   } catch (error) {
-    Sentry.captureException(error);
-
     return Response.json({ status: 500, error: "Email was not sent" });
   }
 }

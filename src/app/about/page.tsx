@@ -1,24 +1,23 @@
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import awsdevopspro from "../../../public/images/certs/devopspro.png";
 import awssolutions from "../../../public/images/certs/solutions.png";
 import aston from "../../../public/images/uni/aston.png";
 import standrews from "../../../public/images/uni/standrews.png";
+import { Metadata } from "next";
 
-const title = "Lucas Amos: AWS Application Architect";
+export const metadata: Metadata = {
+  openGraph: {
+    title: "Lucas Amos - About",
+    description: "About me",
+    authors: ["Lucas Amos"],
+    images: ["https://www.lucasamos.dev/images/lucas.JPG"],
+  },
+};
 
 const About: React.FC = () => {
   return (
     <>
-      <Head>
-        <title>Lucas Amos</title>
-        <meta property="og:image" content="images/lucasnew.jpg" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={title} />
-        <meta property="og:url" content="www.lucasamos.dev" />
-        <meta property="og:author" content="Lucas Amos" />
-      </Head>
       <h1 className="mb-3 font-Inter text-2xl font-medium tracking-tight text-[#1a202c]">
         About me
       </h1>
@@ -33,7 +32,7 @@ const About: React.FC = () => {
       <p className="mb-2 text-lg">
         I am a published author with my paper{" "}
         <span className="font-semibold text-purple-700 underline transition-all  duration-1000 hover:text-purple-900 hover:underline">
-          <Link href="/articles/faas">The State of FaaS</Link>
+          <Link href="/posts/faas">The State of FaaS</Link>
         </span>{" "}
         presented at the 2024 IEEE International Conference on Cloud Computing.
       </p>
