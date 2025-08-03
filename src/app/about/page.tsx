@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     title: "Lucas Amos - About",
     description: "About me",
     authors: ["Lucas Amos"],
+    images: ["https://www.lucasamos.dev/images/lucas.JPG"],
   },
 };
 
