@@ -164,9 +164,7 @@ third party services such as Zendesk, Datadog, or Pagerduty.
 
 There are however many use cases where monitoring the creation
 of AWS services would be useful. Using
-[Service Control Policies](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html)
-
-it is possible to restrict the resources that a user can create.
+[Service Control Policies](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html) it is possible to restrict the resources that a user can create.
 However an EventBridge rule such as the one that we have created
 could instead be used to log the creation of certain events. If
 this backend functionality were combined with a front-end web
