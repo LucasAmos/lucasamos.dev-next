@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 export type Book = {
   _id: string;
-  category?: { name?: string };
+  category: { name: string };
   title: string;
   author: string;
   startDate: string;
