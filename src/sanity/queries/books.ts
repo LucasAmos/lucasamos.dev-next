@@ -5,7 +5,7 @@ export const BOOKS_QUERY = defineQuery(`
   _id,
   author,
   category -> {name},
-  title,
-  startDate,
   finishDate,
+  startDate,
+  title,
 }`);
