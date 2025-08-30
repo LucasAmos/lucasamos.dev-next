@@ -186,11 +186,3 @@ export type BOOKS_QUERYResult = Array<{
   startDate: string;
   title: string;
 }>;
-
-// Query TypeMap
-import "@sanity/client";
-declare module "@sanity/client" {
-  interface SanityQueries {
-    '\n*[_type == "book"]{\n  _id,\n  author,\n  category -> {name},\n  finishDate,\n  startDate,\n  title,\n}': BOOKS_QUERYResult;
-  }
-}
