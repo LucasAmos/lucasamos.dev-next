@@ -31,6 +31,7 @@ export default function Layout({ children }: { children: React.ReactNode }): JSX
           {[
             ["Posts", "/"],
             ["About me", "/about"],
+            ["Reading", "/reading"],
             ["Contact", "/contact"],
           ].map(([title, url]) => (
             <Link
