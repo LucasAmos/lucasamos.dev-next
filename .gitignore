@@ -86,4 +86,3 @@ terraform.rc
 
 # Sentry Config File
 .env.sentry-build-plugin
-sanity.types.ts
