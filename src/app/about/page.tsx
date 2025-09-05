@@ -7,6 +7,8 @@ import standrews from "../../../public/images/uni/standrews.png";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
+  title: "Lucas Amos - About",
+  description: "About me",
   openGraph: {
     title: "Lucas Amos - About",
     description: "About me",
