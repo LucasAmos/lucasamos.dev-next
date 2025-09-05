@@ -5,6 +5,8 @@ import { client } from "../../sanity/lib/client";
 import { BookView } from "../../components/book";
 import { BOOKS_QUERYResult } from "../../../sanity.types";
 
+export const revalidate = 10;
+
 const Books: React.FC = async () => {
   const books: BOOKS_QUERYResult = await client.fetch(BOOKS_QUERY);
 
