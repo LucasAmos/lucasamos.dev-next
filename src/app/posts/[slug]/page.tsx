@@ -17,6 +17,8 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
   const imageUrl = `https://www.lucasamos.dev/${post.previewImage}`;
 
   return {
+    description: post.subtitle,
+    title: post.title,
     openGraph: {
       authors: ["Lucas Amos"],
       description: post.subtitle,
