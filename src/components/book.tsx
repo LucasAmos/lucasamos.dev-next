@@ -18,13 +18,13 @@ function formatDate(date: string): string {
 }
 
 function Title({ children }: { children: ReactNode }): ReactNode {
-  return <h1 className="font-Inter sm:text-sm md:text-lg lg:text-xl">{children}</h1>;
+  return <h1 className="font-Inter xs:text-sm sm:text-lg lg:text-xl">{children}</h1>;
 }
 
 function Author({ children }: { children: ReactNode }): ReactNode {
   return (
     <div>
-      <h1 className="font-Inter text-gray-800 sm:text-sm md:text-lg lg:text-lg">{children}</h1>
+      <h1 className="font-Inter text-gray-800 xs:text-sm sm:text-base lg:text-base">{children}</h1>
     </div>
   );
 }
@@ -37,7 +37,7 @@ function Duration({
   finishDate?: string | null | undefined;
 }): ReactNode {
   return (
-    <h2 className="font-Inter text-xs text-gray-800 md:text-sm">
+    <h2 className="font-Inter text-xs text-gray-800 sm:text-sm">
       {formatDate(startDate!)}
       {finishDate && ` - ${formatDate(finishDate)}`}
     </h2>
@@ -54,7 +54,7 @@ export function BookView({ book }: { book: Book }): ReactNode {
       <Author>{author.name}</Author>
       <Duration startDate={startDate} finishDate={finishDate}></Duration>
       {categoryName && (
-        <div className=" float-right mr-2 inline-block rounded-md  bg-zinc-100 p-1">
+        <div className="xs:mt-5 mt-0 xs:float-left sm:float-right mr-2 inline-block rounded-md  bg-zinc-100 p-1">
           {categoryName!}
         </div>
       )}
