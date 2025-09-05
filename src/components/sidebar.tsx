@@ -2,8 +2,9 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import lucas from "../../public/images/lucasnew.jpg";
 import Link from "next/link";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faFlickr } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faFlickr } from "@fortawesome/free-brands-svg-icons";
+import { faBook } from "@fortawesome/free-solid-svg-icons";
+
 import { ReactNode } from "react";
 
 export default function Sidebar(): ReactNode {
@@ -47,6 +48,13 @@ export default function Sidebar(): ReactNode {
               <FontAwesomeIcon icon={faFlickr} className="fa-lg mr-2 mt-3 text-[#000000]" />
               Flickr
             </div>
+          </Link>
+          <Link href="/reading">
+            <FontAwesomeIcon
+              icon={faBook}
+              className="fa-lg relative right-px mr-1 mt-3 text-[#383738]"
+            />
+            <span>What I&apos;m reading</span>
           </Link>
         </div>
       </div>
