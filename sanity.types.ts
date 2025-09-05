@@ -20,10 +20,15 @@ export type Book = {
   _updatedAt: string;
   _rev: string;
   title: string;
-  author: string;
+  author: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "author";
+  };
   startDate: string;
   finishDate?: string;
-  category: {
+  category?: {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
@@ -34,6 +39,15 @@ export type Book = {
 export type Category = {
   _id: string;
   _type: "category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+};
+
+export type Author = {
+  _id: string;
+  _type: "author";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -161,6 +175,7 @@ export type SanityAssetSourceData = {
 export type AllSanitySchemaTypes =
   | Book
   | Category
+  | Author
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
@@ -175,13 +190,15 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/queries/books.ts
 // Variable: BOOKS_QUERY
-// Query: *[_type == "book"]{  _id,  author,  category -> {name},  finishDate,  startDate,  title,}
+// Query: *[_type == "book"] | order(startDate desc) {  _id,  author -> {name},  category -> {name},  finishDate,  startDate,  title,}
 export type BOOKS_QUERYResult = Array<{
   _id: string;
-  author: string;
-  category: {
+  author: {
     name: string;
   };
+  category: {
+    name: string;
+  } | null;
   finishDate: string | null;
   startDate: string;
   title: string;

@@ -2,11 +2,11 @@ import type { ReactNode } from "react";
 
 export type Book = {
   _id: string;
-  category: { name: string };
-  title: string;
-  author: string;
-  startDate: string;
+  author: { name: string };
+  category: { name: string } | null;
   finishDate?: string | null;
+  startDate: string;
+  title: string;
 };
 
 function formatDate(date: string): string {
@@ -45,14 +45,13 @@ function Duration({
 }
 
 export function BookView({ book }: { book: Book }): ReactNode {
-  //   console.log(book.book);
   const { _id, category, title, author, startDate, finishDate } = book;
   const categoryName = category?.name;
 
   return (
     <div className="mb-2 mr-2 rounded-md bg-zinc-50 p-2" key={_id}>
       <Title>{title}</Title>
-      <Author>{author}</Author>
+      <Author>{author.name}</Author>
       <Duration startDate={startDate} finishDate={finishDate}></Duration>
       {categoryName && (
         <div className=" float-right mr-2 inline-block rounded-md  bg-zinc-100 p-1">
