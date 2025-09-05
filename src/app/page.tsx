@@ -8,6 +8,8 @@ import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
+  title: "Lucas Amos - AWS application architect",
+  description: "Lucas Amos - AWS application architect",
   openGraph: {
     title: "Lucas Amos - AWS application architect",
     description: "Lucas Amos - AWS application architect",
