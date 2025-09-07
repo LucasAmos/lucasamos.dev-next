@@ -18,15 +18,31 @@ function formatDate(date: string): string {
 }
 
 function Title({ children }: { children: ReactNode }): ReactNode {
-  return <h1 className="font-Inter sm:text-sm md:text-lg lg:text-xl">{children}</h1>;
+  return (
+    <h1 className="text-terf-purple font-Inter xs:text-sm sm:text-lg lg:text-xl">{children}</h1>
+  );
 }
 
 function Author({ children }: { children: ReactNode }): ReactNode {
   return (
     <div>
-      <h1 className="font-Inter text-gray-800 sm:text-sm md:text-lg lg:text-lg">{children}</h1>
+      <h1 className="text-terf-purple font-Inter xs:text-sm sm:text-base lg:text-base">
+        {children}
+      </h1>
     </div>
   );
+}
+
+function Category({ children }: { children: ReactNode }): ReactNode {
+  if (!children) return null;
+  return (
+    <div className="xs:float-left sm:float-right mr-2 inline-block rounded-md border-[1px]  border-terf-violet text-terf-violet p-1">
+      {children}
+    </div>
+  );
+}
+function Container({ children }: { children: ReactNode }): ReactNode {
+  return <div className="mb-2 mr-2 rounded-md border-[1px] border-terf-violet p-2">{children}</div>;
 }
 
 function Duration({
@@ -36,8 +52,11 @@ function Duration({
   startDate: string;
   finishDate?: string | null | undefined;
 }): ReactNode {
+  if (!finishDate)
+    return <h2 className="font-Inter text-xs text-terf-darkgreen sm:text-sm">Currently reading</h2>;
+
   return (
-    <h2 className="font-Inter text-xs text-gray-800 md:text-sm">
+    <h2 className="font-Inter text-xs text-terf-violet sm:text-sm">
       {formatDate(startDate!)}
       {finishDate && ` - ${formatDate(finishDate)}`}
     </h2>
@@ -49,15 +68,11 @@ export function BookView({ book }: { book: Book }): ReactNode {
   const categoryName = category?.name;
 
   return (
-    <div className="mb-2 mr-2 rounded-md bg-zinc-50 p-2" key={_id}>
+    <Container key={_id}>
       <Title>{title}</Title>
       <Author>{author.name}</Author>
       <Duration startDate={startDate} finishDate={finishDate}></Duration>
-      {categoryName && (
-        <div className=" float-right mr-2 inline-block rounded-md  bg-zinc-100 p-1">
-          {categoryName!}
-        </div>
-      )}
-    </div>
+      <Category>{categoryName}</Category>
+    </Container>
   );
 }
