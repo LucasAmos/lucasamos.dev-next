@@ -7,6 +7,7 @@ export type Book = {
   finishDate?: string | null;
   startDate: string;
   title: string;
+  estimated: boolean;
 };
 
 function formatDate(date: string): string {
@@ -14,6 +15,13 @@ function formatDate(date: string): string {
     year: "numeric",
     month: "long",
     day: "numeric",
+  });
+}
+
+function getMonth(date: string): string {
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
   });
 }
 
@@ -52,12 +60,21 @@ function Container({ children }: { children: ReactNode }): ReactNode {
 function Duration({
   startDate,
   finishDate,
+  estimated,
 }: {
   startDate: string;
   finishDate?: string | null | undefined;
+  estimated: boolean;
 }): ReactNode {
+  console.log(estimated);
   if (!finishDate)
     return <h2 className="font-Inter text-xs text-terf-darkgreen sm:text-sm">Currently reading</h2>;
+
+  if (estimated) {
+    return (
+      <h2 className="font-Inter text-xs text-terf-violet sm:text-sm">{getMonth(startDate)}</h2>
+    );
+  }
 
   return (
     <h2 className="font-Inter text-xs text-terf-violet sm:text-sm">
@@ -68,14 +85,14 @@ function Duration({
 }
 
 export function BookView({ book }: { book: Book }): ReactNode {
-  const { _id, category, title, author, startDate, finishDate } = book;
+  const { _id, category, estimated, title, author, startDate, finishDate } = book;
   const categoryName = category?.name;
 
   return (
     <Container key={_id}>
       <Title>{title}</Title>
       <Author>{author.name}</Author>
-      <Duration startDate={startDate} finishDate={finishDate}></Duration>
+      <Duration startDate={startDate} finishDate={finishDate} estimated={estimated}></Duration>
       <Category>{categoryName}</Category>
     </Container>
   );
