@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home(): ReactNode {
+export default async function Home(): Promise<ReactNode> {
   const allPostsData = getSortedPostsData();
   return (
     <>
