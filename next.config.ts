@@ -5,6 +5,4 @@ const config = {
   serverExternalPackages: ["remark-prism"],
 };
 
-// Injected content via Sentry wizard below
-
 export default config;

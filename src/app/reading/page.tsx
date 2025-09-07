@@ -12,7 +12,7 @@ const Books: React.FC = async () => {
 
   return (
     <>
-      <h1 className="mb-5 font-Inter text-3xl sm:text-4xl">My reading list</h1>
+      <h1 className="mb-5 font-Inter text-2xl">My reading list</h1>
 
       <div className="grid grid-flow-row xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
         {books.map((book) => {
