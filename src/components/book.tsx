@@ -36,13 +36,17 @@ function Author({ children }: { children: ReactNode }): ReactNode {
 function Category({ children }: { children: ReactNode }): ReactNode {
   if (!children) return null;
   return (
-    <div className="xs:float-left sm:float-right mr-2 inline-block rounded-md border-[1px]  border-terf-violet text-terf-violet p-1">
+    <div className="absolute bottom-2 right-0 xs:float-left sm:float-right mr-2 inline-block rounded-md border-[1px]  border-terf-violet text-terf-violet p-1">
       {children}
     </div>
   );
 }
 function Container({ children }: { children: ReactNode }): ReactNode {
-  return <div className="mb-2 mr-2 rounded-md border-[1px] border-terf-violet p-2">{children}</div>;
+  return (
+    <div className="relative mb-2 mr-2 rounded-md border-[1px] border-terf-violet p-2">
+      {children}
+    </div>
+  );
 }
 
 function Duration({
