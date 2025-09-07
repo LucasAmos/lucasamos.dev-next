@@ -8,4 +8,5 @@ export const BOOKS_QUERY = defineQuery(`
   finishDate,
   startDate,
   title,
+  estimated
 }`);
