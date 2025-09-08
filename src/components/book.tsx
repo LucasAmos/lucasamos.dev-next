@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 export type Book = {
   _id: string;
@@ -8,6 +10,7 @@ export type Book = {
   startDate: string;
   title: string;
   estimated: boolean;
+  url: string | null;
 };
 
 function formatDate(date: string): string {
@@ -44,15 +47,24 @@ function Author({ children }: { children: ReactNode }): ReactNode {
 function Category({ children }: { children: ReactNode }): ReactNode {
   if (!children) return null;
   return (
-    <div className="absolute bottom-2 right-0 xs:float-left sm:float-right mr-2 inline-block rounded-md border-[1px]  border-terf-violet text-terf-violet p-1">
+    <div className=" mr-2 inline-block rounded-md border-[1px]  border-terf-violet text-terf-violet p-1">
       {children}
     </div>
   );
 }
-function Container({ children }: { children: ReactNode }): ReactNode {
+
+function Container({ children }: { children: ReactNode; url: string | null }): ReactNode {
   return (
-    <div className="relative mb-2 mr-2 rounded-md border-[1px] border-terf-violet p-2">
-      {children}
+    <div className="flex mb-2 mr-2 rounded-md border-[1px] border-terf-violet p-2">{children}</div>
+  );
+}
+
+function Url({ href }: { href: string }): ReactNode {
+  return (
+    <div className="relative">
+      <a href={href} target="blank" className="float-end relative xs:max-sm:bottom-2">
+        <FontAwesomeIcon icon={faUpRightFromSquare} />
+      </a>
     </div>
   );
 }
@@ -85,15 +97,26 @@ function Duration({
 }
 
 export function BookView({ book }: { book: Book }): ReactNode {
-  const { _id, category, estimated, title, author, startDate, finishDate } = book;
+  const { _id, category, estimated, title, author, startDate, finishDate, url } = book;
   const categoryName = category?.name;
 
   return (
-    <Container key={_id}>
-      <Title>{title}</Title>
-      <Author>{author.name}</Author>
-      <Duration startDate={startDate} finishDate={finishDate} estimated={estimated}></Duration>
-      <Category>{categoryName}</Category>
+    <Container key={_id} url={url}>
+      <div className="flex-1 flex-col flex justify-between">
+        <div>
+          <Title>{title}</Title>
+          <Author>{author.name}</Author>
+        </div>
+        <div>
+          <Duration startDate={startDate} finishDate={finishDate} estimated={estimated}></Duration>
+        </div>
+      </div>
+      <div className="flex-col flex justify-between ">
+        {url ? <Url href={url} /> : <div />}
+        <div>
+          <Category>{categoryName}</Category>
+        </div>
+      </div>
     </Container>
   );
 }
