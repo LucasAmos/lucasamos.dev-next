@@ -35,6 +35,7 @@ export type Book = {
     [internalGroqTypeReferenceTo]?: "category";
   };
   estimated: boolean;
+  url?: string;
 };
 
 export type Category = {
@@ -191,7 +192,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/queries/books.ts
 // Variable: BOOKS_QUERY
-// Query: *[_type == "book"] | order(startDate desc) {  _id,  author -> {name},  category -> {name},  finishDate,  startDate,  title,  estimated}
+// Query: *[_type == "book"] | order(startDate desc) {  _id,  author -> {name},  category -> {name},  finishDate,  startDate,  title,  estimated,  url}
 export type BOOKS_QUERYResult = Array<{
   _id: string;
   author: {
@@ -204,4 +205,5 @@ export type BOOKS_QUERYResult = Array<{
   startDate: string;
   title: string;
   estimated: boolean;
+  url: string | null;
 }>;
