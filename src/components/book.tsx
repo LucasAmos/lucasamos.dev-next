@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { faUpRightFromSquare, faHeadphones } from "@fortawesome/free-solid-svg-icons";
 
 export type Book = {
   _id: string;
@@ -11,6 +11,7 @@ export type Book = {
   title: string;
   estimated: boolean;
   url: string | null;
+  audiobook: boolean | null;
 };
 
 function formatDate(date: string): string {
@@ -61,12 +62,14 @@ function Container({ children }: { children: ReactNode; url: string | null }): R
 
 function Url({ href }: { href: string }): ReactNode {
   return (
-    <div className="relative">
-      <a href={href} target="blank" className="float-end relative xs:max-sm:bottom-2">
-        <FontAwesomeIcon icon={faUpRightFromSquare} />
-      </a>
-    </div>
+    <a href={href} target="blank">
+      <FontAwesomeIcon icon={faUpRightFromSquare} />
+    </a>
   );
+}
+
+function AudioBook(): ReactNode {
+  return <FontAwesomeIcon icon={faHeadphones} />;
 }
 
 function Duration({
@@ -97,8 +100,9 @@ function Duration({
 }
 
 export function BookView({ book }: { book: Book }): ReactNode {
-  const { _id, category, estimated, title, author, startDate, finishDate, url } = book;
+  const { _id, audiobook, category, estimated, title, author, startDate, finishDate, url } = book;
   const categoryName = category?.name;
+  console.log(book);
 
   return (
     <Container key={_id} url={url}>
@@ -112,7 +116,13 @@ export function BookView({ book }: { book: Book }): ReactNode {
         </div>
       </div>
       <div className="flex-col flex justify-between ">
-        {url ? <Url href={url} /> : <div />}
+        <div className="relative">
+          <div className="float-end relative xs:max-sm:bottom-2">
+            {audiobook && <AudioBook />}
+            {url ? <Url href={url} /> : <div />}
+          </div>
+        </div>
+
         <div>
           <Category>{categoryName}</Category>
         </div>
