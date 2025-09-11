@@ -6,4 +6,7 @@ export const client = createClient({
   apiVersion: "2025-07-09",
   useCdn: true,
   token: process.env.SANITY_API_TOKEN,
+  stega: {
+    studioUrl: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL,
+  },
 });

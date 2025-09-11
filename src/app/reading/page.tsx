@@ -1,5 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
+import { draftMode } from "next/headers";
 import { BOOKS_QUERY } from "../../sanity/queries/books";
 import { client } from "../../sanity/lib/client";
 
@@ -20,7 +21,18 @@ export const metadata: Metadata = {
 };
 
 const Books: React.FC = async () => {
-  const books: BOOKS_QUERYResult = await client.fetch(BOOKS_QUERY);
+  const { isEnabled } = await draftMode();
+  const books: BOOKS_QUERYResult = await client.fetch(
+    BOOKS_QUERY,
+    undefined,
+    isEnabled
+      ? {
+          perspective: "drafts",
+          useCdn: false,
+          stega: true,
+        }
+      : undefined
+  );
 
   return (
     <>

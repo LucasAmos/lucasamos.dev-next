@@ -2,8 +2,9 @@ import React from "react";
 import Link from "next/link";
 import Sidebar from "../components/sidebar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import "../styles/global.css";
-
+import { VisualEditing } from "next-sanity";
+import { draftMode } from "next/headers";
+import { DisableDraftMode } from "../components/DisableDraftMode";
 import "../styles/global.css";
 
 // The following import prevents a Font Awesome icon server-side rendering bug,
@@ -23,7 +24,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Layout({ children }: { children: React.ReactNode }): JSX.Element {
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}): Promise<JSX.Element> {
   return (
     <html lang="en">
       <body>
@@ -53,6 +58,12 @@ export default function Layout({ children }: { children: React.ReactNode }): JSX
             <SpeedInsights />
           </div>
         </div>
+        {(await draftMode()).isEnabled && (
+          <>
+            <VisualEditing />
+            <DisableDraftMode />
+          </>
+        )}
       </body>
     </html>
   );
