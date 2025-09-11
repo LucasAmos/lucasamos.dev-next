@@ -36,6 +36,7 @@ export type Book = {
   };
   estimated: boolean;
   url?: string;
+  audiobook: boolean;
 };
 
 export type Category = {
@@ -192,7 +193,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/queries/books.ts
 // Variable: BOOKS_QUERY
-// Query: *[_type == "book"] | order(startDate desc) {  _id,  author -> {name},  category -> {name},  finishDate,  startDate,  title,  estimated,  url}
+// Query: *[_type == "book"] | order(startDate desc) {  _id,  author -> {name},  category -> {name},  finishDate,  startDate,  title,  estimated,  url,  audiobook}
 export type BOOKS_QUERYResult = Array<{
   _id: string;
   author: {
@@ -206,4 +207,5 @@ export type BOOKS_QUERYResult = Array<{
   title: string;
   estimated: boolean;
   url: string | null;
+  audiobook: boolean;
 }>;

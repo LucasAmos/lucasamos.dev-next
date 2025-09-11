@@ -9,5 +9,6 @@ export const BOOKS_QUERY = defineQuery(`
   startDate,
   title,
   estimated,
-  url
+  url,
+  audiobook
 }`);
