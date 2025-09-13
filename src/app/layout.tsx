@@ -6,6 +6,7 @@ import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
 import { DisableDraftMode } from "../components/DisableDraftMode";
 import "../styles/global.css";
+import Navbar from "../components/Navbar";
 
 // The following import prevents a Font Awesome icon server-side rendering bug,
 // where the icons flash from a very large icon down to a properly sized one:
@@ -32,25 +33,7 @@ export default async function Layout({
   return (
     <html lang="en">
       <body>
-        <nav className="float-right m-4 flex space-x-4 sm:m-4 sm:justify-center">
-          {[
-            ["Posts", "/"],
-            ["About me", "/about"],
-            ["Contact", "/contact"],
-          ].map(([title, url]) => (
-            <Link
-              key={title}
-              href={url}
-              className="group rounded-lg text-xl font-medium text-slate-700 transition duration-300 md:!mr-[50px]"
-            >
-              {title}
-              <span className="block h-1 max-w-0  bg-purple-700 transition-all duration-500 md:group-hover:max-w-full"></span>
-            </Link>
-          ))}
-        </nav>
-        <div className="clear-both">
-          <hr />
-        </div>
+        <Navbar />
         <div className="m-auto max-w-[1380px]">
           <div className="mt-5 max-w-[1500px] gap-4 p-5 sm:mt-0 sm:grid-cols-1 lg:ml-20  lg:grid lg:grid-cols-5 lg:pt-10">
             <Sidebar />

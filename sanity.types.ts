@@ -36,7 +36,7 @@ export type Book = {
   };
   estimated: boolean;
   url?: string;
-  audiobook: boolean;
+  audiobook?: boolean;
 };
 
 export type Category = {
@@ -207,5 +207,5 @@ export type BOOKS_QUERYResult = Array<{
   title: string;
   estimated: boolean;
   url: string | null;
-  audiobook: boolean;
+  audiobook: boolean | null;
 }>;
