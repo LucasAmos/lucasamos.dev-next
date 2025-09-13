@@ -2,7 +2,7 @@ import React from "react";
 import { Metadata } from "next";
 import { draftMode } from "next/headers";
 import { BOOKS_QUERY } from "../../sanity/queries/books";
-import { client } from "../../sanity/lib/client";
+import { client } from "../../sanity/client";
 
 import { BookView } from "../../components/book";
 import { BOOKS_QUERYResult } from "../../../sanity.types";

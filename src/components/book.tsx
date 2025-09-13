@@ -81,7 +81,6 @@ function Duration({
   finishDate?: string | null | undefined;
   estimated: boolean;
 }): ReactNode {
-  console.log(estimated);
   if (!finishDate)
     return <h2 className="font-Inter text-xs text-terf-darkgreen sm:text-sm">Currently reading</h2>;
 
@@ -102,8 +101,6 @@ function Duration({
 export function BookView({ book }: { book: Book }): ReactNode {
   const { _id, audiobook, category, estimated, title, author, startDate, finishDate, url } = book;
   const categoryName = category?.name;
-  console.log(book);
-
   return (
     <Container key={_id} url={url}>
       <div className="flex-1 flex-col flex justify-between">
