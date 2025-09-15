@@ -22,7 +22,7 @@ export default function Navbar(): JSX.Element {
 
   return (
     <>
-      <nav className="hidden  float-right m-4 sm:flex space-x-4 sm:m-4 sm:justify-center">
+      <nav className="hidden float-right m-4 lg:flex space-x-4 sm:m-4 sm:justify-center">
         {links.map(([title, url]) => (
           <Link
             key={title}
@@ -38,9 +38,8 @@ export default function Navbar(): JSX.Element {
         <div className="float-right">
           <FontAwesomeIcon
             icon={open ? faClose : faBars}
-            className="sm:hidden"
+            className="lg:hidden"
             onClick={() => {
-              console.log("clicked");
               setOpen(!open);
             }}
           />
