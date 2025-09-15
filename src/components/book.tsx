@@ -56,13 +56,15 @@ function Category({ children }: { children: ReactNode }): ReactNode {
 
 function Container({ children }: { children: ReactNode; url: string | null }): ReactNode {
   return (
-    <div className="flex mb-2 mr-2 rounded-md border-[1px] border-terf-violet p-2">{children}</div>
+    <div className="flex flex-col  mb-2 mr-2 rounded-md border-[1px] border-terf-violet p-2">
+      {children}
+    </div>
   );
 }
 
 function Url({ href }: { href: string }): ReactNode {
   return (
-    <a href={href} target="blank">
+    <a href={href} target="blank" className="inline-flex">
       <FontAwesomeIcon icon={faUpRightFromSquare} />
     </a>
   );
@@ -103,24 +105,25 @@ export function BookView({ book }: { book: Book }): ReactNode {
   const categoryName = category?.name;
   return (
     <Container key={_id} url={url}>
-      <div className="flex-1 flex-col flex justify-between">
-        <div>
-          <Title>{title}</Title>
-          <Author>{author.name}</Author>
-        </div>
-        <div>
-          <Duration startDate={startDate} finishDate={finishDate} estimated={estimated}></Duration>
-        </div>
-      </div>
-      <div className="flex-col flex justify-between ">
-        <div className="relative">
-          <div className="float-end relative xs:max-sm:bottom-2">
+      <div className="flex flex-col flex-grow justify-between">
+        <div className="flex-row flex justify-between">
+          <div>
+            <Title>{title}</Title>
+            <Author>{author.name}</Author>
+          </div>
+          <div className="flex pt-1">
             {audiobook && <AudioBook />}
             {url ? <Url href={url} /> : <div />}
           </div>
         </div>
-
-        <div>
+        <div className="flex-row flex justify-between">
+          <div className="justify-end flex-col flex">
+            <Duration
+              startDate={startDate}
+              finishDate={finishDate}
+              estimated={estimated}
+            ></Duration>
+          </div>
           <Category>{categoryName}</Category>
         </div>
       </div>
