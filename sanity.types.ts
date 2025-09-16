@@ -252,3 +252,22 @@ export type BOOKS_BY_YEAR_QUERYResult = Array<{
   title: string;
   url: string | null;
 }>;
+
+// Source: ./src/sanity/queries/booksThisYear.ts
+// Variable: BOOKS_THIS_YEAR_QUERY
+// Query: *[_type == "book" && (finishDate == null || finishDate >= $yearStart && finishDate <= $yearEnd)] | order(startDate desc) {    _id,    audiobook,    author -> {name},    category -> {name},    estimated,    finishDate,    startDate,    title,    url  }
+export type BOOKS_THIS_YEAR_QUERYResult = Array<{
+  _id: string;
+  audiobook: boolean | null;
+  author: {
+    name: string;
+  };
+  category: {
+    name: string;
+  } | null;
+  estimated: boolean;
+  finishDate: string | null;
+  startDate: string;
+  title: string;
+  url: string | null;
+}>;

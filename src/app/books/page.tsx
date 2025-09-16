@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Metadata } from "next";
 import { draftMode } from "next/headers";
-import { BOOKS_QUERY } from "../../sanity/queries/books";
+import { BOOKS_THIS_YEAR_QUERY } from "../../sanity/queries/booksThisYear";
 import { client } from "../../sanity/client";
+import Link from "next/link";
 
 import BooksView from "../../components/books";
-import { BOOKS_BY_YEAR_QUERYResult, BOOKS_QUERYResult } from "../../../sanity.types";
+import { BOOKS_THIS_YEAR_QUERYResult } from "../../../sanity.types";
 
 export const revalidate = 0;
 
@@ -20,12 +21,24 @@ export const metadata: Metadata = {
   },
 };
 
+function generateYears(start: number): number[] {
+  const years: any = [];
+  const currentYear = new Date().getFullYear();
+
+  let year = currentYear - 1;
+  while (year >= start) {
+    years.push(year);
+    year = year - 1;
+  }
+  return years;
+}
+
 export default async function Books(): Promise<JSX.Element> {
   const year = new Date().getFullYear();
 
   const { isEnabled } = await draftMode();
-  const books: BOOKS_BY_YEAR_QUERYResult = await client.fetch(
-    BOOKS_QUERY,
+  const books: BOOKS_THIS_YEAR_QUERYResult = await client.fetch(
+    BOOKS_THIS_YEAR_QUERY,
     {
       yearStart: `${year}-01-01`,
       yearEnd: `${year}-12-12`,
@@ -43,6 +56,15 @@ export default async function Books(): Promise<JSX.Element> {
     <>
       <h1 className="mb-5 font-Inter text-2xl">What I've read this year</h1>
       <BooksView books={books} />
+
+      <h2 className="mb-5 mt-5 font-Inter text-xl">Past years</h2>
+      {generateYears(2008).map((year) => {
+        return (
+          <div key={year}>
+            <Link href={`books/${year}`}>{year}</Link>
+          </div>
+        );
+      })}
     </>
   );
 }

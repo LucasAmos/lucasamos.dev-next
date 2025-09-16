@@ -28,6 +28,8 @@ type Params = {
 
 export default async function Books(props: Params): Promise<JSX.Element> {
   const { year } = await props.params;
+  console.log("CALLEED", year);
+
   const { isEnabled } = await draftMode();
   const books: BOOKS_BY_YEAR_QUERYResult = await client.fetch(
     BOOKS_BY_YEAR_QUERY,
@@ -46,7 +48,7 @@ export default async function Books(props: Params): Promise<JSX.Element> {
 
   return (
     <>
-      <h1 className="mb-5 font-Inter text-2xl">What I've read this year</h1>
+      <h1 className="mb-5 font-Inter text-2xl">What I read in {year}</h1>
       <BooksView books={books} />
     </>
   );
