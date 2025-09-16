@@ -46,7 +46,7 @@ export default function Navbar(): JSX.Element {
         </div>
         {open && (
           <div className="mt-6 lg:hidden">
-            {[...links, ["What I'm reading", "/reading"]].map(([title, url]) => (
+            {[...links, ["What I'm reading", "/books"]].map(([title, url]) => (
               <Link
                 key={title}
                 href={url}

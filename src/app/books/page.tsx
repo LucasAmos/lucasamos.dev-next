@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Metadata } from "next";
 import { draftMode } from "next/headers";
 import { BOOKS_QUERY } from "../../sanity/queries/books";
 import { client } from "../../sanity/client";
 
-import { BookView } from "../../components/book";
+import BooksView from "../../components/books";
 import { BOOKS_QUERYResult } from "../../../sanity.types";
 
 export const revalidate = 0;
@@ -20,11 +20,16 @@ export const metadata: Metadata = {
   },
 };
 
-const Books: React.FC = async () => {
+export default async function Books(): Promise<JSX.Element> {
+  const year = new Date().getFullYear();
+
   const { isEnabled } = await draftMode();
   const books: BOOKS_QUERYResult = await client.fetch(
     BOOKS_QUERY,
-    undefined,
+    {
+      yearStart: `${year}-01-01`,
+      yearEnd: `${year}-12-12`,
+    },
     isEnabled
       ? {
           perspective: "drafts",
@@ -36,15 +41,8 @@ const Books: React.FC = async () => {
 
   return (
     <>
-      <h1 className="mb-5 font-Inter text-2xl">What I'm reading</h1>
-
-      <div className="grid grid-flow-row xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-        {books.map((book) => {
-          return <BookView key={book._id} book={book} />;
-        })}
-      </div>
+      <h1 className="mb-5 font-Inter text-2xl">What I've read this year</h1>
+      <BooksView books={books} />
     </>
   );
-};
-
-export default Books;
+}

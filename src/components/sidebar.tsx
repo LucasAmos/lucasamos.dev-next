@@ -49,7 +49,7 @@ export default function Sidebar(): ReactNode {
               Flickr
             </div>
           </Link>
-          <Link href="/reading">
+          <Link href="/books">
             <FontAwesomeIcon
               icon={faBook}
               className="fa-lg relative right-px mr-1 mt-3 text-[#383738]"

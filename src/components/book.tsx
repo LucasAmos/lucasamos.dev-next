@@ -88,7 +88,7 @@ function Duration({
 
   if (estimated) {
     return (
-      <h2 className="font-Inter text-xs text-terf-violet sm:text-sm">{getMonth(startDate)}</h2>
+      <h2 className="font-Inter text-xs text-terf-violet sm:text-sm">{getMonth(finishDate)}</h2>
     );
   }
 
