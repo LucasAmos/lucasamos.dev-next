@@ -5,7 +5,7 @@ import { BOOKS_QUERY } from "../../sanity/queries/books";
 import { client } from "../../sanity/client";
 
 import BooksView from "../../components/books";
-import { BOOKS_QUERYResult } from "../../../sanity.types";
+import { BOOKS_BY_YEAR_QUERYResult, BOOKS_QUERYResult } from "../../../sanity.types";
 
 export const revalidate = 0;
 
@@ -24,7 +24,7 @@ export default async function Books(): Promise<JSX.Element> {
   const year = new Date().getFullYear();
 
   const { isEnabled } = await draftMode();
-  const books: BOOKS_QUERYResult = await client.fetch(
+  const books: BOOKS_BY_YEAR_QUERYResult = await client.fetch(
     BOOKS_QUERY,
     {
       yearStart: `${year}-01-01`,
