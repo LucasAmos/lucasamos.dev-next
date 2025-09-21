@@ -27,7 +27,10 @@ export default async function Books(): Promise<JSX.Element> {
 
   return (
     <>
-      <h1 className="mb-5 font-Inter text-2xl">What I've read this year</h1>
+      <h1 className="mb-5 font-Inter text-2xl">
+        So far this year I have read <span className="text-terf-violet"> {books.length} </span>
+        {books.length == 1 ? "book" : "books"}
+      </h1>
       <BooksView books={books} />
 
       <BookYearLinks route="books" year={2008} />
