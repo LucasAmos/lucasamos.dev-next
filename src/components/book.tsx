@@ -48,8 +48,10 @@ function Author({ children }: { children: ReactNode }): ReactNode {
 function Category({ children }: { children: ReactNode }): ReactNode {
   if (!children) return null;
   return (
-    <div className=" mr-2 inline-block rounded-md border-[1px]  border-terf-violet text-terf-violet p-1">
-      {children}
+    <div className="flex flex-col justify-end">
+      <div className="pr-1 pl-1 rounded-md border-[1px] border-terf-violet text-terf-violet">
+        {children}
+      </div>
     </div>
   );
 }
@@ -88,7 +90,7 @@ function Duration({
 
   if (estimated) {
     return (
-      <h2 className="font-Inter text-xs text-terf-violet sm:text-sm">{getMonth(startDate)}</h2>
+      <h2 className="font-Inter text-xs text-terf-violet sm:text-sm">{getMonth(finishDate)}</h2>
     );
   }
 

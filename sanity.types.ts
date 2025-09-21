@@ -193,19 +193,81 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/queries/books.ts
 // Variable: BOOKS_QUERY
-// Query: *[_type == "book"] | order(startDate desc) {  _id,  author -> {name},  category -> {name},  finishDate,  startDate,  title,  estimated,  url,  audiobook}
-export type BOOKS_QUERYResult = Array<{
+// Query: *[_type == "book" && finishDate ==null || finishDate >= $yearStart && finishDate <= $yearEnd] | order(startDate desc) {    _id,    audiobook,    author -> {name},    category -> {name},    estimated,    finishDate,    startDate,    title,    url  }
+export type BOOKS_QUERYResult = Array<
+  | {
+      _id: string;
+      audiobook: null;
+      author: null;
+      category: null;
+      estimated: null;
+      finishDate: null;
+      startDate: null;
+      title: null;
+      url: null;
+    }
+  | {
+      _id: string;
+      audiobook: null;
+      author: null;
+      category: null;
+      estimated: null;
+      finishDate: null;
+      startDate: null;
+      title: string | null;
+      url: string | null;
+    }
+  | {
+      _id: string;
+      audiobook: boolean | null;
+      author: {
+        name: string;
+      };
+      category: {
+        name: string;
+      } | null;
+      estimated: boolean;
+      finishDate: string | null;
+      startDate: string;
+      title: string;
+      url: string | null;
+    }
+>;
+
+// Source: ./src/sanity/queries/booksByYear.ts
+// Variable: BOOKS_BY_YEAR_QUERY
+// Query: *[_type == "book" && finishDate >= $yearStart && finishDate <= $yearEnd] | order(startDate desc) {    _id,    audiobook,    author -> {name},    category -> {name},    estimated,    finishDate,    startDate,    title,    url  }
+export type BOOKS_BY_YEAR_QUERYResult = Array<{
   _id: string;
+  audiobook: boolean | null;
   author: {
     name: string;
   };
   category: {
     name: string;
   } | null;
+  estimated: boolean;
   finishDate: string | null;
   startDate: string;
   title: string;
-  estimated: boolean;
   url: string | null;
+}>;
+
+// Source: ./src/sanity/queries/booksThisYear.ts
+// Variable: BOOKS_THIS_YEAR_QUERY
+// Query: *[_type == "book" && (finishDate == null || finishDate >= $yearStart && finishDate <= $yearEnd)] | order(startDate desc) {    _id,    audiobook,    author -> {name},    category -> {name},    estimated,    finishDate,    startDate,    title,    url  }
+export type BOOKS_THIS_YEAR_QUERYResult = Array<{
+  _id: string;
   audiobook: boolean | null;
+  author: {
+    name: string;
+  };
+  category: {
+    name: string;
+  } | null;
+  estimated: boolean;
+  finishDate: string | null;
+  startDate: string;
+  title: string;
+  url: string | null;
 }>;
