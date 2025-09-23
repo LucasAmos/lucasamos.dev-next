@@ -40,7 +40,7 @@ export default async function Books(props: Params): Promise<JSX.Element> {
         {books.length == 1 ? "book" : "books"}
       </h1>
       <BooksView books={books} />
-      <BookYearLinks year={2008} />
+      <BookYearLinks year={2018} />
     </>
   );
 }
