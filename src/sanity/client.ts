@@ -52,7 +52,7 @@ export class Sanity {
       BOOKS_BY_YEAR_QUERY,
       {
         yearStart: `${year}-01-01`,
-        yearEnd: `${year}-12-12`,
+        yearEnd: `${year}-31-12`,
       },
       draftModeEnabled
         ? {
