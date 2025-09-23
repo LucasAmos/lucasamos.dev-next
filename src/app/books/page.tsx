@@ -33,7 +33,7 @@ export default async function Books(): Promise<JSX.Element> {
       </h1>
       <BooksView books={books} />
 
-      <BookYearLinks route="books" year={2008} />
+      <BookYearLinks route="books" year={2018} />
     </>
   );
 }
