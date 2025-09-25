@@ -30,17 +30,13 @@ function getMonth(date: string): string {
 }
 
 function Title({ children }: { children: ReactNode }): ReactNode {
-  return (
-    <h1 className="text-terf-purple font-Inter xs:text-sm sm:text-lg lg:text-xl">{children}</h1>
-  );
+  return <h1 className="text-t-purple font-Inter xs:text-sm sm:text-lg lg:text-xl">{children}</h1>;
 }
 
 function Author({ children }: { children: ReactNode }): ReactNode {
   return (
     <div>
-      <h1 className="text-terf-purple font-Inter xs:text-sm sm:text-base lg:text-base">
-        {children}
-      </h1>
+      <h1 className="text-t-purple font-Inter xs:text-sm sm:text-base lg:text-base">{children}</h1>
     </div>
   );
 }
@@ -49,7 +45,7 @@ function Category({ children }: { children: ReactNode }): ReactNode {
   if (!children) return null;
   return (
     <div className="flex flex-col justify-end">
-      <div className="pr-1 pl-1 rounded-md border-[1px] border-terf-violet text-terf-violet">
+      <div className="pr-1 pl-1 rounded-md border-[1px] border-t-violet text-t-violet">
         {children}
       </div>
     </div>
@@ -58,7 +54,7 @@ function Category({ children }: { children: ReactNode }): ReactNode {
 
 function Container({ children }: { children: ReactNode; url: string | null }): ReactNode {
   return (
-    <div className="flex flex-col  mb-2 mr-2 rounded-md border-[1px] border-terf-violet p-2">
+    <div className="flex flex-col  mb-2 mr-2 rounded-md border-[1px] border-t-violet p-2">
       {children}
     </div>
   );
@@ -86,16 +82,14 @@ function Duration({
   estimated: boolean;
 }): ReactNode {
   if (!finishDate)
-    return <h2 className="font-Inter text-xs text-terf-darkgreen sm:text-sm">Currently reading</h2>;
+    return <h2 className="font-Inter text-xs text-t-darkgreen sm:text-sm">Currently reading</h2>;
 
   if (estimated) {
-    return (
-      <h2 className="font-Inter text-xs text-terf-violet sm:text-sm">{getMonth(finishDate)}</h2>
-    );
+    return <h2 className="font-Inter text-xs text-t-violet sm:text-sm">{getMonth(finishDate)}</h2>;
   }
 
   return (
-    <h2 className="font-Inter text-xs text-terf-violet sm:text-sm">
+    <h2 className="font-Inter text-xs text-t-violet sm:text-sm">
       {formatDate(startDate!)}
       {finishDate && ` - ${formatDate(finishDate)}`}
     </h2>

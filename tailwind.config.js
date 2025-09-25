@@ -17,7 +17,7 @@ module.exports = {
         mob: "20px",
       },
       colors: {
-        terf: {
+        t: {
           darkgreen: "#18981a",
           lightgreen: "#0fd430",
           purple: "#4a2051",
