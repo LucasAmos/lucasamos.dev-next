@@ -1,0 +1,36 @@
+name: Deploy app
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  e2e-test:
+    name: Cypress end-to-end tests
+    environment:
+      name: production
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "yarn"
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          build: yarn build
+          start: yarn start
+          browser: chrome
+        env:
+          NEXT_PUBLIC_PROJECT_ID: ${{ vars.NEXT_PUBLIC_PROJECT_ID }}
+          SANITY_API_TOKEN: ${{ secrets.SANITY_API_TOKEN }}
+          NEXT_PUBLIC_SANITY_DATASET: ${{ vars.NEXT_PUBLIC_SANITY_DATASET }}
+          SANITY_DATASET: ${{ vars.SANITY_DATASET }}
