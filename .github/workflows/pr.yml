@@ -7,6 +7,8 @@ on:
 jobs:
   e2e-test:
     name: Cypress end-to-end tests
+    environment:
+      name: production
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository
