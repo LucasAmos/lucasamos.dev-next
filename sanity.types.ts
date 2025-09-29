@@ -271,3 +271,31 @@ export type BOOKS_THIS_YEAR_QUERYResult = Array<{
   title: string;
   url: string | null;
 }>;
+// Variable: BOOKS_THIS_YEAR_MULTI_QUERY
+// Query: { 'books': *[_type == "book" && (finishDate == null || finishDate >= $yearStart && finishDate <= $yearEnd)] | order(startDate desc) {    _id,    audiobook,    author -> {name},    category -> {name},    estimated,    finishDate,    startDate,    title,    url  },  'inprogress': count(*[_type == "book" && finishDate== null  ]),  'finished': count(*[_type == "book" && (finishDate >= $yearStart && finishDate <= $yearEnd)]) }
+export type BOOKS_THIS_YEAR_MULTI_QUERYResult = {
+  books: Array<{
+    _id: string;
+    audiobook: boolean | null;
+    author: {
+      name: string;
+    };
+    category: {
+      name: string;
+    } | null;
+    estimated: boolean;
+    finishDate: string | null;
+    startDate: string;
+    title: string;
+    url: string | null;
+  }>;
+  inprogress: number;
+  finished: number;
+};
+
+// Source: ./src/sanity/queries/oldestbook.ts
+// Variable: OLDEST_BOOK_QUERY
+// Query: *[_type == "book"] | order(finishDate asc)[0] {    finishDate}
+export type OLDEST_BOOK_QUERYResult = {
+  finishDate: string | null;
+} | null;

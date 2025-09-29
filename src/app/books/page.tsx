@@ -23,14 +23,19 @@ export default async function Books(): Promise<JSX.Element> {
   const year = new Date().getFullYear();
 
   const { isEnabled } = await draftMode();
-  const books = await client.getBooksReadThisYear(year, isEnabled);
+  const { books, finished, inprogress } = await client.getDetailedBooksReadThisYear(
+    year,
+    isEnabled
+  );
 
   return (
     <>
       <h1 className="mb-5 font-Inter text-2xl">
-        So far this year I have read <span className="text-t-violet"> {books.length} </span>
-        {books.length == 1 ? "book" : "books"}
+        So far this year I have finished <span className="text-t-violet"> {finished} </span>
+        {finished == 1 ? "book" : "books"} and I am currently reading{" "}
+        <span className="text-t-violet"> {inprogress} </span> {inprogress == 1 ? "book" : "books"}
       </h1>
+
       <BooksView books={books} />
 
       <BookYearLinks route="books" year={2018} />

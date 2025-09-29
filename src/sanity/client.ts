@@ -1,7 +1,11 @@
 import { createClient, SanityClient } from "next-sanity";
 
-import { BOOKS_THIS_YEAR_QUERYResult, BOOKS_BY_YEAR_QUERYResult } from "../../sanity.types";
-import { BOOKS_THIS_YEAR_QUERY } from "./queries/booksThisYear";
+import {
+  BOOKS_THIS_YEAR_QUERYResult,
+  BOOKS_BY_YEAR_QUERYResult,
+  BOOKS_THIS_YEAR_MULTI_QUERYResult,
+} from "../../sanity.types";
+import { BOOKS_THIS_YEAR_QUERY, BOOKS_THIS_YEAR_MULTI_QUERY } from "./queries/booksThisYear";
 import { BOOKS_BY_YEAR_QUERY } from "./queries/booksByYear";
 
 export const client = createClient({
@@ -34,7 +38,7 @@ export class Sanity {
       BOOKS_THIS_YEAR_QUERY,
       {
         yearStart: `${year}-01-01`,
-        yearEnd: `${year}-12-12`,
+        yearEnd: `${year}-31-12`,
       },
       draftModeEnabled
         ? {
@@ -64,5 +68,25 @@ export class Sanity {
     );
 
     return books;
+  }
+
+  async getDetailedBooksReadThisYear(
+    year: number,
+    draftModeEnabled: boolean
+  ): Promise<BOOKS_THIS_YEAR_MULTI_QUERYResult> {
+    return client.fetch(
+      BOOKS_THIS_YEAR_MULTI_QUERY,
+      {
+        yearStart: `${year}-01-01`,
+        yearEnd: `${year}-31-12`,
+      },
+      draftModeEnabled
+        ? {
+            perspective: "drafts",
+            useCdn: false,
+            stega: true,
+          }
+        : undefined
+    );
   }
 }

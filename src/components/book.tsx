@@ -105,7 +105,7 @@ export function BookView({ book }: { book: Book }): ReactNode {
         <div className="flex-row flex justify-between">
           <div>
             <Title>{title}</Title>
-            <Author>{author.name}</Author>
+            <Author>{author?.name}</Author>
           </div>
           <div className="flex pt-1">
             {audiobook && <AudioBook />}
