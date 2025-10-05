@@ -46,6 +46,7 @@ export type Category = {
   _updatedAt: string;
   _rev: string;
   name: string;
+  slug?: Slug;
 };
 
 export type Author = {
@@ -193,7 +194,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/queries/books.ts
 // Variable: BOOKS_QUERY
-// Query: *[_type == "book" && finishDate ==null || finishDate >= $yearStart && finishDate <= $yearEnd] | order(startDate desc) {    _id,    audiobook,    author -> {name},    category -> {name},    estimated,    finishDate,    startDate,    title,    url  }
+// Query: *[_type == "book" && finishDate ==null || finishDate >= $yearStart && finishDate <= $yearEnd] | order(startDate desc) {    _id,    audiobook,    author -> {name},    category -> {name, slug},    estimated,    finishDate,    startDate,    title,    url  }
 export type BOOKS_QUERYResult = Array<
   | {
       _id: string;
@@ -225,6 +226,7 @@ export type BOOKS_QUERYResult = Array<
       };
       category: {
         name: string;
+        slug: Slug | null;
       } | null;
       estimated: boolean;
       finishDate: string | null;
@@ -234,9 +236,40 @@ export type BOOKS_QUERYResult = Array<
     }
 >;
 
+// Source: ./src/sanity/queries/booksByCategoryAndYear.ts
+// Variable: BOOKS_BY_YEAR_AND_CATEGORY_QUERY
+// Query: { 'books' :*[_type == "book" && finishDate >= $yearStart && finishDate <= $yearEnd && category->slug.current == $category] | order(startDate desc) {    _id,    audiobook,    author -> {name},    category -> {name, slug},    estimated,    finishDate,    startDate,    title,    url  },  'category' :*[_type == "category" && slug.current == $slug]  }
+export type BOOKS_BY_YEAR_AND_CATEGORY_QUERYResult = {
+  books: Array<{
+    _id: string;
+    audiobook: boolean | null;
+    author: {
+      name: string;
+    };
+    category: {
+      name: string;
+      slug: Slug | null;
+    } | null;
+    estimated: boolean;
+    finishDate: string | null;
+    startDate: string;
+    title: string;
+    url: string | null;
+  }>;
+  category: Array<{
+    _id: string;
+    _type: "category";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name: string;
+    slug?: Slug;
+  }>;
+};
+
 // Source: ./src/sanity/queries/booksByYear.ts
 // Variable: BOOKS_BY_YEAR_QUERY
-// Query: *[_type == "book" && finishDate >= $yearStart && finishDate <= $yearEnd] | order(startDate desc) {    _id,    audiobook,    author -> {name},    category -> {name},    estimated,    finishDate,    startDate,    title,    url  }
+// Query: *[_type == "book" && finishDate >= $yearStart && finishDate <= $yearEnd] | order(startDate desc) {    _id,    audiobook,    author -> {name},    category -> {name, slug},    estimated,    finishDate,    startDate,    title,    url  }
 export type BOOKS_BY_YEAR_QUERYResult = Array<{
   _id: string;
   audiobook: boolean | null;
@@ -245,6 +278,7 @@ export type BOOKS_BY_YEAR_QUERYResult = Array<{
   };
   category: {
     name: string;
+    slug: Slug | null;
   } | null;
   estimated: boolean;
   finishDate: string | null;
@@ -272,7 +306,7 @@ export type BOOKS_THIS_YEAR_QUERYResult = Array<{
   url: string | null;
 }>;
 // Variable: BOOKS_THIS_YEAR_MULTI_QUERY
-// Query: { 'books': *[_type == "book" && (finishDate == null || finishDate >= $yearStart && finishDate <= $yearEnd)] | order(startDate desc) {    _id,    audiobook,    author -> {name},    category -> {name},    estimated,    finishDate,    startDate,    title,    url  },  'inprogress': count(*[_type == "book" && finishDate== null  ]),  'finished': count(*[_type == "book" && (finishDate >= $yearStart && finishDate <= $yearEnd)]) }
+// Query: { 'books': *[_type == "book" && (finishDate == null || finishDate >= $yearStart && finishDate <= $yearEnd)] | order(startDate desc) {    _id,    audiobook,    author -> {name},    category -> {name, slug},    estimated,    finishDate,    startDate,    title,    url  },  'inprogress': count(*[_type == "book" && finishDate== null  ]),  'finished': count(*[_type == "book" && (finishDate >= $yearStart && finishDate <= $yearEnd)]) }
 export type BOOKS_THIS_YEAR_MULTI_QUERYResult = {
   books: Array<{
     _id: string;
@@ -282,6 +316,7 @@ export type BOOKS_THIS_YEAR_MULTI_QUERYResult = {
     };
     category: {
       name: string;
+      slug: Slug | null;
     } | null;
     estimated: boolean;
     finishDate: string | null;

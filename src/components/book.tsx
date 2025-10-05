@@ -1,11 +1,12 @@
 import type { ReactNode } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpRightFromSquare, faHeadphones } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 export type Book = {
   _id: string;
   author: { name: string };
-  category: { name: string } | null;
+  category: { name: string; slug: { current: string } | null } | null;
   finishDate?: string | null;
   startDate: string;
   title: string;
@@ -98,7 +99,9 @@ function Duration({
 
 export function BookView({ book }: { book: Book }): ReactNode {
   const { _id, audiobook, category, estimated, title, author, startDate, finishDate, url } = book;
+  const categorySlug = category?.slug?.current;
   const categoryName = category?.name;
+  console.log(categorySlug);
   return (
     <Container key={_id} url={url}>
       <div className="flex flex-col flex-grow justify-between">
@@ -120,7 +123,11 @@ export function BookView({ book }: { book: Book }): ReactNode {
               estimated={estimated}
             ></Duration>
           </div>
-          <Category>{categoryName}</Category>
+          {categoryName && (
+            <Category>
+              <Link href={`/books/category/${categorySlug}`}>{categoryName}</Link>
+            </Category>
+          )}
         </div>
       </div>
     </Container>

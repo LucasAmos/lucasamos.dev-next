@@ -1,9 +1,9 @@
 import React from "react";
 import { Metadata } from "next";
 import { draftMode } from "next/headers";
-import { Sanity } from "../../../sanity/client";
-import BooksView from "../../../components/books";
-import BookYearLinks from "../../../components/books/yearLinks";
+import { Sanity } from "../../../../sanity/client";
+import BooksView from "../../../../components/books";
+import BookYearLinks from "../../../../components/books/yearLinks";
 
 export const revalidate = 0;
 

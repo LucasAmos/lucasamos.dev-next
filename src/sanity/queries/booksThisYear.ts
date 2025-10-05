@@ -19,7 +19,7 @@ export const BOOKS_THIS_YEAR_MULTI_QUERY = defineQuery(`
     _id,
     audiobook,
     author -> {name},
-    category -> {name},
+    category -> {name, slug},
     estimated,
     finishDate,
     startDate,

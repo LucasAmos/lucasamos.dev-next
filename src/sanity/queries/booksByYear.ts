@@ -5,7 +5,7 @@ export const BOOKS_BY_YEAR_QUERY = defineQuery(`
     _id,
     audiobook,
     author -> {name},
-    category -> {name},
+    category -> {name, slug},
     estimated,
     finishDate,
     startDate,

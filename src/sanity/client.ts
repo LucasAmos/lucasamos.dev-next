@@ -4,9 +4,11 @@ import {
   BOOKS_THIS_YEAR_QUERYResult,
   BOOKS_BY_YEAR_QUERYResult,
   BOOKS_THIS_YEAR_MULTI_QUERYResult,
+  BOOKS_BY_YEAR_AND_CATEGORY_QUERYResult,
 } from "../../sanity.types";
 import { BOOKS_THIS_YEAR_QUERY, BOOKS_THIS_YEAR_MULTI_QUERY } from "./queries/booksThisYear";
 import { BOOKS_BY_YEAR_QUERY } from "./queries/booksByYear";
+import { BOOKS_BY_YEAR_AND_CATEGORY_QUERY } from "./queries/booksByCategoryAndYear";
 
 export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
@@ -88,5 +90,26 @@ export class Sanity {
           }
         : undefined
     );
+  }
+
+  async getBooksReadByYearAndCategory(year: number, category: string, draftModeEnabled: boolean) {
+    const books: BOOKS_BY_YEAR_AND_CATEGORY_QUERYResult = await client.fetch(
+      BOOKS_BY_YEAR_AND_CATEGORY_QUERY,
+      {
+        yearStart: `${year}-01-01`,
+        yearEnd: `${year}-31-12`,
+        category,
+        slug: category,
+      },
+      draftModeEnabled
+        ? {
+            perspective: "drafts",
+            useCdn: false,
+            stega: true,
+          }
+        : undefined
+    );
+
+    return books;
   }
 }
