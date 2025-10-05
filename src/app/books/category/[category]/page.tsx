@@ -12,8 +12,7 @@ export default async function Books(props: any): Promise<JSX.Element> {
   const year = new Date().getFullYear();
 
   const { isEnabled } = await draftMode();
-  const { books, category: categoryDetails } = await client.getBooksReadByYearAndCategory(
-    year,
+  const { books, category: categoryDetails } = await client.getBooksReadByCategory(
     category,
     isEnabled
   );
@@ -25,7 +24,7 @@ export default async function Books(props: any): Promise<JSX.Element> {
   return (
     <>
       <h1 className="mb-5 font-Inter text-2xl">
-        So far this year I have finished{" "}
+        I have read{" "}
         <span className="text-t-violet">
           {books.length} {categoryDetails[0]?.name}
         </span>{" "}
