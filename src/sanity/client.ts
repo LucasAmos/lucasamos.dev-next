@@ -13,8 +13,8 @@ import { BOOKS_BY_YEAR_AND_CATEGORY_QUERY } from "./queries/booksByCategoryAndYe
 import { BOOKS_BY_CATEGORY_QUERY } from "./queries/booksByCategory";
 
 export const client = createClient({
-  projectId: process.env.PROJECT_ID,
-  dataset: process.env.SANITY_DATASET,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
   apiVersion: "2024-12-01",
   useCdn: true,
   token: process.env.SANITY_API_TOKEN,
@@ -24,8 +24,8 @@ export class Sanity {
   client: SanityClient;
   constructor() {
     this.client = createClient({
-      projectId: process.env.PROJECT_ID,
-      dataset: process.env.SANITY_DATASET,
+      projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+      dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
       apiVersion: "2024-12-01",
       useCdn: true,
       token: process.env.SANITY_API_TOKEN,
