@@ -13,28 +13,22 @@ import { BOOKS_BY_YEAR_AND_CATEGORY_QUERY } from "./queries/booksByCategoryAndYe
 import { BOOKS_BY_CATEGORY_QUERY } from "./queries/booksByCategory";
 
 export const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  projectId: process.env.PROJECT_ID,
   dataset: process.env.SANITY_DATASET,
   apiVersion: "2024-12-01",
   useCdn: true,
   token: process.env.SANITY_API_TOKEN,
-  stega: {
-    studioUrl: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL,
-  },
 });
 
 export class Sanity {
   client: SanityClient;
   constructor() {
     this.client = createClient({
-      projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+      projectId: process.env.PROJECT_ID,
       dataset: process.env.SANITY_DATASET,
       apiVersion: "2024-12-01",
       useCdn: true,
       token: process.env.SANITY_API_TOKEN,
-      stega: {
-        studioUrl: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL,
-      },
     });
   }
   async getBooksReadThisYear(year: number, draftModeEnabled: boolean) {
