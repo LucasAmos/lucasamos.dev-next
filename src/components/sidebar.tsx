@@ -32,7 +32,7 @@ export default function Sidebar(): ReactNode {
           </div>
           <div className="col-span-1">
             <h3 className="text-2xl font-bold text-slate-700 lg:pt-5">Lucas Amos</h3>
-            <h4 data-testid="heading4">Cloud Software Engineer</h4>
+            <h4 data-testid="heading4">AWS Application Architect</h4>
           </div>
         </div>
         <div className="hidden lg:block">

@@ -24,15 +24,16 @@ const About: React.FC = () => {
         About me
       </h1>
       <p className="mb-2 text-lg">
-        I am a Senior Software Engineer based in Scotland with a deep interest in cloud & serverless
-        technologies.
+        I am a Senior Software Engineer based in Scotland who specialises in architecting and
+        building software solutions deployed on AWS.
       </p>
       <p className="mb-2 text-lg">
-        I hold an Undergraduate degree in Computing Science from Aston University and a Masters
-        degree in Advanced Computer Science from the University of St Andrews.
+        I have extensive experience building frontend, backend and event-driven services.
       </p>
       <p className="mb-2 text-lg">
-        I am a published author with my paper{" "}
+        Academically I hold an Undergraduate degree in Computing Science from Aston University and a
+        Masters degree in Advanced Computer Science from the University of St Andrews. I am a also a
+        published author with my paper{" "}
         <span className="font-semibold text-purple-700 underline transition-all  duration-1000 hover:text-purple-900 hover:underline">
           <Link href="/posts/faas">The State of FaaS</Link>
         </span>{" "}
@@ -40,8 +41,8 @@ const About: React.FC = () => {
       </p>
 
       <p className="mb-2 text-lg">
-        I have broad experience across the entire technology stack, the following are just some of
-        the technologies of which I have experience.
+        I have broad experience across the entire technology stack, including the following
+        technologies.
       </p>
       <ul className="mb-5 ml-5 list-disc">
         <li className="mb-1">AWS</li>
