@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import Sidebar from "../components/sidebar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { VisualEditing } from "next-sanity";
@@ -7,6 +6,15 @@ import { draftMode } from "next/headers";
 import { DisableDraftMode } from "../components/DisableDraftMode";
 import "../styles/global.css";
 import Navbar from "../components/Navbar";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  // Define a CSS variable name for Tailwind
+  variable: "--font-inter",
+  // Use 'swap' for a quick fallback, though next/font minimizes shift
+  display: "swap",
+});
 
 // The following import prevents a Font Awesome icon server-side rendering bug,
 // where the icons flash from a very large icon down to a properly sized one:
@@ -31,7 +39,7 @@ export default async function Layout({
   children: React.ReactNode;
 }): Promise<JSX.Element> {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.variable}>
       <body>
         <Navbar />
         <div className="m-auto max-w-[1380px]">

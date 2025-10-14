@@ -33,7 +33,7 @@ const About: React.FC = () => {
       <p className="mb-2 text-lg">
         Academically I hold an Undergraduate degree in Computing Science from Aston University and a
         Masters degree in Advanced Computer Science from the University of St Andrews. I am also a
-        published researcher in the field of cloud computing, having presented my paper
+        published researcher in the field of cloud computing, having presented my paper{" "}
         <span className="font-semibold text-purple-700 underline transition-all  duration-1000 hover:text-purple-900 hover:underline">
           <Link href="/posts/faas">The State of FaaS</Link>
         </span>{" "}
