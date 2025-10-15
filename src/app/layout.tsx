@@ -14,6 +14,7 @@ const inter = Inter({
   variable: "--font-inter",
   // Use 'swap' for a quick fallback, though next/font minimizes shift
   display: "swap",
+  weight: ["600"],
 });
 
 // The following import prevents a Font Awesome icon server-side rendering bug,
