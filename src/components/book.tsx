@@ -2,18 +2,7 @@ import type { ReactNode } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpRightFromSquare, faHeadphones } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-
-export type Book = {
-  _id: string;
-  author: { name: string };
-  category: { name: string; slug: { current: string } | null } | null;
-  finishDate?: string | null;
-  startDate: string;
-  title: string;
-  estimated: boolean;
-  url: string | null;
-  audiobook: boolean | null;
-};
+import { BOOKS_BY_YEAR_QUERYResult } from "../../sanity.types";
 
 function formatDate(date: string): string {
   return new Date(date).toLocaleDateString("en-US", {
@@ -97,7 +86,7 @@ function Duration({
   );
 }
 
-export function BookView({ book }: { book: Book }): ReactNode {
+export function BookView({ book }: { book: BOOKS_BY_YEAR_QUERYResult[number] }): ReactNode {
   const { _id, audiobook, category, estimated, title, author, startDate, finishDate, url } = book;
   const categorySlug = category?.slug?.current;
   const categoryName = category?.name;
