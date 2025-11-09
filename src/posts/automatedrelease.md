@@ -1,5 +1,5 @@
 ---
-title: "Automating releases with releaseit"
+title: "Automating releases with release-it"
 subtitle: "Bonus: how to commit to a protected branch"
 date: "2025-11-07"
 previewImage: images/githublarge.png
@@ -23,11 +23,11 @@ I needed to automate a number of tasks:
 
 ## Choosing the tool
 
-There are a number of libraries available for automating release workflows, two of the most popular are [semantic-release](https://github.com/semantic-release/semantic-release) and [releaseit](https://github.com/release-it/release-it). I have used semantic-release in the past and found it to be quite unreliable with weird unexpected behaviours so when I decided to automate my next workflow I chose release-it
+There are a number of libraries available for automating release workflows, two of the most popular are [semantic-release](https://github.com/semantic-release/semantic-release) and [release-it](https://github.com/release-it/release-it). I have used semantic-release in the past and found it to be quite unreliable with weird unexpected behaviours so when I decided to automate my next workflow I chose release-it
 
 ## Using conventional commits
 
-Releaseit determines the next version number by examining commit messages, therefore I had to ensure that all commits conformed to the [conventional-commit ](https://www.conventionalcommits.org/en/v1.0.0/)standard. To mandate this I created **commitlint.config.cjs** in the repository root
+Release-it determines the next version number by examining commit messages, therefore I had to ensure that all commits conformed to the [conventional-commit ](https://www.conventionalcommits.org/en/v1.0.0/)standard. To mandate this I created **commitlint.config.cjs** in the repository root
 
 ```js
 module.exports = {
@@ -169,7 +169,7 @@ As I am using a monorepo I needed to use two **.release-it.json** configuration 
 }
 ```
 
-The only remaining config left was to create a **release** script in the **package.json** files to ensure that releaseit first ran on the package and then at the top level of the monorepo
+The only remaining config left was to create a **release** script in the **package.json** files to ensure that release-it first ran on the package and then at the top level of the monorepo
 
 ### Top level package.json
 
