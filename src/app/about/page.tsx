@@ -2,8 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import awsdevopspro from "../../../public/images/certs/devopspro.png";
 import awssolutions from "../../../public/images/certs/solutions.png";
+import awssecurity from "../../../public/images/certs/security.png";
 import aston from "../../../public/images/uni/aston.png";
 import standrews from "../../../public/images/uni/standrews.png";
+
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -25,7 +27,7 @@ const About: React.FC = () => {
       </h1>
       <p className="mb-2 text-lg">
         I am a Senior Software Engineer based in Scotland who specialises in architecting and
-        building software solutions deployed on AWS.
+        building secure software solutions deployed on AWS.
       </p>
       <p className="mb-2 text-lg">
         I have extensive experience building frontend, backend and event-driven services.
@@ -54,23 +56,37 @@ const About: React.FC = () => {
         <li className="mb-1">Tailwind</li>
         <li className="mb-1">React</li>
         <li className="mb-1">Contentful</li>
+        <li className="mb-1">Sanity</li>
       </ul>
-      <div className="w-full md:w-8/12 lg:w-11/12 ">
-        <div className="float-left w-1/2 sm:w-1/4">
-          <Image src={standrews} placeholder="blur" alt="st andrews university logo" />
-        </div>
-        <div className="float-left w-1/2 sm:w-1/4">
-          <Image src={aston} placeholder="blur" alt="aston university logo" />
-        </div>
-        <div className="float-left w-1/2 sm:w-1/4">
-          <Image src={awsdevopspro} placeholder="blur" alt="aws devops professional certifiction" />
-        </div>
-        <div className="float-left w-1/2 sm:w-1/4">
-          <Image
-            src={awssolutions}
-            placeholder="blur"
-            alt="aws solutions architect associate certifiction"
-          />
+      <div className="w-full md:w-8/12 lg:w-11/12">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 items-start">
+          <div className="w-full">
+            <Image src={standrews} placeholder="blur" alt="st andrews university logo" />
+          </div>
+          <div className="w-full">
+            <Image src={aston} placeholder="blur" alt="aston university logo" />
+          </div>
+          <div className="w-full">
+            <Image
+              src={awsdevopspro}
+              placeholder="blur"
+              alt="aws devops professional certifiction"
+            />
+          </div>
+          <div className="w-full justify-self-start">
+            <Image
+              src={awssolutions}
+              placeholder="blur"
+              alt="aws solutions architect professional certifiction"
+            />
+          </div>
+          <div className="w-full justify-self-start">
+            <Image
+              src={awssecurity}
+              placeholder="blur"
+              alt="aws security specialist certifiction"
+            />
+          </div>
         </div>
       </div>
     </>
