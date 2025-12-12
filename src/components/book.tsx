@@ -90,7 +90,6 @@ export function BookView({ book }: { book: BOOKS_BY_YEAR_QUERYResult[number] }):
   const { _id, audiobook, category, estimated, title, author, startDate, finishDate, url } = book;
   const categorySlug = category?.slug?.current;
   const categoryName = category?.name;
-  console.log(categorySlug);
   return (
     <Container key={_id} url={url}>
       <div className="flex flex-col flex-grow justify-between">
