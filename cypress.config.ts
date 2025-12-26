@@ -2,6 +2,6 @@ import { defineConfig } from "cypress";
 
 export default defineConfig({
   e2e: {
-    baseUrl: "http://localhost:3000",
+    baseUrl: "https://lucasamos-d2ev-next-cmkb0o0y0-lucasamos-projects.vercel.app/",
   },
 });
