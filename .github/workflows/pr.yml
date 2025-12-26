@@ -1,0 +1,49 @@
+name: Deploy app
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  e2e-test:
+    name: Cypress end-to-end tests
+    environment:
+      name: development
+    runs-on: ubuntu-22.04
+    steps:
+      - name: vercel-preview-url
+        uses: zentered/vercel-preview-url@b0d2e0cbe2d868dfba1e2ae2f260b3416cef3a11
+        id: vercel_preview_url
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_DEPLOY_TOKEN }}
+        with:
+          vercel_project_id: prj_4DY8HhodwS3yHdksVO7D4LnnPRWs
+      - name: echo
+        run: echo ${{steps.vercel_preview_url.outputs.preview_url}}
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "yarn"
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Await preview deployment success
+        uses: UnlyEd/github-action-await-vercel@dc8556d58bdb7f211f7b7af6052c29288c7419a4
+        id: await-vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_DEPLOY_TOKEN}}
+        with:
+          deployment-url: ${{steps.vercel_preview_url.outputs.preview_url}}
+          poll-interval: 5
+          timeout: 180
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          config: baseUrl=https://${{steps.vercel_preview_url.outputs.preview_url}}
