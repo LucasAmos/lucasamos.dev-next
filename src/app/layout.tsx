@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "../components/sidebar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { VisualEditing } from "next-sanity";
+import { VisualEditing } from "next-sanity/visual-editing";
 import { draftMode } from "next/headers";
 import { DisableDraftMode } from "../components/DisableDraftMode";
 import "../styles/global.css";
