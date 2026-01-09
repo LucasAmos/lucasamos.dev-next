@@ -35,10 +35,10 @@ export default function Navbar(): JSX.Element {
         ))}
       </nav>
       <nav className="float-right space-x-4 m-4 sm:justify-center">
-        <div className="float-right">
+        <div className="lg:hidden float-right">
           <FontAwesomeIcon
             icon={open ? faClose : faBars}
-            className="lg:hidden cursor-pointer"
+            className="cursor-pointer"
             onClick={() => {
               setOpen(!open);
             }}
