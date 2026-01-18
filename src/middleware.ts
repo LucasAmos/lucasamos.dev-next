@@ -13,6 +13,10 @@ export type MiddlewareRequest = Override<
 >;
 
 export async function middleware(request: MiddlewareRequest): Promise<NextResponse> {
+  if (request.nextUrl.pathname === "/posts/booksireadin2025") {
+    return NextResponse.rewrite(new URL("/books/year/2025", request.url));
+  }
+
   if (request.nextUrl.pathname === "/api/email") {
     const headersList = await headers();
     const ip = headersList.get("x-real-ip") as string;
