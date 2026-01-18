@@ -12,7 +12,7 @@ export type MiddlewareRequest = Override<
   }
 >;
 
-export async function middleware(request: MiddlewareRequest): Promise<NextResponse> {
+export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
   if (request.nextUrl.pathname === "/posts/booksireadin2025") {
     return NextResponse.rewrite(new URL("/books/year/2025", request.url));
   }
