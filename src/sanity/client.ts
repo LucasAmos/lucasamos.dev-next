@@ -1,6 +1,7 @@
 import { createClient, SanityClient } from "next-sanity";
 
 import {
+  ALIASES_QUERYResult,
   BOOKS_THIS_YEAR_QUERYResult,
   BOOKS_BY_YEAR_QUERYResult,
   BOOKS_THIS_YEAR_MULTI_QUERYResult,
@@ -11,6 +12,7 @@ import { BOOKS_THIS_YEAR_QUERY, BOOKS_THIS_YEAR_MULTI_QUERY } from "./queries/bo
 import { BOOKS_BY_YEAR_QUERY } from "./queries/booksByYear";
 import { BOOKS_BY_YEAR_AND_CATEGORY_QUERY } from "./queries/booksByCategoryAndYear";
 import { BOOKS_BY_CATEGORY_QUERY } from "./queries/booksByCategory";
+import { ALIASES_QUERY } from "./queries/aliases";
 
 export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
@@ -128,6 +130,26 @@ export class Sanity {
             stega: true,
           }
         : undefined
+    );
+
+    return books;
+  }
+
+  async getAliases(draftModeEnabled: boolean) {
+    const books: ALIASES_QUERYResult = await this.client.fetch(
+      ALIASES_QUERY,
+      undefined,
+      draftModeEnabled
+        ? {
+            perspective: "drafts",
+            useCdn: false,
+            stega: true,
+          }
+        : {
+            perspective: "published",
+            useCdn: true,
+            stega: false,
+          }
     );
 
     return books;
