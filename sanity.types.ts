@@ -13,6 +13,20 @@
  */
 
 // Source: schema.json
+export type AuthorReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "author";
+};
+
+export type CategoryReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "category";
+};
+
 export type Book = {
   _id: string;
   _type: "book";
@@ -20,20 +34,10 @@ export type Book = {
   _updatedAt: string;
   _rev: string;
   title: string;
-  author: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
-  };
+  author: AuthorReference;
   startDate: string;
   finishDate?: string;
-  category?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "category";
-  };
+  category?: CategoryReference;
   estimated: boolean;
   url?: string;
   audiobook?: boolean;
@@ -46,7 +50,13 @@ export type Category = {
   _updatedAt: string;
   _rev: string;
   name: string;
-  slug?: Slug;
+  slug: Slug;
+};
+
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
 };
 
 export type Author = {
@@ -56,6 +66,16 @@ export type Author = {
   _updatedAt: string;
   _rev: string;
   name: string;
+};
+
+export type Alias = {
+  _id: string;
+  _type: "alias";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  source: string;
+  destination: string;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -82,6 +102,18 @@ export type SanityImageDimensions = {
   height: number;
   width: number;
   aspectRatio: number;
+};
+
+export type SanityImageMetadata = {
+  _type: "sanity.imageMetadata";
+  location?: Geopoint;
+  dimensions?: SanityImageDimensions;
+  palette?: SanityImagePalette;
+  lqip?: string;
+  blurHash?: string;
+  thumbHash?: string;
+  hasAlpha?: boolean;
+  isOpaque?: boolean;
 };
 
 export type SanityImageHotspot = {
@@ -122,6 +154,13 @@ export type SanityFileAsset = {
   source?: SanityAssetSourceData;
 };
 
+export type SanityAssetSourceData = {
+  _type: "sanity.assetSourceData";
+  name?: string;
+  id?: string;
+  url?: string;
+};
+
 export type SanityImageAsset = {
   _id: string;
   _type: "sanity.imageAsset";
@@ -145,17 +184,6 @@ export type SanityImageAsset = {
   source?: SanityAssetSourceData;
 };
 
-export type SanityImageMetadata = {
-  _type: "sanity.imageMetadata";
-  location?: Geopoint;
-  dimensions?: SanityImageDimensions;
-  palette?: SanityImagePalette;
-  lqip?: string;
-  blurHash?: string;
-  hasAlpha?: boolean;
-  isOpaque?: boolean;
-};
-
 export type Geopoint = {
   _type: "geopoint";
   lat?: number;
@@ -163,35 +191,33 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Slug = {
-  _type: "slug";
-  current: string;
-  source?: string;
-};
-
-export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData";
-  name?: string;
-  id?: string;
-  url?: string;
-};
-
 export type AllSanitySchemaTypes =
+  | AuthorReference
+  | CategoryReference
   | Book
   | Category
+  | Slug
   | Author
+  | Alias
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
+  | SanityImageMetadata
   | SanityImageHotspot
   | SanityImageCrop
   | SanityFileAsset
+  | SanityAssetSourceData
   | SanityImageAsset
-  | SanityImageMetadata
-  | Geopoint
-  | Slug
-  | SanityAssetSourceData;
+  | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./src/sanity/queries/aliases.ts
+// Variable: ALIASES_QUERY
+// Query: *[_type == "alias"] {    source,    destination  }
+export type ALIASES_QUERYResult = Array<{
+  source: string;
+  destination: string;
+}>;
+
 // Source: ./src/sanity/queries/books.ts
 // Variable: BOOKS_QUERY
 // Query: *[_type == "book" && finishDate ==null || finishDate >= $yearStart && finishDate <= $yearEnd] | order(startDate desc) {    _id,    audiobook,    author -> {name},    category -> {name, slug},    estimated,    finishDate,    startDate,    title,    url  }
@@ -226,7 +252,7 @@ export type BOOKS_QUERYResult = Array<
       };
       category: {
         name: string;
-        slug: Slug | null;
+        slug: Slug;
       } | null;
       estimated: boolean;
       finishDate: string | null;
@@ -238,7 +264,7 @@ export type BOOKS_QUERYResult = Array<
 
 // Source: ./src/sanity/queries/booksByCategory.ts
 // Variable: BOOKS_BY_CATEGORY_QUERY
-// Query: { 'books' :*[_type == "book" && category->slug.current == $category] | order(startDate desc) {    _id,    audiobook,    author -> {name},    category -> {name, slug},    estimated,    finishDate,    startDate,    title,    url  },  'category' :*[_type == "category" && slug.current == $slug]  }
+// Query: { 'books' :*[_type == "book" && finishDate != null && category->slug.current == $category] | order(startDate desc) {    _id,    audiobook,    author -> {name},    category -> {name, slug},    estimated,    finishDate,    startDate,    title,    url  },  'category' :*[_type == "category" && slug.current == $category]  }
 export type BOOKS_BY_CATEGORY_QUERYResult = {
   books: Array<{
     _id: string;
@@ -248,7 +274,7 @@ export type BOOKS_BY_CATEGORY_QUERYResult = {
     };
     category: {
       name: string;
-      slug: Slug | null;
+      slug: Slug;
     } | null;
     estimated: boolean;
     finishDate: string | null;
@@ -263,7 +289,7 @@ export type BOOKS_BY_CATEGORY_QUERYResult = {
     _updatedAt: string;
     _rev: string;
     name: string;
-    slug?: Slug;
+    slug: Slug;
   }>;
 };
 
@@ -279,7 +305,7 @@ export type BOOKS_BY_YEAR_AND_CATEGORY_QUERYResult = {
     };
     category: {
       name: string;
-      slug: Slug | null;
+      slug: Slug;
     } | null;
     estimated: boolean;
     finishDate: string | null;
@@ -294,7 +320,7 @@ export type BOOKS_BY_YEAR_AND_CATEGORY_QUERYResult = {
     _updatedAt: string;
     _rev: string;
     name: string;
-    slug?: Slug;
+    slug: Slug;
   }>;
 };
 
@@ -309,7 +335,7 @@ export type BOOKS_BY_YEAR_QUERYResult = Array<{
   };
   category: {
     name: string;
-    slug: Slug | null;
+    slug: Slug;
   } | null;
   estimated: boolean;
   finishDate: string | null;
@@ -347,7 +373,7 @@ export type BOOKS_THIS_YEAR_MULTI_QUERYResult = {
     };
     category: {
       name: string;
-      slug: Slug | null;
+      slug: Slug;
     } | null;
     estimated: boolean;
     finishDate: string | null;
