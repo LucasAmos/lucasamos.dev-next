@@ -19,7 +19,6 @@ const client = new Sanity();
 export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
   const { isEnabled } = await draftMode();
   const aliases = await client.getAliases(isEnabled);
-  console.log(aliases);
 
   const matchingAlias = aliases.find((alias) => alias.source == request.nextUrl.pathname);
 
