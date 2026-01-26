@@ -43,6 +43,13 @@ export type Book = {
   audiobook?: boolean;
 };
 
+export type RewriteReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "rewrite";
+};
+
 export type Category = {
   _id: string;
   _type: "category";
@@ -50,6 +57,16 @@ export type Category = {
   _updatedAt: string;
   _rev: string;
   name: string;
+  slug: Slug;
+  rewrite?: RewriteReference;
+};
+
+export type Rewrite = {
+  _id: string;
+  _type: "rewrite";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
   slug: Slug;
 };
 
@@ -195,7 +212,9 @@ export type AllSanitySchemaTypes =
   | AuthorReference
   | CategoryReference
   | Book
+  | RewriteReference
   | Category
+  | Rewrite
   | Slug
   | Author
   | Alias
@@ -290,6 +309,7 @@ export type BOOKS_BY_CATEGORY_QUERYResult = {
     _rev: string;
     name: string;
     slug: Slug;
+    rewrite?: RewriteReference;
   }>;
 };
 
@@ -321,6 +341,7 @@ export type BOOKS_BY_YEAR_AND_CATEGORY_QUERYResult = {
     _rev: string;
     name: string;
     slug: Slug;
+    rewrite?: RewriteReference;
   }>;
 };
 
@@ -391,3 +412,43 @@ export type BOOKS_THIS_YEAR_MULTI_QUERYResult = {
 export type OLDEST_BOOK_QUERYResult = {
   finishDate: string | null;
 } | null;
+
+// Source: ./src/sanity/queries/rewrites.ts
+// Variable: REWRITES_QUERY
+// Query: *[_type != "rewrite" && references(*[_type == "rewrite"]._id)]{  _type,  slug,  rewrite-> {    slug  {    current    }  }}
+export type REWRITES_QUERYResult = Array<
+  | {
+      _type: "alias";
+      slug: null;
+      rewrite: null;
+    }
+  | {
+      _type: "author";
+      slug: null;
+      rewrite: null;
+    }
+  | {
+      _type: "book";
+      slug: null;
+      rewrite: null;
+    }
+  | {
+      _type: "category";
+      slug: Slug;
+      rewrite: {
+        slug: {
+          current: string;
+        };
+      } | null;
+    }
+  | {
+      _type: "sanity.fileAsset";
+      slug: null;
+      rewrite: null;
+    }
+  | {
+      _type: "sanity.imageAsset";
+      slug: null;
+      rewrite: null;
+    }
+>;

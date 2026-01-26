@@ -7,12 +7,14 @@ import {
   BOOKS_THIS_YEAR_MULTI_QUERYResult,
   BOOKS_BY_YEAR_AND_CATEGORY_QUERYResult,
   BOOKS_BY_CATEGORY_QUERYResult,
+  REWRITES_QUERYResult,
 } from "../../sanity.types";
 import { BOOKS_THIS_YEAR_QUERY, BOOKS_THIS_YEAR_MULTI_QUERY } from "./queries/booksThisYear";
 import { BOOKS_BY_YEAR_QUERY } from "./queries/booksByYear";
 import { BOOKS_BY_YEAR_AND_CATEGORY_QUERY } from "./queries/booksByCategoryAndYear";
 import { BOOKS_BY_CATEGORY_QUERY } from "./queries/booksByCategory";
 import { ALIASES_QUERY } from "./queries/aliases";
+import { REWRITES_QUERY } from "./queries";
 
 export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
@@ -153,5 +155,24 @@ export class Sanity {
     );
 
     return books;
+  }
+
+  async getRewrites(draftModeEnabled: boolean) {
+    const rewrites: REWRITES_QUERYResult = await this.client.fetch(
+      REWRITES_QUERY,
+      undefined,
+      draftModeEnabled
+        ? {
+            perspective: "drafts",
+            useCdn: false,
+            stega: true,
+          }
+        : {
+            perspective: "published",
+            useCdn: true,
+            stega: false,
+          }
+    );
+    return rewrites;
   }
 }
