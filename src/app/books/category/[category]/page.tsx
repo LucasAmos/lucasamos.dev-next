@@ -1,15 +1,34 @@
 import React from "react";
+import type { Metadata, ResolvingMetadata } from "next";
+
 import { Sanity } from "../../../../sanity/client";
 import { draftMode } from "next/headers";
 import BooksView from "../../../../components/books";
 export const revalidate = 0;
-
 import { notFound } from "next/navigation";
+
+type Props = {
+  params: Promise<{ category: string }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { category } = await params;
+
+  return {
+    title: `Lucas Amos: ${category} books I have read`,
+    description: `Lucas Amos: ${category} books I have read`,
+    openGraph: {
+      authors: ["Lucas Amos"],
+      description: `Lucas Amos: ${category} books I have read`,
+      title: `Lucas Amos: ${category} books I have read`,
+    },
+  };
+}
+
 export default async function Books(props: any): Promise<JSX.Element> {
   const { category } = await props.params;
 
   const client = new Sanity();
-  const year = new Date().getFullYear();
 
   const { isEnabled } = await draftMode();
   const { books, category: categoryDetails } = await client.getBooksReadByCategory(
