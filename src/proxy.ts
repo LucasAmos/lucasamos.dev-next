@@ -3,6 +3,7 @@ import { NextResponse, NextRequest } from "next/server";
 import { rateLimit } from "./lib/ratelimit";
 import { Sanity } from "./sanity/client";
 import { draftMode } from "next/headers";
+import { mapRewrites } from "./lib/utils";
 
 type Override<T1, T2> = Omit<T1, keyof T2> & T2;
 
@@ -16,14 +17,30 @@ export type MiddlewareRequest = Override<
 
 const client = new Sanity();
 
+const routes = {
+  category: "/books/category",
+};
+
 export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
   const { isEnabled } = await draftMode();
-  const aliases = await client.getAliases(isEnabled);
 
+  if (request.url.includes("_next/static/") || request.url.includes("favicon.ico")) {
+    return NextResponse.next();
+  }
+  const aliases = await client.getAliases(isEnabled);
   const matchingAlias = aliases.find((alias) => alias.source == request.nextUrl.pathname);
 
   if (matchingAlias) {
     const { destination } = matchingAlias;
+    return NextResponse.rewrite(new URL(destination, request.url));
+  }
+
+  const results = await client.getRewrites(isEnabled);
+  const rewrites = mapRewrites(results, routes);
+  const matchingRewrite = rewrites.find((rewrite) => rewrite?.source == request.nextUrl.pathname);
+
+  if (matchingRewrite) {
+    const { destination } = matchingRewrite;
     return NextResponse.rewrite(new URL(destination, request.url));
   }
 

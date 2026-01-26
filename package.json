@@ -9,7 +9,7 @@
     "test:cypress": "cypress run",
     "test:watch": "jest --watchAll",
     "test": "jest",
-    "typegen": "sanity typegen generate"
+    "typegen": "yarn --cwd ../sanity-studio/studio schema:extract && sanity typegen generate"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.970.0",
