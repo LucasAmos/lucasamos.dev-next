@@ -29,7 +29,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
   };
 }
 
-export default async function Page(props: Params): Promise<JSX.Element> {
+export default async function Page(props: Params): Promise<React.JSX.Element> {
   const { slug } = await props.params;
   const { title, date, contentHtml } = await getPostData(slug);
 

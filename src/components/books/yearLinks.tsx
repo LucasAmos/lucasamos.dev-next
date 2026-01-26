@@ -19,7 +19,7 @@ export default async function BookYearLinks({
 }: {
   route?: string;
   year: number;
-}): Promise<JSX.Element> {
+}): Promise<React.JSX.Element> {
   return (
     <>
       <h2 className="mb-2 mt-5 font-Inter text-xl">Past years</h2>

@@ -5,7 +5,7 @@ import BooksView from "../../../../components/books";
 export const revalidate = 0;
 
 import { notFound } from "next/navigation";
-export default async function Books(props: any): Promise<JSX.Element> {
+export default async function Books(props: any): Promise<React.JSX.Element> {
   const { category } = await props.params;
 
   const client = new Sanity();
