@@ -12,7 +12,7 @@ const links = [
   ["Contact", "/contact"],
 ];
 
-export default function Navbar(): JSX.Element {
+export default function Navbar(): React.JSX.Element {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 

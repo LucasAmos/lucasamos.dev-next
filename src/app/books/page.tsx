@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Books(): Promise<JSX.Element> {
+export default async function Books(): Promise<React.JSX.Element> {
   const client = new Sanity();
   const year = new Date().getFullYear();
 

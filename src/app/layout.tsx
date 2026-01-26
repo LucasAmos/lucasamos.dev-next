@@ -38,7 +38,7 @@ export default async function Layout({
   children,
 }: {
   children: React.ReactNode;
-}): Promise<JSX.Element> {
+}): Promise<React.JSX.Element> {
   return (
     <html lang="en" className={inter.variable}>
       <body>

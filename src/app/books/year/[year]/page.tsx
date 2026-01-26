@@ -24,7 +24,7 @@ type Params = {
   }>;
 };
 
-export default async function Books(props: Params): Promise<JSX.Element> {
+export default async function Books(props: Params): Promise<React.JSX.Element> {
   const { year } = await props.params;
 
   const client = new Sanity();
