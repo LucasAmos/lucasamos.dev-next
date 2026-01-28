@@ -1,8 +1,9 @@
 import { mockClient } from "aws-sdk-client-mock";
 import { DynamoDBClient, GetItemCommand, PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { filterDates, getPastRequests, putRequests, rateLimit } from "../../lib/ratelimit";
+import { describe, expect, vitest } from "vitest";
 
-jest.useFakeTimers({
+vitest.useFakeTimers({
   now: 1673452800000,
 });
 const ddbMock = mockClient(DynamoDBClient);
