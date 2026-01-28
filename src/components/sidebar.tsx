@@ -4,7 +4,6 @@ import lucas from "../../public/images/lucasnew.jpg";
 import Link from "next/link";
 import { faGithub, faFlickr } from "@fortawesome/free-brands-svg-icons";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
-
 import { ReactNode } from "react";
 
 export default function Sidebar(): ReactNode {
@@ -26,6 +25,8 @@ export default function Sidebar(): ReactNode {
                   src={lucas}
                   alt="image of lucas amos"
                   sizes="(max-width: 768px) 20vw, (max-width: 1200px) 20vw, 30vw"
+                  width={4000}
+                  height={4169}
                 />
               </div>
             </Link>
