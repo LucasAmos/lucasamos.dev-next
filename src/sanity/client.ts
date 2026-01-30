@@ -1,4 +1,4 @@
-import { createClient, SanityClient } from "next-sanity";
+import { createClient, FilteredResponseQueryOptions, SanityClient } from "next-sanity";
 
 import {
   ALIASES_QUERYResult,
@@ -41,6 +41,20 @@ export class Sanity {
       },
     });
   }
+
+  public static getQueryConfig(draftModeEnabled: boolean): FilteredResponseQueryOptions {
+    return draftModeEnabled
+      ? {
+          perspective: "drafts",
+          useCdn: false,
+          stega: true,
+        }
+      : {
+          perspective: "published",
+          useCdn: true,
+          stega: false,
+        };
+  }
   async getBooksReadThisYear(year: number, draftModeEnabled: boolean) {
     const books: BOOKS_THIS_YEAR_QUERYResult = await this.client.fetch(
       BOOKS_THIS_YEAR_QUERY,
@@ -48,13 +62,7 @@ export class Sanity {
         yearStart: `${year}-01-01`,
         yearEnd: `${year}-31-12`,
       },
-      draftModeEnabled
-        ? {
-            perspective: "drafts",
-            useCdn: false,
-            stega: true,
-          }
-        : undefined
+      Sanity.getQueryConfig(draftModeEnabled)
     );
     return books;
   }
@@ -66,13 +74,7 @@ export class Sanity {
         yearStart: `${year}-01-01`,
         yearEnd: `${year}-31-12`,
       },
-      draftModeEnabled
-        ? {
-            perspective: "drafts",
-            useCdn: false,
-            stega: true,
-          }
-        : undefined
+      Sanity.getQueryConfig(draftModeEnabled)
     );
 
     return books;
@@ -88,13 +90,7 @@ export class Sanity {
         yearStart: `${year}-01-01`,
         yearEnd: `${year}-31-12`,
       },
-      draftModeEnabled
-        ? {
-            perspective: "drafts",
-            useCdn: false,
-            stega: true,
-          }
-        : undefined
+      Sanity.getQueryConfig(draftModeEnabled)
     );
   }
 
@@ -107,13 +103,7 @@ export class Sanity {
         category,
         slug: category,
       },
-      draftModeEnabled
-        ? {
-            perspective: "drafts",
-            useCdn: false,
-            stega: true,
-          }
-        : undefined
+      Sanity.getQueryConfig(draftModeEnabled)
     );
 
     return books;
@@ -125,13 +115,7 @@ export class Sanity {
       {
         category,
       },
-      draftModeEnabled
-        ? {
-            perspective: "drafts",
-            useCdn: false,
-            stega: true,
-          }
-        : undefined
+      Sanity.getQueryConfig(draftModeEnabled)
     );
 
     return books;
@@ -161,17 +145,7 @@ export class Sanity {
     const rewrites: REWRITES_QUERYResult = await this.client.fetch(
       REWRITES_QUERY,
       undefined,
-      draftModeEnabled
-        ? {
-            perspective: "drafts",
-            useCdn: false,
-            stega: true,
-          }
-        : {
-            perspective: "published",
-            useCdn: true,
-            stega: false,
-          }
+      Sanity.getQueryConfig(draftModeEnabled)
     );
     return rewrites;
   }
