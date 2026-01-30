@@ -16,7 +16,7 @@ import { BOOKS_BY_CATEGORY_QUERY } from "./queries/booksByCategory";
 import { ALIASES_QUERY } from "./queries/aliases";
 import { REWRITES_QUERY } from "./queries";
 
-export const client = createClient({
+export const client: SanityClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
   apiVersion: "2024-12-01",
@@ -28,20 +28,6 @@ export const client = createClient({
 });
 
 export class Sanity {
-  client: SanityClient;
-  constructor() {
-    this.client = createClient({
-      projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-      dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-      apiVersion: "2024-12-01",
-      useCdn: true,
-      token: process.env.SANITY_API_TOKEN,
-      stega: {
-        studioUrl: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL,
-      },
-    });
-  }
-
   public static getQueryConfig(draftModeEnabled: boolean): FilteredResponseQueryOptions {
     return draftModeEnabled
       ? {
@@ -53,10 +39,13 @@ export class Sanity {
           perspective: "published",
           useCdn: true,
           stega: false,
+          next: {
+            revalidate: 60,
+          },
         };
   }
   async getBooksReadThisYear(year: number, draftModeEnabled: boolean) {
-    const books: BOOKS_THIS_YEAR_QUERYResult = await this.client.fetch(
+    const books: BOOKS_THIS_YEAR_QUERYResult = await client.fetch(
       BOOKS_THIS_YEAR_QUERY,
       {
         yearStart: `${year}-01-01`,
@@ -122,20 +111,23 @@ export class Sanity {
   }
 
   async getAliases(draftModeEnabled: boolean) {
-    const aliases: ALIASES_QUERYResult = await this.client.fetch(ALIASES_QUERY, undefined, {
+    const aliases: ALIASES_QUERYResult = await client.fetch(ALIASES_QUERY, undefined, {
       ...Sanity.getQueryConfig(draftModeEnabled),
+      useCdn: true,
       next: {
-        revalidate: 60,
+        revalidate: 3600,
       },
     });
+
     return aliases;
   }
 
   async getRewrites(draftModeEnabled: boolean) {
-    const rewrites: REWRITES_QUERYResult = await this.client.fetch(REWRITES_QUERY, undefined, {
+    const rewrites: REWRITES_QUERYResult = await client.fetch(REWRITES_QUERY, undefined, {
       ...Sanity.getQueryConfig(draftModeEnabled),
+      useCdn: true,
       next: {
-        revalidate: 60,
+        revalidate: 3600,
       },
     });
     return rewrites;
