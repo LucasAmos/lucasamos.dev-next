@@ -122,14 +122,13 @@ export class Sanity {
   }
 
   async getAliases(draftModeEnabled: boolean) {
-    const books: ALIASES_QUERYResult = await this.client.fetch(ALIASES_QUERY, undefined, {
+    const aliases: ALIASES_QUERYResult = await this.client.fetch(ALIASES_QUERY, undefined, {
       ...Sanity.getQueryConfig(draftModeEnabled),
       next: {
         revalidate: 60,
       },
     });
-
-    return books;
+    return aliases;
   }
 
   async getRewrites(draftModeEnabled: boolean) {
