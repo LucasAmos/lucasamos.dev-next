@@ -122,31 +122,23 @@ export class Sanity {
   }
 
   async getAliases(draftModeEnabled: boolean) {
-    const books: ALIASES_QUERYResult = await this.client.fetch(
-      ALIASES_QUERY,
-      undefined,
-      draftModeEnabled
-        ? {
-            perspective: "drafts",
-            useCdn: false,
-            stega: true,
-          }
-        : {
-            perspective: "published",
-            useCdn: true,
-            stega: false,
-          }
-    );
+    const books: ALIASES_QUERYResult = await this.client.fetch(ALIASES_QUERY, undefined, {
+      ...Sanity.getQueryConfig(draftModeEnabled),
+      next: {
+        revalidate: 60,
+      },
+    });
 
     return books;
   }
 
   async getRewrites(draftModeEnabled: boolean) {
-    const rewrites: REWRITES_QUERYResult = await this.client.fetch(
-      REWRITES_QUERY,
-      undefined,
-      Sanity.getQueryConfig(draftModeEnabled)
-    );
+    const rewrites: REWRITES_QUERYResult = await this.client.fetch(REWRITES_QUERY, undefined, {
+      ...Sanity.getQueryConfig(draftModeEnabled),
+      next: {
+        revalidate: 60,
+      },
+    });
     return rewrites;
   }
 }
