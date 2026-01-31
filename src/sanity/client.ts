@@ -1,4 +1,5 @@
 import { createClient, FilteredResponseQueryOptions, SanityClient } from "next-sanity";
+import * as Sentry from "@sentry/nextjs";
 
 import {
   ALIASES_QUERYResult,
@@ -117,6 +118,7 @@ export class Sanity {
       Sanity.getQueryConfig(draftModeEnabled)
     );
 
+    Sentry.metrics.count("aliases.get", 1);
     return aliases;
   }
 
