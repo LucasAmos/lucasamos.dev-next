@@ -35,14 +35,14 @@ export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
     return NextResponse.rewrite(new URL(destination, request.url));
   }
 
-  const results = await client.getRewrites(isEnabled);
-  const rewrites = mapRewrites(results, routes);
-  const matchingRewrite = rewrites.find((rewrite) => rewrite?.source == request.nextUrl.pathname);
+  // const results = await client.getRewrites(isEnabled);
+  // const rewrites = mapRewrites(results, routes);
+  // const matchingRewrite = rewrites.find((rewrite) => rewrite?.source == request.nextUrl.pathname);
 
-  if (matchingRewrite) {
-    const { destination } = matchingRewrite;
-    return NextResponse.rewrite(new URL(destination, request.url));
-  }
+  // if (matchingRewrite) {
+  //   const { destination } = matchingRewrite;
+  //   return NextResponse.rewrite(new URL(destination, request.url));
+  // }
 
   if (request.nextUrl.pathname === "/api/email") {
     const headersList = await headers();
