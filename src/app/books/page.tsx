@@ -37,7 +37,7 @@ export default async function Books(): Promise<React.JSX.Element> {
 
       <BooksView books={books} />
 
-      <BookYearLinks route="books/year" year={2018} />
+      <BookYearLinks year={2018} route="/books/year" />
     </>
   );
 }
