@@ -111,25 +111,21 @@ export class Sanity {
   }
 
   async getAliases(draftModeEnabled: boolean) {
-    const aliases: ALIASES_QUERYResult = await client.fetch(ALIASES_QUERY, undefined, {
-      ...Sanity.getQueryConfig(draftModeEnabled),
-      useCdn: true,
-      next: {
-        revalidate: 3600,
-      },
-    });
+    const aliases: ALIASES_QUERYResult = await client.fetch(
+      ALIASES_QUERY,
+      undefined,
+      Sanity.getQueryConfig(draftModeEnabled)
+    );
 
     return aliases;
   }
 
   async getRewrites(draftModeEnabled: boolean) {
-    const rewrites: REWRITES_QUERYResult = await client.fetch(REWRITES_QUERY, undefined, {
-      ...Sanity.getQueryConfig(draftModeEnabled),
-      useCdn: true,
-      next: {
-        revalidate: 3600,
-      },
-    });
+    const rewrites: REWRITES_QUERYResult = await client.fetch(
+      REWRITES_QUERY,
+      undefined,
+      Sanity.getQueryConfig(draftModeEnabled)
+    );
     return rewrites;
   }
 }
