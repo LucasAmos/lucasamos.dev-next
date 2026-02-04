@@ -6,11 +6,21 @@ const config = {
       has: [
         {
           type: "host",
-          value: "x-rewrite-me",
+          value: "lucasamos-dev-next-git-preprod1-lucasamos-projects.vercel.app",
         },
       ],
       source: "/:path*",
       destination: `https://www.google.com/:path*`,
+    },
+    {
+      has: [
+        {
+          type: "host",
+          value: "lucasamos-dev-next-git-preprod2-lucasamos-projects.vercel.app",
+        },
+      ],
+      source: "/:path*",
+      destination: `https://duckduckgo.com/:path*`,
     },
   ],
 };
