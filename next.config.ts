@@ -1,24 +1,35 @@
 import { withSentryConfig } from "@sentry/nextjs";
 const config = {
   serverExternalPackages: ["remark-prism"],
-  fallback: [
-    {
-      has: [
+  async rewrites() {
+    return {
+      fallback: [
         {
-          key: "host",
-          value: "google",
+          has: [
+            {
+              type: "header",
+              key: "route",
+              value: "google",
+            },
+          ],
+          source: "/:path*",
+          destination: `https://www.google.com/:path*`,
+        },
+        {
+          has: [
+            {
+              type: "header",
+              key: "route",
+              value: "duck",
+            },
+          ],
+
+          source: "/:path*",
+          destination: `https://duckduckgo.com/:path*`,
         },
       ],
-      source: "/:path*",
-      destination: `https://www.google.com/:path*`,
-    },
-    {
-      has: [{ key: "host", value: "duck" }],
-
-      source: "/:path*",
-      destination: `https://duckduckgo.com/:path*`,
-    },
-  ],
+    };
+  },
 };
 
 export default withSentryConfig(config, {
