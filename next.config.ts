@@ -1,6 +1,18 @@
 import { withSentryConfig } from "@sentry/nextjs";
 const config = {
   serverExternalPackages: ["remark-prism"],
+  fallback: [
+    {
+      has: [
+        {
+          type: "host",
+          value: "x-rewrite-me",
+        },
+      ],
+      source: "/:path*",
+      destination: `https://www.google.com/:path*`,
+    },
+  ],
 };
 
 export default withSentryConfig(config, {
