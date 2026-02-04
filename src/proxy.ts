@@ -22,7 +22,7 @@ const routes = {
 };
 
 export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
-  console.log(request.headers.get("host"));
+  console.log(request);
   const { isEnabled } = await draftMode();
 
   if (request.url.includes("_next/static/") || request.url.includes("favicon.ico")) {

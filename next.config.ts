@@ -5,20 +5,16 @@ const config = {
     {
       has: [
         {
-          type: "host",
-          value: "https://www.lucasamos-dev-next-git-preprod1-lucasamos-projects.vercel.app",
+          key: "host",
+          value: "google",
         },
       ],
       source: "/:path*",
       destination: `https://www.google.com/:path*`,
     },
     {
-      has: [
-        {
-          type: "host",
-          value: "https://lucasamos-dev-next-git-preprod2-lucasamos-projects.vercel.app",
-        },
-      ],
+      has: [{ key: "host", value: "duck" }],
+
       source: "/:path*",
       destination: `https://duckduckgo.com/:path*`,
     },
