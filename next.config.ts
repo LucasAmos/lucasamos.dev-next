@@ -6,7 +6,7 @@ const config = {
       has: [
         {
           type: "host",
-          value: "lucasamos-dev-next-git-preprod1-lucasamos-projects.vercel.app",
+          value: "https://www.lucasamos-dev-next-git-preprod1-lucasamos-projects.vercel.app",
         },
       ],
       source: "/:path*",
@@ -16,7 +16,7 @@ const config = {
       has: [
         {
           type: "host",
-          value: "lucasamos-dev-next-git-preprod2-lucasamos-projects.vercel.app",
+          value: "https://lucasamos-dev-next-git-preprod2-lucasamos-projects.vercel.app",
         },
       ],
       source: "/:path*",
