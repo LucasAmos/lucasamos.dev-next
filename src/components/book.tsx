@@ -37,7 +37,7 @@ function Category({ children }: { children: ReactNode }): ReactNode {
   if (!children) return null;
   return (
     <div className="flex flex-col justify-end">
-      <div className="text-nowrap pr-1 pl-1 rounded-md border-[1px] border-t-violet text-t-violet">
+      <div className="text-nowrap pr-1 pl-1 rounded-md border-[1px] border-t-violet text-t-violet hover:text-purple-900 hover:border-purple-900 ">
         {children}
       </div>
     </div>
