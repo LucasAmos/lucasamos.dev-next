@@ -18,7 +18,7 @@ export const BOOKS_THIS_YEAR_MULTI_QUERY = defineQuery(`
   { 'books': *[_type == "book" && (finishDate == null || finishDate >= $yearStart && finishDate <= $yearEnd)] | order(startDate desc) {
     _id,
     audiobook,
-    author -> {name},
+    author -> {name, slug},
     category -> {name, slug},
     estimated,
     finishDate,
