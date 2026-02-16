@@ -26,7 +26,9 @@ function Title({ children }: { children: ReactNode }): ReactNode {
 function Author({ children }: { children: ReactNode }): ReactNode {
   return (
     <div>
-      <h1 className="text-t-purple font-Inter xs:text-sm sm:text-base lg:text-base">{children}</h1>
+      <h1 className="hover:text-purple-900 text-t-purple font-Inter xs:text-sm sm:text-base lg:text-base">
+        {children}
+      </h1>
     </div>
   );
 }
@@ -96,7 +98,9 @@ export function BookView({ book }: { book: BOOKS_BY_YEAR_QUERYResult[number] }):
         <div className="flex-row flex justify-between">
           <div>
             <Title>{title}</Title>
-            <Author>{author?.name}</Author>
+            <Link href={`/books/author/${author.slug.current}`}>
+              <Author>{author.name}</Author>
+            </Link>
           </div>
           <div className="flex pt-1">
             {audiobook && <AudioBook />}

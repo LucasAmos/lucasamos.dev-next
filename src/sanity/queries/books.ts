@@ -4,7 +4,7 @@ export const BOOKS_QUERY = defineQuery(`
    *[_type == "book" && finishDate ==null || finishDate >= $yearStart && finishDate <= $yearEnd] | order(startDate desc) {
     _id,
     audiobook,
-    author -> {name},
+    author -> {name, slug},
     category -> {name, slug},
     estimated,
     finishDate,
