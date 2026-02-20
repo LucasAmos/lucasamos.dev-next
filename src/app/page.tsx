@@ -14,8 +14,8 @@ export const metadata: Metadata = {
     title: "Lucas Amos - AWS application architect",
     description: "Lucas Amos - AWS application architect",
     authors: ["Lucas Amos"],
-    images: ["https://www.lucasamos.dev/images/lucas.JPG"],
-  },
+    images: ["https://www.lucasamos.dev/images/lucas.JPG"]
+  }
 };
 
 export default async function Home(): Promise<ReactNode> {

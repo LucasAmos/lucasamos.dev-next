@@ -55,8 +55,8 @@ test("sendPostRequest makes request with correct parameters and returns expected
       json: () =>
         Promise.resolve({
           id: 1,
-          test: "data",
-        }),
+          test: "data"
+        })
     })
   );
   const response = await sendPostRequest({ real: "data" });
@@ -64,11 +64,11 @@ test("sendPostRequest makes request with correct parameters and returns expected
   expect(fetch).toHaveBeenLastCalledWith("https://fakeurl.com/posts", {
     body: '{"real":"data"}',
     headers: { "Content-Type": "application/json" },
-    method: "post",
+    method: "post"
   });
   expect(response).toEqual({
     test: "data",
-    id: 1,
+    id: 1
   });
 });
 ```

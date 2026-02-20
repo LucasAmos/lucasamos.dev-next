@@ -4,8 +4,8 @@ const client = new SESv2Client({
   region: "eu-west-2",
   credentials: {
     accessKeyId: process.env.ACCESS_KEY_ID,
-    secretAccessKey: process.env.SECRET_ACCESS_KEY,
-  },
+    secretAccessKey: process.env.SECRET_ACCESS_KEY
+  }
 });
 
 export type EmailRequestBody = {
@@ -21,23 +21,23 @@ export async function POST(req: Request): Promise<Response> {
   const params: SendEmailCommandInput = {
     FromEmailAddress: process.env.FROM_EMAIL,
     Destination: {
-      ToAddresses: [process.env.TO_EMAIL],
+      ToAddresses: [process.env.TO_EMAIL]
     },
     Content: {
       Simple: {
         Subject: {
-          Data: "message from website",
+          Data: "message from website"
         },
         Body: {
           Text: {
             Data: `\n
             Name: ${name} \n
             email: ${email} \n
-            message: ${message}`,
-          },
-        },
-      },
-    },
+            message: ${message}`
+          }
+        }
+      }
+    }
   };
 
   try {
@@ -45,9 +45,9 @@ export async function POST(req: Request): Promise<Response> {
     await client.send(command);
     return new Response("success", {
       status: 200,
-      statusText: "success",
+      statusText: "success"
     });
-  } catch (error) {
+  } catch {
     return Response.json({ status: 500, error: "Email was not sent" });
   }
 }

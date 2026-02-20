@@ -8,8 +8,8 @@ vitest.mock("next/image", () => ({
   default: (props: any) => {
     // Render a simple img element for testing
     // eslint-disable-next-line @next/next/no-img-element
-    return <img {...props} />;
-  },
+    return <img {...props} alt="test" />;
+  }
 }));
 
 describe("Sidebar", () => {

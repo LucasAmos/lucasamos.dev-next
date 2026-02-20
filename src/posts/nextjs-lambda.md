@@ -106,8 +106,8 @@ const nextConfig = {
   output: "standalone",
   assetPrefix: "DISTRIBUTION_DOMAIN_NAME",
   images: {
-    unoptimized: true,
-  },
+    unoptimized: true
+  }
 };
 ```
 

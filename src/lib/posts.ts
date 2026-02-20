@@ -48,7 +48,7 @@ export function getSortedPostsData(): AllPostsData[] {
       subtitle,
       date,
       previewImage,
-      ...matterResult.data,
+      ...matterResult.data
     };
   });
   // Sort posts by date
@@ -74,8 +74,8 @@ export function getAllPostIds(): IPost[] {
   return fileNames.map((fileName) => {
     return {
       params: {
-        slug: fileName.replace(/\.md$/, ""),
-      },
+        slug: fileName.replace(/\.md$/, "")
+      }
     };
   });
 }
@@ -105,6 +105,6 @@ export async function getPostData(slug: string): Promise<PostData> {
       date: string;
       previewImage: string;
       readingTime: number;
-    }),
+    })
   };
 }

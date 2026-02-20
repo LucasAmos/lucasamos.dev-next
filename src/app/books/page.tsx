@@ -14,8 +14,8 @@ export const metadata: Metadata = {
     title: "Lucas Amos - What I'm reading",
     description: "What I'm reading",
     authors: ["Lucas Amos"],
-    images: ["https://www.lucasamos.dev/images/lucas.JPG"],
-  },
+    images: ["https://www.lucasamos.dev/images/lucas.JPG"]
+  }
 };
 
 export default async function Books(): Promise<React.JSX.Element> {

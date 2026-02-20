@@ -52,7 +52,7 @@ for (let index = 0; index < 3000; index++) {
   const params = {
     Body: body,
     Bucket: "BUCKET_NAME",
-    Key: `key-${Date.now()}`,
+    Key: `key-${Date.now()}`
   };
   const command = new PutObjectCommand(params);
   await client.send(command);

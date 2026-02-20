@@ -162,12 +162,9 @@ Finally we can use the **.send()** function to specify the request body, other H
 
 ```js
 jest("POST / endpoint returns the correct response", async (done) => {
-  const res = await request(app)
-    .post("/")
-    .set("Accept", "application/json")
-    .send({
-      id: "user1",
-    });
+  const res = await request(app).post("/").set("Accept", "application/json").send({
+    id: "user1"
+  });
   const { body, statusCode } = res;
   expect(body).toEqual({ id: "user1" });
   expect(statusCode).toEqual(201);

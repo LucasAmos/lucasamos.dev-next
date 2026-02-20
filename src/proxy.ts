@@ -3,7 +3,6 @@ import { NextResponse, NextRequest } from "next/server";
 import { rateLimit } from "./lib/ratelimit";
 import { Sanity } from "./sanity/client";
 import { draftMode } from "next/headers";
-import { mapRewrites } from "./lib/utils";
 
 type Override<T1, T2> = Omit<T1, keyof T2> & T2;
 
@@ -16,10 +15,6 @@ export type MiddlewareRequest = Override<
 >;
 
 const client = new Sanity();
-
-const routes = {
-  category: "/books/category",
-};
 
 export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
   const { isEnabled } = await draftMode();
@@ -35,15 +30,6 @@ export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
     return NextResponse.rewrite(new URL(destination, request.url));
   }
 
-  // const results = await client.getRewrites(isEnabled);
-  // const rewrites = mapRewrites(results, routes);
-  // const matchingRewrite = rewrites.find((rewrite) => rewrite?.source == request.nextUrl.pathname);
-
-  // if (matchingRewrite) {
-  //   const { destination } = matchingRewrite;
-  //   return NextResponse.rewrite(new URL(destination, request.url));
-  // }
-
   if (request.nextUrl.pathname === "/api/email") {
     const headersList = await headers();
     const ip = headersList.get("x-real-ip") as string;
@@ -52,7 +38,7 @@ export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
     if (allowRequest === false) {
       return new NextResponse(JSON.stringify({ success: false, message: "Rate limit exceeded" }), {
         status: 429,
-        headers: { "content-type": "application/json" },
+        headers: { "content-type": "application/json" }
       });
     }
     return NextResponse.next();

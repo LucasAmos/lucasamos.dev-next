@@ -7,34 +7,34 @@ module.exports = {
       md: "768px",
       lg: "1024px",
       xl: "1280px",
-      "2xl": "1536px",
+      "2xl": "1536px"
     },
     extend: {
       fontFamily: {
-        Inter: ["Inter"],
+        Inter: ["Inter"]
       },
       fontSize: {
-        mob: "20px",
+        mob: "20px"
       },
       colors: {
         t: {
           darkgreen: "#18981a",
           lightgreen: "#0fd430",
           purple: "#4a2051",
-          violet: "#880990",
-        },
-      },
-    },
+          violet: "#880990"
+        }
+      }
+    }
   },
 
   variants: {
     extend: {
-      fontFamily: ["hover", "focus"],
-    },
+      fontFamily: ["hover", "focus"]
+    }
   },
 
   plugins: [require("@tailwindcss/typography")],
   corePlugins: {
-    fontFamily: true,
-  },
+    fontFamily: true
+  }
 };

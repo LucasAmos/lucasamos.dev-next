@@ -14,7 +14,7 @@ const inter = Inter({
   variable: "--font-inter",
   // Use 'swap' for a quick fallback, though next/font minimizes shift
   display: "swap",
-  weight: ["600"],
+  weight: ["600"]
 });
 
 // The following import prevents a Font Awesome icon server-side rendering bug,
@@ -30,12 +30,12 @@ export const metadata: Metadata = {
     title: "Lucas Amos - AWS application architect",
     description: "Lucas Amos",
     authors: ["Lucas Amos"],
-    images: ["https://www.lucasamos.dev/images/lucas.JPG"],
-  },
+    images: ["https://www.lucasamos.dev/images/lucas.JPG"]
+  }
 };
 
 export default async function Layout({
-  children,
+  children
 }: {
   children: React.ReactNode;
 }): Promise<React.JSX.Element> {

@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 const links = [
   ["Posts", "/"],
   ["About me", "/about"],
-  ["Contact", "/contact"],
+  ["Contact", "/contact"]
 ];
 
 export default function Navbar(): React.JSX.Element {

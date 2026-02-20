@@ -4,7 +4,7 @@ import {
   GetItemCommandInput,
   PutItemCommand,
   PutItemCommandInput,
-  PutItemCommandOutput,
+  PutItemCommandOutput
 } from "@aws-sdk/client-dynamodb";
 
 export async function rateLimit(ip: string): Promise<boolean> {
@@ -12,8 +12,8 @@ export async function rateLimit(ip: string): Promise<boolean> {
     region: "eu-west-2",
     credentials: {
       accessKeyId: process.env.ACCESS_KEY_ID,
-      secretAccessKey: process.env.SECRET_ACCESS_KEY,
-    },
+      secretAccessKey: process.env.SECRET_ACCESS_KEY
+    }
   });
 
   const record = await getPastRequests(ip, ddbClient);
@@ -46,7 +46,7 @@ export async function putRequests(
 ): Promise<PutItemCommandOutput> {
   const putItemParams: PutItemCommandInput = {
     TableName: "rate-limits",
-    Item: { ip: { S: ip }, log: { S: JSON.stringify(dates) } },
+    Item: { ip: { S: ip }, log: { S: JSON.stringify(dates) } }
   };
   return client.send(new PutItemCommand(putItemParams));
 }
@@ -56,9 +56,9 @@ export async function getPastRequests(ip: string, client: DynamoDBClient): Promi
     TableName: "rate-limits",
     Key: {
       ip: {
-        S: ip,
-      },
-    },
+        S: ip
+      }
+    }
   };
 
   const res = await client.send(new GetItemCommand(getItemParams));

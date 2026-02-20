@@ -38,22 +38,10 @@ module.exports = {
     "type-enum": [
       2,
       "always",
-      [
-        "build",
-        "chore",
-        "ci",
-        "docs",
-        "feat",
-        "fix",
-        "perf",
-        "refactor",
-        "revert",
-        "style",
-        "test",
-      ],
-    ],
+      ["build", "chore", "ci", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test"]
+    ]
   },
-  ignores: [(message) => message.startsWith("Released version")],
+  ignores: [(message) => message.startsWith("Released version")]
 };
 ```
 
@@ -92,14 +80,14 @@ As I am using a monorepo I needed to use two **.release-it.json** configuration 
       "requireCleanWorkingDir": false,
       "requireCommitsFail": false,
       "tagName": "${version}",
-      "release": true,
+      "release": true
     },
   "github":
     {
       "release": true,
       "releaseName": "${version}",
       "tokenRef": "GITHUB_TOKEN",
-      "comments": { "submit": true },
+      "comments": { "submit": true }
     },
   "npm": false,
   "hooks": { "after:bump": "yarn --mode update-lockfile" },
@@ -126,11 +114,11 @@ As I am using a monorepo I needed to use two **.release-it.json** configuration 
                   { "section": "Code Style Changes", "type": "style" },
                   { "section": "Build Changes", "type": "build" },
                   { "section": "Continuous Integration", "type": "ci" },
-                  { "section": "Reverts", "type": "revert" },
-                ],
-            },
-        },
-    },
+                  { "section": "Reverts", "type": "revert" }
+                ]
+            }
+        }
+    }
 }
 ```
 
@@ -161,11 +149,11 @@ As I am using a monorepo I needed to use two **.release-it.json** configuration 
                   { "section": "Code Style Changes", "type": "style" },
                   { "section": "Build Changes", "type": "build" },
                   { "section": "Continuous Integration", "type": "ci" },
-                  { "section": "Reverts", "type": "revert" },
-                ],
-            },
-        },
-    },
+                  { "section": "Reverts", "type": "revert" }
+                ]
+            }
+        }
+    }
 }
 ```
 
