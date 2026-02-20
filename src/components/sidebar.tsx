@@ -16,7 +16,7 @@ export default function Sidebar(): ReactNode {
               <div
                 className="size-[80px] cursor-pointer overflow-hidden rounded-full lg:size-[130px]"
                 style={{
-                  boxShadow: "0 0 0 3px #18981a, 0 0 0 6px #880990, 0 0 0 9px #4a2051",
+                  boxShadow: "0 0 0 3px #18981a, 0 0 0 6px #880990, 0 0 0 9px #4a2051"
                 }}
               >
                 <Image

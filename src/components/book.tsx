@@ -8,14 +8,14 @@ function formatDate(date: string): string {
   return new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
-    day: "numeric",
+    day: "numeric"
   });
 }
 
 function getMonth(date: string): string {
   return new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
-    month: "long",
+    month: "long"
   });
 }
 
@@ -67,7 +67,7 @@ function AudioBook(): ReactNode {
 function Duration({
   startDate,
   finishDate,
-  estimated,
+  estimated
 }: {
   startDate: string;
   finishDate?: string | null | undefined;

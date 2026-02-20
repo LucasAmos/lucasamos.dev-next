@@ -1,6 +1,6 @@
 import { withSentryConfig } from "@sentry/nextjs";
 const config = {
-  serverExternalPackages: ["remark-prism"],
+  serverExternalPackages: ["remark-prism"]
 };
 
 export default withSentryConfig(config, {
@@ -36,7 +36,7 @@ export default withSentryConfig(config, {
     // Tree-shaking options for reducing bundle size
     treeshake: {
       // Automatically tree-shake Sentry logger statements to reduce bundle size
-      removeDebugLogging: true,
-    },
-  },
+      removeDebugLogging: true
+    }
+  }
 });

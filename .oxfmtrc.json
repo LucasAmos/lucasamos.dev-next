@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "trailingComma": "none",
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "jsxBracketSameLine": false,
+  "bracketSpacing": true,
+  "endOfLine": "lf",
+  "experimentalSortPackageJson": false,
+  "ignorePatterns": [],
+  "semi": true
+}

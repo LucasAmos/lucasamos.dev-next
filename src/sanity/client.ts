@@ -9,7 +9,7 @@ import {
   BOOKS_BY_YEAR_QUERYResult,
   BOOKS_THIS_YEAR_MULTI_QUERYResult,
   BOOKS_THIS_YEAR_QUERYResult,
-  REWRITES_QUERYResult,
+  REWRITES_QUERYResult
 } from "../../sanity.types";
 import { BOOKS_THIS_YEAR_QUERY, BOOKS_THIS_YEAR_MULTI_QUERY } from "./queries/booksThisYear";
 import { BOOKS_BY_YEAR_QUERY } from "./queries/booksByYear";
@@ -25,8 +25,8 @@ export const client: SanityClient = createClient({
   useCdn: true,
   token: process.env.SANITY_API_TOKEN,
   stega: {
-    studioUrl: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL,
-  },
+    studioUrl: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL
+  }
 });
 
 export class Sanity {
@@ -35,15 +35,15 @@ export class Sanity {
       ? {
           perspective: "drafts",
           useCdn: false,
-          stega: true,
+          stega: true
         }
       : {
           perspective: "published",
           useCdn: true,
           stega: false,
           next: {
-            revalidate: 60,
-          },
+            revalidate: 60
+          }
         };
   }
   async getBooksReadThisYear(year: number, draftModeEnabled: boolean) {
@@ -51,7 +51,7 @@ export class Sanity {
       BOOKS_THIS_YEAR_QUERY,
       {
         yearStart: `${year}-01-01`,
-        yearEnd: `${year}-31-12`,
+        yearEnd: `${year}-31-12`
       },
       Sanity.getQueryConfig(draftModeEnabled)
     );
@@ -63,7 +63,7 @@ export class Sanity {
       BOOKS_BY_YEAR_QUERY,
       {
         yearStart: `${year}-01-01`,
-        yearEnd: `${year}-31-12`,
+        yearEnd: `${year}-31-12`
       },
       Sanity.getQueryConfig(draftModeEnabled)
     );
@@ -79,7 +79,7 @@ export class Sanity {
       BOOKS_THIS_YEAR_MULTI_QUERY,
       {
         yearStart: `${year}-01-01`,
-        yearEnd: `${year}-31-12`,
+        yearEnd: `${year}-31-12`
       },
       Sanity.getQueryConfig(draftModeEnabled)
     );
@@ -92,7 +92,7 @@ export class Sanity {
         yearStart: `${year}-01-01`,
         yearEnd: `${year}-31-12`,
         category,
-        slug: category,
+        slug: category
       },
       Sanity.getQueryConfig(draftModeEnabled)
     );
@@ -104,7 +104,7 @@ export class Sanity {
     const books: BOOKS_BY_CATEGORY_QUERYResult = await client.fetch(
       BOOKS_BY_CATEGORY_QUERY,
       {
-        category,
+        category
       },
       Sanity.getQueryConfig(draftModeEnabled)
     );
@@ -136,7 +136,7 @@ export class Sanity {
     const books: BOOKS_BY_AUTHOR_QUERYResult = await client.fetch(
       BOOKS_BY_AUTHOR_QUERY,
       {
-        slug,
+        slug
       },
       Sanity.getQueryConfig(draftModeEnabled)
     );

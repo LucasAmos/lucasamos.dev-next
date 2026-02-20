@@ -9,7 +9,6 @@ export default async function Books(props: any): Promise<React.JSX.Element> {
   const { category } = await props.params;
 
   const client = new Sanity();
-  const year = new Date().getFullYear();
 
   const { isEnabled } = await draftMode();
   const { books, category: categoryDetails } = await client.getBooksReadByCategory(

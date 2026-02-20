@@ -3,7 +3,6 @@ import { NextResponse, NextRequest } from "next/server";
 import { rateLimit } from "./lib/ratelimit";
 import { Sanity } from "./sanity/client";
 import { draftMode } from "next/headers";
-import { mapRewrites } from "./lib/utils";
 
 type Override<T1, T2> = Omit<T1, keyof T2> & T2;
 
@@ -16,10 +15,6 @@ export type MiddlewareRequest = Override<
 >;
 
 const client = new Sanity();
-
-const routes = {
-  category: "/books/category",
-};
 
 export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
   const { isEnabled } = await draftMode();
@@ -52,7 +47,7 @@ export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
     if (allowRequest === false) {
       return new NextResponse(JSON.stringify({ success: false, message: "Rate limit exceeded" }), {
         status: 429,
-        headers: { "content-type": "application/json" },
+        headers: { "content-type": "application/json" }
       });
     }
     return NextResponse.next();

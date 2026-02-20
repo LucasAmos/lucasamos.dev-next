@@ -71,7 +71,7 @@ function additionFactory() {
 
     value() {
       return count;
-    },
+    }
   };
 }
 

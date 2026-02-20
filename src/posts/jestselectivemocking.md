@@ -36,7 +36,7 @@ jest.mock("../src/functions", () => {
   return {
     __esModule: true,
     ...originalModule,
-    functionTwo: jest.fn(() => "functionTwo mocked implementation"),
+    functionTwo: jest.fn(() => "functionTwo mocked implementation")
   };
 });
 

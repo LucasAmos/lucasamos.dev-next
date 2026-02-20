@@ -15,7 +15,7 @@ export function mapRewrites(rewrites: REWRITES_QUERYResult, routes: Routes) {
     if (record._type === "category") {
       return {
         source: record.rewrite?.slug.current,
-        destination: `${routes["category"]}/${record.slug.current}`,
+        destination: `${routes["category"]}/${record.slug.current}`
       };
     }
   });

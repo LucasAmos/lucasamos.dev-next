@@ -15,7 +15,7 @@ function generateYears(start: number): number[] {
 
 export default async function BookYearLinks({
   year,
-  route = "",
+  route = ""
 }: {
   route?: string;
   year: number;

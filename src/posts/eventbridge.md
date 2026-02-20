@@ -73,8 +73,8 @@ exports.handler = async (event) => {
         eventName,
         functionName,
         runtime,
-        event,
-      },
+        event
+      }
     };
 
     await docClient.put(params).promise();
@@ -82,7 +82,7 @@ exports.handler = async (event) => {
   } catch (e) {
     return {
       statusCode: e.statusCode,
-      body: e.message,
+      body: e.message
     };
   }
 };

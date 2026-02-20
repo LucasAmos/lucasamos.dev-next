@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   env: {
     node: true,
-    es6: true,
+    es6: true
   },
   parserOptions: { ecmaVersion: 8 },
   ignorePatterns: ["node_modules/*", ".next/*", ".out/*", "!.prettierrc.js"],
@@ -14,7 +14,7 @@ module.exports = {
       settings: { react: { version: "detect" } },
       env: {
         node: true,
-        es6: true,
+        es6: true
       },
       extends: [
         "eslint:recommended",
@@ -23,7 +23,7 @@ module.exports = {
         "plugin:react-hooks/recommended",
         "plugin:jsx-a11y/recommended",
         "plugin:prettier/recommended",
-        "plugin:@next/next/recommended",
+        "plugin:@next/next/recommended"
       ],
       rules: {
         "prettier/prettier": ["error", {}, { usePrettierrc: true }],
@@ -35,10 +35,10 @@ module.exports = {
           "warn",
           {
             allowExpressions: true,
-            allowConciseArrowFunctionExpressionsStartingWithVoid: true,
-          },
-        ],
-      },
-    },
-  ],
+            allowConciseArrowFunctionExpressionsStartingWithVoid: true
+          }
+        ]
+      }
+    }
+  ]
 };

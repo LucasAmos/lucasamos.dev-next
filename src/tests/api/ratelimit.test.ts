@@ -4,7 +4,7 @@ import { filterDates, getPastRequests, putRequests, rateLimit } from "../../lib/
 import { describe, expect, vitest } from "vitest";
 
 vitest.useFakeTimers({
-  now: 1673452800000,
+  now: 1673452800000
 });
 const ddbMock = mockClient(DynamoDBClient);
 
@@ -17,18 +17,18 @@ ddbMock
       extendedRequestId: undefined,
       httpStatusCode: 200,
       requestId: "1-LJBSNP0QBCJM0V0M9Q2VM98897VV4KQNSO5AEMVJF66Q9ASUAAJG",
-      totalRetryDelay: 0,
+      totalRetryDelay: 0
     },
     Attributes: undefined,
     ConsumedCapacity: undefined,
-    ItemCollectionMetrics: undefined,
+    ItemCollectionMetrics: undefined
   })
   .on(GetItemCommand, {
     Key: {
       ip: {
-        S: "192.168.0.0",
-      },
-    },
+        S: "192.168.0.0"
+      }
+    }
   })
   .resolves({
     $metadata: {
@@ -37,16 +37,16 @@ ddbMock
       extendedRequestId: undefined,
       httpStatusCode: 200,
       requestId: "TDJ2G5VK2Q75VKUHE0VCOJPQEFVV4KQNSO5AEMVJF66Q9ASUAAJG",
-      totalRetryDelay: 0,
+      totalRetryDelay: 0
     },
-    ConsumedCapacity: undefined,
+    ConsumedCapacity: undefined
   })
   .on(GetItemCommand, {
     Key: {
       ip: {
-        S: "192.168.0.1",
-      },
-    },
+        S: "192.168.0.1"
+      }
+    }
   })
   .resolves({
     $metadata: {
@@ -55,20 +55,20 @@ ddbMock
       extendedRequestId: undefined,
       httpStatusCode: 200,
       requestId: "TDJ2G5VK2Q75VKUHE0VCOJPQEFVV4KQNSO5AEMVJF66Q9ASUAAJG",
-      totalRetryDelay: 0,
+      totalRetryDelay: 0
     },
     ConsumedCapacity: undefined,
     Item: {
       ip: { S: "192.168.0.1" },
-      log: { S: '["2023-01-10T19:19:50.670Z","2023-01-10T19:19:50.670Z"]' },
-    },
+      log: { S: '["2023-01-10T19:19:50.670Z","2023-01-10T19:19:50.670Z"]' }
+    }
   })
   .on(GetItemCommand, {
     Key: {
       ip: {
-        S: "192.168.0.3",
-      },
-    },
+        S: "192.168.0.3"
+      }
+    }
   })
   .resolves({
     $metadata: {
@@ -77,22 +77,22 @@ ddbMock
       extendedRequestId: undefined,
       httpStatusCode: 200,
       requestId: "TDJ2G5VK2Q75VKUHE0VCOJPQEFVV4KQNSO5AEMVJF66Q9ASUAAJG",
-      totalRetryDelay: 0,
+      totalRetryDelay: 0
     },
     ConsumedCapacity: undefined,
     Item: {
       ip: { S: "192.168.0.3" },
       log: {
-        S: '["2023-01-10T11:19:50.670Z","2023-01-10T13:19:50.670Z","2023-01-10T15:19:50.670Z","2023-01-10T17:19:50.670Z","2023-01-10T19:19:50.670Z"]',
-      },
-    },
+        S: '["2023-01-10T11:19:50.670Z","2023-01-10T13:19:50.670Z","2023-01-10T15:19:50.670Z","2023-01-10T17:19:50.670Z","2023-01-10T19:19:50.670Z"]'
+      }
+    }
   })
   .on(GetItemCommand, {
     Key: {
       ip: {
-        S: "192.168.0.4",
-      },
-    },
+        S: "192.168.0.4"
+      }
+    }
   })
   .resolves({
     $metadata: {
@@ -101,15 +101,15 @@ ddbMock
       extendedRequestId: undefined,
       httpStatusCode: 200,
       requestId: "TDJ2G5VK2Q75VKUHE0VCOJPQEFVV4KQNSO5AEMVJF66Q9ASUAAJG",
-      totalRetryDelay: 0,
+      totalRetryDelay: 0
     },
     ConsumedCapacity: undefined,
     Item: {
       ip: { S: "192.168.0.3" },
       log: {
-        S: '["2023-01-10T17:00:00.0Z","2023-01-10T18:00:00.0Z","2023-01-10T19:00:00.0Z","2023-01-10T20:00:00.0Z","2023-01-10T21:00:00.0Z"]',
-      },
-    },
+        S: '["2023-01-10T17:00:00.0Z","2023-01-10T18:00:00.0Z","2023-01-10T19:00:00.0Z","2023-01-10T20:00:00.0Z","2023-01-10T21:00:00.0Z"]'
+      }
+    }
   });
 
 describe("putRequests", () => {
@@ -120,7 +120,7 @@ describe("putRequests", () => {
     const dates = [new Date(), new Date()];
 
     const {
-      $metadata: { requestId },
+      $metadata: { requestId }
     } = await putRequests("192.168.0.1", dates, ddbMock);
     expect(requestId).toEqual("1-LJBSNP0QBCJM0V0M9Q2VM98897VV4KQNSO5AEMVJF66Q9ASUAAJG");
     expect(ddbMock.commandCalls(PutItemCommand)).toHaveLength(1);
@@ -136,7 +136,7 @@ describe("getPastRequests", () => {
     expect(ddbMock.commandCalls(GetItemCommand)).toHaveLength(1);
     expect(res).toEqual([
       new Date("2023-01-10T19:19:50.670Z"),
-      new Date("2023-01-10T19:19:50.670Z"),
+      new Date("2023-01-10T19:19:50.670Z")
     ]);
   });
 
@@ -160,8 +160,8 @@ describe("rateLimit", () => {
       TableName: "rate-limits",
       Item: {
         ip: { S: "192.168.0.0" },
-        log: { S: '["2023-01-11T16:00:00.000Z"]' },
-      },
+        log: { S: '["2023-01-11T16:00:00.000Z"]' }
+      }
     });
   });
 
@@ -180,9 +180,9 @@ describe("rateLimit", () => {
       Item: {
         ip: { S: "192.168.0.3" },
         log: {
-          S: '["2023-01-10T17:19:50.670Z","2023-01-10T19:19:50.670Z","2023-01-11T16:00:00.000Z"]',
-        },
-      },
+          S: '["2023-01-10T17:19:50.670Z","2023-01-10T19:19:50.670Z","2023-01-11T16:00:00.000Z"]'
+        }
+      }
     });
     expect(res).toEqual(true);
   });
@@ -195,13 +195,13 @@ describe("filter dates function", () => {
       new Date("2023-01-10T15:19:50.670Z"),
       new Date("2023-01-10T17:19:50.670Z"),
       new Date("2023-01-10T19:19:50.670Z"),
-      new Date("2023-01-10T11:19:50.670Z"),
+      new Date("2023-01-10T11:19:50.670Z")
     ];
     const yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
 
     expect(filterDates(dates, yesterday)).toEqual([
       new Date("2023-01-10T17:19:50.670Z"),
-      new Date("2023-01-10T19:19:50.670Z"),
+      new Date("2023-01-10T19:19:50.670Z")
     ]);
   });
 });

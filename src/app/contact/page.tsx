@@ -1,5 +1,4 @@
 "use client";
-import { Metadata } from "next";
 import React, { useState } from "react";
 
 const Contact: React.FC = () => {
@@ -14,9 +13,9 @@ const Contact: React.FC = () => {
     const response = await fetch("/api/email", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify({ name, email, message }),
+      body: JSON.stringify({ name, email, message })
     });
 
     return response;
