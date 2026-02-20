@@ -3,7 +3,8 @@
   "plugins": ["nextjs", "eslint", "typescript", "react", "jsx-a11y", "node", "vitest"],
   "categories": {},
   "rules": {
-    "no-unused-vars": "off"
+    "no-unused-vars": "error",
+    "array-callback-return": "error"
   },
   "settings": {
     "jsx-a11y": {

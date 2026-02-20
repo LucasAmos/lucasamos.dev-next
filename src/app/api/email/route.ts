@@ -8,8 +8,6 @@ const client = new SESv2Client({
   }
 });
 
-const bob = "";
-
 export type EmailRequestBody = {
   name: string;
   email: string;
