@@ -172,14 +172,14 @@ export type SanityFileAsset = {
   title?: string;
   description?: string;
   altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
+  sha1hash: string;
+  extension: string;
+  mimeType: string;
+  size: number;
+  assetId: string;
   uploadId?: string;
-  path?: string;
-  url?: string;
+  path: string;
+  url: string;
   source?: SanityAssetSourceData;
 };
 
@@ -201,14 +201,14 @@ export type SanityImageAsset = {
   title?: string;
   description?: string;
   altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
+  sha1hash: string;
+  extension: string;
+  mimeType: string;
+  size: number;
+  assetId: string;
   uploadId?: string;
-  path?: string;
-  url?: string;
+  path: string;
+  url: string;
   metadata?: SanityImageMetadata;
   source?: SanityAssetSourceData;
 };
@@ -274,7 +274,7 @@ export type BOOKS_QUERYResult = Array<
       finishDate: null;
       startDate: null;
       title: string | null;
-      url: string | null;
+      url: string;
     }
   | {
       _id: string;
@@ -462,48 +462,3 @@ export type BOOKS_THIS_YEAR_MULTI_QUERYResult = {
 export type OLDEST_BOOK_QUERYResult = {
   finishDate: string | null;
 } | null;
-
-// Source: ./src/sanity/queries/rewrites.ts
-// Variable: REWRITES_QUERY
-// Query: *[_type != "rewrite" && references(*[_type == "rewrite"]._id)]{  _type,  slug,  rewrite-> {    slug  {    current    }  }}
-export type REWRITES_QUERYResult = Array<
-  | {
-      _type: "alias";
-      slug: null;
-      rewrite: null;
-    }
-  | {
-      _type: "author";
-      slug: Slug;
-      rewrite: null;
-    }
-  | {
-      _type: "book";
-      slug: null;
-      rewrite: null;
-    }
-  | {
-      _type: "category";
-      slug: Slug;
-      rewrite: {
-        slug: {
-          current: string;
-        };
-      } | null;
-    }
-  | {
-      _type: "redirect";
-      slug: null;
-      rewrite: null;
-    }
-  | {
-      _type: "sanity.fileAsset";
-      slug: null;
-      rewrite: null;
-    }
-  | {
-      _type: "sanity.imageAsset";
-      slug: null;
-      rewrite: null;
-    }
->;
