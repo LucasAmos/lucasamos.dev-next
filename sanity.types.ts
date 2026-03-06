@@ -54,13 +54,6 @@ export type Book = {
   audiobook?: boolean;
 };
 
-export type RewriteReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "rewrite";
-};
-
 export type Category = {
   _id: string;
   _type: "category";
@@ -68,16 +61,6 @@ export type Category = {
   _updatedAt: string;
   _rev: string;
   name: string;
-  slug: Slug;
-  rewrite?: RewriteReference;
-};
-
-export type Rewrite = {
-  _id: string;
-  _type: "rewrite";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
   slug: Slug;
 };
 
@@ -225,9 +208,7 @@ export type AllSanitySchemaTypes =
   | AuthorReference
   | CategoryReference
   | Book
-  | RewriteReference
   | Category
-  | Rewrite
   | Slug
   | Author
   | Alias
@@ -356,7 +337,6 @@ export type BOOKS_BY_CATEGORY_QUERYResult = {
     _rev: string;
     name: string;
     slug: Slug;
-    rewrite?: RewriteReference;
   }>;
 };
 
@@ -389,7 +369,6 @@ export type BOOKS_BY_YEAR_AND_CATEGORY_QUERYResult = {
     _rev: string;
     name: string;
     slug: Slug;
-    rewrite?: RewriteReference;
   }>;
 };
 
