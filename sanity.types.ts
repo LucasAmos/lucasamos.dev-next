@@ -13,17 +13,6 @@
  */
 
 // Source: schema.json
-export type Redirect = {
-  _id: string;
-  _type: "redirect";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  source: string;
-  destination: string;
-  type?: 301 | 302;
-};
-
 export type AuthorReference = {
   _ref: string;
   _type: "reference";
@@ -204,7 +193,6 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
-  | Redirect
   | AuthorReference
   | CategoryReference
   | Book
