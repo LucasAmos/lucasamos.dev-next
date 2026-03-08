@@ -79,6 +79,34 @@ export type Alias = {
   destination: string;
 };
 
+export type About = {
+  _id: string;
+  _type: "about";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  slug: Slug;
+  title: string;
+  content: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
 export type SanityImagePaletteSwatch = {
   _type: "sanity.imagePaletteSwatch";
   background?: string;
@@ -200,6 +228,7 @@ export type AllSanitySchemaTypes =
   | Slug
   | Author
   | Alias
+  | About
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
@@ -211,6 +240,31 @@ export type AllSanitySchemaTypes =
   | SanityImageAsset
   | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./src/sanity/queries/about.tsx
+// Variable: ABOUT_QUERY
+// Query: *[_type == "about" && slug.current=="about"]{    title,     content  }
+export type ABOUT_QUERYResult = Array<{
+  title: string;
+  content: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+}>;
+
 // Source: ./src/sanity/queries/aliases.ts
 // Variable: ALIASES_QUERY
 // Query: *[_type == "alias"] {    source,    destination  }
@@ -232,6 +286,17 @@ export type BOOKS_QUERYResult = Array<
       finishDate: null;
       startDate: null;
       title: null;
+      url: null;
+    }
+  | {
+      _id: string;
+      audiobook: null;
+      author: null;
+      category: null;
+      estimated: null;
+      finishDate: null;
+      startDate: null;
+      title: string;
       url: null;
     }
   | {
