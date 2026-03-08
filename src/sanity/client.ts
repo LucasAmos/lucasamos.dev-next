@@ -2,6 +2,7 @@ import { createClient, FilteredResponseQueryOptions, SanityClient } from "next-s
 import * as Sentry from "@sentry/nextjs";
 
 import {
+  ABOUT_QUERYResult,
   ALIASES_QUERYResult,
   BOOKS_BY_AUTHOR_QUERYResult,
   BOOKS_BY_CATEGORY_QUERYResult,
@@ -16,6 +17,7 @@ import { BOOKS_BY_YEAR_AND_CATEGORY_QUERY } from "./queries/booksByCategoryAndYe
 import { BOOKS_BY_CATEGORY_QUERY } from "./queries/booksByCategory";
 import { ALIASES_QUERY } from "./queries/aliases";
 import { BOOKS_BY_AUTHOR_QUERY } from "./queries";
+import { ABOUT_QUERY } from "./queries/about";
 
 export const client: SanityClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
@@ -132,5 +134,15 @@ export class Sanity {
     );
 
     return books;
+  }
+
+  async getAbout(draftModeEnabled: boolean) {
+    const about: ABOUT_QUERYResult = await client.fetch(
+      ABOUT_QUERY,
+      undefined,
+      Sanity.getQueryConfig(draftModeEnabled)
+    );
+
+    return about[0];
   }
 }
