@@ -4,6 +4,9 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+concurrency:
+  group: "${{ github.workflow }}-${{ github.head_ref || github.ref_name }}-deploy-app"
+  cancel-in-progress: true
 jobs:
   e2e-test:
     name: Cypress end-to-end tests
