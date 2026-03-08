@@ -1,12 +1,17 @@
 import Image from "next/image";
-import Link from "next/link";
 import awsdevopspro from "../../../public/images/certs/devopspro.png";
 import awssolutions from "../../../public/images/certs/solutions.png";
 import awssecurity from "../../../public/images/certs/security.png";
 import aston from "../../../public/images/uni/aston.png";
 import standrews from "../../../public/images/uni/standrews.png";
-
 import { Metadata } from "next";
+import { Sanity } from "../../sanity/client";
+import { draftMode } from "next/headers";
+import { PortableText } from "@portabletext/react";
+
+import { portableTextComponents } from "../../utils/portableTextComponents";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Lucas Amos - About",
@@ -19,45 +24,20 @@ export const metadata: Metadata = {
   }
 };
 
-const About: React.FC = () => {
+const About: React.FC = async () => {
+  const { isEnabled } = await draftMode();
+
+  const client = new Sanity();
+
+  const { title, content } = await client.getAbout(isEnabled);
   return (
     <>
       <h1 className="mb-3 font-Inter text-2xl font-medium tracking-tight text-[#1a202c]">
-        About me
+        {title}
       </h1>
-      <p className="mb-2 text-lg">
-        I am a Senior Software Engineer based in Scotland who specialises in architecting and
-        building secure software solutions deployed on AWS.
-      </p>
-      <p className="mb-2 text-lg">
-        I have extensive experience building frontend, backend and event-driven services.
-      </p>
-      <p className="mb-2 text-lg">
-        Academically I hold an Undergraduate degree in Computing Science from Aston University and a
-        Masters degree in Advanced Computer Science from the University of St Andrews. I am also a
-        published researcher in the field of Cloud Computing, having presented my paper{" "}
-        <span className="font-semibold text-purple-700 underline transition-all  duration-1000 hover:text-purple-900 hover:underline">
-          <Link href="/posts/faas">The State of FaaS</Link>
-        </span>{" "}
-        at the 2024 IEEE International Conference on Cloud Computing.
-      </p>
 
-      <p className="mb-2 text-lg">
-        I have broad experience across the entire technology stack, including the following
-        technologies.
-      </p>
-      <ul className="mb-5 ml-5 list-disc">
-        <li className="mb-1">AWS</li>
-        <li className="mb-1">Terraform</li>
-        <li className="mb-1">TypeScript</li>
-        <li className="mb-1">Node</li>
-        <li className="mb-1">Python</li>
-        <li className="mb-1">Next.js</li>
-        <li className="mb-1">Tailwind</li>
-        <li className="mb-1">React</li>
-        <li className="mb-1">Contentful</li>
-        <li className="mb-1">Sanity</li>
-      </ul>
+      <PortableText value={content} components={portableTextComponents} />
+
       <div className="w-full md:w-8/12 lg:w-11/12">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 items-start">
           <div className="w-full">
