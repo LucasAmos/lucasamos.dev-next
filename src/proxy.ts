@@ -17,6 +17,7 @@ export type MiddlewareRequest = Override<
 const client = new Sanity();
 
 export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
+  console.log("***: host: ", request.headers.get("host"));
   const { isEnabled } = await draftMode();
 
   if (request.url.includes("_next/static/") || request.url.includes("favicon.ico")) {
