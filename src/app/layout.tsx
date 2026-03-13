@@ -42,6 +42,12 @@ export default async function Layout({
   return (
     <html lang="en" className={inter.variable}>
       <body>
+        {(await draftMode()).isEnabled && (
+          <>
+            <VisualEditing />
+            <DisableDraftMode />
+          </>
+        )}
         <Navbar />
         <div className="m-auto max-w-[1380px]">
           <div className="mt-5 max-w-[1500px] gap-4 p-5 sm:mt-0 sm:grid-cols-1 lg:ml-20  lg:grid lg:grid-cols-5 lg:pt-10">
@@ -50,12 +56,6 @@ export default async function Layout({
             <SpeedInsights />
           </div>
         </div>
-        {(await draftMode()).isEnabled && (
-          <>
-            <VisualEditing />
-            <DisableDraftMode />
-          </>
-        )}
       </body>
     </html>
   );

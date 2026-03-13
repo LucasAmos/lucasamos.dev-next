@@ -19,7 +19,7 @@ export function DisableDraftMode() {
     });
 
   return (
-    <div>
+    <div style={{ position: "absolute", margin: 10, border: "2px solid red", padding: 5 }}>
       {pending ? (
         "Disabling draft mode..."
       ) : (
