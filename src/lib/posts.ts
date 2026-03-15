@@ -90,7 +90,6 @@ export async function getPostData(slug: string): Promise<PostData> {
   // Use remark to convert markdown into HTML string
   const processedContent = await remark()
     .use(html, { sanitize: false })
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
     .use(require("remark-prism"), {})
     .process(matterResult.content);
   const contentHtml = processedContent.toString();

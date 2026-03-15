@@ -26,6 +26,7 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
+      - run: corepack enable
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -34,7 +35,7 @@ jobs:
           cache: "yarn"
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
 
       - name: Await preview deployment success
         uses: UnlyEd/github-action-await-vercel@dc8556d58bdb7f211f7b7af6052c29288c7419a4
@@ -59,6 +60,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - run: corepack enable
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -66,7 +68,7 @@ jobs:
           cache: "yarn"
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
 
       - name: Unit tests run
         run: yarn test

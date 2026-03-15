@@ -37,7 +37,7 @@ function Category({ children }: { children: ReactNode }): ReactNode {
   if (!children) return null;
   return (
     <div className="flex flex-col justify-end">
-      <div className="text-nowrap pr-1 pl-1 rounded-md border-[1px] border-t-violet text-t-violet hover:text-purple-900 hover:border-purple-900 ">
+      <div className="text-nowrap pr-1 pl-1 rounded-md border border-t-violet text-t-violet hover:text-purple-900 hover:border-purple-900 ">
         {children}
       </div>
     </div>
@@ -46,9 +46,7 @@ function Category({ children }: { children: ReactNode }): ReactNode {
 
 function Container({ children }: { children: ReactNode; url: string | null }): ReactNode {
   return (
-    <div className="flex flex-col  mb-2 mr-2 rounded-md border-[1px] border-t-violet p-2">
-      {children}
-    </div>
+    <div className="flex flex-col  mb-2 mr-2 rounded-md border border-t-violet p-2">{children}</div>
   );
 }
 
@@ -94,7 +92,7 @@ export function BookView({ book }: { book: BOOKS_BY_YEAR_QUERYResult[number] }):
   const categoryName = category?.name;
   return (
     <Container key={_id} url={url}>
-      <div className="flex flex-col flex-grow justify-between">
+      <div className="flex flex-col grow justify-between">
         <div className="flex-row flex justify-between">
           <div>
             <Title>{title}</Title>
