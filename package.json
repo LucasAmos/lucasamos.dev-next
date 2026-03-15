@@ -54,22 +54,9 @@
     "@types/node": "^25.5.0",
     "@types/react": "19.2.14",
     "@types/react-test-renderer": "^19.1.0",
-    "@typescript-eslint/eslint-plugin": "^8.57.0",
-    "@typescript-eslint/parser": "^8.57.0",
     "@vercel/speed-insights": "^2.0.0",
     "@vitejs/plugin-react": "^6.0.1",
-    "@vitest/eslint-plugin": "^1.6.12",
     "aws-sdk-client-mock": "^4.1.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-google": "^0.14.0",
-    "eslint-config-next": "^16.1.6",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-prettier": "^5.5.5",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-tailwindcss": "^3.18.2",
     "jsdom": "^29.0.0",
     "oxfmt": "^0.40.0",
     "oxlint": "^1.55.0",
@@ -78,5 +65,9 @@
     "vite": "^8.0.0",
     "vitest": "^4.1.0"
   },
-  "packageManager": "yarn@4.13.0"
+  "packageManager": "yarn@4.13.0",
+  "peerDependencies": {
+    "eslint": "*",
+    "prettier": "*"
+  }
 }

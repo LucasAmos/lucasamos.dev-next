@@ -46,9 +46,7 @@ function Category({ children }: { children: ReactNode }): ReactNode {
 
 function Container({ children }: { children: ReactNode; url: string | null }): ReactNode {
   return (
-    <div className="flex flex-col  mb-2 mr-2 rounded-md border border-t-violet p-2">
-      {children}
-    </div>
+    <div className="flex flex-col  mb-2 mr-2 rounded-md border border-t-violet p-2">{children}</div>
   );
 }
 
