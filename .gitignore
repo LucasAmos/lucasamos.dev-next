@@ -89,3 +89,4 @@ terraform.rc
 next-env.d.ts
 .npmrc
 /cypress/screenshots
+/.yarn

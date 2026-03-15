@@ -50,11 +50,11 @@ const Contact: React.FC = () => {
         Send me an email
       </h1>
       <form className="flex flex-col" onSubmit={sendEmail}>
-        <div className="mb-5 rounded bg-slate-100 pt-1 md:w-5/6">
+        <div className="mb-5 rounded-sm bg-slate-100 pt-1 md:w-5/6">
           <label className="pl-3">
             Name:
             <input
-              className="w-full  rounded bg-slate-100 pb-3 pl-3 outline-none"
+              className="w-full  rounded-sm bg-slate-100 pb-3 pl-3 outline-hidden"
               type="text"
               value={name}
               required
@@ -64,11 +64,11 @@ const Contact: React.FC = () => {
             />
           </label>
         </div>
-        <div className="mb-5 rounded bg-slate-100 pt-1 md:w-5/6">
+        <div className="mb-5 rounded-sm bg-slate-100 pt-1 md:w-5/6">
           <label className="pl-3">
             Email:
             <input
-              className="w-full  rounded bg-slate-100 pb-3 pl-3 outline-none"
+              className="w-full  rounded-sm bg-slate-100 pb-3 pl-3 outline-hidden"
               type="email"
               value={email}
               required
@@ -78,11 +78,11 @@ const Contact: React.FC = () => {
             />
           </label>
         </div>
-        <div className="mb-5 rounded bg-slate-100 pt-1 md:w-5/6">
+        <div className="mb-5 rounded-sm bg-slate-100 pt-1 md:w-5/6">
           <label className="pl-3">
             Message:
             <textarea
-              className="w-full  rounded bg-slate-100 pb-3 pl-3 outline-none"
+              className="w-full  rounded-sm bg-slate-100 pb-3 pl-3 outline-hidden"
               value={message}
               required
               onChange={(e) => {
@@ -93,7 +93,7 @@ const Contact: React.FC = () => {
         </div>
         <div>
           <input
-            className="h-[40px] w-[150px] cursor-pointer rounded bg-slate-300 hover:bg-slate-100 disabled:opacity-50 disabled:hover:bg-slate-300"
+            className="h-[40px] w-[150px] cursor-pointer rounded-sm bg-slate-300 hover:bg-slate-100 disabled:opacity-50 disabled:hover:bg-slate-300"
             type="submit"
             value="Submit"
             disabled={loading}

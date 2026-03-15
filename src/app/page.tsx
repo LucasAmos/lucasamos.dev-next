@@ -49,7 +49,7 @@ export default async function Home(): Promise<ReactNode> {
                   </div>
                 </div>
               </div>
-              <div className="break-words">{subtitle}</div>
+              <div className="wrap-break-word">{subtitle}</div>
             </Link>
           </div>
         ))}

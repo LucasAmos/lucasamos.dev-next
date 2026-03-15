@@ -27,7 +27,7 @@ export default function Navbar(): React.JSX.Element {
           <Link
             key={title}
             href={url}
-            className="group rounded-lg text-xl font-medium text-slate-700 transition duration-300 md:!mr-[50px]"
+            className="group rounded-lg text-xl font-medium text-slate-700 transition duration-300 md:mr-[50px]!"
           >
             {title}
             <span className="block h-1 max-w-0  bg-purple-700 transition-all duration-500 md:group-hover:max-w-full"></span>
