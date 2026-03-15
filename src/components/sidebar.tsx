@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import lucas from "../../public/images/lucasnew.jpg";
 import Link from "next/link";
 import { faGithub, faFlickr } from "@fortawesome/free-brands-svg-icons";
-import { faBook } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faFileText } from "@fortawesome/free-solid-svg-icons";
 import { ReactNode } from "react";
 
 export default function Sidebar(): ReactNode {
@@ -37,6 +37,12 @@ export default function Sidebar(): ReactNode {
           </div>
         </div>
         <div className="hidden lg:block">
+          <Link href="https://www.flickr.com/photos/181849230@N04/" target="_blank">
+            <div>
+              <FontAwesomeIcon icon={faFlickr} className="fa-lg mr-2 mt-3 text-[#000000]" />
+              Flickr
+            </div>
+          </Link>
           <Link href="https://github.com/LucasAmos/" target="_blank">
             <FontAwesomeIcon
               icon={faGithub}
@@ -44,10 +50,10 @@ export default function Sidebar(): ReactNode {
             />
             <span>GitHub</span>
           </Link>
-          <Link href="https://www.flickr.com/photos/181849230@N04/" target="_blank">
+          <Link href="/curriculumvitae">
             <div>
-              <FontAwesomeIcon icon={faFlickr} className="fa-lg mr-2 mt-3 text-[#000000]" />
-              Flickr
+              <FontAwesomeIcon icon={faFileText} className="fa-lg mr-2 mt-3 text-[#000000]" />
+              My CV
             </div>
           </Link>
           <Link href="/books">
