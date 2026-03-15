@@ -560,6 +560,31 @@ export type BOOKS_THIS_YEAR_MULTI_QUERY_RESULT = {
   finished: number;
 };
 
+// Source: src/sanity/queries/cv.tsx
+// Variable: CV_QUERY
+// Query: *[_type == "cv" && slug.current=="cv"]{    title,     content  }
+export type CV_QUERY_RESULT = Array<{
+  title: string;
+  content: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+}>;
+
 // Source: src/sanity/queries/oldestbook.ts
 // Variable: OLDEST_BOOK_QUERY
 // Query: *[_type == "book"] | order(finishDate asc)[0] {    finishDate}
@@ -580,6 +605,7 @@ declare module "@sanity/client" {
     '\n  *[_type == "book" && finishDate >= $yearStart && finishDate <= $yearEnd] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  }\n': BOOKS_BY_YEAR_QUERY_RESULT;
     '\n  *[_type == "book" && (finishDate == null || finishDate >= $yearStart && finishDate <= $yearEnd)] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name},\n    category -> {name},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  }\n': BOOKS_THIS_YEAR_QUERY_RESULT;
     "\n  { 'books': *[_type == \"book\" && (finishDate == null || finishDate >= $yearStart && finishDate <= $yearEnd)] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  },\n  'inprogress': count(*[_type == \"book\" && finishDate== null  ]),\n  'finished': count(*[_type == \"book\" && (finishDate >= $yearStart && finishDate <= $yearEnd)]) \n}\n": BOOKS_THIS_YEAR_MULTI_QUERY_RESULT;
+    '\n    *[_type == "cv" && slug.current=="cv"]{\n    title, \n    content\n  }\n': CV_QUERY_RESULT;
     '\n*[_type == "book"] | order(finishDate asc)[0] {\n    finishDate\n}\n': OLDEST_BOOK_QUERY_RESULT;
   }
 }

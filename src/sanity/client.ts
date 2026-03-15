@@ -9,14 +9,15 @@ import {
   BOOKS_BY_YEAR_AND_CATEGORY_QUERY_RESULT,
   BOOKS_BY_YEAR_QUERY_RESULT,
   BOOKS_THIS_YEAR_MULTI_QUERY_RESULT,
-  BOOKS_THIS_YEAR_QUERY_RESULT
+  BOOKS_THIS_YEAR_QUERY_RESULT,
+  CV_QUERY_RESULT
 } from "../../sanity.types";
 import { BOOKS_THIS_YEAR_QUERY, BOOKS_THIS_YEAR_MULTI_QUERY } from "./queries/booksThisYear";
 import { BOOKS_BY_YEAR_QUERY } from "./queries/booksByYear";
 import { BOOKS_BY_YEAR_AND_CATEGORY_QUERY } from "./queries/booksByCategoryAndYear";
 import { BOOKS_BY_CATEGORY_QUERY } from "./queries/booksByCategory";
 import { ALIASES_QUERY } from "./queries/aliases";
-import { BOOKS_BY_AUTHOR_QUERY } from "./queries";
+import { BOOKS_BY_AUTHOR_QUERY, CV_QUERY } from "./queries";
 import { ABOUT_QUERY } from "./queries/about";
 
 export const client: SanityClient = createClient({
@@ -145,5 +146,14 @@ export class Sanity {
     );
 
     return about[0];
+  }
+
+  async getCV(draftModeEnabled: boolean): Promise<CV_QUERY_RESULT[number]> {
+    const results = await client.fetch(
+      CV_QUERY,
+      undefined,
+      Sanity.getQueryConfig(draftModeEnabled)
+    );
+    return results[0];
   }
 }
