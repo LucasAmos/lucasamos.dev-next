@@ -46,16 +46,18 @@ export default function Navbar(): React.JSX.Element {
         </div>
         {open && (
           <div className="mt-6 lg:hidden">
-            {[...links, ["What I'm reading", "/books"]].map(([title, url]) => (
-              <Link
-                key={title}
-                href={url}
-                className="group rounded-lg text-xl font-medium text-slate-700 transition duration-300 "
-              >
-                {title}
-                <span className="block h-1 max-w-0  bg-purple-700 transition-all duration-500 md:group-hover:max-w-full"></span>
-              </Link>
-            ))}
+            {[...links, ["My CV", "/curriculumvitae"], ["What I'm reading", "/books"]].map(
+              ([title, url]) => (
+                <Link
+                  key={title}
+                  href={url}
+                  className="group rounded-lg text-xl font-medium text-slate-700 transition duration-300 "
+                >
+                  {title}
+                  <span className="block h-1 max-w-0  bg-purple-700 transition-all duration-500 md:group-hover:max-w-full"></span>
+                </Link>
+              )
+            )}
           </div>
         )}
       </nav>
