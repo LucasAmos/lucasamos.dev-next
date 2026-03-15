@@ -10,7 +10,7 @@ import { draftMode } from "next/headers";
 import { PortableText } from "@portabletext/react";
 import { portableTextComponents } from "../../utils/portableTextComponents";
 
-export const revalidate = 0;
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Lucas Amos - About",
