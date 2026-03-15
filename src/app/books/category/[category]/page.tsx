@@ -2,7 +2,7 @@ import React from "react";
 import { Sanity } from "../../../../sanity/client";
 import { draftMode } from "next/headers";
 import BooksView from "../../../../components/books";
-export const revalidate = 0;
+export const revalidate = 60;
 
 import { notFound } from "next/navigation";
 export default async function Books(props: any): Promise<React.JSX.Element> {

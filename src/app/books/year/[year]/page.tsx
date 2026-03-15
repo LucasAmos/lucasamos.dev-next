@@ -5,7 +5,7 @@ import { Sanity } from "../../../../sanity/client";
 import BooksView from "../../../../components/books";
 import BookYearLinks from "../../../../components/books/yearLinks";
 
-export const revalidate = 0;
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Lucas Amos - What I'm reading",
