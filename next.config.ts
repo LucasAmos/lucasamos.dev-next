@@ -1,5 +1,10 @@
 import { withSentryConfig } from "@sentry/nextjs";
 const config = {
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "cdn.sanity.io", port: "", pathname: "/images/**" }
+    ]
+  },
   serverExternalPackages: ["remark-prism"]
 };
 

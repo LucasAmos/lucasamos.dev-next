@@ -9,6 +9,9 @@ export const portableTextComponents = {
   block: {
     normal: (props: PortableTextComponentProps<any>) => (
       <p className="mb-2 text-lg">{props.children}</p>
+    ),
+    h1: (props: PortableTextComponentProps<any>) => (
+      <h1 className="font-Inter text-2xl">{props.children}</h1>
     )
   },
   list: {
@@ -16,7 +19,6 @@ export const portableTextComponents = {
       <ul className="mb-5 ml-5 list-disc">{props.children}</ul>
     )
   },
-
   listItem: {
     bullet: (({ children }) => (
       <li className="mb-1">{children}</li>

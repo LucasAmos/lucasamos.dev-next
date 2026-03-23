@@ -34,9 +34,7 @@ export default async function Books(): Promise<React.JSX.Element> {
         {finished == 1 ? "book" : "books"} and I am currently reading{" "}
         <span className="text-t-violet"> {inprogress} </span> {inprogress == 1 ? "book" : "books"}
       </h1>
-
       <BooksView books={books} />
-
       <BookYearLinks year={2018} route="/books/year" />
     </>
   );
