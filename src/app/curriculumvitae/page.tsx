@@ -4,11 +4,7 @@ import { draftMode } from "next/headers";
 import { PortableText } from "@portabletext/react";
 import { portableTextComponents } from "../../utils/portableTextComponents";
 
-<<<<<<< Updated upstream
-export const revalidate = 0;
-=======
 export const revalidate = 60;
->>>>>>> Stashed changes
 
 export const metadata: Metadata = {
   title: "Lucas Amos - CV",
@@ -25,7 +21,7 @@ const CV: React.FC = async () => {
 
   const client = new Sanity();
 
-  const { title, content } = await client.getCV(isEnabled);
+  const { title, content, image } = await client.getCV(isEnabled);
   return (
     <>
       <h1 className="mb-3 font-Inter text-3xl font-medium tracking-tight text-[#1a202c]">
