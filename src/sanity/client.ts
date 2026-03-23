@@ -2,14 +2,14 @@ import { createClient, FilteredResponseQueryOptions, SanityClient } from "next-s
 import * as Sentry from "@sentry/nextjs";
 
 import {
-  ABOUT_QUERYResult,
-  ALIASES_QUERYResult,
-  BOOKS_BY_AUTHOR_QUERYResult,
-  BOOKS_BY_CATEGORY_QUERYResult,
-  BOOKS_BY_YEAR_AND_CATEGORY_QUERYResult,
-  BOOKS_BY_YEAR_QUERYResult,
-  BOOKS_THIS_YEAR_MULTI_QUERYResult,
-  BOOKS_THIS_YEAR_QUERYResult
+  ABOUT_QUERY_RESULT,
+  ALIASES_QUERY_RESULT,
+  BOOKS_BY_AUTHOR_QUERY_RESULT,
+  BOOKS_BY_CATEGORY_QUERY_RESULT,
+  BOOKS_BY_YEAR_AND_CATEGORY_QUERY_RESULT,
+  BOOKS_BY_YEAR_QUERY_RESULT,
+  BOOKS_THIS_YEAR_MULTI_QUERY_RESULT,
+  BOOKS_THIS_YEAR_QUERY_RESULT
 } from "../../sanity.types";
 import { BOOKS_THIS_YEAR_QUERY, BOOKS_THIS_YEAR_MULTI_QUERY } from "./queries/booksThisYear";
 import { BOOKS_BY_YEAR_QUERY } from "./queries/booksByYear";
@@ -47,8 +47,9 @@ export class Sanity {
           }
         };
   }
+
   async getBooksReadThisYear(year: number, draftModeEnabled: boolean) {
-    const books: BOOKS_THIS_YEAR_QUERYResult = await client.fetch(
+    const books: BOOKS_THIS_YEAR_QUERY_RESULT = await client.fetch(
       BOOKS_THIS_YEAR_QUERY,
       {
         yearStart: `${year}-01-01`,
@@ -60,7 +61,7 @@ export class Sanity {
   }
 
   async getBooksReadByYear(year: string, draftModeEnabled: boolean) {
-    const books: BOOKS_BY_YEAR_QUERYResult = await client.fetch(
+    const books: BOOKS_BY_YEAR_QUERY_RESULT = await client.fetch(
       BOOKS_BY_YEAR_QUERY,
       {
         yearStart: `${year}-01-01`,
@@ -75,7 +76,7 @@ export class Sanity {
   async getDetailedBooksReadThisYear(
     year: number,
     draftModeEnabled: boolean
-  ): Promise<BOOKS_THIS_YEAR_MULTI_QUERYResult> {
+  ): Promise<BOOKS_THIS_YEAR_MULTI_QUERY_RESULT> {
     return client.fetch(
       BOOKS_THIS_YEAR_MULTI_QUERY,
       {
@@ -87,7 +88,7 @@ export class Sanity {
   }
 
   async getBooksReadByYearAndCategory(year: number, category: string, draftModeEnabled: boolean) {
-    const books: BOOKS_BY_YEAR_AND_CATEGORY_QUERYResult = await client.fetch(
+    const books: BOOKS_BY_YEAR_AND_CATEGORY_QUERY_RESULT = await client.fetch(
       BOOKS_BY_YEAR_AND_CATEGORY_QUERY,
       {
         yearStart: `${year}-01-01`,
@@ -102,7 +103,7 @@ export class Sanity {
   }
 
   async getBooksReadByCategory(category: string, draftModeEnabled: boolean) {
-    const books: BOOKS_BY_CATEGORY_QUERYResult = await client.fetch(
+    const books: BOOKS_BY_CATEGORY_QUERY_RESULT = await client.fetch(
       BOOKS_BY_CATEGORY_QUERY,
       {
         category
@@ -114,7 +115,7 @@ export class Sanity {
   }
 
   async getAliases(draftModeEnabled: boolean) {
-    const aliases: ALIASES_QUERYResult = await client.fetch(
+    const aliases: ALIASES_QUERY_RESULT = await client.fetch(
       ALIASES_QUERY,
       undefined,
       Sanity.getQueryConfig(draftModeEnabled)
@@ -125,7 +126,7 @@ export class Sanity {
   }
 
   async getBooksReadByAuthor(slug: string, draftModeEnabled: boolean) {
-    const books: BOOKS_BY_AUTHOR_QUERYResult = await client.fetch(
+    const books: BOOKS_BY_AUTHOR_QUERY_RESULT = await client.fetch(
       BOOKS_BY_AUTHOR_QUERY,
       {
         slug
@@ -137,7 +138,7 @@ export class Sanity {
   }
 
   async getAbout(draftModeEnabled: boolean) {
-    const about: ABOUT_QUERYResult = await client.fetch(
+    const about: ABOUT_QUERY_RESULT = await client.fetch(
       ABOUT_QUERY,
       undefined,
       Sanity.getQueryConfig(draftModeEnabled)

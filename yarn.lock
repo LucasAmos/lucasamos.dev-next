@@ -15387,6 +15387,7 @@ __metadata:
     "@fortawesome/react-fontawesome": "npm:^3.2.0"
     "@next/eslint-plugin-next": "npm:^16.1.7"
     "@portabletext/react": "npm:^6.0.3"
+    "@sanity/image-url": "npm:^2.0.3"
     "@sentry/nextjs": "npm:^10.44.0"
     "@tailwindcss/postcss": "npm:^4.2.1"
     "@tailwindcss/typography": "npm:^0.5.19"

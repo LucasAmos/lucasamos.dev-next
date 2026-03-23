@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpRightFromSquare, faHeadphones } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import { BOOKS_BY_YEAR_QUERYResult } from "../../sanity.types";
+import { BOOKS_BY_YEAR_QUERY_RESULT } from "../../sanity.types";
 
 function formatDate(date: string): string {
   return new Date(date).toLocaleDateString("en-US", {
@@ -86,7 +86,7 @@ function Duration({
   );
 }
 
-export function BookView({ book }: { book: BOOKS_BY_YEAR_QUERYResult[number] }): ReactNode {
+export function BookView({ book }: { book: BOOKS_BY_YEAR_QUERY_RESULT[number] }): ReactNode {
   const { _id, audiobook, category, estimated, title, author, startDate, finishDate, url } = book;
   const categorySlug = category?.slug?.current;
   const categoryName = category?.name;
