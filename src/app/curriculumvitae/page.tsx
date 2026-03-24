@@ -21,7 +21,7 @@ const CV: React.FC = async () => {
 
   const client = new Sanity();
 
-  const { title, content, image } = await client.getCV(isEnabled);
+  const { title, content } = await client.getCV(isEnabled);
   return (
     <>
       <h1 className="mb-3 font-Inter text-3xl font-medium tracking-tight text-[#1a202c]">
