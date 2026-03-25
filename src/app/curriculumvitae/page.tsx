@@ -27,7 +27,13 @@ const CV: React.FC = async () => {
       <h1 className="mb-3 font-Inter text-3xl font-medium tracking-tight text-[#1a202c]">
         {title}
       </h1>
-      <div className="[&_h1]:text-t-violet">
+      <div
+        className=" 
+          [&_h1]:text-t-purple
+          [&_h2]:text-t-violet 
+          [&_h3]:text-t-darkgreen
+          "
+      >
         <PortableText value={content} components={portableTextComponents} />
       </div>
     </>
