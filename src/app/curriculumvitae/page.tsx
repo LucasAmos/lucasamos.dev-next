@@ -30,6 +30,7 @@ const CV: React.FC = async () => {
       <div
         className=" 
           [&_h1]:text-t-purple
+          [&_h1:not(:first-of-type)]:mt-10
           [&_h2]:text-t-violet 
           [&_h3]:text-t-darkgreen
           "
