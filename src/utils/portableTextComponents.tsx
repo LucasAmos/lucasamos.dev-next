@@ -12,6 +12,15 @@ export const portableTextComponents = {
     ),
     h1: (props: PortableTextComponentProps<any>) => (
       <h1 className="font-Inter text-2xl">{props.children}</h1>
+    ),
+    h2: (props: PortableTextComponentProps<any>) => (
+      <h2 className="font-Inter text-xl">{props.children}</h2>
+    ),
+    h3: (props: PortableTextComponentProps<any>) => (
+      <h3 className="font-Inter text-lg">{props.children}</h3>
+    ),
+    h4: (props: PortableTextComponentProps<any>) => (
+      <h4 className="font-Inter text-md">{props.children}</h4>
     )
   },
   list: {
