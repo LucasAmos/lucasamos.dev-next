@@ -4,6 +4,8 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 concurrency:
   group: "${{ github.workflow }}-${{ github.head_ref || github.ref_name }}-deploy-app"
   cancel-in-progress: true
@@ -30,6 +32,7 @@ jobs:
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
+
         with:
           node-version: 22
           cache: "yarn"
