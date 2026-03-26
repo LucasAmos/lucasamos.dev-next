@@ -14,7 +14,7 @@
 
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
-// Source: ../sanity-studio/studio/schema.json
+// Source: node_modules/@lucasamos/sanity-studio/schema.json
 export type AuthorReference = {
   _ref: string;
   _type: "reference";
