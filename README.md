@@ -21,3 +21,4 @@
 - Rate limiter implemented on `/email` API route using sliding window algorithm to prevent denial of wallet attack on my AWS account! Implemented using DynamoDB for simplicity. If low latency was required I would use Redis.
 - Rate limiter unit tests implemented using `Jest` & `aws-sdk-client-mock`
 - Sentry for application monitoring
+  test
