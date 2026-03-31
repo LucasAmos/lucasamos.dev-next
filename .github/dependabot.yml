@@ -8,6 +8,8 @@ registries:
 updates:
   - package-ecosystem: "npm"
     directory: "/"
+    registries:
+      - github-packages
     groups:
       all:
         patterns:
