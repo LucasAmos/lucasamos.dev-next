@@ -46,7 +46,7 @@ export default function Navbar(): React.JSX.Element {
         </div>
         {open && (
           <div className="mt-6 lg:hidden">
-            {[...links, ["My CV", "/curriculumvitae"], ["What I'm reading", "/books"]].map(
+            {[...links, ["My CV", "/about/cv"], ["What I'm reading", "/books"]].map(
               ([title, url]) => (
                 <Link
                   key={title}

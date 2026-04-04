@@ -1,8 +1,8 @@
 import { Metadata } from "next";
-import { Sanity } from "../../sanity/client";
+import { Sanity } from "../../../sanity/client";
 import { draftMode } from "next/headers";
 import { PortableText } from "@portabletext/react";
-import { portableTextComponents } from "../../utils/portableTextComponents";
+import { portableTextComponents } from "../../../utils/portableTextComponents";
 
 export const revalidate = 60;
 

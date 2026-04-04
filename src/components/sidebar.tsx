@@ -50,7 +50,7 @@ export default function Sidebar(): ReactNode {
             />
             <span>GitHub</span>
           </Link>
-          <Link href="/curriculumvitae">
+          <Link href="/about/cv">
             <div>
               <FontAwesomeIcon icon={faFileText} className="fa-lg mr-2 mt-3 text-[#000000]" />
               My CV
