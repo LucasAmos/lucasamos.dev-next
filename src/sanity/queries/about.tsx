@@ -4,6 +4,13 @@ export const ABOUT_QUERY = defineQuery(`
 *[_type == "about" && slug.current=="about"]{
   title, 
   content,
+  techStack -> {
+  title,
+  techStackSection[] -> {
+    title,
+    skills
+  }
+},
   imageRow {
   images[]{
     ...,
