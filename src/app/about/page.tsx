@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { Sanity } from "../../sanity/client";
-import { draftMode } from "next/headers";
 import { PortableText } from "@portabletext/react";
 import { portableTextComponents } from "../../utils/portableTextComponents";
 import ImageComponent from "../../components/image/imageComponent";
@@ -19,11 +18,9 @@ export const metadata: Metadata = {
 };
 
 const About: React.FC = async () => {
-  const { isEnabled } = await draftMode();
-
   const client = new Sanity();
 
-  const { title, content, imageRow } = await client.getAbout(isEnabled);
+  const { title, content, imageRow } = await client.getAbout();
   const images = imageRow?.images;
   return (
     <>

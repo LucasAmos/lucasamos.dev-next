@@ -1,5 +1,6 @@
 import { createClient, FilteredResponseQueryOptions, SanityClient } from "next-sanity";
 import * as Sentry from "@sentry/nextjs";
+import { draftMode } from "next/headers";
 
 import {
   ABOUT_QUERY_RESULT,
@@ -138,11 +139,13 @@ export class Sanity {
     return books;
   }
 
-  async getAbout(draftModeEnabled: boolean) {
+  async getAbout() {
+    const { isEnabled } = await draftMode();
+
     const about: ABOUT_QUERY_RESULT = await client.fetch(
       ABOUT_QUERY,
       undefined,
-      Sanity.getQueryConfig(draftModeEnabled)
+      Sanity.getQueryConfig(isEnabled)
     );
 
     return about[0];
