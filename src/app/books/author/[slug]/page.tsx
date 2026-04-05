@@ -1,5 +1,5 @@
 import React from "react";
-import { Sanity } from "../../../../sanity/client";
+import { Sanity } from "../../../../sanity/clientFetches";
 import { draftMode } from "next/headers";
 import BooksView from "../../../../components/books";
 export const revalidate = 60;

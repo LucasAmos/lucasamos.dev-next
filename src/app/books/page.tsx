@@ -2,7 +2,7 @@ import React from "react";
 import { Metadata } from "next";
 import { draftMode } from "next/headers";
 import BooksView from "../../components/books";
-import { Sanity } from "../../sanity/client";
+import { Sanity } from "../../sanity/clientFetches";
 import BookYearLinks from "../../components/books/yearLinks";
 
 export const revalidate = 60;

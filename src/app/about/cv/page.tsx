@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { Sanity } from "../../../sanity/client";
+import { Sanity } from "../../../sanity/clientFetches";
 import { draftMode } from "next/headers";
 import { PortableText } from "@portabletext/react";
 import { portableTextComponents } from "../../../utils/portableTextComponents";

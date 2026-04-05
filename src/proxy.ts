@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import { NextResponse, NextRequest } from "next/server";
 import { rateLimit } from "./lib/ratelimit";
-import { Sanity } from "./sanity/client";
+import { Sanity } from "./sanity/clientFetches";
 import { draftMode } from "next/headers";
 
 type Override<T1, T2> = Omit<T1, keyof T2> & T2;

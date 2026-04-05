@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 import { draftMode } from "next/headers";
-import { Sanity } from "../../../../sanity/client";
+import { Sanity } from "../../../../sanity/clientFetches";
 import BooksView from "../../../../components/books";
 import BookYearLinks from "../../../../components/books/yearLinks";
 
