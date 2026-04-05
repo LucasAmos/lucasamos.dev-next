@@ -2,7 +2,6 @@ import { headers } from "next/headers";
 import { NextResponse, NextRequest } from "next/server";
 import { rateLimit } from "./lib/ratelimit";
 import { Sanity } from "./sanity/client";
-import { draftMode } from "next/headers";
 
 type Override<T1, T2> = Omit<T1, keyof T2> & T2;
 
@@ -17,12 +16,10 @@ export type MiddlewareRequest = Override<
 const client = new Sanity();
 
 export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
-  const { isEnabled } = await draftMode();
-
   if (request.url.includes("_next/static/") || request.url.includes("favicon.ico")) {
     return NextResponse.next();
   }
-  const aliases = await client.getAliases(isEnabled);
+  const aliases = await client.getAliases();
   const matchingAlias = aliases.find((alias) => alias.source == request.nextUrl.pathname);
 
   if (matchingAlias) {

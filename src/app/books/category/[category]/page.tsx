@@ -1,6 +1,5 @@
 import React from "react";
 import { Sanity } from "../../../../sanity/client";
-import { draftMode } from "next/headers";
 import BooksView from "../../../../components/books";
 export const revalidate = 60;
 
@@ -10,11 +9,7 @@ export default async function Books(props: any): Promise<React.JSX.Element> {
 
   const client = new Sanity();
 
-  const { isEnabled } = await draftMode();
-  const { books, category: categoryDetails } = await client.getBooksReadByCategory(
-    category,
-    isEnabled
-  );
+  const { books, category: categoryDetails } = await client.getBooksReadByCategory(category);
 
   if (!categoryDetails.length) {
     notFound();

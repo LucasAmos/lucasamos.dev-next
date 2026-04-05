@@ -1,6 +1,5 @@
 import React from "react";
 import { Metadata } from "next";
-import { draftMode } from "next/headers";
 import { Sanity } from "../../../../sanity/client";
 import BooksView from "../../../../components/books";
 import BookYearLinks from "../../../../components/books/yearLinks";
@@ -29,8 +28,7 @@ export default async function Books(props: Params): Promise<React.JSX.Element> {
 
   const client = new Sanity();
 
-  const { isEnabled } = await draftMode();
-  const books = await client.getBooksReadByYear(year, isEnabled);
+  const books = await client.getBooksReadByYear(year);
 
   return (
     <>

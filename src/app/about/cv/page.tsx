@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { Sanity } from "../../../sanity/client";
-import { draftMode } from "next/headers";
 import { PortableText } from "@portabletext/react";
 import { portableTextComponents } from "../../../utils/portableTextComponents";
 
@@ -17,11 +16,9 @@ export const metadata: Metadata = {
 };
 
 const CV: React.FC = async () => {
-  const { isEnabled } = await draftMode();
-
   const client = new Sanity();
 
-  const { title, content } = await client.getCV(isEnabled);
+  const { title, content } = await client.getCV();
   return (
     <>
       <h1 className="mb-3 font-Inter text-3xl font-medium tracking-tight text-[#1a202c]">

@@ -2,17 +2,6 @@ import { createClient, FilteredResponseQueryOptions, SanityClient } from "next-s
 import * as Sentry from "@sentry/nextjs";
 import { draftMode } from "next/headers";
 
-import {
-  ABOUT_QUERY_RESULT,
-  ALIASES_QUERY_RESULT,
-  BOOKS_BY_AUTHOR_QUERY_RESULT,
-  BOOKS_BY_CATEGORY_QUERY_RESULT,
-  BOOKS_BY_YEAR_AND_CATEGORY_QUERY_RESULT,
-  BOOKS_BY_YEAR_QUERY_RESULT,
-  BOOKS_THIS_YEAR_MULTI_QUERY_RESULT,
-  BOOKS_THIS_YEAR_QUERY_RESULT,
-  CV_QUERY_RESULT
-} from "../../sanity.types";
 import { BOOKS_THIS_YEAR_QUERY, BOOKS_THIS_YEAR_MULTI_QUERY } from "./queries/booksThisYear";
 import { BOOKS_BY_YEAR_QUERY } from "./queries/booksByYear";
 import { BOOKS_BY_YEAR_AND_CATEGORY_QUERY } from "./queries/booksByCategoryAndYear";
@@ -50,47 +39,50 @@ export class Sanity {
         };
   }
 
-  async getBooksReadThisYear(year: number, draftModeEnabled: boolean) {
-    const books: BOOKS_THIS_YEAR_QUERY_RESULT = await client.fetch(
+  async getBooksReadThisYear(year: number) {
+    const { isEnabled } = await draftMode();
+    const books = await client.fetch(
       BOOKS_THIS_YEAR_QUERY,
       {
         yearStart: `${year}-01-01`,
         yearEnd: `${year}-31-12`
       },
-      Sanity.getQueryConfig(draftModeEnabled)
+      Sanity.getQueryConfig(isEnabled)
     );
     return books;
   }
 
-  async getBooksReadByYear(year: string, draftModeEnabled: boolean) {
-    const books: BOOKS_BY_YEAR_QUERY_RESULT = await client.fetch(
+  async getBooksReadByYear(year: string) {
+    const { isEnabled } = await draftMode();
+    const books = await client.fetch(
       BOOKS_BY_YEAR_QUERY,
       {
         yearStart: `${year}-01-01`,
         yearEnd: `${year}-31-12`
       },
-      Sanity.getQueryConfig(draftModeEnabled)
+      Sanity.getQueryConfig(isEnabled)
     );
 
     return books;
   }
 
-  async getDetailedBooksReadThisYear(
-    year: number,
-    draftModeEnabled: boolean
-  ): Promise<BOOKS_THIS_YEAR_MULTI_QUERY_RESULT> {
+  async getDetailedBooksReadThisYear(year: number) {
+    const { isEnabled } = await draftMode();
+
     return client.fetch(
       BOOKS_THIS_YEAR_MULTI_QUERY,
       {
         yearStart: `${year}-01-01`,
         yearEnd: `${year}-31-12`
       },
-      Sanity.getQueryConfig(draftModeEnabled)
+      Sanity.getQueryConfig(isEnabled)
     );
   }
 
-  async getBooksReadByYearAndCategory(year: number, category: string, draftModeEnabled: boolean) {
-    const books: BOOKS_BY_YEAR_AND_CATEGORY_QUERY_RESULT = await client.fetch(
+  async getBooksReadByYearAndCategory(year: number, category: string) {
+    const { isEnabled } = await draftMode();
+
+    const books = await client.fetch(
       BOOKS_BY_YEAR_AND_CATEGORY_QUERY,
       {
         yearStart: `${year}-01-01`,
@@ -98,42 +90,41 @@ export class Sanity {
         category,
         slug: category
       },
-      Sanity.getQueryConfig(draftModeEnabled)
+      Sanity.getQueryConfig(isEnabled)
     );
 
     return books;
   }
 
-  async getBooksReadByCategory(category: string, draftModeEnabled: boolean) {
-    const books: BOOKS_BY_CATEGORY_QUERY_RESULT = await client.fetch(
+  async getBooksReadByCategory(category: string) {
+    const { isEnabled } = await draftMode();
+    const books = await client.fetch(
       BOOKS_BY_CATEGORY_QUERY,
       {
         category
       },
-      Sanity.getQueryConfig(draftModeEnabled)
+      Sanity.getQueryConfig(isEnabled)
     );
 
     return books;
   }
 
-  async getAliases(draftModeEnabled: boolean) {
-    const aliases: ALIASES_QUERY_RESULT = await client.fetch(
-      ALIASES_QUERY,
-      undefined,
-      Sanity.getQueryConfig(draftModeEnabled)
-    );
-
+  async getAliases() {
+    const { isEnabled } = await draftMode();
+    const aliases = await client.fetch(ALIASES_QUERY, undefined, Sanity.getQueryConfig(isEnabled));
     Sentry.metrics.count("aliases.get", 1);
     return aliases;
   }
 
-  async getBooksReadByAuthor(slug: string, draftModeEnabled: boolean) {
-    const books: BOOKS_BY_AUTHOR_QUERY_RESULT = await client.fetch(
+  async getBooksReadByAuthor(slug: string) {
+    const { isEnabled } = await draftMode();
+
+    const books = await client.fetch(
       BOOKS_BY_AUTHOR_QUERY,
       {
         slug
       },
-      Sanity.getQueryConfig(draftModeEnabled)
+      Sanity.getQueryConfig(isEnabled)
     );
 
     return books;
@@ -141,22 +132,13 @@ export class Sanity {
 
   async getAbout() {
     const { isEnabled } = await draftMode();
-
-    const about: ABOUT_QUERY_RESULT = await client.fetch(
-      ABOUT_QUERY,
-      undefined,
-      Sanity.getQueryConfig(isEnabled)
-    );
-
+    const about = await client.fetch(ABOUT_QUERY, undefined, Sanity.getQueryConfig(isEnabled));
     return about[0];
   }
 
-  async getCV(draftModeEnabled: boolean): Promise<CV_QUERY_RESULT[number]> {
-    const results = await client.fetch(
-      CV_QUERY,
-      undefined,
-      Sanity.getQueryConfig(draftModeEnabled)
-    );
+  async getCV() {
+    const { isEnabled } = await draftMode();
+    const results = await client.fetch(CV_QUERY, undefined, Sanity.getQueryConfig(isEnabled));
     return results[0];
   }
 }
