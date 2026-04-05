@@ -15,6 +15,16 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: node_modules/@lucasamos/sanity-studio/schema.json
+export type TechStack = {
+  _id: string;
+  _type: "techStack";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  skills: Array<string>;
+};
+
 export type AuthorReference = {
   _ref: string;
   _type: "reference";
@@ -35,6 +45,7 @@ export type Book = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  ISBN?: number;
   title: string;
   author: AuthorReference;
   startDate: string;
@@ -81,12 +92,20 @@ export type Alias = {
   destination: string;
 };
 
+export type AboutReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "about";
+};
+
 export type Cv = {
   _id: string;
   _type: "cv";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  parentPage?: AboutReference;
   slug: Slug;
   title: string;
   content: Array<{
@@ -107,6 +126,13 @@ export type Cv = {
     _type: "block";
     _key: string;
   }>;
+};
+
+export type TechStackSectionReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "techStackSection";
 };
 
 export type About = {
@@ -136,6 +162,28 @@ export type About = {
     _key: string;
   }>;
   imageRow?: ImageRow;
+  techStack?: TechStackSectionReference;
+};
+
+export type TechStackReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "techStack";
+};
+
+export type TechStackSection = {
+  _id: string;
+  _type: "techStackSection";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  techStackSection: Array<
+    {
+      _key: string;
+    } & TechStackReference
+  >;
 };
 
 export type SanityImageAssetReference = {
@@ -272,6 +320,7 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+  | TechStack
   | AuthorReference
   | CategoryReference
   | Book
@@ -279,8 +328,12 @@ export type AllSanitySchemaTypes =
   | Slug
   | Author
   | Alias
+  | AboutReference
   | Cv
+  | TechStackSectionReference
   | About
+  | TechStackReference
+  | TechStackSection
   | SanityImageAssetReference
   | ImageRow
   | SanityImageCrop
@@ -296,7 +349,7 @@ export type AllSanitySchemaTypes =
 
 // Source: src/sanity/queries/about.tsx
 // Variable: ABOUT_QUERY
-// Query: *[_type == "about" && slug.current=="about"]{  title,   content,  imageRow {  images[]{    ...,    asset-> {      url,      metadata {      lqip      }    }  } }}
+// Query: *[_type == "about" && slug.current=="about"]{  title,   content,  techStack -> {  techStackSection[] -> {    title,    skills  }},  imageRow {  images[]{    ...,    asset-> {      url,      metadata {      lqip      }    }  } }}
 export type ABOUT_QUERY_RESULT = Array<{
   title: string;
   content: Array<{
@@ -317,6 +370,12 @@ export type ABOUT_QUERY_RESULT = Array<{
     _type: "block";
     _key: string;
   }>;
+  techStack: {
+    techStackSection: Array<{
+      title: string;
+      skills: Array<string>;
+    }>;
+  } | null;
   imageRow: {
     images: Array<{
       asset: {
@@ -562,8 +621,11 @@ export type BOOKS_THIS_YEAR_MULTI_QUERY_RESULT = {
 
 // Source: src/sanity/queries/cv.tsx
 // Variable: CV_QUERY
-// Query: *[_type == "cv" && slug.current=="cv"]{    title,     content  }
+// Query: *[_type == "cv" && slug.current=="cv"]{      parentPage -> {      title    },    title,     content  }
 export type CV_QUERY_RESULT = Array<{
+  parentPage: {
+    title: string;
+  } | null;
   title: string;
   content: Array<{
     children?: Array<{
@@ -596,7 +658,7 @@ export type OLDEST_BOOK_QUERY_RESULT = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    '\n*[_type == "about" && slug.current=="about"]{\n  title, \n  content,\n  imageRow {\n  images[]{\n    ...,\n    asset-> {\n      url,\n      metadata {\n      lqip\n      }\n    }\n  }\n }\n}\n': ABOUT_QUERY_RESULT;
+    '\n*[_type == "about" && slug.current=="about"]{\n  title, \n  content,\n  techStack -> {\n  techStackSection[] -> {\n    title,\n    skills\n  }\n},\n  imageRow {\n  images[]{\n    ...,\n    asset-> {\n      url,\n      metadata {\n      lqip\n      }\n    }\n  }\n }\n}\n': ABOUT_QUERY_RESULT;
     '\n   *[_type == "alias"] {\n    source,\n    destination\n  }\n': ALIASES_QUERY_RESULT;
     '\n   *[_type == "book" && finishDate ==null || finishDate >= $yearStart && finishDate <= $yearEnd] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  }\n': BOOKS_QUERY_RESULT;
     "\n  { 'books' :*[_type == \"book\" && finishDate != null && author->slug.current== $slug] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  },\n  'author' :*[_type == \"author\" && slug.current == $slug]\n  }\n": BOOKS_BY_AUTHOR_QUERY_RESULT;
@@ -605,7 +667,7 @@ declare module "@sanity/client" {
     '\n  *[_type == "book" && finishDate >= $yearStart && finishDate <= $yearEnd] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  }\n': BOOKS_BY_YEAR_QUERY_RESULT;
     '\n  *[_type == "book" && (finishDate == null || finishDate >= $yearStart && finishDate <= $yearEnd)] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name},\n    category -> {name},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  }\n': BOOKS_THIS_YEAR_QUERY_RESULT;
     "\n  { 'books': *[_type == \"book\" && (finishDate == null || finishDate >= $yearStart && finishDate <= $yearEnd)] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  },\n  'inprogress': count(*[_type == \"book\" && finishDate== null  ]),\n  'finished': count(*[_type == \"book\" && (finishDate >= $yearStart && finishDate <= $yearEnd)]) \n}\n": BOOKS_THIS_YEAR_MULTI_QUERY_RESULT;
-    '\n    *[_type == "cv" && slug.current=="cv"]{\n    title, \n    content\n  }\n': CV_QUERY_RESULT;
+    '\n    *[_type == "cv" && slug.current=="cv"]{\n      parentPage -> {\n      title\n    },\n    title, \n    content\n  }\n': CV_QUERY_RESULT;
     '\n*[_type == "book"] | order(finishDate asc)[0] {\n    finishDate\n}\n': OLDEST_BOOK_QUERY_RESULT;
   }
 }
