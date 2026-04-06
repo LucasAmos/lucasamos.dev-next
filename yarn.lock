@@ -3634,10 +3634,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lucasamos/sanity-studio@npm:^1.21.0":
-  version: 1.21.0
-  resolution: "@lucasamos/sanity-studio@npm:1.21.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40lucasamos%2Fsanity-studio%2F1.21.0%2Fd4d175a31c9137c789b639f105fca1bef61f36f0"
+"@lucasamos/sanity-studio@npm:^1.22.0":
+  version: 1.22.0
+  resolution: "@lucasamos/sanity-studio@npm:1.22.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40lucasamos%2Fsanity-studio%2F1.22.0%2F0f3df159455bc19dff15b4a9b7838d7889f70513"
   dependencies:
+    "@fortawesome/fontawesome-svg-core": "npm:^7.2.0"
+    "@fortawesome/free-regular-svg-icons": "npm:^7.2.0"
+    "@fortawesome/react-fontawesome": "npm:^3.3.0"
     "@release-it/conventional-changelog": "npm:^10.0.6"
     "@sanity/vision": "npm:^5.19.0"
     react: "npm:^19.2.4"
@@ -3645,7 +3648,7 @@ __metadata:
     release-it: "npm:^19.2.4"
     sanity: "npm:^5.19.0"
     styled-components: "npm:^6.3.12"
-  checksum: 10c0/67595ef9824877be888e85a5275d7c53122b4e6b68328d17c8590759972fa80bd4cb0d95dd96b1c17eeda76c0b8f177d42b7294c1d45ce1d2d50630991611162
+  checksum: 10c0/55c207dc24b03447fec284380a93ca7cb25187dd4f4b32dcac25cdff4b1ea10d64820e9349c66fc894097dca725e88e7154dc9796c01d51d6d69b22a5a9c812a
   languageName: node
   linkType: hard
 
@@ -15933,7 +15936,7 @@ __metadata:
     "@fortawesome/free-regular-svg-icons": "npm:^7.2.0"
     "@fortawesome/free-solid-svg-icons": "npm:^7.2.0"
     "@fortawesome/react-fontawesome": "npm:^3.3.0"
-    "@lucasamos/sanity-studio": "npm:^1.21.0"
+    "@lucasamos/sanity-studio": "npm:^1.22.0"
     "@next/eslint-plugin-next": "npm:^16.2.2"
     "@portabletext/react": "npm:^6.0.3"
     "@sanity/image-url": "npm:^2.1.1"
@@ -15972,7 +15975,7 @@ __metadata:
     styled-components: "npm:^6.3.12"
     tailwindcss: "npm:^4.2.2"
     typescript: "npm:^5.9.3"
-    vite: "npm:^8.0.3"
+    vite: "npm:^8.0.5"
     vitest: "npm:^4.1.2"
   peerDependencies:
     eslint: "*"
@@ -18044,9 +18047,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^8.0.3":
-  version: 8.0.3
-  resolution: "vite@npm:8.0.3"
+"vite@npm:^8.0.5":
+  version: 8.0.5
+  resolution: "vite@npm:8.0.5"
   dependencies:
     fsevents: "npm:~2.3.3"
     lightningcss: "npm:^1.32.0"
@@ -18057,7 +18060,7 @@ __metadata:
   peerDependencies:
     "@types/node": ^20.19.0 || >=22.12.0
     "@vitejs/devtools": ^0.1.0
-    esbuild: ^0.27.0
+    esbuild: ^0.27.0 || ^0.28.0
     jiti: ">=1.21.0"
     less: ^4.0.0
     sass: ^1.70.0
@@ -18097,7 +18100,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10c0/bed9520358080393a02fe22565b3309b4b3b8f916afe4c97577528f3efb05c1bf4b29f7b552179bc5b3938629e50fbd316231727457411dbc96648fa5c9d14bf
+  checksum: 10c0/bfc22896b2661753c01c398a058f1859bdbd3ebe55f3d8505ab629b39e5f68790c0a6f55f8644b6692b0b9b8e210f698082ef9f4fd0d76509f4a46762fbfbba2
   languageName: node
   linkType: hard
 
