@@ -1,13 +1,18 @@
+import * as far from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 type TechStackProps = {
+  icon: string | null;
   skills: Array<string>;
   title: string;
 };
 
-export const TechStackSection = ({ title, skills }: TechStackProps) => {
+export const Skills = ({ icon, skills, title }: TechStackProps) => {
   return (
     <>
       <div className="p-2 border border-t-violet rounded-sm flex-col grow">
         <div>
+          {icon && <FontAwesomeIcon className="mr-1" icon={far[icon as keyof typeof far] as any} />}
           <b>{title}</b>
         </div>
         {skills.map((skill) => (

@@ -28,7 +28,6 @@ const About: React.FC = async () => {
       <h1 className="mb-3 font-Inter text-3xl font-medium tracking-tight text-[#1a202c]">
         {title}
       </h1>
-
       <PortableText value={content} components={portableTextComponents} />
       <div className="w-full ">{techStack && <TechStack stack={techStack.techStackSection} />}</div>
       <div className="w-full lg:w-11/12">

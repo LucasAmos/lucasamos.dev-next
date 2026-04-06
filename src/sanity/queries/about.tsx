@@ -8,7 +8,8 @@ export const ABOUT_QUERY = defineQuery(`
   title,
   techStackSection[] -> {
     title,
-    skills
+    skills,
+    icon
   }
 },
   imageRow {
