@@ -1,7 +1,9 @@
 "use client";
 import React, { useState } from "react";
+import { SessionProvider } from "next-auth/react";
+import LoggedIn from "./loggedIn";
 
-const Contact: React.FC = () => {
+const Contact: React.FC = ({ session }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -46,71 +48,74 @@ const Contact: React.FC = () => {
 
   return (
     <>
-      <h1 className="mb-5 font-Inter text-2xl font-medium tracking-tight text-[#1a202c]">
-        Send me an email
-      </h1>
-      <form className="flex flex-col" onSubmit={sendEmail}>
-        <div className="mb-5 rounded-sm bg-slate-100 pt-1 md:w-5/6">
-          <label className="pl-3">
-            Name:
+      <SessionProvider session={session}>
+        <LoggedIn />
+        <h1 className="mb-5 font-Inter text-2xl font-medium tracking-tight text-[#1a202c]">
+          Send me an email
+        </h1>
+        <form className="flex flex-col" onSubmit={sendEmail}>
+          <div className="mb-5 rounded-sm bg-slate-100 pt-1 md:w-5/6">
+            <label className="pl-3">
+              Name:
+              <input
+                className="w-full  rounded-sm bg-slate-100 pb-3 pl-3 outline-hidden"
+                type="text"
+                value={name}
+                required
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+            </label>
+          </div>
+          <div className="mb-5 rounded-sm bg-slate-100 pt-1 md:w-5/6">
+            <label className="pl-3">
+              Email:
+              <input
+                className="w-full  rounded-sm bg-slate-100 pb-3 pl-3 outline-hidden"
+                type="email"
+                value={email}
+                required
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+            </label>
+          </div>
+          <div className="mb-5 rounded-sm bg-slate-100 pt-1 md:w-5/6">
+            <label className="pl-3">
+              Message:
+              <textarea
+                className="w-full  rounded-sm bg-slate-100 pb-3 pl-3 outline-hidden"
+                value={message}
+                required
+                onChange={(e) => {
+                  setMessage(e.target.value);
+                }}
+              />
+            </label>
+          </div>
+          <div>
             <input
-              className="w-full  rounded-sm bg-slate-100 pb-3 pl-3 outline-hidden"
-              type="text"
-              value={name}
-              required
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
+              className="h-[40px] w-[150px] cursor-pointer rounded-sm bg-slate-300 hover:bg-slate-100 disabled:opacity-50 disabled:hover:bg-slate-300"
+              type="submit"
+              value="Submit"
+              disabled={loading}
             />
-          </label>
-        </div>
-        <div className="mb-5 rounded-sm bg-slate-100 pt-1 md:w-5/6">
-          <label className="pl-3">
-            Email:
-            <input
-              className="w-full  rounded-sm bg-slate-100 pb-3 pl-3 outline-hidden"
-              type="email"
-              value={email}
-              required
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
-          </label>
-        </div>
-        <div className="mb-5 rounded-sm bg-slate-100 pt-1 md:w-5/6">
-          <label className="pl-3">
-            Message:
-            <textarea
-              className="w-full  rounded-sm bg-slate-100 pb-3 pl-3 outline-hidden"
-              value={message}
-              required
-              onChange={(e) => {
-                setMessage(e.target.value);
-              }}
-            />
-          </label>
-        </div>
-        <div>
-          <input
-            className="h-[40px] w-[150px] cursor-pointer rounded-sm bg-slate-300 hover:bg-slate-100 disabled:opacity-50 disabled:hover:bg-slate-300"
-            type="submit"
-            value="Submit"
-            disabled={loading}
-          />
-          {error && (
-            <h2 className="inline-block font-semibold text-red-700 sm:ml-5">
-              Email could not be sent, please try again
-            </h2>
-          )}
+            {error && (
+              <h2 className="inline-block font-semibold text-red-700 sm:ml-5">
+                Email could not be sent, please try again
+              </h2>
+            )}
 
-          {success && (
-            <h2 className="inline-block font-semibold text-green-700 sm:ml-5">
-              Thank you for your email
-            </h2>
-          )}
-        </div>
-      </form>
+            {success && (
+              <h2 className="inline-block font-semibold text-green-700 sm:ml-5">
+                Thank you for your email
+              </h2>
+            )}
+          </div>
+        </form>
+      </SessionProvider>
     </>
   );
 };
