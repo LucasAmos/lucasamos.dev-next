@@ -2,28 +2,30 @@ import NextAuth from "next-auth";
 import CognitoProvider from "next-auth/providers/cognito";
 
 const handler = NextAuth({
-  // debug: true,
+  // Configure one or more authentication providers
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
-      console.log("bob", credentials);
-      const isAllowedToSignIn = true;
-      if (isAllowedToSignIn) {
-        return true;
-      } else {
-        // Return false to display a default error message
-        return false;
-        // Or you can return a URL to redirect to:
-        // return '/unauthorized'
+    async jwt({ token, profile }) {
+      console.log("jwt", token, profile);
+      if (profile) {
+        token.family_name = profile.family_name;
       }
+
+      return token;
+    },
+
+    async session({ session, token }) {
+      console.log("Session:", session, token);
+      session.user.family_name = token.family_name as string;
+
+      return session;
     }
   },
-  // Configure one or more authentication providers
   providers: [
     CognitoProvider({
-      redirect_uri: "http://localhost:3000/api/auth/callback/cognito",
-      clientId: "42d3cdrgh9nmoce0q5qo2879i2",
-      clientSecret: "12v0jsm4f6ev9mvg7bt1cgetg5pkh2cv83el5br7581r5r52t85b",
-      issuer: "https://cognito-idp.eu-west-2.amazonaws.com/eu-west-2_7grKfaW7b"
+      redirect_uri: process.env.REDIRECT_URI,
+      clientId: process.env.COGNITO_CLIENT_ID,
+      clientSecret: process.env.COGNITO_CLIENT_SECRET,
+      issuer: process.env.COGNITO_ISSUER
     })
   ]
 });
