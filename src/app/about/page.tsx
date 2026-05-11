@@ -1,10 +1,13 @@
+import { getServerSession } from "next-auth/next";
 import { Metadata } from "next";
 import { Sanity } from "../../sanity/client";
 import { PortableText } from "@portabletext/react";
 import { portableTextComponents } from "../../utils/portableTextComponents";
 import ImageComponent from "../../components/image/imageComponent";
 import { TechStack } from "../../components/techStack";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
+import { redirect } from "next/navigation";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
@@ -19,12 +22,17 @@ export const metadata: Metadata = {
 };
 
 const About: React.FC = async () => {
+  const session = await getServerSession(authOptions);
+
+  if (!session?.user) redirect("/");
+
   const client = new Sanity();
 
   const { title, content, imageRow, techStack } = await client.getAbout();
   const images = imageRow?.images;
   return (
     <>
+      <pre>{JSON.stringify(session, null, 2)}</pre>
       <h1 className="mb-3 font-Inter text-3xl font-medium tracking-tight text-[#1a202c]">
         {title}
       </h1>
@@ -37,7 +45,7 @@ const About: React.FC = async () => {
               <ImageComponent image={image} width={300} height={300} />
             </div>
           ))}
-        </div>{" "}
+        </div>
       </div>
     </>
   );

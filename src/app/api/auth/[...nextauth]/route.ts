@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import CognitoProvider from "next-auth/providers/cognito";
 
-const handler = NextAuth({
+const options = {
   // Configure one or more authentication providers
   callbacks: {
     async jwt({ token, profile }) {
@@ -28,6 +28,9 @@ const handler = NextAuth({
       issuer: process.env.COGNITO_ISSUER
     })
   ]
-});
+};
 
-export { handler as GET, handler as POST };
+const handler = NextAuth(options);
+
+export { handler as GET, handler as POST, handler as authConfig };
+export const authOptions = options;
