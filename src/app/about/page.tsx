@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const About: React.FC = async () => {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user) redirect("/");
+  if (!session?.user) redirect("/api/auth/signin");
 
   const client = new Sanity();
 
