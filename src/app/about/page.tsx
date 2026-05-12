@@ -5,9 +5,8 @@ import { PortableText } from "@portabletext/react";
 import { portableTextComponents } from "../../utils/portableTextComponents";
 import ImageComponent from "../../components/image/imageComponent";
 import { TechStack } from "../../components/techStack";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { useAuth } from "../../hooks/useAuth";
 
-import { redirect } from "next/navigation";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
@@ -22,9 +21,7 @@ export const metadata: Metadata = {
 };
 
 const About: React.FC = async () => {
-  const session = await getServerSession(authOptions);
-
-  if (!session?.user) redirect("/api/auth/signin");
+  const session = await useAuth();
 
   const client = new Sanity();
 

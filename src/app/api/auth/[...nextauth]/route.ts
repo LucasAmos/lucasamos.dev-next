@@ -1,11 +1,16 @@
-import NextAuth from "next-auth";
+import NextAuth, { DefaultSession, TokenSet } from "next-auth";
 import CognitoProvider from "next-auth/providers/cognito";
 
+interface Session {
+  user: {
+    family_name?: string;
+    given_name?: string;
+  } & DefaultSession["user"];
+}
 const options = {
   // Configure one or more authentication providers
   callbacks: {
     async jwt({ token, profile }) {
-      console.log("jwt", token, profile);
       if (profile) {
         token.family_name = profile.family_name;
       }
@@ -13,10 +18,9 @@ const options = {
       return token;
     },
 
-    async session({ session, token }) {
-      console.log("Session:", session, token);
-      session.user.family_name = token.family_name as string;
-
+    async session({ session, token }: { session: Session }) {
+      session.user.family_name = token.family_name;
+      session.user.given_name = token.given_name;
       return session;
     }
   },
