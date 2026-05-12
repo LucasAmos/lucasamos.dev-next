@@ -36,14 +36,16 @@ const options = {
   },
   providers: [
     CognitoProvider({
+      // redirect_uri: "http://locahost:3000/test",
+
       clientId: process.env.COGNITO_CLIENT_ID,
       clientSecret: process.env.COGNITO_CLIENT_SECRET,
-      issuer: process.env.COGNITO_ISSUER,
-      authorization: {
-        params: {
-          redirect_uri: "http://localhost:3000/about"
-        }
-      }
+      issuer: process.env.COGNITO_ISSUER
+      // authorization: {
+      //   params: {
+      //     redirect_uri: "http://localhost:3000/test"
+      //   }
+      // }
     })
   ]
 };
