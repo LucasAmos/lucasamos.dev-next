@@ -1,5 +1,25 @@
 resource "aws_cognito_user_pool" "pool" {
   name = "lucasamosdev"
+
+  schema {
+    name                = "family_name"
+    attribute_data_type = "String"
+    mutable             = true
+    string_attribute_constraints {
+      min_length = 0
+      max_length = 2048
+    }
+  }
+
+  schema {
+    name                = "given_name"
+    attribute_data_type = "String"
+    mutable             = true
+    string_attribute_constraints {
+      min_length = 0
+      max_length = 2048
+    }
+  }
 }
 
 resource "aws_cognito_user_pool_client" "client" {
@@ -17,8 +37,10 @@ resource "aws_cognito_user_pool_client" "client" {
     "http://localhost",
     "http://localhost:3000",
     "http://localhost:3000/api/auth/callback/cognito",
-    "${aws_cognito_user_pool_domain.main.cloudfront_distribution}"
+    "https://${aws_cognito_user_pool_domain.main.cloudfront_distribution}"
   ]
+
+
 }
 
 resource "aws_cognito_managed_login_branding" "client" {
