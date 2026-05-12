@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import BooksView from "../../components/books";
 import { Sanity } from "../../sanity/client";
 import BookYearLinks from "../../components/books/yearLinks";
+import { useAuth } from "../../hooks/useAuth";
 
 export const revalidate = 60;
 
@@ -18,6 +19,8 @@ export const metadata: Metadata = {
 };
 
 export default async function Books(): Promise<React.JSX.Element> {
+  const session = await useAuth();
+
   const client = new Sanity();
   const year = new Date().getFullYear();
 

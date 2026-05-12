@@ -14,6 +14,12 @@ interface CustomJWT extends JWT {
 
 const options = {
   callbacks: {
+    // async redirect(props) {
+    //   // Allows relative callback URLs
+    //   console.log("****", props);
+
+    //   return `http://localhost`;
+    // },
     async jwt({ token, profile }: { token: JWT; profile?: CognitoProfile }) {
       if (profile) {
         token.family_name = profile.family_name;
@@ -32,7 +38,12 @@ const options = {
     CognitoProvider({
       clientId: process.env.COGNITO_CLIENT_ID,
       clientSecret: process.env.COGNITO_CLIENT_SECRET,
-      issuer: process.env.COGNITO_ISSUER
+      issuer: process.env.COGNITO_ISSUER,
+      authorization: {
+        params: {
+          redirect_uri: "http://localhost:3000/about"
+        }
+      }
     })
   ]
 };

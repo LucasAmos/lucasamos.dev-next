@@ -1,11 +1,9 @@
-import { getServerSession } from "next-auth/next";
 import { Metadata } from "next";
 import { Sanity } from "../../sanity/client";
 import { PortableText } from "@portabletext/react";
 import { portableTextComponents } from "../../utils/portableTextComponents";
 import ImageComponent from "../../components/image/imageComponent";
 import { TechStack } from "../../components/techStack";
-import { useAuth } from "../../hooks/useAuth";
 
 export const revalidate = 60;
 
@@ -21,15 +19,12 @@ export const metadata: Metadata = {
 };
 
 const About: React.FC = async () => {
-  const session = await useAuth();
-
   const client = new Sanity();
 
   const { title, content, imageRow, techStack } = await client.getAbout();
   const images = imageRow?.images;
   return (
     <>
-      <pre>{JSON.stringify(session, null, 2)}</pre>
       <h1 className="mb-3 font-Inter text-3xl font-medium tracking-tight text-[#1a202c]">
         {title}
       </h1>

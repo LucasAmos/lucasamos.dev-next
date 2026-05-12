@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { Sanity } from "../../../../sanity/client";
 import BooksView from "../../../../components/books";
 import BookYearLinks from "../../../../components/books/yearLinks";
+import { useAuth } from "../../../../hooks/useAuth";
 
 export const revalidate = 60;
 
@@ -24,6 +25,8 @@ type Params = {
 };
 
 export default async function Books(props: Params): Promise<React.JSX.Element> {
+  const session = await useAuth();
+
   const { year } = await props.params;
 
   const client = new Sanity();
