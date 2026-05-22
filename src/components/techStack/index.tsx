@@ -1,11 +1,6 @@
 import type { ReactNode } from "react";
 import { Skills } from "../skills";
-
-type ITechStack = {
-  icon: string | null;
-  skills: Array<string>;
-  title: string;
-};
+import { ITechStack } from "./types";
 
 export function TechStack({ stack }: { stack: ITechStack[] }): ReactNode {
   return (

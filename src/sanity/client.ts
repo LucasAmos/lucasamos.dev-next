@@ -10,8 +10,6 @@ import { ALIASES_QUERY } from "./queries/aliases";
 import { BOOKS_BY_AUTHOR_QUERY, CV_QUERY } from "./queries";
 import { ABOUT_QUERY } from "./queries/about";
 
-import { ABOUT_QUERY_RESULT } from "../../sanity.types";
-
 export const client: SanityClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
@@ -134,12 +132,7 @@ export class Sanity {
 
   async getAbout() {
     const { isEnabled } = await draftMode();
-    const about: ABOUT_QUERY_RESULT = await client.fetch(
-      ABOUT_QUERY,
-      undefined,
-      Sanity.getQueryConfig(isEnabled)
-    );
-    return about[0];
+    return client.fetch(ABOUT_QUERY, undefined, Sanity.getQueryConfig(isEnabled));
   }
 
   async getCV() {

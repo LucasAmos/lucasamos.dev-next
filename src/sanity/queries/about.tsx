@@ -9,7 +9,7 @@ export const ABOUT_QUERY = defineQuery(`
   techStackSection[] -> {
     title,
     skills,
-    icon
+    "icon": coalesce(icon, "")
   }
 },
   imageRow {
