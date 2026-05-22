@@ -350,7 +350,7 @@ export type AllSanitySchemaTypes =
 
 // Source: src/sanity/queries/about.tsx
 // Variable: ABOUT_QUERY
-// Query: *[_type == "about" && slug.current=="about"]{  title,   content,  techStack -> {  title,  techStackSection[] -> {    title,    skills,    icon  }},  imageRow {  images[]{    ...,    asset-> {      url,      metadata {      lqip      }    }  } }}
+// Query: *[_type == "about" && slug.current=="about"]{  title,   content,  techStack -> {  title,  techStackSection[] -> {    title,    skills,    "icon": coalesce(icon, "")  }},  imageRow {  images[]{    ...,    asset-> {      url,      metadata {      lqip      }    }  } }}
 export type ABOUT_QUERY_RESULT = Array<{
   title: string;
   content: Array<{
@@ -376,7 +376,7 @@ export type ABOUT_QUERY_RESULT = Array<{
     techStackSection: Array<{
       title: string;
       skills: Array<string>;
-      icon: string | null;
+      icon: string | "";
     }>;
   } | null;
   imageRow: {
@@ -661,7 +661,7 @@ export type OLDEST_BOOK_QUERY_RESULT = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    '\n*[_type == "about" && slug.current=="about"]{\n  title, \n  content,\n  techStack -> {\n  title,\n  techStackSection[] -> {\n    title,\n    skills,\n    icon\n  }\n},\n  imageRow {\n  images[]{\n    ...,\n    asset-> {\n      url,\n      metadata {\n      lqip\n      }\n    }\n  }\n }\n}\n': ABOUT_QUERY_RESULT;
+    '\n*[_type == "about" && slug.current=="about"]{\n  title, \n  content,\n  techStack -> {\n  title,\n  techStackSection[] -> {\n    title,\n    skills,\n    "icon": coalesce(icon, "")\n  }\n},\n  imageRow {\n  images[]{\n    ...,\n    asset-> {\n      url,\n      metadata {\n      lqip\n      }\n    }\n  }\n }\n}\n': ABOUT_QUERY_RESULT;
     '\n   *[_type == "alias"] {\n    source,\n    destination\n  }\n': ALIASES_QUERY_RESULT;
     '\n   *[_type == "book" && finishDate ==null || finishDate >= $yearStart && finishDate <= $yearEnd] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  }\n': BOOKS_QUERY_RESULT;
     "\n  { 'books' :*[_type == \"book\" && finishDate != null && author->slug.current== $slug] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  },\n  'author' :*[_type == \"author\" && slug.current == $slug]\n  }\n": BOOKS_BY_AUTHOR_QUERY_RESULT;
