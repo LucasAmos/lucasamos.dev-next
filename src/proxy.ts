@@ -16,9 +16,6 @@ export type MiddlewareRequest = Override<
 const client = new Sanity();
 
 export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
-  if (request.url.includes("_next/static/") || request.url.includes("favicon.ico")) {
-    return NextResponse.next();
-  }
   const aliases = await client.getAliases();
   const matchingAlias = aliases.find((alias) => alias.source == request.nextUrl.pathname);
 
@@ -42,3 +39,10 @@ export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
   }
   return NextResponse.next();
 }
+
+export const config = {
+  matcher: [
+    // Skip Next.js internals and all static files, unless found in search params
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)"
+  ]
+};
