@@ -405,6 +405,13 @@ export type ALIASES_QUERY_RESULT = Array<{
   destination: string;
 }>;
 
+// Source: src/sanity/queries/authors.ts
+// Variable: AUTHORS_QUERY
+// Query: *[_type == "author" ]{      "slug": slug.current    }
+export type AUTHORS_QUERY_RESULT = Array<{
+  slug: string;
+}>;
+
 // Source: src/sanity/queries/books.ts
 // Variable: BOOKS_QUERY
 // Query: *[_type == "book" && finishDate ==null || finishDate >= $yearStart && finishDate <= $yearEnd] | order(startDate desc) {    _id,    audiobook,    author -> {name, slug},    category -> {name, slug},    estimated,    finishDate,    startDate,    title,    url  }
@@ -663,6 +670,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     '\n*[_type == "about" && slug.current=="about"]{\n  title, \n  content,\n  techStack -> {\n  title,\n  techStackSection[] -> {\n    title,\n    skills,\n    "icon": coalesce(icon, "")\n  }\n},\n  imageRow {\n  images[]{\n    ...,\n    asset-> {\n      url,\n      metadata {\n      lqip\n      }\n    }\n  }\n }\n}\n': ABOUT_QUERY_RESULT;
     '\n   *[_type == "alias"] {\n    source,\n    destination\n  }\n': ALIASES_QUERY_RESULT;
+    '\n   *[_type == "author" ]{\n      "slug": slug.current\n    }\n': AUTHORS_QUERY_RESULT;
     '\n   *[_type == "book" && finishDate ==null || finishDate >= $yearStart && finishDate <= $yearEnd] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  }\n': BOOKS_QUERY_RESULT;
     "\n  { 'books' :*[_type == \"book\" && finishDate != null && author->slug.current== $slug] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  },\n  'author' :*[_type == \"author\" && slug.current == $slug]\n  }\n": BOOKS_BY_AUTHOR_QUERY_RESULT;
     "\n  { 'books' :*[_type == \"book\" && finishDate != null && category->slug.current == $category] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  },\n  'category' :*[_type == \"category\" && slug.current == $category]\n  }\n": BOOKS_BY_CATEGORY_QUERY_RESULT;
