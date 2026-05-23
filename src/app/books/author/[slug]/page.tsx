@@ -3,11 +3,15 @@ import { Sanity } from "../../../../sanity/client";
 import BooksView from "../../../../components/books";
 export const revalidate = 60;
 
-import { notFound } from "next/navigation";
-export default async function Books(props: any): Promise<React.JSX.Element> {
-  const { slug } = await props.params;
+const client = new Sanity();
 
-  const client = new Sanity();
+import { notFound } from "next/navigation";
+export default async function Books({
+  params
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<React.JSX.Element> {
+  const { slug } = await params;
 
   const { books, author: authorDetails } = await client.getBooksReadByAuthor(slug);
 
@@ -25,4 +29,8 @@ export default async function Books(props: any): Promise<React.JSX.Element> {
       <BooksView books={books} />
     </>
   );
+}
+
+export async function generateStaticParams() {
+  return client.getStaticAuthors();
 }
