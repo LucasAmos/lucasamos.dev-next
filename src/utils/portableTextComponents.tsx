@@ -1,11 +1,11 @@
 import Link from "next/link";
-import {
+import type {
+  PortableTextComponents,
   PortableTextMarkComponentProps,
-  PortableTextComponentProps,
-  PortableTextListItemComponent
+  PortableTextComponentProps
 } from "@portabletext/react";
 
-export const portableTextComponents = {
+export const portableTextComponents: PortableTextComponents = {
   block: {
     normal: (props: PortableTextComponentProps<any>) => (
       <p className="mb-2 text-lg">{props.children}</p>
@@ -24,22 +24,19 @@ export const portableTextComponents = {
     )
   },
   list: {
-    bullet: (props: PortableTextComponentProps<any>) => (
-      <ul className="mb-5 ml-5 list-disc">{props.children}</ul>
-    )
+    bullet: ({ children }) => <ul className="mb-5 ml-5 list-disc">{children}</ul>
   },
   listItem: {
-    bullet: (({ children }) => (
-      <li className="mb-1">{children}</li>
-    )) as PortableTextListItemComponent
+    bullet: ({ children }) => <li className="mb-1">{children}</li>
   },
-
   marks: {
     link: ({ children, value }: PortableTextMarkComponentProps) => {
-      const rel = !value?.href.startsWith("/") ? "noreferrer noopener" : undefined;
+      const href = value?.href ?? "";
+      const rel = href.startsWith("/") ? undefined : "noreferrer noopener";
+
       return (
-        <span className="font-semibold text-purple-700 underline transition-all  duration-1000 hover:text-purple-900 hover:underline">
-          <Link href={value?.href} rel={rel}>
+        <span className="font-semibold text-purple-700 underline transition-all duration-1000 hover:text-purple-900 hover:underline">
+          <Link href={href} rel={rel}>
             {children}
           </Link>
         </span>
