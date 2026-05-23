@@ -629,6 +629,13 @@ export type BOOKS_THIS_YEAR_MULTI_QUERY_RESULT = {
   finished: number;
 };
 
+// Source: src/sanity/queries/categories.ts
+// Variable: CATEGORIES_QUERY
+// Query: *[_type == "category" ]{      "category": slug.current    }
+export type CATEGORIES_QUERY_RESULT = Array<{
+  category: string;
+}>;
+
 // Source: src/sanity/queries/cv.tsx
 // Variable: CV_QUERY
 // Query: *[_type == "cv" && slug.current=="cv"]{      parentPage -> {      title    },    title,     content  }
@@ -678,6 +685,7 @@ declare module "@sanity/client" {
     '\n  *[_type == "book" && finishDate >= $yearStart && finishDate <= $yearEnd] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  }\n': BOOKS_BY_YEAR_QUERY_RESULT;
     '\n  *[_type == "book" && (finishDate == null || finishDate >= $yearStart && finishDate <= $yearEnd)] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name},\n    category -> {name},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  }\n': BOOKS_THIS_YEAR_QUERY_RESULT;
     "\n  { 'books': *[_type == \"book\" && (finishDate == null || finishDate >= $yearStart && finishDate <= $yearEnd)] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  },\n  'inprogress': count(*[_type == \"book\" && finishDate== null  ]),\n  'finished': count(*[_type == \"book\" && (finishDate >= $yearStart && finishDate <= $yearEnd)]) \n}\n": BOOKS_THIS_YEAR_MULTI_QUERY_RESULT;
+    '\n   *[_type == "category" ]{\n      "category": slug.current\n    }\n': CATEGORIES_QUERY_RESULT;
     '\n    *[_type == "cv" && slug.current=="cv"]{\n      parentPage -> {\n      title\n    },\n    title, \n    content\n  }\n': CV_QUERY_RESULT;
     '\n*[_type == "book"] | order(finishDate asc)[0] {\n    finishDate\n}\n': OLDEST_BOOK_QUERY_RESULT;
   }
