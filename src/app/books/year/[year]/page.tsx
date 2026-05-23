@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { Sanity } from "../../../../sanity/client";
 import BooksView from "../../../../components/books";
 import BookYearLinks from "../../../../components/books/yearLinks";
+import { generateYears } from "../../../../utils/years";
 
 export const revalidate = 60;
 
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 
 type Params = {
   params: Promise<{
-    year: string;
+    year: number;
   }>;
 };
 
@@ -41,4 +42,8 @@ export default async function Books(props: Params): Promise<React.JSX.Element> {
       <BookYearLinks year={2018} route="/books/year" />
     </>
   );
+}
+
+export async function generateStaticParams() {
+  return generateYears(2018).map((year) => ({ year: year.toString() }));
 }

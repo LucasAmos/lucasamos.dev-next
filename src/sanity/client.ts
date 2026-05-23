@@ -54,7 +54,7 @@ export class Sanity {
     return books;
   }
 
-  async getBooksReadByYear(year: string) {
+  async getBooksReadByYear(year: number) {
     const { isEnabled } = await draftMode();
     const books = await client.fetch(
       BOOKS_BY_YEAR_QUERY,
