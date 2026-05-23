@@ -10,6 +10,7 @@ import { ALIASES_QUERY } from "./queries/aliases";
 import { BOOKS_BY_AUTHOR_QUERY, CV_QUERY } from "./queries";
 import { ABOUT_QUERY } from "./queries/about";
 import { AUTHORS_QUERY } from "./queries/authors";
+import { CATEGORIES_QUERY } from "./queries/categories";
 
 export const client: SanityClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
@@ -144,5 +145,9 @@ export class Sanity {
 
   async getStaticAuthors() {
     return client.fetch(AUTHORS_QUERY, undefined, Sanity.getQueryConfig(false));
+  }
+
+  async getStaticCategories() {
+    return client.fetch(CATEGORIES_QUERY, undefined, Sanity.getQueryConfig(false));
   }
 }

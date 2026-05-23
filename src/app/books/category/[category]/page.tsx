@@ -2,12 +2,12 @@ import React from "react";
 import { Sanity } from "../../../../sanity/client";
 import BooksView from "../../../../components/books";
 export const revalidate = 60;
-
 import { notFound } from "next/navigation";
+
+const client = new Sanity();
+
 export default async function Books(props: any): Promise<React.JSX.Element> {
   const { category } = await props.params;
-
-  const client = new Sanity();
 
   const { books, category: categoryDetails } = await client.getBooksReadByCategory(category);
 
@@ -27,4 +27,8 @@ export default async function Books(props: any): Promise<React.JSX.Element> {
       <BooksView books={books} />
     </>
   );
+}
+
+export async function generateStaticParams() {
+  return client.getStaticCategories();
 }
