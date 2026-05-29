@@ -2,6 +2,7 @@ import { headers } from "next/headers";
 import { NextResponse, NextRequest } from "next/server";
 import { rateLimit } from "./lib/ratelimit";
 import { Sanity } from "./sanity/client";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 type Override<T1, T2> = Omit<T1, keyof T2> & T2;
 
@@ -15,7 +16,7 @@ export type MiddlewareRequest = Override<
 
 const client = new Sanity();
 
-export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
+async function intitalProxy(request: NextRequest): Promise<NextResponse> {
   const aliases = await client.getAliases();
   const matchingAlias = aliases.find((alias) => alias.source == request.nextUrl.pathname);
 
@@ -40,6 +41,15 @@ export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
   return NextResponse.next();
 }
 
+const isProtectedRoute = createRouteMatcher(["/about"]);
+
+export default clerkMiddleware(async (auth, req) => {
+  if (isProtectedRoute(req)) {
+    await auth.protect();
+  }
+
+  return intitalProxy(req);
+});
 export const config = {
   matcher: [
     // Skip Next.js internals and all static files, unless found in search params

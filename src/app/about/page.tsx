@@ -5,6 +5,7 @@ import { portableTextComponents } from "../../utils/portableTextComponents";
 import ImageComponent from "../../components/image/imageComponent";
 import { TechStack } from "../../components/techStack";
 import { mapTechStackSectionProps } from "../../mapProps/techStackSection";
+import { currentUser } from "@clerk/nextjs/server";
 
 export const revalidate = 60;
 
@@ -28,7 +29,8 @@ const About: React.FC = async () => {
   const images = imageRow?.images;
 
   const techStackSection = techStack?.techStackSection;
-
+  const user = await currentUser();
+  console.log("***", user);
   return (
     <>
       <h1 className="mb-3 font-Inter text-3xl font-medium tracking-tight text-[#1a202c]">
