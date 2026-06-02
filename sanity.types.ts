@@ -348,10 +348,10 @@ export type AllSanitySchemaTypes =
   | SanityImageAsset
   | Geopoint;
 
-// Source: src/sanity/queries/about.tsx
-// Variable: ABOUT_QUERY
+// Source: src/sanity/queries/aboutPage.tsx
+// Variable: ABOUT_PAGE_QUERY
 // Query: *[_type == "about" && slug.current=="about"]{  title,   content,  techStack -> {  title,  techStackSection[] -> {    title,    skills,    "icon": coalesce(icon, "")  }},  imageRow {  images[]{    ...,    asset-> {      url,      metadata {      lqip      }    }  } }}
-export type ABOUT_QUERY_RESULT = Array<{
+export type ABOUT_PAGE_QUERY_RESULT = Array<{
   title: string;
   content: Array<{
     children?: Array<{
@@ -636,10 +636,10 @@ export type CATEGORIES_QUERY_RESULT = Array<{
   category: string;
 }>;
 
-// Source: src/sanity/queries/cv.tsx
-// Variable: CV_QUERY
+// Source: src/sanity/queries/cvPage.tsx
+// Variable: CV_PAGE_QUERY
 // Query: *[_type == "cv" && slug.current=="cv"]{      parentPage -> {      title    },    title,     content  }
-export type CV_QUERY_RESULT = Array<{
+export type CV_PAGE_QUERY_RESULT = Array<{
   parentPage: {
     title: string;
   } | null;
@@ -671,11 +671,25 @@ export type OLDEST_BOOK_QUERY_RESULT = {
   finishDate: string | null;
 } | null;
 
+// Source: src/sanity/queries/sitemap.ts
+// Variable: SITEMAP_QUERY
+// Query: *[_type in ["cv", "about"] && defined(slug.current)] {    "href": select(    _type == "cv" => "/" + parentPage->slug.current + "/" + slug.current,      _type == "about" => slug.current,      slug.current    ),    _updatedAt  }
+export type SITEMAP_QUERY_RESULT = Array<
+  | {
+      href: string;
+      _updatedAt: string;
+    }
+  | {
+      href: string | null;
+      _updatedAt: string;
+    }
+>;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    '\n*[_type == "about" && slug.current=="about"]{\n  title, \n  content,\n  techStack -> {\n  title,\n  techStackSection[] -> {\n    title,\n    skills,\n    "icon": coalesce(icon, "")\n  }\n},\n  imageRow {\n  images[]{\n    ...,\n    asset-> {\n      url,\n      metadata {\n      lqip\n      }\n    }\n  }\n }\n}\n': ABOUT_QUERY_RESULT;
+    '\n*[_type == "about" && slug.current=="about"]{\n  title, \n  content,\n  techStack -> {\n  title,\n  techStackSection[] -> {\n    title,\n    skills,\n    "icon": coalesce(icon, "")\n  }\n},\n  imageRow {\n  images[]{\n    ...,\n    asset-> {\n      url,\n      metadata {\n      lqip\n      }\n    }\n  }\n }\n}\n': ABOUT_PAGE_QUERY_RESULT;
     '\n   *[_type == "alias"] {\n    source,\n    destination\n  }\n': ALIASES_QUERY_RESULT;
     '\n   *[_type == "author" ]{\n      "slug": slug.current\n    }\n': AUTHORS_QUERY_RESULT;
     '\n   *[_type == "book" && finishDate ==null || finishDate >= $yearStart && finishDate <= $yearEnd] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  }\n': BOOKS_QUERY_RESULT;
@@ -686,7 +700,8 @@ declare module "@sanity/client" {
     '\n  *[_type == "book" && (finishDate == null || finishDate >= $yearStart && finishDate <= $yearEnd)] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name},\n    category -> {name},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  }\n': BOOKS_THIS_YEAR_QUERY_RESULT;
     "\n  { 'books': *[_type == \"book\" && (finishDate == null || finishDate >= $yearStart && finishDate <= $yearEnd)] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  },\n  'inprogress': count(*[_type == \"book\" && finishDate== null  ]),\n  'finished': count(*[_type == \"book\" && (finishDate >= $yearStart && finishDate <= $yearEnd)]) \n}\n": BOOKS_THIS_YEAR_MULTI_QUERY_RESULT;
     '\n   *[_type == "category" ]{\n      "category": slug.current\n    }\n': CATEGORIES_QUERY_RESULT;
-    '\n    *[_type == "cv" && slug.current=="cv"]{\n      parentPage -> {\n      title\n    },\n    title, \n    content\n  }\n': CV_QUERY_RESULT;
+    '\n    *[_type == "cv" && slug.current=="cv"]{\n      parentPage -> {\n      title\n    },\n    title, \n    content\n  }\n': CV_PAGE_QUERY_RESULT;
     '\n*[_type == "book"] | order(finishDate asc)[0] {\n    finishDate\n}\n': OLDEST_BOOK_QUERY_RESULT;
+    '\n*[_type in ["cv", "about"] && defined(slug.current)] {\n    "href": select(\n    _type == "cv" => "/" + parentPage->slug.current + "/" + slug.current,\n      _type == "about" => slug.current,\n      slug.current\n    ),\n    _updatedAt\n  }\n': SITEMAP_QUERY_RESULT;
   }
 }
