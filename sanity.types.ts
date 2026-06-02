@@ -673,17 +673,25 @@ export type OLDEST_BOOK_QUERY_RESULT = {
 
 // Source: src/sanity/queries/sitemap.ts
 // Variable: SITEMAP_QUERY
-// Query: *[_type in ["cv", "about"] && defined(slug.current)] {    "href": select(    _type == "cv" => "/" + parentPage->slug.current + "/" + slug.current,      _type == "about" => slug.current,      slug.current    ),    _updatedAt  }
-export type SITEMAP_QUERY_RESULT = Array<
-  | {
-      href: string;
-      _updatedAt: string;
-    }
-  | {
-      href: string | null;
-      _updatedAt: string;
-    }
->;
+// Query: {  "pages": *[    _type in ["cv", "about"] &&    defined(slug.current)  ]{    "href": select(      _type == "cv" => "/" + parentPage->slug.current + "/" + slug.current,      _type == "about" => slug.current,      slug.current    ),    _updatedAt  },  "authors": *[    _type == "author"  ]{    "slug":  slug.current,  },    "categories": *[    _type == "category"  ]{    "slug":  slug.current  }}
+export type SITEMAP_QUERY_RESULT = {
+  pages: Array<
+    | {
+        href: string;
+        _updatedAt: string;
+      }
+    | {
+        href: string | null;
+        _updatedAt: string;
+      }
+  >;
+  authors: Array<{
+    slug: string;
+  }>;
+  categories: Array<{
+    slug: string;
+  }>;
+};
 
 // Query TypeMap
 import "@sanity/client";
@@ -702,6 +710,6 @@ declare module "@sanity/client" {
     '\n   *[_type == "category" ]{\n      "category": slug.current\n    }\n': CATEGORIES_QUERY_RESULT;
     '\n    *[_type == "cv" && slug.current=="cv"]{\n      parentPage -> {\n      title\n    },\n    title, \n    content\n  }\n': CV_PAGE_QUERY_RESULT;
     '\n*[_type == "book"] | order(finishDate asc)[0] {\n    finishDate\n}\n': OLDEST_BOOK_QUERY_RESULT;
-    '\n*[_type in ["cv", "about"] && defined(slug.current)] {\n    "href": select(\n    _type == "cv" => "/" + parentPage->slug.current + "/" + slug.current,\n      _type == "about" => slug.current,\n      slug.current\n    ),\n    _updatedAt\n  }\n': SITEMAP_QUERY_RESULT;
+    '\n{\n  "pages": *[\n    _type in ["cv", "about"] &&\n    defined(slug.current)\n  ]{\n    "href": select(\n      _type == "cv" => "/" + parentPage->slug.current + "/" + slug.current,\n      _type == "about" => slug.current,\n      slug.current\n    ),\n    _updatedAt\n  },\n  "authors": *[\n    _type == "author"\n  ]{\n    "slug":  slug.current,\n  },\n    "categories": *[\n    _type == "category"\n  ]{\n    "slug":  slug.current\n  }\n}\n': SITEMAP_QUERY_RESULT;
   }
 }
