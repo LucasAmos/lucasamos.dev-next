@@ -31,11 +31,11 @@ export default async function Home(): Promise<ReactNode> {
       <hr className="mt-4" />
       <div className="pt-10">
         {allPostsData.map(({ slug, date, title, subtitle, readingTime }) => (
-          <div className="mb-10" key={title}>
+          <article className="mb-10" key={title}>
             <Link href={`/posts/${slug}`}>
-              <h1 className="mb-1 text-2xl font-semibold text-purple-700 underline transition-all  duration-1000 hover:text-purple-900 hover:underline">
+              <h2 className="mb-1 text-2xl font-semibold text-purple-700 underline transition-all  duration-1000 hover:text-purple-900 hover:underline">
                 {title}
-              </h1>
+              </h2>
               <div className="mb-1 text-sm text-slate-700">
                 <div className="clear-both">
                   <div className="float-left">
@@ -51,7 +51,7 @@ export default async function Home(): Promise<ReactNode> {
               </div>
               <div className="wrap-break-word">{subtitle}</div>
             </Link>
-          </div>
+          </article>
         ))}
       </div>
     </>

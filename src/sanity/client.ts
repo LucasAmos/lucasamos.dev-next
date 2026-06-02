@@ -7,10 +7,11 @@ import { BOOKS_BY_YEAR_QUERY } from "./queries/booksByYear";
 import { BOOKS_BY_YEAR_AND_CATEGORY_QUERY } from "./queries/booksByCategoryAndYear";
 import { BOOKS_BY_CATEGORY_QUERY } from "./queries/booksByCategory";
 import { ALIASES_QUERY } from "./queries/aliases";
-import { BOOKS_BY_AUTHOR_QUERY, CV_QUERY } from "./queries";
-import { ABOUT_QUERY } from "./queries/about";
+import { BOOKS_BY_AUTHOR_QUERY, CV_PAGE_QUERY } from "./queries";
+import { ABOUT_PAGE_QUERY } from "./queries/aboutPage";
 import { AUTHORS_QUERY } from "./queries/authors";
 import { CATEGORIES_QUERY } from "./queries/categories";
+import { SITEMAP_QUERY } from "./queries/sitemap";
 
 export const client: SanityClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
@@ -134,13 +135,17 @@ export class Sanity {
 
   async getAbout() {
     const { isEnabled } = await draftMode();
-    return client.fetch(ABOUT_QUERY, undefined, Sanity.getQueryConfig(isEnabled));
+    return client.fetch(ABOUT_PAGE_QUERY, undefined, Sanity.getQueryConfig(isEnabled));
   }
 
   async getCV() {
     const { isEnabled } = await draftMode();
-    const results = await client.fetch(CV_QUERY, undefined, Sanity.getQueryConfig(isEnabled));
+    const results = await client.fetch(CV_PAGE_QUERY, undefined, Sanity.getQueryConfig(isEnabled));
     return results[0];
+  }
+
+  async getSitemap() {
+    return client.fetch(SITEMAP_QUERY, undefined, Sanity.getQueryConfig(false));
   }
 
   async getStaticAuthors() {

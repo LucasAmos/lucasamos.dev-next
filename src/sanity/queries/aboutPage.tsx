@@ -1,6 +1,6 @@
 import { defineQuery } from "next-sanity";
 
-export const ABOUT_QUERY = defineQuery(`
+export const ABOUT_PAGE_QUERY = defineQuery(`
 *[_type == "about" && slug.current=="about"]{
   title, 
   content,
