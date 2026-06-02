@@ -31,14 +31,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       };
     });
 
-    const sitemap = await client.getSitemap();
+    const { authors, categories, pages } = await client.getSitemap();
+    const sanityAuthors = authors.map(({ slug }) => {
+      return {
+        url: new URL(`books/author/${slug!}`, baseUrl).toString()
+      };
+    });
 
-    const sanityPaths = sitemap.map((path) => ({
+    const sanityCategories = categories.map(({ slug }) => {
+      return {
+        url: new URL(`books/category/${slug!}`, baseUrl).toString()
+      };
+    });
+    console.log(sanityCategories);
+    const sanityPages = pages.map((path) => ({
       url: new URL(path.href!, baseUrl).toString(),
       lastModified: new Date(path._updatedAt),
       priority: 1
     }));
-    const paths = [...sanityPaths, ...staticPaths, ...staticPosts];
+    const paths = [
+      ...sanityPages,
+      ...staticPaths,
+      ...sanityAuthors,
+      ...sanityCategories,
+      ...staticPosts
+    ];
 
     if (!paths) return [];
 
