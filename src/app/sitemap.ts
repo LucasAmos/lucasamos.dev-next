@@ -5,7 +5,7 @@ import { generateYears } from "../utils/years";
 
 const client = new Sanity();
 
-const baseUrl = process.env.VERCEL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000";
+const baseUrl = process.env.VERCEL ? "https://lucasamos.dev" : "http://localhost:3000";
 
 const bookyears = generateYears(2018).map((year) => {
   return {
