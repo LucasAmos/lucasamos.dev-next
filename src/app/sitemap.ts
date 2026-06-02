@@ -23,45 +23,39 @@ const staticPaths = [
   }
 ];
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  try {
-    const staticPosts = getSortedPostsData().map((post) => {
-      return {
-        url: new URL(`posts/${post.slug!}`, baseUrl).toString(),
-        lastModified: new Date(post.date)
-      };
-    });
+  const staticPosts = getSortedPostsData().map((post) => {
+    return {
+      url: new URL(`posts/${post.slug!}`, baseUrl).toString(),
+      lastModified: new Date(post.date)
+    };
+  });
 
-    const { authors, categories, pages } = await client.getSitemap();
-    const sanityAuthors = authors.map(({ slug }) => {
-      return {
-        url: new URL(`books/author/${slug!}`, baseUrl).toString()
-      };
-    });
+  const { authors, categories, pages } = await client.getSitemap();
+  const sanityAuthors = authors.map(({ slug }) => {
+    return {
+      url: new URL(`books/author/${slug!}`, baseUrl).toString()
+    };
+  });
 
-    const sanityCategories = categories.map(({ slug }) => {
-      return {
-        url: new URL(`books/category/${slug!}`, baseUrl).toString()
-      };
-    });
-    console.log(sanityCategories);
-    const sanityPages = pages.map((path) => ({
-      url: new URL(path.href!, baseUrl).toString(),
-      lastModified: new Date(path._updatedAt),
-      priority: 1
-    }));
-    const paths = [
-      ...sanityPages,
-      ...staticPaths,
-      ...sanityAuthors,
-      ...sanityCategories,
-      ...staticPosts
-    ];
+  const sanityCategories = categories.map(({ slug }) => {
+    return {
+      url: new URL(`books/category/${slug!}`, baseUrl).toString()
+    };
+  });
+  const sanityPages = pages.map((path) => ({
+    url: new URL(path.href!, baseUrl).toString(),
+    lastModified: new Date(path._updatedAt),
+    priority: 1
+  }));
+  const paths = [
+    ...sanityPages,
+    ...staticPaths,
+    ...sanityAuthors,
+    ...sanityCategories,
+    ...staticPosts
+  ];
 
-    if (!paths) return [];
+  if (!paths) return [];
 
-    return paths;
-  } catch (error) {
-    console.error("Failed to generate sitemap:", error);
-    return [];
-  }
+  return paths;
 }
