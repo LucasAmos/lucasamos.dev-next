@@ -12,8 +12,8 @@ const bookyears = generateYears(2018).map((year) => {
     url: new URL(`books/year/${year}`, baseUrl).toString()
   };
 });
-
 const staticPaths = [
+  { url: new URL(baseUrl).toString() },
   ...bookyears,
   {
     url: new URL("contact", baseUrl).toString()
