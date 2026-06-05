@@ -7,6 +7,7 @@ import { DisableDraftMode } from "../components/DisableDraftMode";
 import "../styles/global.css";
 import Navbar from "../components/Navbar";
 import { Inter } from "next/font/google";
+import { SanityLive } from "../sanity/lib/live";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -42,6 +43,7 @@ export default async function Layout({
   return (
     <html lang="en" className={inter.variable}>
       <body>
+        <SanityLive />
         {(await draftMode()).isEnabled && (
           <>
             <VisualEditing />
