@@ -2,11 +2,15 @@
 
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { useIsPresentationTool } from "next-sanity/hooks";
 import { disableDraftMode } from "../app/actions";
 
 export function DisableDraftMode() {
+  const isPresentationTool = useIsPresentationTool();
   const router = useRouter();
   const [pending, startTransition] = useTransition();
+
+  if (isPresentationTool) return null;
 
   if (typeof window === "undefined") {
     return null;
