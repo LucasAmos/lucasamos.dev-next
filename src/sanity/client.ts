@@ -12,6 +12,11 @@ import { ABOUT_PAGE_QUERY } from "./queries/aboutPage";
 import { AUTHORS_QUERY } from "./queries/authors";
 import { CATEGORIES_QUERY } from "./queries/categories";
 import { SITEMAP_QUERY } from "./queries/sitemap";
+import {
+  ABOUT_PAGE_QUERY_RESULT,
+  ALIASES_QUERY_RESULT,
+  SITEMAP_QUERY_RESULT
+} from "../../sanity.types";
 
 export const client: SanityClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
@@ -112,7 +117,7 @@ export class Sanity {
     return books;
   }
 
-  async getAliases() {
+  async getAliases(): Promise<ALIASES_QUERY_RESULT> {
     const { isEnabled } = await draftMode();
     const aliases = await client.fetch(ALIASES_QUERY, undefined, Sanity.getQueryConfig(isEnabled));
     Sentry.metrics.count("aliases.get", 1);
@@ -133,7 +138,7 @@ export class Sanity {
     return books;
   }
 
-  async getAbout() {
+  async getAbout(): Promise<ABOUT_PAGE_QUERY_RESULT> {
     const { isEnabled } = await draftMode();
     return client.fetch(ABOUT_PAGE_QUERY, undefined, Sanity.getQueryConfig(isEnabled));
   }
@@ -144,7 +149,7 @@ export class Sanity {
     return results[0];
   }
 
-  async getSitemap() {
+  async getSitemap(): Promise<SITEMAP_QUERY_RESULT> {
     return client.fetch(SITEMAP_QUERY, undefined, Sanity.getQueryConfig(false));
   }
 
