@@ -12,24 +12,27 @@ import { ABOUT_PAGE_QUERY } from "./queries/aboutPage";
 import { AUTHORS_QUERY } from "./queries/authors";
 import { CATEGORIES_QUERY } from "./queries/categories";
 import { SITEMAP_QUERY } from "./queries/sitemap";
-import {
-  ABOUT_PAGE_QUERY_RESULT,
-  ALIASES_QUERY_RESULT,
-  SITEMAP_QUERY_RESULT
-} from "../../sanity.types";
-
-export const client: SanityClient = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-  apiVersion: "2024-12-01",
-  useCdn: true,
-  token: process.env.SANITY_API_TOKEN,
-  stega: {
-    studioUrl: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL
-  }
-});
 
 export class Sanity {
+  client: SanityClient;
+
+  constructor() {
+    this.client = createClient({
+      projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+      dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+      apiVersion: "2024-12-01",
+      useCdn: true,
+      token: process.env.SANITY_API_TOKEN,
+      stega: {
+        studioUrl: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL
+      }
+    });
+  }
+
+  public getClient() {
+    return this.client;
+  }
+
   public static async getQueryConfig(): Promise<FilteredResponseQueryOptions> {
     const { isEnabled } = await draftMode();
 
@@ -50,7 +53,7 @@ export class Sanity {
   }
 
   async getBooksReadThisYear(year: number) {
-    const books = await client.fetch(
+    return this.client.fetch(
       BOOKS_THIS_YEAR_QUERY,
       {
         yearStart: `${year}-01-01`,
@@ -58,11 +61,10 @@ export class Sanity {
       },
       await Sanity.getQueryConfig()
     );
-    return books;
   }
 
   async getBooksReadByYear(year: number) {
-    const books = await client.fetch(
+    return this.client.fetch(
       BOOKS_BY_YEAR_QUERY,
       {
         yearStart: `${year}-01-01`,
@@ -70,12 +72,10 @@ export class Sanity {
       },
       await Sanity.getQueryConfig()
     );
-
-    return books;
   }
 
   async getDetailedBooksReadThisYear(year: number) {
-    return client.fetch(
+    return this.client.fetch(
       BOOKS_THIS_YEAR_MULTI_QUERY,
       {
         yearStart: `${year}-01-01`,
@@ -86,7 +86,7 @@ export class Sanity {
   }
 
   async getBooksReadByYearAndCategory(year: number, category: string) {
-    const books = await client.fetch(
+    return this.client.fetch(
       BOOKS_BY_YEAR_AND_CATEGORY_QUERY,
       {
         yearStart: `${year}-01-01`,
@@ -96,58 +96,55 @@ export class Sanity {
       },
       await Sanity.getQueryConfig()
     );
-
-    return books;
   }
 
   async getBooksReadByCategory(category: string) {
-    const books = await client.fetch(
+    return this.client.fetch(
       BOOKS_BY_CATEGORY_QUERY,
       {
         category
       },
       await Sanity.getQueryConfig()
     );
-
-    return books;
   }
 
-  async getAliases(): Promise<ALIASES_QUERY_RESULT> {
-    const aliases = await client.fetch(ALIASES_QUERY, undefined, await Sanity.getQueryConfig());
+  async getAliases() {
     Sentry.metrics.count("aliases.get", 1);
-    return aliases;
+    return this.client.fetch(ALIASES_QUERY, undefined, await Sanity.getQueryConfig());
   }
 
   async getBooksReadByAuthor(slug: string) {
-    const books = await client.fetch(
+    return this.client.fetch(
       BOOKS_BY_AUTHOR_QUERY,
       {
         slug
       },
       await Sanity.getQueryConfig()
     );
-
-    return books;
   }
 
-  async getAbout(): Promise<ABOUT_PAGE_QUERY_RESULT> {
-    return client.fetch(ABOUT_PAGE_QUERY, undefined, await Sanity.getQueryConfig());
+  async getAbout() {
+    return this.client.fetch(ABOUT_PAGE_QUERY, undefined, await Sanity.getQueryConfig());
   }
 
   async getCV() {
-    const results = await client.fetch(CV_PAGE_QUERY, undefined, await Sanity.getQueryConfig());
+    const results = await this.client.fetch(
+      CV_PAGE_QUERY,
+      undefined,
+      await Sanity.getQueryConfig()
+    );
     return results[0];
   }
 
-  async getSitemap(): Promise<SITEMAP_QUERY_RESULT> {
-    return client.fetch(SITEMAP_QUERY, undefined);
+  async getSitemap() {
+    return this.client.fetch(SITEMAP_QUERY, undefined);
   }
 
   async getStaticAuthors() {
-    return client.fetch(AUTHORS_QUERY, undefined);
+    return this.client.fetch(AUTHORS_QUERY, undefined);
   }
 
   async getStaticCategories() {
-    return client.fetch(CATEGORIES_QUERY, undefined);
+    return this.client.fetch(CATEGORIES_QUERY, undefined);
   }
 }
