@@ -30,8 +30,10 @@ export const client: SanityClient = createClient({
 });
 
 export class Sanity {
-  public static getQueryConfig(draftModeEnabled: boolean): FilteredResponseQueryOptions {
-    return draftModeEnabled
+  public static async getQueryConfig(): Promise<FilteredResponseQueryOptions> {
+    const { isEnabled } = await draftMode();
+
+    return isEnabled
       ? {
           perspective: "drafts",
           useCdn: false,
@@ -48,48 +50,42 @@ export class Sanity {
   }
 
   async getBooksReadThisYear(year: number) {
-    const { isEnabled } = await draftMode();
     const books = await client.fetch(
       BOOKS_THIS_YEAR_QUERY,
       {
         yearStart: `${year}-01-01`,
         yearEnd: `${year}-31-12`
       },
-      Sanity.getQueryConfig(isEnabled)
+      await Sanity.getQueryConfig()
     );
     return books;
   }
 
   async getBooksReadByYear(year: number) {
-    const { isEnabled } = await draftMode();
     const books = await client.fetch(
       BOOKS_BY_YEAR_QUERY,
       {
         yearStart: `${year}-01-01`,
         yearEnd: `${year}-31-12`
       },
-      Sanity.getQueryConfig(isEnabled)
+      await Sanity.getQueryConfig()
     );
 
     return books;
   }
 
   async getDetailedBooksReadThisYear(year: number) {
-    const { isEnabled } = await draftMode();
-
     return client.fetch(
       BOOKS_THIS_YEAR_MULTI_QUERY,
       {
         yearStart: `${year}-01-01`,
         yearEnd: `${year}-31-12`
       },
-      Sanity.getQueryConfig(isEnabled)
+      await Sanity.getQueryConfig()
     );
   }
 
   async getBooksReadByYearAndCategory(year: number, category: string) {
-    const { isEnabled } = await draftMode();
-
     const books = await client.fetch(
       BOOKS_BY_YEAR_AND_CATEGORY_QUERY,
       {
@@ -98,66 +94,60 @@ export class Sanity {
         category,
         slug: category
       },
-      Sanity.getQueryConfig(isEnabled)
+      await Sanity.getQueryConfig()
     );
 
     return books;
   }
 
   async getBooksReadByCategory(category: string) {
-    const { isEnabled } = await draftMode();
     const books = await client.fetch(
       BOOKS_BY_CATEGORY_QUERY,
       {
         category
       },
-      Sanity.getQueryConfig(isEnabled)
+      await Sanity.getQueryConfig()
     );
 
     return books;
   }
 
   async getAliases(): Promise<ALIASES_QUERY_RESULT> {
-    const { isEnabled } = await draftMode();
-    const aliases = await client.fetch(ALIASES_QUERY, undefined, Sanity.getQueryConfig(isEnabled));
+    const aliases = await client.fetch(ALIASES_QUERY, undefined, await Sanity.getQueryConfig());
     Sentry.metrics.count("aliases.get", 1);
     return aliases;
   }
 
   async getBooksReadByAuthor(slug: string) {
-    const { isEnabled } = await draftMode();
-
     const books = await client.fetch(
       BOOKS_BY_AUTHOR_QUERY,
       {
         slug
       },
-      Sanity.getQueryConfig(isEnabled)
+      await Sanity.getQueryConfig()
     );
 
     return books;
   }
 
   async getAbout(): Promise<ABOUT_PAGE_QUERY_RESULT> {
-    const { isEnabled } = await draftMode();
-    return client.fetch(ABOUT_PAGE_QUERY, undefined, Sanity.getQueryConfig(isEnabled));
+    return client.fetch(ABOUT_PAGE_QUERY, undefined, await Sanity.getQueryConfig());
   }
 
   async getCV() {
-    const { isEnabled } = await draftMode();
-    const results = await client.fetch(CV_PAGE_QUERY, undefined, Sanity.getQueryConfig(isEnabled));
+    const results = await client.fetch(CV_PAGE_QUERY, undefined, await Sanity.getQueryConfig());
     return results[0];
   }
 
   async getSitemap(): Promise<SITEMAP_QUERY_RESULT> {
-    return client.fetch(SITEMAP_QUERY, undefined, Sanity.getQueryConfig(false));
+    return client.fetch(SITEMAP_QUERY, undefined);
   }
 
   async getStaticAuthors() {
-    return client.fetch(AUTHORS_QUERY, undefined, Sanity.getQueryConfig(false));
+    return client.fetch(AUTHORS_QUERY, undefined);
   }
 
   async getStaticCategories() {
-    return client.fetch(CATEGORIES_QUERY, undefined, Sanity.getQueryConfig(false));
+    return client.fetch(CATEGORIES_QUERY, undefined);
   }
 }
