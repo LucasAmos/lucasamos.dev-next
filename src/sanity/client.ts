@@ -14,11 +14,17 @@ import { CATEGORIES_QUERY } from "./queries/categories";
 import { SITEMAP_QUERY } from "./queries/sitemap";
 import {
   ABOUT_PAGE_QUERY_RESULT,
+  ALIASES_QUERY_RESULT,
+  AUTHORS_QUERY_RESULT,
+  BOOKS_BY_AUTHOR_QUERY_RESULT,
   BOOKS_BY_CATEGORY_QUERY_RESULT,
   BOOKS_BY_YEAR_AND_CATEGORY_QUERY_RESULT,
   BOOKS_BY_YEAR_QUERY_RESULT,
   BOOKS_THIS_YEAR_MULTI_QUERY_RESULT,
-  BOOKS_THIS_YEAR_QUERY_RESULT
+  BOOKS_THIS_YEAR_QUERY_RESULT,
+  CATEGORIES_QUERY_RESULT,
+  CV_PAGE_QUERY_RESULT,
+  SITEMAP_QUERY_RESULT
 } from "../../sanity.types";
 
 export class Sanity {
@@ -102,34 +108,25 @@ export class Sanity {
 
   async getAliases() {
     Sentry.metrics.count("aliases.get", 1);
-    return this.client.fetch(ALIASES_QUERY, undefined, await Sanity.getQueryConfig());
+    return this.query<ALIASES_QUERY_RESULT>(ALIASES_QUERY);
   }
 
   async getBooksReadByAuthor(slug: string) {
-    return this.client.fetch(
-      BOOKS_BY_AUTHOR_QUERY,
-      {
-        slug
-      },
-      await Sanity.getQueryConfig()
-    );
+    return this.query<BOOKS_BY_AUTHOR_QUERY_RESULT>(BOOKS_BY_AUTHOR_QUERY, {
+      slug
+    });
   }
 
-  async getAbout(): Promise<ABOUT_PAGE_QUERY_RESULT> {
-    return this.query(ABOUT_PAGE_QUERY);
+  async getAbout() {
+    return this.query<ABOUT_PAGE_QUERY_RESULT>(ABOUT_PAGE_QUERY);
   }
 
   async getCV() {
-    const results = await this.client.fetch(
-      CV_PAGE_QUERY,
-      undefined,
-      await Sanity.getQueryConfig()
-    );
-    return results[0];
+    return (await this.query<CV_PAGE_QUERY_RESULT>(CV_PAGE_QUERY))[0];
   }
 
   async getSitemap() {
-    return this.client.fetch(SITEMAP_QUERY, undefined);
+    return this.client.fetch(SITEMAP_QUERY);
   }
 
   async getStaticAuthors() {
@@ -137,6 +134,6 @@ export class Sanity {
   }
 
   async getStaticCategories() {
-    return this.client.fetch(CATEGORIES_QUERY, undefined);
+    return this.client.fetch(CATEGORIES_QUERY);
   }
 }
