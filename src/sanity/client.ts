@@ -12,6 +12,14 @@ import { ABOUT_PAGE_QUERY } from "./queries/aboutPage";
 import { AUTHORS_QUERY } from "./queries/authors";
 import { CATEGORIES_QUERY } from "./queries/categories";
 import { SITEMAP_QUERY } from "./queries/sitemap";
+import {
+  ABOUT_PAGE_QUERY_RESULT,
+  BOOKS_BY_CATEGORY_QUERY_RESULT,
+  BOOKS_BY_YEAR_AND_CATEGORY_QUERY_RESULT,
+  BOOKS_BY_YEAR_QUERY_RESULT,
+  BOOKS_THIS_YEAR_MULTI_QUERY_RESULT,
+  BOOKS_THIS_YEAR_QUERY_RESULT
+} from "../../sanity.types";
 
 export class Sanity {
   client: SanityClient;
@@ -52,60 +60,44 @@ export class Sanity {
         };
   }
 
+  async query<T>(query: string, params?: object): Promise<T> {
+    return this.client.fetch(query, params, await Sanity.getQueryConfig());
+  }
+
   async getBooksReadThisYear(year: number) {
-    return this.client.fetch(
-      BOOKS_THIS_YEAR_QUERY,
-      {
-        yearStart: `${year}-01-01`,
-        yearEnd: `${year}-31-12`
-      },
-      await Sanity.getQueryConfig()
-    );
+    return this.query<BOOKS_THIS_YEAR_QUERY_RESULT>(BOOKS_THIS_YEAR_QUERY, {
+      yearStart: `${year}-01-01`,
+      yearEnd: `${year}-31-12`
+    });
   }
 
   async getBooksReadByYear(year: number) {
-    return this.client.fetch(
-      BOOKS_BY_YEAR_QUERY,
-      {
-        yearStart: `${year}-01-01`,
-        yearEnd: `${year}-31-12`
-      },
-      await Sanity.getQueryConfig()
-    );
+    return this.query<BOOKS_BY_YEAR_QUERY_RESULT>(BOOKS_BY_YEAR_QUERY, {
+      yearStart: `${year}-01-01`,
+      yearEnd: `${year}-31-12`
+    });
   }
 
   async getDetailedBooksReadThisYear(year: number) {
-    return this.client.fetch(
-      BOOKS_THIS_YEAR_MULTI_QUERY,
-      {
-        yearStart: `${year}-01-01`,
-        yearEnd: `${year}-31-12`
-      },
-      await Sanity.getQueryConfig()
-    );
+    return this.query<BOOKS_THIS_YEAR_MULTI_QUERY_RESULT>(BOOKS_THIS_YEAR_MULTI_QUERY, {
+      yearStart: `${year}-01-01`,
+      yearEnd: `${year}-31-12`
+    });
   }
 
   async getBooksReadByYearAndCategory(year: number, category: string) {
-    return this.client.fetch(
-      BOOKS_BY_YEAR_AND_CATEGORY_QUERY,
-      {
-        yearStart: `${year}-01-01`,
-        yearEnd: `${year}-31-12`,
-        category,
-        slug: category
-      },
-      await Sanity.getQueryConfig()
-    );
+    return this.query<BOOKS_BY_YEAR_AND_CATEGORY_QUERY_RESULT>(BOOKS_BY_YEAR_AND_CATEGORY_QUERY, {
+      yearStart: `${year}-01-01`,
+      yearEnd: `${year}-31-12`,
+      category,
+      slug: category
+    });
   }
 
   async getBooksReadByCategory(category: string) {
-    return this.client.fetch(
-      BOOKS_BY_CATEGORY_QUERY,
-      {
-        category
-      },
-      await Sanity.getQueryConfig()
-    );
+    return this.query<BOOKS_BY_CATEGORY_QUERY_RESULT>(BOOKS_BY_CATEGORY_QUERY, {
+      category
+    });
   }
 
   async getAliases() {
@@ -123,8 +115,8 @@ export class Sanity {
     );
   }
 
-  async getAbout() {
-    return this.client.fetch(ABOUT_PAGE_QUERY, undefined, await Sanity.getQueryConfig());
+  async getAbout(): Promise<ABOUT_PAGE_QUERY_RESULT> {
+    return this.query(ABOUT_PAGE_QUERY);
   }
 
   async getCV() {
