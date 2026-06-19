@@ -126,14 +126,14 @@ export class Sanity {
   }
 
   async getSitemap() {
-    return this.client.fetch(SITEMAP_QUERY);
+    return this.client.fetch<SITEMAP_QUERY_RESULT>(SITEMAP_QUERY);
   }
 
   async getStaticAuthors() {
-    return this.client.fetch(AUTHORS_QUERY, undefined);
+    return this.client.fetch<AUTHORS_QUERY_RESULT>(AUTHORS_QUERY, undefined);
   }
 
   async getStaticCategories() {
-    return this.client.fetch(CATEGORIES_QUERY);
+    return this.client.fetch<CATEGORIES_QUERY_RESULT>(CATEGORIES_QUERY);
   }
 }
