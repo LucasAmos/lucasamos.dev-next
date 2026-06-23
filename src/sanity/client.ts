@@ -2,19 +2,21 @@ import { createClient, FilteredResponseQueryOptions, SanityClient } from "next-s
 import * as Sentry from "@sentry/nextjs";
 import { draftMode } from "next/headers";
 
-import { BOOKS_THIS_YEAR_QUERY, BOOKS_THIS_YEAR_MULTI_QUERY } from "./queries/booksThisYear";
-import { BOOKS_BY_YEAR_QUERY } from "./queries/booksByYear";
-import { BOOKS_BY_YEAR_AND_CATEGORY_QUERY } from "./queries/booksByCategoryAndYear";
-import { BOOKS_BY_CATEGORY_QUERY } from "./queries/booksByCategory";
-import { ALIASES_QUERY } from "./queries/aliases";
-import { BOOKS_BY_AUTHOR_QUERY, CV_PAGE_QUERY } from "./queries";
 import { ABOUT_PAGE_QUERY } from "./queries/aboutPage";
+import { ALIASES_QUERY } from "./queries/aliases";
+import { AUTHORS_AND_BOOKS_QUERY } from "./queries/authorsAndBooks";
 import { AUTHORS_QUERY } from "./queries/authors";
+import { BOOKS_BY_AUTHOR_QUERY, CV_PAGE_QUERY } from "./queries";
+import { BOOKS_BY_CATEGORY_QUERY } from "./queries/booksByCategory";
+import { BOOKS_BY_YEAR_AND_CATEGORY_QUERY } from "./queries/booksByCategoryAndYear";
+import { BOOKS_BY_YEAR_QUERY } from "./queries/booksByYear";
+import { BOOKS_THIS_YEAR_QUERY, BOOKS_THIS_YEAR_MULTI_QUERY } from "./queries/booksThisYear";
 import { CATEGORIES_QUERY } from "./queries/categories";
 import { SITEMAP_QUERY } from "./queries/sitemap";
 import {
   ABOUT_PAGE_QUERY_RESULT,
   ALIASES_QUERY_RESULT,
+  AUTHORS_AND_BOOKS_QUERY_RESULT,
   AUTHORS_QUERY_RESULT,
   BOOKS_BY_AUTHOR_QUERY_RESULT,
   BOOKS_BY_CATEGORY_QUERY_RESULT,
@@ -130,10 +132,14 @@ export class Sanity {
   }
 
   async getStaticAuthors() {
-    return this.client.fetch<AUTHORS_QUERY_RESULT>(AUTHORS_QUERY, undefined);
+    return this.client.fetch<AUTHORS_QUERY_RESULT>(AUTHORS_QUERY);
   }
 
   async getStaticCategories() {
     return this.client.fetch<CATEGORIES_QUERY_RESULT>(CATEGORIES_QUERY);
+  }
+
+  async getAuthorsAndBooks() {
+    return this.query<AUTHORS_AND_BOOKS_QUERY_RESULT>(AUTHORS_AND_BOOKS_QUERY);
   }
 }
