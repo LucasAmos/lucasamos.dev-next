@@ -40,9 +40,19 @@
     url("../../public/fonts/Inter-roman.latin.var.woff2") format("woff");
 }
 
+.prose :where(code):not(:where(.not-prose, .not-prose *))::before,
+.prose :where(code):not(:where(.not-prose, .not-prose *))::after {
+  content: none;
+}
+
 .prose code[class*="language-"] {
   font-size: 0.8rem;
 }
+
+.prose code[class*="language-unknown"] {
+  color: #18981a;
+}
+
 .prose {
   max-width: 768px;
   color: #000;
