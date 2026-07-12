@@ -3,7 +3,7 @@ import { Sanity } from "../../../sanity/client";
 import { PortableText } from "@portabletext/react";
 import { portableTextComponents } from "../../../utils/portableTextComponents";
 
-export const revalidate = 60;
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Lucas Amos - CV",
