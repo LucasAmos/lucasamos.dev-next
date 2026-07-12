@@ -3,6 +3,8 @@ import { Sanity } from "../sanity/client";
 import { getSortedPostsData } from "../lib/posts";
 import { generateYears } from "../utils/years";
 
+export const revalidate = 3600;
+
 const client = new Sanity();
 
 const baseUrl = process.env.VERCEL ? "https://lucasamos.dev" : "http://localhost:3000";
