@@ -5,7 +5,7 @@ import BooksView from "../../../../components/books";
 import BookYearLinks from "../../../../components/books/yearLinks";
 import { generateYears } from "../../../../utils/years";
 
-export const revalidate = 60;
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Lucas Amos - What I'm reading",

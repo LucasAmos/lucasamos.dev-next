@@ -6,7 +6,7 @@ import ImageComponent from "../../components/image/imageComponent";
 import { TechStack } from "../../components/techStack";
 import { mapTechStackSectionProps } from "../../mapProps/techStackSection";
 
-export const revalidate = 60;
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Lucas Amos - About",

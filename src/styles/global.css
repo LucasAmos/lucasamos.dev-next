@@ -40,6 +40,10 @@
     url("../../public/fonts/Inter-roman.latin.var.woff2") format("woff");
 }
 
+.prose :where(ol > li)::marker {
+  color: #000;
+}
+
 .prose :where(code):not(:where(.not-prose, .not-prose *))::before,
 .prose :where(code):not(:where(.not-prose, .not-prose *))::after {
   content: none;

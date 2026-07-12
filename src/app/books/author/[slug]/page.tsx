@@ -2,7 +2,7 @@ import React from "react";
 import { Sanity } from "../../../../sanity/client";
 import BooksView from "../../../../components/books";
 
-export const revalidate = 60;
+export const revalidate = 300;
 
 const client = new Sanity();
 

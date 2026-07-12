@@ -3,7 +3,7 @@ import { Sanity } from "../../../sanity/client";
 import { notFound } from "next/navigation";
 import AuthorsView from "../../../components/authors";
 
-export const revalidate = 60;
+export const revalidate = 300;
 
 export default async function Books(): Promise<React.JSX.Element> {
   const authors = await new Sanity().getAuthorsAndBooks();
