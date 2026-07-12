@@ -61,10 +61,7 @@ export class Sanity {
       : {
           perspective: "published",
           useCdn: true,
-          stega: false,
-          next: {
-            revalidate: 60
-          }
+          stega: false
         };
   }
 
