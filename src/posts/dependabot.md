@@ -60,7 +60,12 @@ jobs:
 ## How this works
 
 1. `on: pull_request` ensures that the workflow only triggers when a Pull Request is opened
-2. `github.event.pull_request.user.login == 'dependabot[bot]'` ensures that the job only runs if the Pull Request was created by dependabot
+2. ```yml
+   github.event.pull_request.user.login == 'dependabot[bot]'
+   ```
+
+   ensures that the job only runs if the Pull Request was created by dependabot
+
 3. The `Dependabot metadata` step uses the `dependabot/fetch-metadata` action to fetch information about the dependabot run, which is used in step 4
 4. ```yml
    if: steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
