@@ -49,6 +49,6 @@ export default async function Page(props: Params): Promise<React.JSX.Element> {
   );
 }
 
-export async function generateStaticParams(): Promise<IPost[]> {
+export function generateStaticParams(): IPost[] {
   return getAllPostIds();
 }

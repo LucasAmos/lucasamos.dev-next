@@ -68,16 +68,14 @@ export function getSortedPostsData(): AllPostsData[] {
 }
 
 export interface IPost {
-  params: { slug: string };
+  slug: string;
 }
 
 export function getAllPostIds(): IPost[] {
   const fileNames = fs.readdirSync(postsDirectory);
   return fileNames.map((fileName) => {
     return {
-      params: {
-        slug: fileName.replace(/\.md$/, "")
-      }
+      slug: fileName.replace(/\.md$/, "")
     };
   });
 }
