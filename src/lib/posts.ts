@@ -2,10 +2,10 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
-import html from "remark-html";
+import remarkRehype from "remark-rehype";
+import rehypePrism from "rehype-prism-plus";
+import rehypeStringify from "rehype-stringify";
 import { calculateReadingTime } from "./utils";
-import { visit } from "unist-util-visit";
-import type { Element, Text } from "hast";
 
 const postsDirectory = path.join(process.cwd(), "src/posts");
 
@@ -89,24 +89,12 @@ export async function getPostData(slug: string): Promise<PostData> {
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
 
-  // Use remark to convert markdown into HTML string
   const processedContent = await remark()
-    .use(require("remark-prism"), {
-      transformInlineCode: true
-    })
-    .use(() => {
-      return (tree) => {
-        visit(tree, "element", (node: Element) => {
-          if (node.tagName === "code") {
-            visit(node, "text", (textNode: Text) => {
-              textNode.value = textNode.value.replace(/&quot;/g, '"').replace(/&#39;/g, "'");
-            });
-          }
-        });
-      };
-    })
-    .use(html, { sanitize: false })
+    .use(remarkRehype)
+    .use(rehypePrism)
+    .use(rehypeStringify)
     .process(matterResult.content);
+
   const contentHtml = processedContent.toString();
 
   // Combine the data with the id and contentHtml
