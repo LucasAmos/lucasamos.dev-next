@@ -40,6 +40,15 @@
     url("../../public/fonts/Inter-roman.latin.var.woff2") format("woff");
 }
 
+code:not([class]) {
+  font-family: monospace;
+  background: #f4f4f4;
+  padding: 2px 4px;
+  border-radius: 3px;
+  background-color: #0000000f;
+  color: #18981a;
+}
+
 .prose :where(ol > li)::marker {
   color: #000;
 }

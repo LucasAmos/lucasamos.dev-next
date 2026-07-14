@@ -4,8 +4,7 @@ const config = {
     remotePatterns: [
       { protocol: "https", hostname: "cdn.sanity.io", port: "", pathname: "/images/**" }
     ]
-  },
-  serverExternalPackages: ["remark-prism"]
+  }
 };
 
 export default withSentryConfig(config, {
