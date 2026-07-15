@@ -43,9 +43,9 @@ export default async function Layout({
   return (
     <html lang="en" className={inter.variable}>
       <body>
-        <SanityLive />
         {(await draftMode()).isEnabled && (
           <>
+            <SanityLive />
             <VisualEditing />
             <DisableDraftMode />
           </>
