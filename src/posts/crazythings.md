@@ -1,7 +1,7 @@
 ---
 title: "12 crazy things that I have seen in my careers"
 subtitle: ""
-date: "205-01-22"
+date: "2025-01-22"
 previewImage: TODO
 ---
 
