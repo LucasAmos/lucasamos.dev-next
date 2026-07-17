@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.1086.0",
-    "@aws-sdk/client-sesv2": "^3.1086.0",
+    "@aws-sdk/client-sesv2": "^3.1087.0",
     "@fortawesome/fontawesome-svg-core": "^7.3.0",
     "@fortawesome/free-brands-svg-icons": "^7.3.0",
     "@fortawesome/free-regular-svg-icons": "^7.3.0",
@@ -34,7 +34,7 @@
     "date-fns": "^4.4.0",
     "gray-matter": "^4.0.3",
     "next": "^16.2.10",
-    "next-sanity": "^13.1.1",
+    "next-sanity": "^13.1.2",
     "postcss": "^8.5.19",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
@@ -47,7 +47,7 @@
     "tailwindcss": "^4.3.2"
   },
   "devDependencies": {
-    "@aws-sdk/types": "^3.974.0",
+    "@aws-sdk/types": "^3.974.1",
     "@next/eslint-plugin-next": "^16.2.10",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
