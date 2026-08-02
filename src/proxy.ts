@@ -13,19 +13,18 @@ export type MiddlewareRequest = Override<
   }
 >;
 
-const REDIRECT_METHODS = ["GET", "PUT"];
+const REDIRECT_METHODS = ["GET", "HEAD"];
 const client = new Sanity();
 
 export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
-  if (!REDIRECT_METHODS.includes(request.method)) {
-    return NextResponse.next();
-  }
-  const aliases = await client.getAliases();
-  const matchingAlias = aliases.find((alias) => alias.source == request.nextUrl.pathname);
+  if (REDIRECT_METHODS.includes(request.method)) {
+    const aliases = await client.getAliases();
+    const matchingAlias = aliases.find((alias) => alias.source == request.nextUrl.pathname);
 
-  if (matchingAlias) {
-    const { destination } = matchingAlias;
-    return NextResponse.rewrite(new URL(destination, request.url));
+    if (matchingAlias) {
+      const { destination } = matchingAlias;
+      return NextResponse.rewrite(new URL(destination, request.url));
+    }
   }
 
   if (request.nextUrl.pathname === "/api/email") {
