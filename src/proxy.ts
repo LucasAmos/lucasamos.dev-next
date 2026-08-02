@@ -13,9 +13,13 @@ export type MiddlewareRequest = Override<
   }
 >;
 
+const REDIRECT_METHODS = ["GET", "PUT"];
 const client = new Sanity();
 
 export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
+  if (!REDIRECT_METHODS.includes(request.method)) {
+    return NextResponse.next();
+  }
   const aliases = await client.getAliases();
   const matchingAlias = aliases.find((alias) => alias.source == request.nextUrl.pathname);
 
