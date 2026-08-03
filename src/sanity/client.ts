@@ -197,7 +197,14 @@ export class Sanity {
   }
 
   async getRedirects() {
-    return getCachedRedirects();
-    // return this.query<REDIRECTS_QUERY_RESULT>(REDIRECTS_QUERY);
+    // return getCachedRedirects();
+    return this.client.fetch(REDIRECTS_QUERY, undefined, {
+      perspective: "published",
+      useCdn: true,
+      stega: false,
+      next: {
+        revalidate: 3600
+      }
+    });
   }
 }
