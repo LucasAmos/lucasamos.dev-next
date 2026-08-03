@@ -21,9 +21,6 @@ export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
     const aliases = await client.getAliases();
     const matchingAlias = aliases.find((alias) => alias.source == request.nextUrl.pathname);
 
-    const response = await fetch(new URL("/api/aliases", request.url));
-
-    console.log("****ALIASES: ", await response.json());
     if (matchingAlias) {
       const { destination } = matchingAlias;
       return NextResponse.rewrite(new URL(destination, request.url));

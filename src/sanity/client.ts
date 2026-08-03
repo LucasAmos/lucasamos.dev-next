@@ -30,6 +30,28 @@ import {
 } from "../../sanity.types";
 import { unstable_cache } from "next/cache";
 
+const sanityClient = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  apiVersion: "2024-12-01",
+  useCdn: true,
+  token: process.env.SANITY_API_TOKEN,
+  stega: {
+    studioUrl: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL
+  }
+});
+
+const getCachedAliases = unstable_cache(
+  async () => {
+    return sanityClient.fetch<ALIASES_QUERY_RESULT>(ALIASES_QUERY);
+  },
+  ["sanity-aliases"],
+  {
+    revalidate: 300,
+    tags: ["aliases"]
+  }
+);
+
 export class Sanity {
   client: SanityClient;
 
@@ -44,19 +66,6 @@ export class Sanity {
         studioUrl: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL
       }
     });
-  }
-
-  getCachedAliases() {
-    return unstable_cache(
-      async () => {
-        return this.client.fetch<ALIASES_QUERY_RESULT>(ALIASES_QUERY);
-      },
-      ["sanity-aliases"],
-      {
-        revalidate: 300,
-        tags: ["aliases"]
-      }
-    );
   }
 
   public getClient() {
@@ -121,7 +130,7 @@ export class Sanity {
 
   async getAliases() {
     Sentry.metrics.count("aliases.get", 1);
-    return this.getCachedAliases();
+    return getCachedAliases();
   }
 
   async getBooksReadByAuthor(slug: string) {
