@@ -43,6 +43,7 @@ const sanityClient = createClient({
 
 const getCachedAliases = unstable_cache(
   async () => {
+    console.log("cache function called");
     return sanityClient.fetch<ALIASES_QUERY_RESULT>(ALIASES_QUERY);
   },
   ["sanity-aliases"],
