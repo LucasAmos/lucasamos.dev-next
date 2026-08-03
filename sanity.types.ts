@@ -83,6 +83,17 @@ export type Author = {
   name?: string;
 };
 
+export type Redirect = {
+  _id: string;
+  _type: "redirect";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  source?: string;
+  destination: string;
+  type: 301 | 302;
+};
+
 export type Alias = {
   _id: string;
   _type: "alias";
@@ -328,6 +339,7 @@ export type AllSanitySchemaTypes =
   | Category
   | Slug
   | Author
+  | Redirect
   | Alias
   | AboutReference
   | Cv
@@ -682,6 +694,14 @@ export type OLDEST_BOOK_QUERY_RESULT = {
   finishDate: string | null;
 } | null;
 
+// Source: src/sanity/queries/redirects.ts
+// Variable: REDIRECTS_QUERY
+// Query: *[_type == "redirect"]{  source,  destination}
+export type REDIRECTS_QUERY_RESULT = Array<{
+  source: string | null;
+  destination: string;
+}>;
+
 // Source: src/sanity/queries/sitemap.ts
 // Variable: SITEMAP_QUERY
 // Query: {  "pages": *[    _type in ["cv", "about"] &&    defined(slug.current)  ]{    "href": select(      _type == "cv" => "/" + parentPage->slug.current + "/" + slug.current,      _type == "about" => slug.current,      slug.current    ),    _updatedAt  },  "authors": *[    _type == "author"  ]{    "slug":  slug.current,  },    "categories": *[    _type == "category"  ]{    "slug":  slug.current  }}
@@ -722,6 +742,7 @@ declare module "@sanity/client" {
     '\n   *[_type == "category" ]{\n      "category": slug.current\n    }\n': CATEGORIES_QUERY_RESULT;
     '\n    *[_type == "cv" && slug.current=="cv"]{\n      parentPage -> {\n      title\n    },\n    title, \n    content\n  }\n': CV_PAGE_QUERY_RESULT;
     '\n*[_type == "book"] | order(finishDate asc)[0] {\n    finishDate\n}\n': OLDEST_BOOK_QUERY_RESULT;
+    '\n  *[_type == "redirect"]{\n  source,\n  destination\n}\n': REDIRECTS_QUERY_RESULT;
     '\n{\n  "pages": *[\n    _type in ["cv", "about"] &&\n    defined(slug.current)\n  ]{\n    "href": select(\n      _type == "cv" => "/" + parentPage->slug.current + "/" + slug.current,\n      _type == "about" => slug.current,\n      slug.current\n    ),\n    _updatedAt\n  },\n  "authors": *[\n    _type == "author"\n  ]{\n    "slug":  slug.current,\n  },\n    "categories": *[\n    _type == "category"\n  ]{\n    "slug":  slug.current\n  }\n}\n': SITEMAP_QUERY_RESULT;
   }
 }

@@ -1,6 +1,7 @@
 import { createClient, FilteredResponseQueryOptions, SanityClient } from "next-sanity";
 import * as Sentry from "@sentry/nextjs";
 import { draftMode } from "next/headers";
+import { unstable_cache } from "next/cache";
 
 import { ABOUT_PAGE_QUERY } from "./queries/aboutPage";
 import { ALIASES_QUERY } from "./queries/aliases";
@@ -26,9 +27,10 @@ import {
   BOOKS_THIS_YEAR_QUERY_RESULT,
   CATEGORIES_QUERY_RESULT,
   CV_PAGE_QUERY_RESULT,
+  REDIRECTS_QUERY_RESULT,
   SITEMAP_QUERY_RESULT
 } from "../../sanity.types";
-import { unstable_cache } from "next/cache";
+import { REDIRECTS_QUERY } from "./queries/redirects";
 
 const sanityClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
@@ -43,7 +45,7 @@ const sanityClient = createClient({
 
 const getCachedAliases = unstable_cache(
   async () => {
-    console.log("cache function called");
+    Sentry.metrics.count("aliases.get", 1);
     return sanityClient.fetch<ALIASES_QUERY_RESULT>(ALIASES_QUERY);
   },
   ["sanity-aliases"],
@@ -52,6 +54,37 @@ const getCachedAliases = unstable_cache(
     tags: ["aliases"]
   }
 );
+
+let cachedRedirects: REDIRECTS_QUERY_RESULT | null = null;
+let cacheExpiresAt = 0;
+let inFlight: Promise<REDIRECTS_QUERY_RESULT> | null = null;
+
+const getCachedRedirects = async (): Promise<REDIRECTS_QUERY_RESULT> => {
+  const now = Date.now();
+
+  if (cachedRedirects && now < cacheExpiresAt) {
+    return cachedRedirects;
+  }
+
+  if (inFlight) {
+    return inFlight;
+  }
+
+  console.log("***redirect cache called");
+
+  inFlight = sanityClient
+    .fetch<REDIRECTS_QUERY_RESULT>(REDIRECTS_QUERY)
+    .then((result) => {
+      cachedRedirects = result;
+      cacheExpiresAt = Date.now() + 300_000; // 5 minutes
+      return result;
+    })
+    .finally(() => {
+      inFlight = null;
+    });
+
+  return inFlight;
+};
 
 export class Sanity {
   client: SanityClient;
@@ -130,7 +163,6 @@ export class Sanity {
   }
 
   async getAliases() {
-    Sentry.metrics.count("aliases.get", 1);
     return getCachedAliases();
   }
 
@@ -162,5 +194,10 @@ export class Sanity {
 
   async getAuthorsAndBooks() {
     return this.query<AUTHORS_AND_BOOKS_QUERY_RESULT>(AUTHORS_AND_BOOKS_QUERY);
+  }
+
+  async getRedirects() {
+    return getCachedRedirects();
+    // return this.query<REDIRECTS_QUERY_RESULT>(REDIRECTS_QUERY);
   }
 }

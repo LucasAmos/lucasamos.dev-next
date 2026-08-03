@@ -13,11 +13,20 @@ export type MiddlewareRequest = Override<
   }
 >;
 
-const REDIRECT_METHODS = ["GET", "HEAD"];
+const METHODS = ["GET", "HEAD"];
 const client = new Sanity();
 
 export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
-  if (REDIRECT_METHODS.includes(request.method)) {
+  if (METHODS.includes(request.method)) {
+    const redirects = await client.getRedirects();
+    const matchingRedirect = redirects.find(
+      (redirect) => redirect.source == request.nextUrl.pathname
+    );
+    if (matchingRedirect) {
+      const { destination } = matchingRedirect;
+      return NextResponse.redirect(new URL(destination, request.url));
+    }
+
     const aliases = await client.getAliases();
     const matchingAlias = aliases.find((alias) => alias.source == request.nextUrl.pathname);
 
