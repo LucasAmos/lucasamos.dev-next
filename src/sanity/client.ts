@@ -76,7 +76,7 @@ const getCachedRedirects = async (): Promise<REDIRECTS_QUERY_RESULT> => {
     .fetch<REDIRECTS_QUERY_RESULT>(REDIRECTS_QUERY)
     .then((result) => {
       cachedRedirects = result;
-      cacheExpiresAt = Date.now() + 300_000; // 5 minutes
+      cacheExpiresAt = Date.now() + 100_000; // 5 minutes
       return result;
     })
     .finally(() => {
