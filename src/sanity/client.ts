@@ -28,6 +28,7 @@ import {
   CV_PAGE_QUERY_RESULT,
   SITEMAP_QUERY_RESULT
 } from "../../sanity.types";
+import { unstable_cache } from "next/cache";
 
 export class Sanity {
   client: SanityClient;
@@ -43,6 +44,19 @@ export class Sanity {
         studioUrl: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL
       }
     });
+  }
+
+  getCachedAliases() {
+    return unstable_cache(
+      async () => {
+        return this.client.fetch<ALIASES_QUERY_RESULT>(ALIASES_QUERY);
+      },
+      ["sanity-aliases"],
+      {
+        revalidate: 300,
+        tags: ["aliases"]
+      }
+    );
   }
 
   public getClient() {
@@ -107,7 +121,7 @@ export class Sanity {
 
   async getAliases() {
     Sentry.metrics.count("aliases.get", 1);
-    return this.query<ALIASES_QUERY_RESULT>(ALIASES_QUERY);
+    return this.getCachedAliases();
   }
 
   async getBooksReadByAuthor(slug: string) {

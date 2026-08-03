@@ -21,6 +21,9 @@ export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
     const aliases = await client.getAliases();
     const matchingAlias = aliases.find((alias) => alias.source == request.nextUrl.pathname);
 
+    const response = await fetch(new URL("/api/aliases", request.url));
+
+    console.log("****ALIASES: ", await response.json());
     if (matchingAlias) {
       const { destination } = matchingAlias;
       return NextResponse.rewrite(new URL(destination, request.url));
@@ -46,6 +49,6 @@ export async function proxy(request: MiddlewareRequest): Promise<NextResponse> {
 export const config = {
   matcher: [
     // Skip Next.js internals and all static files, unless found in search params
-    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)"
+    "/((?!api|_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)"
   ]
 };
