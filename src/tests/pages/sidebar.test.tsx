@@ -1,11 +1,14 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { render } from "@testing-library/react";
 import Sidebar from "../../components/sidebar";
-import { vi } from "vitest";
-import { expect } from "vitest";
+import { vi, expect, describe, it } from "vitest";
 
 vi.mock("next/image", () => ({
   __esModule: true,
-  default: (props: any) => {
+  default: ({ priority: _priority, ...props }: any) => {
     // Render a simple img element for testing
     // eslint-disable-next-line @next/next/no-img-element
     return <img {...props} alt="test" />;
