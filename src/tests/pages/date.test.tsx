@@ -1,15 +1,22 @@
-import { render } from "@testing-library/react";
-import Date from "../../components/date";
-import "@testing-library/jest-dom";
-import { expect } from "vitest";
+/**
+ * @jest-environment jsdom
+ */
 
-it("renders correctly", () => {
-  const { container } = render(<Date dateString="2020-09-19" />);
-  expect(container).toMatchSnapshot();
+import { cleanup, render } from "@testing-library/react";
+import Date from "../../components/date";
+import { afterEach, describe, expect, test } from "vitest";
+
+afterEach(() => {
+  cleanup();
 });
 
 describe("Date", () => {
-  it("renders correct date", () => {
+  test("renders correctly", () => {
+    const { container } = render(<Date dateString="2020-09-19" />);
+    expect(container).toMatchSnapshot();
+  });
+
+  test("Displays correct date", () => {
     const { getByTestId } = render(<Date dateString="2020-09-19" />);
 
     const date: HTMLElement = getByTestId("date");
