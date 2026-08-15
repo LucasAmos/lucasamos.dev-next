@@ -42,7 +42,7 @@ export function filterDates(dates: Date[], startDate: Date): Date[] {
 export async function putRequests(
   ip: string,
   dates: Date[],
-  client: DynamoDBClient
+  client: Pick<DynamoDBClient, "send">
 ): Promise<PutItemCommandOutput> {
   const putItemParams: PutItemCommandInput = {
     TableName: "rate-limits",
@@ -51,7 +51,10 @@ export async function putRequests(
   return client.send(new PutItemCommand(putItemParams));
 }
 
-export async function getPastRequests(ip: string, client: DynamoDBClient): Promise<Date[] | null> {
+export async function getPastRequests(
+  ip: string,
+  client: Pick<DynamoDBClient, "send">
+): Promise<Date[] | null> {
   const getItemParams: GetItemCommandInput = {
     TableName: "rate-limits",
     Key: {

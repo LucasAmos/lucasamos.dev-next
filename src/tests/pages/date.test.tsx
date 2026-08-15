@@ -1,10 +1,7 @@
-/**
- * @jest-environment jsdom
- */
-
 import { render } from "@testing-library/react";
 import Date from "../../components/date";
 import "@testing-library/jest-dom";
+import { expect } from "vitest";
 
 it("renders correctly", () => {
   const { container } = render(<Date dateString="2020-09-19" />);
