@@ -1,9 +1,9 @@
 import { render } from "@testing-library/react";
 import Sidebar from "../../components/sidebar";
-import "@testing-library/jest-dom/vitest";
-import { vitest } from "vitest";
+import { vi } from "vitest";
+import { expect } from "vitest";
 
-vitest.mock("next/image", () => ({
+vi.mock("next/image", () => ({
   __esModule: true,
   default: (props: any) => {
     // Render a simple img element for testing
