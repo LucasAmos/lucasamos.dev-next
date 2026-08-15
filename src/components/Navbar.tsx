@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 const links = [
   ["Posts", "/"],
   ["About me", "/about"],
+  ["LucasLLM", "/lucasllm"],
   ["Contact", "/contact"]
 ];
 
