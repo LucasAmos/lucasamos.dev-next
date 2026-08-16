@@ -62,8 +62,8 @@ export default function LucasLLM(): ReactNode {
     <div className="flex flex-col xs:h-[calc(100vh-240px)]  sm:h-[calc(100vh-220px)] md:h-[calc(100vh-220px)] lg:h-[calc(100vh-130px)]  ">
       <div>
         <h1 className="font-Inter text-2xl font-medium tracking-tight text-[#1a202c]">LucasLLM</h1>
-        Ask me about my career, my university studies, academic publishing record or the books I
-        have read
+        Ask me about my career, university studies, academic publishing record or the books I have
+        read
         <div>
           <div className="flex flex-col mb-5">
             <textarea
