@@ -65,8 +65,9 @@ export default function LucasLLM(): ReactNode {
               border-solid
               border-2
               focus:outline-none
-              focus:border-t-darkgreen
-              border-t-darkgreen/70
+              focus:border-t-darkgreen/80
+              border-t-darkgreen/60
+              text-t-violet 
               rounded-xl
               p-1
               mt-5`}
@@ -81,7 +82,7 @@ export default function LucasLLM(): ReactNode {
             border-0
             hover:bg-t-darkgreen
             min-w-30 p-2 
-            disabled:bg-t-darkgreen/70
+            disabled:bg-t-darkgreen/40
             cursor-pointer 
             text-t-purple 
             transition-colors 
@@ -91,10 +92,10 @@ export default function LucasLLM(): ReactNode {
         >
           {!loading ? "SUBMIT" : <FontAwesomeIcon icon={faSpinner} className="animate-spin" />}
         </button>
-        <br />
-        ANSWER:
-        <br />
-        <div>{<Markdown remarkPlugins={[remarkGfm]}>{answer}</Markdown>}</div>
+
+        <div className="mt-4 max-h-100 border-t-purple/80 p-2 border-2 overflow-y-scroll rounded-xl">
+          {<Markdown remarkPlugins={[remarkGfm]}>{answer}</Markdown>}
+        </div>
       </div>
     </>
   );
