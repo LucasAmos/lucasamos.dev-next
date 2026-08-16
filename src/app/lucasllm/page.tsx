@@ -26,7 +26,7 @@ async function handleSubmit(
       {
         method: "POST",
         headers: {
-          Authorization: "0e2a3893-46c1-f07d-7b6f-cba7ffaf60b1",
+          Authorization: "98c538cb-a154-ad4f-5651-caf707633982",
           "Content-Type": "application/json"
         },
         body: JSON.stringify({ prompt })
@@ -34,7 +34,6 @@ async function handleSubmit(
     );
     const result = await response.json();
     console.log(result);
-    console.log(result.answer);
     if (result.answer == "") {
       alert("an error occurred");
     }
@@ -59,35 +58,43 @@ export default function LucasLLM(): ReactNode {
             placeholder="Ask me a question"
             onChange={(e) => handleInput(e, setQuestion)}
             value={question}
-            className="min-h-20 max-h-50  overflow-y-auto border-solid border-2 border-t-darkgreen rounded-xl p-1 mt-5"
+            className={`
+              min-h-20
+              max-h-50 
+              overflow-y-auto
+              border-solid
+              border-2
+              focus:outline-none
+              focus:border-t-darkgreen
+              border-t-darkgreen/70
+              rounded-xl
+              p-1
+              mt-5`}
           />
         </div>
         <button
           disabled={!question || loading}
           onClick={() => question && handleSubmit(question, setLoading, setAnswer)}
           type="submit"
-          className="hover:bg-t-darkgreen/80
-          disabled:bg-t-darkgreen/80
-          disabled:border-t-darkgreen/80 
-          bg-t-darkgreen 
-          cursor-pointer
-          min-w-30
-          pl-4 
-          pr-4 
-          rounded-full 
-          p-2
-          border-10
-          border-red-900
-          text-t-violet 
-          transition-colors 
-          duration-200"
+          className={`
+            bg-t-darkgreen/90
+            border-0
+            hover:bg-t-darkgreen
+            min-w-30 p-2 
+            disabled:bg-t-darkgreen/70
+            cursor-pointer 
+            text-t-purple 
+            transition-colors 
+            duration-200
+            rounded-xl
+            `}
         >
           {!loading ? "SUBMIT" : <FontAwesomeIcon icon={faSpinner} className="animate-spin" />}
         </button>
         <br />
         ANSWER:
         <br />
-        {<Markdown remarkPlugins={[remarkGfm]}>{answer}</Markdown>}
+        <div>{<Markdown remarkPlugins={[remarkGfm]}>{answer}</Markdown>}</div>
       </div>
     </>
   );
