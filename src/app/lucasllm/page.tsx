@@ -15,10 +15,10 @@ function handleInput(
 
 async function handleSubmit(
   prompt: string,
-  callback: Dispatch<SetStateAction<boolean>>,
-  answer: Dispatch<SetStateAction<string | undefined>>
+  loading: Dispatch<SetStateAction<boolean>>,
+  answer: Dispatch<SetStateAction<string | undefined>>,
+  error: Dispatch<SetStateAction<string | undefined>>
 ) {
-  callback(true);
   answer(undefined);
   try {
     const response = await fetch(
@@ -32,16 +32,23 @@ async function handleSubmit(
         body: JSON.stringify({ prompt })
       }
     );
+    loading(true);
+
+    if (response.status === 403) {
+      error("These AI models cost 💰💰💰 to talk to LucasLLM you must be authorised!");
+      return;
+    }
+
     const result = await response.json();
-    console.log(result);
+
     if (result.answer == "") {
       alert("an error occurred");
     }
     answer(result.answer);
   } catch (error) {
-    console.log(error);
+    console.log("ERROR", error);
   } finally {
-    callback(false);
+    loading(false);
   }
 }
 
@@ -49,6 +56,8 @@ export default function LucasLLM(): ReactNode {
   const [question, setQuestion] = useState<string | undefined>();
   const [loading, setLoading] = useState(false);
   const [answer, setAnswer] = useState<undefined | string>();
+  const [error, setError] = useState<undefined | string>();
+
   return (
     <div className="flex flex-col xs:h-[calc(100vh-240px)]  sm:h-[calc(100vh-220px)] md:h-[calc(100vh-220px)] lg:h-[calc(100vh-130px)]  ">
       <div>
@@ -78,7 +87,7 @@ export default function LucasLLM(): ReactNode {
           </div>
           <button
             disabled={!question || loading}
-            onClick={() => question && handleSubmit(question, setLoading, setAnswer)}
+            onClick={() => question && handleSubmit(question, setLoading, setAnswer, setError)}
             type="submit"
             className={`
             bg-t-darkgreen/90
@@ -109,6 +118,8 @@ export default function LucasLLM(): ReactNode {
           conversation memory, the tokens are already costing 💰💰💰
         </div>
       )}
+
+      {error && <div className="mt-5 text-red-700 font-bold text-xl"> {error} </div>}
     </div>
   );
 }
