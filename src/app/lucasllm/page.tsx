@@ -50,15 +50,18 @@ export default function LucasLLM(): ReactNode {
   const [loading, setLoading] = useState(false);
   const [answer, setAnswer] = useState<undefined | string>();
   return (
-    <>
-      <h1 className="font-Inter text-2xl font-medium tracking-tight text-[#1a202c]">LucasLLM</h1>
+    <div className="flex flex-col xs:h-[calc(100vh-240px)]  sm:h-[calc(100vh-220px)] md:h-[calc(100vh-220px)] lg:h-[calc(100vh-130px)]  ">
       <div>
-        <div className="flex flex-col mb-5">
-          <textarea
-            placeholder="Ask me a question"
-            onChange={(e) => handleInput(e, setQuestion)}
-            value={question}
-            className={`
+        <h1 className="font-Inter text-2xl font-medium tracking-tight text-[#1a202c]">LucasLLM</h1>
+        Ask me about my career, my university studies, academic publishing record or the books I
+        have read
+        <div>
+          <div className="flex flex-col mb-5">
+            <textarea
+              placeholder="Ask me a question"
+              onChange={(e) => handleInput(e, setQuestion)}
+              value={question}
+              className={`
               min-h-20
               max-h-50 
               overflow-y-auto
@@ -71,13 +74,13 @@ export default function LucasLLM(): ReactNode {
               rounded-xl
               p-1
               mt-5`}
-          />
-        </div>
-        <button
-          disabled={!question || loading}
-          onClick={() => question && handleSubmit(question, setLoading, setAnswer)}
-          type="submit"
-          className={`
+            />
+          </div>
+          <button
+            disabled={!question || loading}
+            onClick={() => question && handleSubmit(question, setLoading, setAnswer)}
+            type="submit"
+            className={`
             bg-t-darkgreen/90
             border-0
             hover:bg-t-darkgreen
@@ -89,14 +92,23 @@ export default function LucasLLM(): ReactNode {
             duration-200
             rounded-xl
             `}
-        >
-          {!loading ? "SUBMIT" : <FontAwesomeIcon icon={faSpinner} className="animate-spin" />}
-        </button>
-
-        <div className="mt-4 max-h-100 border-t-purple/80 p-2 border-2 overflow-y-scroll rounded-xl">
-          {<Markdown remarkPlugins={[remarkGfm]}>{answer}</Markdown>}
+          >
+            {!loading ? "SUBMIT" : <FontAwesomeIcon icon={faSpinner} className="animate-spin" />}
+          </button>
         </div>
       </div>
-    </>
+      {answer && (
+        <div className="mt-4 border-t-purple/80 overflow-y-scroll rounded-xl  border-2 p-2">
+          {<Markdown remarkPlugins={[remarkGfm]}>{answer}</Markdown>}
+        </div>
+      )}
+
+      {loading && (
+        <div className="mt-4 border-t-purple/80 overflow-y-scroll rounded-xl  border-2 p-2">
+          This might seem slow because the response is not being streamed. The bot does not retain
+          conversation memory, the tokens are already costing 💰💰💰
+        </div>
+      )}
+    </div>
   );
 }
