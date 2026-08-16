@@ -1,5 +1,6 @@
 "use client";
 import { Dispatch, ReactNode, SetStateAction, ChangeEvent, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
@@ -14,6 +15,7 @@ function handleInput(
 }
 
 async function handleSubmit(
+  token: string,
   prompt: string,
   loading: Dispatch<SetStateAction<boolean>>,
   answer: Dispatch<SetStateAction<string | undefined>>,
@@ -21,18 +23,19 @@ async function handleSubmit(
 ) {
   answer(undefined);
   try {
+    loading(true);
+
     const response = await fetch(
       `https://4e3gn82bia.execute-api.eu-west-2.amazonaws.com/production_stage/sme_assistant`,
       {
         method: "POST",
         headers: {
-          Authorization: "98c538cb-a154-ad4f-5651-caf707633982",
+          Authorization: token,
           "Content-Type": "application/json"
         },
         body: JSON.stringify({ prompt })
       }
     );
-    loading(true);
 
     if (response.status === 403) {
       error("These AI models cost 💰💰💰 to talk to LucasLLM you must be authorised!");
@@ -53,10 +56,13 @@ async function handleSubmit(
 }
 
 export default function LucasLLM(): ReactNode {
+  const searchParams = useSearchParams();
+
   const [question, setQuestion] = useState<string | undefined>();
   const [loading, setLoading] = useState(false);
   const [answer, setAnswer] = useState<undefined | string>();
   const [error, setError] = useState<undefined | string>();
+  const token = searchParams.get("token");
 
   return (
     <div className="flex flex-col xs:h-[calc(100vh-240px)]  sm:h-[calc(100vh-220px)] md:h-[calc(100vh-220px)] lg:h-[calc(100vh-130px)]  ">
@@ -87,7 +93,9 @@ export default function LucasLLM(): ReactNode {
           </div>
           <button
             disabled={!question || loading}
-            onClick={() => question && handleSubmit(question, setLoading, setAnswer, setError)}
+            onClick={() =>
+              question && handleSubmit(token, question, setLoading, setAnswer, setError)
+            }
             type="submit"
             className={`
             bg-t-darkgreen/90
