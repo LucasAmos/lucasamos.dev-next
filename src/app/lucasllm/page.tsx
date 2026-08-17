@@ -5,7 +5,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useSearchParams } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner, faLock, faUnlock } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner, faLock, faUnlock, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 function handleInput(
   e: ChangeEvent<HTMLTextAreaElement>,
@@ -80,11 +80,15 @@ export default function LucasLLM(): ReactNode {
 
   function Modal({
     modal,
-    token
+    token,
+    setToken
   }: {
-    token: Dispatch<SetStateAction<string | null>>;
+    token: string | null;
+    setToken: Dispatch<SetStateAction<string | null>>;
     modal: Dispatch<SetStateAction<boolean>>;
   }) {
+    const [state, setState] = useState(token);
+
     return (
       <div
         onClick={() => modal(false)}
@@ -95,11 +99,26 @@ export default function LucasLLM(): ReactNode {
       >
         <div
           onClick={(e) => e.stopPropagation()}
-          className="m-2 bg-white rounded-xl p-3 max-w-100 h-50  z-10"
+          className="m-2 bg-white rounded-xl p-5 max-w-100 h-50  z-10"
         >
-          Have you seen the price of tokens lately? To avoid Denial of Wallet attacks enter your API
-          key
-          <input className="border-2 rounded-lg p-1 mt-2 focus:outline-none" />
+          <b className="">
+            Have you seen the price of tokens lately? To avoid Denial of Wallet attacks enter your
+            API key
+          </b>
+          <input
+            onChange={(e) => setState(e.target.value)}
+            value={state}
+            className="w-11/12 mr-1 border-2 rounded-lg p-1 mt-2 focus:outline-none border-t-darkgreen focus:border-t-darkgreen/80"
+          />
+          <FontAwesomeIcon
+            size="lg"
+            icon={faCircleCheck}
+            className="text-t-violet hover:text-t-violet/80 cursor-pointer"
+            onClick={() => {
+              setToken(state);
+              modal(false);
+            }}
+          />
         </div>
       </div>
     );
@@ -107,20 +126,29 @@ export default function LucasLLM(): ReactNode {
 
   return (
     <>
-      {modalOpen && <Modal token={setToken} modal={setModalOpen} />}
+      {modalOpen && <Modal setToken={setToken} token={token} modal={setModalOpen} />}
       <div className="flex flex-col xs:h-[calc(100vh-240px)]  sm:h-[calc(100vh-220px)] md:h-[calc(100vh-220px)] lg:h-[calc(100vh-130px)]  ">
-        {token ? (
-          <FontAwesomeIcon icon={faUnlock} size="xl" onClick={() => setModalOpen(true)} />
-        ) : (
-          <FontAwesomeIcon icon={faLock} size="xl" onClick={() => setModalOpen(true)} />
-        )}
-
         <div>
           <h1 className="font-Inter text-2xl font-medium tracking-tight text-[#1a202c]">
-            LucasLLM
+            LucasLLM{" "}
+            {token ? (
+              <FontAwesomeIcon
+                className="cursor-pointer"
+                icon={faUnlock}
+                size="sm"
+                onClick={() => setModalOpen(true)}
+              />
+            ) : (
+              <FontAwesomeIcon
+                className="cursor-pointer"
+                icon={faLock}
+                size="xl"
+                onClick={() => setModalOpen(true)}
+              />
+            )}
           </h1>
-          Ask me about my career, university studies, academic publishing record or the books I have
-          read
+          Ask me about my career, AWS certifications, university studies, academic publishing record
+          or the books I have read
           <div>
             <div className="flex flex-col mb-5">
               <textarea
