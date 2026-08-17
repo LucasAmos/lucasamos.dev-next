@@ -1,6 +1,6 @@
 // oxlint-disable jsx-a11y/no-static-element-interactions jsx-a11y/click-events-have-key-events
 "use client";
-import { Dispatch, ReactNode, SetStateAction, ChangeEvent, useState } from "react";
+import { Dispatch, ReactNode, SetStateAction, ChangeEvent, useState, Suspense } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useSearchParams } from "next/navigation";
@@ -66,7 +66,15 @@ async function handleSubmit(
   }
 }
 
-export default function LucasLLM(): ReactNode {
+export default function Suspended(): ReactNode {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LucasLLM />
+    </Suspense>
+  );
+}
+
+function LucasLLM(): ReactNode {
   const searchParams = useSearchParams();
 
   const [question, setQuestion] = useState<string | undefined>();
