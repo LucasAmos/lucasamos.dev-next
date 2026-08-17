@@ -31,7 +31,7 @@ async function handleSubmit(
       {
         method: "POST",
         headers: {
-          Authorization: token,
+          Authorization: token || "",
           "Content-Type": "application/json"
         },
         body: JSON.stringify({ prompt })
@@ -107,8 +107,14 @@ export default function LucasLLM(): ReactNode {
           </b>
           <input
             onChange={(e) => setState(e.target.value)}
-            value={state}
+            value={state || ""}
             className="w-11/12 mr-1 border-2 rounded-lg p-1 mt-2 focus:outline-none border-t-darkgreen focus:border-t-darkgreen/80"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                setToken(state);
+                modal(false);
+              }
+            }}
           />
           <FontAwesomeIcon
             size="lg"
@@ -142,7 +148,7 @@ export default function LucasLLM(): ReactNode {
               <FontAwesomeIcon
                 className="cursor-pointer"
                 icon={faLock}
-                size="xl"
+                size="sm"
                 onClick={() => setModalOpen(true)}
               />
             )}
