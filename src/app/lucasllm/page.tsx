@@ -40,7 +40,6 @@ async function handleSubmit(
     const result = await response.json();
 
     if (response.status === 400 && result.error === "CENSORED") {
-      console.log("censired");
       answer(result.message);
       return;
     }
@@ -56,7 +55,8 @@ async function handleSubmit(
     }
 
     if (result.answer == "") {
-      alert("an error occurred");
+      error("That's an error!");
+      return;
     }
     answer(result.answer);
   } catch {
