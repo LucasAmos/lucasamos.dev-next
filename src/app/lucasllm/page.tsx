@@ -27,7 +27,7 @@ async function handleSubmit(
     error(undefined);
 
     const response = await fetch(
-      `https://4e3gn82bia.execute-api.eu-west-2.amazonaws.com/production_stage/sme_assistant`,
+      `${process.env.NEXT_PUBLIC_LUCAS_LLM_URL}/production_stage/sme_assistant`,
       {
         method: "POST",
         headers: {
@@ -38,8 +38,6 @@ async function handleSubmit(
       }
     );
     const result = await response.json();
-    console.log(result);
-    console.log(response);
 
     if (response.status === 400 && result.error === "CENSORED") {
       console.log("censired");
@@ -61,8 +59,8 @@ async function handleSubmit(
       alert("an error occurred");
     }
     answer(result.answer);
-  } catch (error) {
-    console.log("ERROR", error);
+  } catch {
+    error("That's an error!");
   } finally {
     loading(false);
   }
@@ -108,7 +106,7 @@ export default function LucasLLM(): ReactNode {
           <input
             onChange={(e) => setState(e.target.value)}
             value={state || ""}
-            className="w-11/12 mr-1 border-2 rounded-lg p-1 mt-2 focus:outline-none border-t-darkgreen focus:border-t-darkgreen/80"
+            className="xs:w-10/12 md:w-11/12 mr-1 border-2 rounded-lg p-1 mt-2 focus:outline-none border-t-darkgreen focus:border-t-darkgreen/80"
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 setToken(state);
