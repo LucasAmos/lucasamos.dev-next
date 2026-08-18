@@ -44,7 +44,7 @@ async function handleSubmit(
       return;
     }
 
-    if (response.status === 500) {
+    if (response.status >= 500) {
       error("That's an error!");
       return;
     }
