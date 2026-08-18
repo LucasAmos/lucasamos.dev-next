@@ -101,14 +101,16 @@ function LucasLLM(): ReactNode {
           onClick={(e) => e.stopPropagation()}
           className="m-2 bg-white rounded-xl p-5 max-w-100 h-50  z-10"
         >
-          <b className="">
-            Have you seen the price of tokens lately? To avoid Denial of Wallet attacks enter your
-            API key
-          </b>
+          <div>
+            <b className="">
+              Have you seen the price of tokens lately? To avoid Denial of Wallet attacks enter your
+              API key
+            </b>
+          </div>
           <input
             onChange={(e) => setState(e.target.value)}
             value={state || ""}
-            className="xs:w-10/12 md:w-11/12 mr-1 border-2 rounded-lg p-1 mt-2 focus:outline-none border-t-darkgreen focus:border-t-darkgreen/80"
+            className="xs:w-10/12 sm:w-11/12 md:w-11/12 mr-1 border-2 rounded-lg p-1 mt-2 focus:outline-none border-t-darkgreen focus:border-t-darkgreen/80"
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 setToken(state);
@@ -133,7 +135,7 @@ function LucasLLM(): ReactNode {
   return (
     <>
       {modalOpen && <Modal setToken={setToken} token={token} modal={setModalOpen} />}
-      <div className="flex flex-col xs:h-[calc(100vh-240px)]  sm:h-[calc(100vh-220px)] md:h-[calc(100vh-220px)] lg:h-[calc(100vh-130px)]  ">
+      <div className="flex flex-col xs:h-[calc(100vh-240px)] sm:h-[calc(100vh-220px)] md:h-[calc(100vh-220px)] lg:h-[calc(100vh-130px)]">
         <div>
           <h1 className="font-Inter text-2xl font-medium tracking-tight text-[#1a202c]">
             LucasLLM{" "}
