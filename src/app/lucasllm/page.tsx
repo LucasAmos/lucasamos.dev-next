@@ -31,7 +31,7 @@ async function handleSubmit(
       {
         method: "POST",
         headers: {
-          Authorization: token || "",
+          "x-api-key": token || "",
           "Content-Type": "application/json"
         },
         body: JSON.stringify({ prompt })
