@@ -42,20 +42,14 @@ async function handleSubmit(
     if (response.status === 400 && result.error === "CENSORED") {
       answer(result.message);
       return;
-    }
-
-    if (response.status >= 500) {
+    } else if (response.status >= 500) {
       error("That's an error!");
       return;
-    }
-
-    if (response.status === 403) {
+    } else if (response.status === 403) {
       error("These AI models cost 💰💰💰 to talk to LucasLLM you must be authorised!");
       return;
-    }
-
-    if (result.answer == "") {
-      error("That's an error!");
+    } else if (result.answer == "") {
+      error("No answer was recevied!");
       return;
     }
     answer(result.answer);
