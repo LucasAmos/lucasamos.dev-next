@@ -31,6 +31,11 @@ async function handleSubmit(
   error: Dispatch<SetStateAction<string | undefined>>
 ) {
   answer(undefined);
+
+  if (!token) {
+    answer("You must be authorized to talk to LucasLLM!");
+    return;
+  }
   try {
     loading(true);
     error(undefined);
