@@ -16,6 +16,8 @@ import { useSearchParams } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faLock, faUnlock, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
+const authorizationMessage = "You must be authorized to talk to LucasLLM!";
+
 function handleInput(
   e: ChangeEvent<HTMLTextAreaElement>,
   callback: Dispatch<SetStateAction<string | undefined>>
@@ -33,7 +35,7 @@ async function handleSubmit(
   answer(undefined);
 
   if (!token) {
-    answer("You must be authorized to talk to LucasLLM!");
+    answer(authorizationMessage);
     return;
   }
   try {
@@ -158,7 +160,6 @@ function LucasLLM(): ReactNode {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const answerRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     if (answerRef.current) {
       answerRef.current.scrollTop = answerRef.current.scrollHeight;
@@ -196,7 +197,9 @@ function LucasLLM(): ReactNode {
           className="class3min-h-0 flex-1 overflow-y-auto mt-4 border-t-purple/80 rounded-xl border-2"
         >
           {answer && (
-            <div className="p-2">{<Markdown remarkPlugins={[remarkGfm]}>{answer}</Markdown>}</div>
+            <div className={`p-2 ${answer === authorizationMessage ? "text-red-600" : ""}`}>
+              <Markdown remarkPlugins={[remarkGfm]}>{answer}</Markdown>
+            </div>
           )}
         </div>
         <div className="class4 mt-auto shrink-0">
