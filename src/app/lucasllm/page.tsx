@@ -160,10 +160,11 @@ function LucasLLM(): ReactNode {
     }
   }, [answer]);
   return (
-    <>
+    // <div className="flex flex-col"></div>
+    <div className="xs:h-[calc(100vh-240px)] sm:h-[calc(100vh-220px)] md:h-[calc(100vh-220px)] lg:h-[calc(100vh-130px)]">
       {modalOpen && <Modal setToken={setToken} token={token} modal={setModalOpen} />}
-      <div className="flex flex-col xs:h-[calc(100vh-240px)] sm:h-[calc(100vh-220px)] md:h-[calc(100vh-220px)] lg:h-[calc(100vh-130px)]">
-        <div>
+      <div className="class1 flex h-full min-h-0 flex-col">
+        <div className="class2 shrink-0">
           <h1 className="font-Inter text-2xl font-medium tracking-tight text-[#1a202c]">
             LucasLLM{" "}
             {token ? (
@@ -184,15 +185,23 @@ function LucasLLM(): ReactNode {
           </h1>
           Ask me about my career, AWS certifications, university studies, academic publishing record
           or the books I have read
-          <div>
-            <div className="flex flex-col mb-5">
-              <textarea
-                placeholder="Ask me a question"
-                onChange={(e) => handleInput(e, setQuestion)}
-                value={question}
-                className={`
-              min-h-20
-              max-h-50 
+        </div>
+        <div
+          ref={answerRef}
+          className="class3min-h-0 flex-1 overflow-y-auto mt-4 border-t-purple/80 rounded-xl border-2"
+        >
+          {answer && (
+            <div className="p-2">{<Markdown remarkPlugins={[remarkGfm]}>{answer}</Markdown>}</div>
+          )}
+        </div>
+        <div className="class4 mt-auto shrink-0">
+          <div className="flex flex-col mb-5">
+            <textarea
+              placeholder="Ask me a question"
+              onChange={(e) => handleInput(e, setQuestion)}
+              value={question}
+              className={`
+         
               overflow-y-auto
               border-solid
               border-2
@@ -203,15 +212,15 @@ function LucasLLM(): ReactNode {
               rounded-xl
               p-1
               mt-5`}
-              />
-            </div>
-            <button
-              disabled={!question || loading}
-              onClick={() =>
-                question && handleSubmit(token, question, setLoading, setAnswer, setError)
-              }
-              type="submit"
-              className={`
+            />
+          </div>
+          <button
+            disabled={!question || loading}
+            onClick={() =>
+              question && handleSubmit(token, question, setLoading, setAnswer, setError)
+            }
+            type="submit"
+            className={`
             bg-t-darkgreen/90
             border-0
             hover:bg-t-darkgreen
@@ -223,22 +232,11 @@ function LucasLLM(): ReactNode {
             duration-200
             rounded-xl
             `}
-            >
-              {!loading ? "SUBMIT" : <FontAwesomeIcon icon={faSpinner} className="animate-spin" />}
-            </button>
-          </div>
-        </div>
-        {answer && (
-          <div
-            ref={answerRef}
-            className="mt-4 border-t-purple/80 overflow-y-scroll rounded-xl  border-2 p-2"
           >
-            {<Markdown remarkPlugins={[remarkGfm]}>{answer}</Markdown>}
-          </div>
-        )}
-
-        {error && <div className="mt-5 text-red-700 font-bold text-xl"> {error} </div>}
+            {!loading ? "SUBMIT" : <FontAwesomeIcon icon={faSpinner} className="animate-spin" />}
+          </button>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
