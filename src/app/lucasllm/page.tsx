@@ -1,6 +1,15 @@
 // oxlint-disable jsx-a11y/no-static-element-interactions jsx-a11y/click-events-have-key-events
 "use client";
-import { Dispatch, ReactNode, SetStateAction, ChangeEvent, useState, Suspense } from "react";
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  ChangeEvent,
+  useState,
+  useEffect,
+  useRef,
+  Suspense
+} from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useSearchParams } from "next/navigation";
@@ -25,6 +34,7 @@ async function handleSubmit(
   try {
     loading(true);
     error(undefined);
+    answer("LucasLLM is thinking...");
 
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_LUCAS_LLM_URL}/production_stage/sme_assistant`,
@@ -37,27 +47,91 @@ async function handleSubmit(
         body: JSON.stringify({ prompt })
       }
     );
-    const result = await response.json();
 
-    if (response.status === 400 && result.error === "CENSORED") {
-      answer(result.message);
-      return;
-    } else if (response.status >= 500) {
+    if (!response.ok) {
       error("That's an error!");
       return;
-    } else if (response.status === 403) {
-      error("These AI models cost 💰💰💰 to talk to LucasLLM you must be authorised!");
-      return;
-    } else if (result.answer == "") {
-      error("No answer was recevied!");
+    }
+
+    if (!response.body) {
+      error("The response did not contain a stream.");
       return;
     }
-    answer(result.answer);
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let accumulatedAnswer = "";
+
+    while (true) {
+      const { value, done } = await reader.read();
+
+      if (done) {
+        accumulatedAnswer += decoder.decode();
+        break;
+      }
+
+      const chunk = decoder.decode(value, { stream: true });
+      accumulatedAnswer += chunk;
+
+      answer(accumulatedAnswer);
+    }
   } catch {
     error("That's an error!");
   } finally {
     loading(false);
   }
+}
+function Modal({
+  modal,
+  token,
+  setToken
+}: {
+  token: string | null;
+  setToken: Dispatch<SetStateAction<string | null>>;
+  modal: Dispatch<SetStateAction<boolean>>;
+}) {
+  const [state, setState] = useState(token);
+
+  return (
+    <div
+      onClick={() => modal(false)}
+      className=" bg-t-purple/20 fixed inset-0 z-2 flex items-center justify-center"
+      style={{
+        display: "flex"
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="m-2 bg-white rounded-xl p-5 max-w-100 h-50  z-10"
+      >
+        <div>
+          <b className="">
+            Have you seen the price of tokens lately? To avoid Denial of Wallet attacks enter your
+            API key
+          </b>
+        </div>
+        <input
+          onChange={(e) => setState(e.target.value)}
+          value={state || ""}
+          className="xs:w-10/12 sm:w-11/12 md:w-11/12 mr-1 border-2 rounded-lg p-1 mt-2 focus:outline-none border-t-darkgreen focus:border-t-darkgreen/80"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              setToken(state);
+              modal(false);
+            }
+          }}
+        />
+        <FontAwesomeIcon
+          size="lg"
+          icon={faCircleCheck}
+          className="text-t-violet hover:text-t-violet/80 cursor-pointer"
+          onClick={() => {
+            setToken(state);
+            modal(false);
+          }}
+        />
+      </div>
+    </div>
+  );
 }
 
 export default function Suspended(): ReactNode {
@@ -78,60 +152,13 @@ function LucasLLM(): ReactNode {
   const [token, setToken] = useState<string | null>(searchParams.get("token"));
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-  function Modal({
-    modal,
-    token,
-    setToken
-  }: {
-    token: string | null;
-    setToken: Dispatch<SetStateAction<string | null>>;
-    modal: Dispatch<SetStateAction<boolean>>;
-  }) {
-    const [state, setState] = useState(token);
+  const answerRef = useRef<HTMLDivElement>(null);
 
-    return (
-      <div
-        onClick={() => modal(false)}
-        className=" bg-t-purple/20 fixed inset-0 z-2 flex items-center justify-center"
-        style={{
-          display: "flex"
-        }}
-      >
-        <div
-          onClick={(e) => e.stopPropagation()}
-          className="m-2 bg-white rounded-xl p-5 max-w-100 h-50  z-10"
-        >
-          <div>
-            <b className="">
-              Have you seen the price of tokens lately? To avoid Denial of Wallet attacks enter your
-              API key
-            </b>
-          </div>
-          <input
-            onChange={(e) => setState(e.target.value)}
-            value={state || ""}
-            className="xs:w-10/12 sm:w-11/12 md:w-11/12 mr-1 border-2 rounded-lg p-1 mt-2 focus:outline-none border-t-darkgreen focus:border-t-darkgreen/80"
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                setToken(state);
-                modal(false);
-              }
-            }}
-          />
-          <FontAwesomeIcon
-            size="lg"
-            icon={faCircleCheck}
-            className="text-t-violet hover:text-t-violet/80 cursor-pointer"
-            onClick={() => {
-              setToken(state);
-              modal(false);
-            }}
-          />
-        </div>
-      </div>
-    );
-  }
-
+  useEffect(() => {
+    if (answerRef.current) {
+      answerRef.current.scrollTop = answerRef.current.scrollHeight;
+    }
+  }, [answer]);
   return (
     <>
       {modalOpen && <Modal setToken={setToken} token={token} modal={setModalOpen} />}
@@ -202,16 +229,14 @@ function LucasLLM(): ReactNode {
           </div>
         </div>
         {answer && (
-          <div className="mt-4 border-t-purple/80 overflow-y-scroll rounded-xl  border-2 p-2">
+          <div
+            ref={answerRef}
+            className="mt-4 border-t-purple/80 overflow-y-scroll rounded-xl  border-2 p-2"
+          >
             {<Markdown remarkPlugins={[remarkGfm]}>{answer}</Markdown>}
           </div>
         )}
-        {loading && (
-          <div className="mt-4 border-t-purple/80 overflow-y-scroll rounded-xl  border-2 p-2">
-            This might seem slow because the response is not being streamed. The bot does not retain
-            conversation memory, the tokens are already costing 💰💰💰
-          </div>
-        )}
+
         {error && <div className="mt-5 text-red-700 font-bold text-xl"> {error} </div>}
       </div>
     </>
