@@ -15,8 +15,10 @@ import remarkGfm from "remark-gfm";
 import { useSearchParams } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faLock, faUnlock, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { initiateConversation } from "./utils";
+import { TokenModal } from "./components/TokenModal";
 
-const authorizationMessage = "You must be authorized to talk to LucasLLM!";
+const AUTH_MESSAGE = "You must be authorized to talk to LucasLLM!";
 
 function handleInput(
   e: ChangeEvent<HTMLTextAreaElement>,
@@ -33,38 +35,16 @@ async function handleSubmit(
   error: Dispatch<SetStateAction<string | undefined>>
 ) {
   answer(undefined);
+  error(undefined);
 
   if (!token) {
-    answer(authorizationMessage);
+    answer(AUTH_MESSAGE);
     return;
   }
   try {
     loading(true);
-    error(undefined);
     answer("LucasLLM is thinking...");
-
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_LUCAS_LLM_URL}/production_stage/sme_assistant`,
-      {
-        method: "POST",
-        headers: {
-          "x-api-key": token || "",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ prompt })
-      }
-    );
-
-    if (!response.ok) {
-      error("That's an error!");
-      return;
-    }
-
-    if (!response.body) {
-      error("The response did not contain a stream.");
-      return;
-    }
-    const reader = response.body.getReader();
+    const reader = await initiateConversation(prompt, token)
     const decoder = new TextDecoder();
     let accumulatedAnswer = "";
 
@@ -87,59 +67,8 @@ async function handleSubmit(
     loading(false);
   }
 }
-function Modal({
-  modal,
-  token,
-  setToken
-}: {
-  token: string | null;
-  setToken: Dispatch<SetStateAction<string | null>>;
-  modal: Dispatch<SetStateAction<boolean>>;
-}) {
-  const [state, setState] = useState(token);
 
-  return (
-    <div
-      onClick={() => modal(false)}
-      className=" bg-t-purple/20 fixed inset-0 z-2 flex items-center justify-center"
-      style={{
-        display: "flex"
-      }}
-    >
-      <div
-        onClick={(e) => e.stopPropagation()}
-        className="m-2 bg-white rounded-xl p-5 max-w-100 h-50  z-10"
-      >
-        <div>
-          <b className="">
-            Have you seen the price of tokens lately? To avoid Denial of Wallet attacks enter your
-            API key
-          </b>
-        </div>
-        <input
-          onChange={(e) => setState(e.target.value)}
-          value={state || ""}
-          className="xs:w-10/12 sm:w-11/12 md:w-11/12 mr-1 border-2 rounded-lg p-1 mt-2 focus:outline-none border-t-darkgreen focus:border-t-darkgreen/80"
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              setToken(state);
-              modal(false);
-            }
-          }}
-        />
-        <FontAwesomeIcon
-          size="lg"
-          icon={faCircleCheck}
-          className="text-t-violet hover:text-t-violet/80 cursor-pointer"
-          onClick={() => {
-            setToken(state);
-            modal(false);
-          }}
-        />
-      </div>
-    </div>
-  );
-}
+
 
 export default function Suspended(): ReactNode {
   return (
@@ -168,7 +97,7 @@ function LucasLLM(): ReactNode {
   return (
     // <div className="flex flex-col"></div>
     <div className="xs:h-[calc(100vh-240px)] sm:h-[calc(100vh-220px)] md:h-[calc(100vh-220px)] lg:h-[calc(100vh-130px)]">
-      {modalOpen && <Modal setToken={setToken} token={token} modal={setModalOpen} />}
+      {modalOpen && <TokenModal setToken={setToken} token={token} modal={setModalOpen} />}
       <div className="class1 flex h-full min-h-0 flex-col">
         <div className="class2 shrink-0">
           <h1 className="font-Inter text-2xl font-medium tracking-tight text-[#1a202c]">
@@ -197,7 +126,7 @@ function LucasLLM(): ReactNode {
           className="class3min-h-0 flex-1 overflow-y-auto mt-4 border-t-purple/80 rounded-xl border-2"
         >
           {answer && (
-            <div className={`p-2 ${answer === authorizationMessage ? "text-red-600" : ""}`}>
+            <div className={`p-2 ${answer === AUTH_MESSAGE ? "text-red-600" : ""}`}>
               <Markdown remarkPlugins={[remarkGfm]}>{answer}</Markdown>
             </div>
           )}

@@ -1,3 +1,9 @@
 {
-  "oxc.enable.oxlint": true
+  "oxc.enable.oxlint": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
 }
