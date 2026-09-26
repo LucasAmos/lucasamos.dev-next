@@ -32,7 +32,9 @@ async function handleSubmit(
   prompt: string,
   loading: Dispatch<SetStateAction<boolean>>,
   answer: Dispatch<SetStateAction<string | undefined>>,
-  error: Dispatch<SetStateAction<string | undefined>>
+  error: Dispatch<SetStateAction<string | undefined>>,
+  addMessage: (role: string, text: string) => void,
+
 ) {
   answer(undefined);
   error(undefined);
@@ -61,6 +63,7 @@ async function handleSubmit(
 
       answer(accumulatedAnswer);
     }
+    addMessage("assistant", accumulatedAnswer)
   } catch {
     error("That's an error!");
   } finally {
@@ -87,6 +90,15 @@ function LucasLLM(): ReactNode {
   const [error, setError] = useState<undefined | string>();
   const [token, setToken] = useState<string | null>(searchParams.get("token"));
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [messages, setMessages] = useState<object[]>([]);
+
+  function addMessage(role: string, text: string) {
+    setMessages((previousMessages) => [
+      ...previousMessages,
+      { role, content: [{ type: "text", text }] },
+    ]);
+  }
+
 
   const answerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -121,6 +133,7 @@ function LucasLLM(): ReactNode {
           Ask me about my career, AWS certifications, university studies, academic publishing record
           or the books I have read
         </div>
+        {JSON.stringify(messages)}
         <div
           ref={answerRef}
           className="class3min-h-0 flex-1 overflow-y-auto mt-4 border-t-purple/80 rounded-xl border-2"
@@ -151,11 +164,15 @@ function LucasLLM(): ReactNode {
               mt-5`}
             />
           </div>
+
           <button
             disabled={!question || loading}
-            onClick={() =>
-              question && handleSubmit(token, question, setLoading, setAnswer, setError)
-            }
+            onClick={() => {
+              if (question) {
+                handleSubmit(token, question, setLoading, setAnswer, setError, addMessage)
+                addMessage("user", question)
+              }
+            }}
             type="submit"
             className={`
             bg-t-darkgreen/90
