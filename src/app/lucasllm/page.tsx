@@ -190,7 +190,8 @@ function LucasLLM(): ReactNode {
           {loading && <FontAwesomeIcon
             icon={faEllipsis}
             size="xl"
-            className="animate-bounce self-end mt-auto pt-3" aria-label="Loading"
+            className="animate-bounce self-end mt-auto pt-3"
+            aria-label="Loading"
           />}
         </div>
         <div className="class4 mt-auto shrink-0">
