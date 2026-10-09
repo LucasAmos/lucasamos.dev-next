@@ -42,7 +42,11 @@ const About: React.FC = async () => {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 items-start">
           {images!.map((image) => (
             <div key={image._key} className="w-full">
-              <ImageComponent image={image} width={300} height={300} />
+              <ImageComponent
+                image={image}
+                width={300}
+                height={300}
+                sizes="(min-width: 1024px) calc((100vw/2)/4), (min-width: 640px) calc(100vw/4), 140px" />
             </div>
           ))}
         </div>

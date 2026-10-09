@@ -83,6 +83,17 @@ export type Author = {
   name?: string;
 };
 
+export type Redirect = {
+  _id: string;
+  _type: "redirect";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  source?: string;
+  destination: string;
+  type: 301 | 302;
+};
+
 export type Alias = {
   _id: string;
   _type: "alias";
@@ -328,6 +339,7 @@ export type AllSanitySchemaTypes =
   | Category
   | Slug
   | Author
+  | Redirect
   | Alias
   | AboutReference
   | Cv
@@ -350,7 +362,7 @@ export type AllSanitySchemaTypes =
 
 // Source: src/sanity/queries/aboutPage.tsx
 // Variable: ABOUT_PAGE_QUERY
-// Query: *[_type == "about" && slug.current=="about"]{  title,   content,  techStack -> {  title,  techStackSection[] -> {    title,    skills,    "icon": coalesce(icon, "")  }},  imageRow {  images[]{    ...,    asset-> {      url,      metadata {      lqip      }    }  } }}
+// Query: *[_type == "about" && slug.current=="about"]{  title,   content,  techStack -> {  title,  techStackSection[] -> {    title,    skills,    "icon": coalesce(icon, "")  }},  imageRow {  images[]{    ...,    asset-> {      _id,      url,      metadata {      lqip      }    }  } }}
 export type ABOUT_PAGE_QUERY_RESULT = Array<{
   title: string;
   content: Array<{
@@ -382,6 +394,7 @@ export type ABOUT_PAGE_QUERY_RESULT = Array<{
   imageRow: {
     images: Array<{
       asset: {
+        _id: string;
         url: string;
         metadata: {
           lqip: string | null;
@@ -705,10 +718,9 @@ export type SITEMAP_QUERY_RESULT = {
 };
 
 // Query TypeMap
-import "@sanity/client";
-declare module "@sanity/client" {
+declare global {
   interface SanityQueries {
-    '\n*[_type == "about" && slug.current=="about"]{\n  title, \n  content,\n  techStack -> {\n  title,\n  techStackSection[] -> {\n    title,\n    skills,\n    "icon": coalesce(icon, "")\n  }\n},\n  imageRow {\n  images[]{\n    ...,\n    asset-> {\n      url,\n      metadata {\n      lqip\n      }\n    }\n  }\n }\n}\n': ABOUT_PAGE_QUERY_RESULT;
+    '\n*[_type == "about" && slug.current=="about"]{\n  title, \n  content,\n  techStack -> {\n  title,\n  techStackSection[] -> {\n    title,\n    skills,\n    "icon": coalesce(icon, "")\n  }\n},\n  imageRow {\n  images[]{\n    ...,\n    asset-> {\n      _id,\n      url,\n      metadata {\n      lqip\n      }\n    }\n  }\n }\n}\n': ABOUT_PAGE_QUERY_RESULT;
     '\n   *[_type == "alias"] {\n    source,\n    destination\n  }\n': ALIASES_QUERY_RESULT;
     '\n   *[_type == "author" ]{\n      "slug": slug.current\n    }\n': AUTHORS_QUERY_RESULT;
     '\n  *[_type == "author"] | order(name asc) {\n  _id,\n  name,\n  "slug" : slug.current,\n  "booksRead": count(\n    *[\n      _type == "book" &&\n      author._ref == ^._id &&\n      defined(finishDate)\n    ],\n  ),\n  "booksInProgress": count(\n    *[\n      _type == "book" &&\n      author._ref == ^._id &&\n      !defined(finishDate)\n    ]\n  )\n}\n': AUTHORS_AND_BOOKS_QUERY_RESULT;
@@ -724,4 +736,8 @@ declare module "@sanity/client" {
     '\n*[_type == "book"] | order(finishDate asc)[0] {\n    finishDate\n}\n': OLDEST_BOOK_QUERY_RESULT;
     '\n{\n  "pages": *[\n    _type in ["cv", "about"] &&\n    defined(slug.current)\n  ]{\n    "href": select(\n      _type == "cv" => "/" + parentPage->slug.current + "/" + slug.current,\n      _type == "about" => slug.current,\n      slug.current\n    ),\n    _updatedAt\n  },\n  "authors": *[\n    _type == "author"\n  ]{\n    "slug":  slug.current,\n  },\n    "categories": *[\n    _type == "category"\n  ]{\n    "slug":  slug.current\n  }\n}\n': SITEMAP_QUERY_RESULT;
   }
+}
+// Lets @sanity/client releases that predate the global registry read it too
+declare module "@sanity/client" {
+  interface SanityQueries extends globalThis.SanityQueries {}
 }
