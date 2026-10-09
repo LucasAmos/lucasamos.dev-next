@@ -18,7 +18,7 @@ type ImageComponentProps = {
   sizes: string;
 };
 
-function ImageComponent({ image, width, height }: ImageComponentProps) {
+function ImageComponent({ image, width, height, sizes }: ImageComponentProps) {
   if (!image.asset?.metadata?.lqip) return null;
   return (
     <SanityImage
