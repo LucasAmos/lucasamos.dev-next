@@ -16,6 +16,7 @@ export const ABOUT_PAGE_QUERY = defineQuery(`
   images[]{
     ...,
     asset-> {
+      _id,
       url,
       metadata {
       lqip
