@@ -6,6 +6,7 @@ import remarkRehype from "remark-rehype";
 import rehypePrism from "rehype-prism-plus";
 import rehypeStringify from "rehype-stringify";
 import { calculateReadingTime } from "./utils";
+import { PostNotFoundError } from "@/utils/Errors";
 
 const postsDirectory = path.join(process.cwd(), "src/posts");
 
@@ -82,6 +83,11 @@ export function getAllPostIds(): IPost[] {
 
 export async function getPostData(slug: string): Promise<PostData> {
   const fullPath = path.join(postsDirectory, `${slug}.md`);
+
+  if (!fs.existsSync(fullPath)) {
+    throw new PostNotFoundError(`Post not found: ${slug}`);
+  }
+
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
   // Use gray-matter to parse the post metadata section
