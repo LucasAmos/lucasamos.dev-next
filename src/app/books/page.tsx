@@ -19,9 +19,7 @@ export const metadata: Metadata = {
 
 export default async function Books(): Promise<React.JSX.Element> {
   const client = new Sanity();
-  const year = new Date().getFullYear();
-
-  const { books, finished, inprogress } = await client.getDetailedBooksReadThisYear(year);
+  const { books, finished, inprogress } = await client.getDetailedBooksReadThisYear();
   return (
     <>
       <h1 className="mb-5 font-Inter text-2xl">

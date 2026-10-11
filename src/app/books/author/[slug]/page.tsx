@@ -1,12 +1,23 @@
 import React from "react";
 import { Sanity } from "../../../../sanity/client";
 import BooksView from "../../../../components/books";
+import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
 export const revalidate = 300;
-
 const client = new Sanity();
 
-import { notFound } from "next/navigation";
+export const metadata: Metadata = {
+  title: "Lucas Amos - Books by author",
+  description: "Books by author",
+  openGraph: {
+    title: "Lucas Amos - Books by author",
+    description: "Books by author",
+    authors: ["Lucas Amos"],
+    images: ["https://www.lucasamos.dev/images/books.jpg"]
+  }
+};
+
 export default async function Books({
   params
 }: {

@@ -3,8 +3,20 @@ import { Sanity } from "../../../../sanity/client";
 import BooksView from "../../../../components/books";
 export const revalidate = 300;
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
 const client = new Sanity();
+
+export const metadata: Metadata = {
+  title: "Lucas Amos - Categories I have read",
+  description: "Categories I have read",
+  openGraph: {
+    title: "Lucas Amos - Categories I have read",
+    description: "Categories I have read",
+    authors: ["Lucas Amos"],
+    images: ["https://www.lucasamos.dev/images/books.jpg"]
+  }
+};
 
 export default async function Books(props: any): Promise<React.JSX.Element> {
   const { category } = await props.params;
