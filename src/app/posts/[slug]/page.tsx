@@ -1,4 +1,7 @@
 export const dynamic = "force-static";
+import { cache } from "react";
+import { notFound } from "next/navigation";
+import { PostNotFoundError } from "@/utils/Errors";
 import { getAllPostIds, getPostData, IPost } from "../../../lib/posts";
 import Date from "../../../components/date";
 import { Metadata } from "next";
@@ -9,10 +12,20 @@ type Params = {
   }>;
 };
 
-export async function generateMetadata(props: Params): Promise<Metadata> {
-  const params = await props.params;
+export const getPost = cache(async (slug: string) => {
+  try {
+    return await getPostData(slug);
+  } catch (error) {
+    if (error instanceof PostNotFoundError) {
+      notFound();
+    }
+    throw error;
+  }
+});
 
-  const post = await getPostData(params.slug);
+export async function generateMetadata(props: Params): Promise<Metadata> {
+  const { slug } = await props.params;
+  const post = await getPost(slug);
 
   const imageUrl = `https://www.lucasamos.dev/${post.previewImage}`;
 
@@ -31,8 +44,10 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
 
 export default async function Page(props: Params): Promise<React.JSX.Element> {
   const { slug } = await props.params;
-  const { title, date, contentHtml } = await getPostData(slug);
 
+  const post = await getPost(slug);
+
+  const { title, date, contentHtml } = post;
   return (
     <div>
       <article className="prose">
