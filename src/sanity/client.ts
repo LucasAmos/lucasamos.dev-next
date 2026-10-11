@@ -83,7 +83,9 @@ export class Sanity {
     });
   }
 
-  async getDetailedBooksReadThisYear(year: number) {
+  async getDetailedBooksReadThisYear() {
+    const year = new Date().getFullYear();
+
     return this.query<BOOKS_THIS_YEAR_MULTI_QUERY_RESULT>(BOOKS_THIS_YEAR_MULTI_QUERY, {
       yearStart: `${year}-01-01`,
       yearEnd: `${year}-31-12`

@@ -8,11 +8,11 @@ import { generateYears } from "../../../../utils/years";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: "Lucas Amos - What I'm reading",
-  description: "What I'm reading",
+  title: "Lucas Amos - Books by year",
+  description: "Books by year",
   openGraph: {
-    title: "Lucas Amos - What I'm reading",
-    description: "What I'm reading",
+    title: "Lucas Amos - Books by year",
+    description: "Books by year",
     authors: ["Lucas Amos"],
     images: ["https://www.lucasamos.dev/images/books.jpg"]
   }
