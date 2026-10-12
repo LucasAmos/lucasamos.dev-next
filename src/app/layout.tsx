@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: "Lucas Amos - AWS application architect",
     description: "Lucas Amos",
     authors: ["Lucas Amos"],
-    images: ["https://www.lucasamos.dev/images/lucas.JPG"]
+    images: ["https://www.lucasamos.dev/images/lucasnew.jpg"]
   }
 };
 
