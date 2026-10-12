@@ -123,6 +123,7 @@ function LucasLLM(): ReactNode {
         ]);
       }
       addMessage("assistant", accumulatedAnswer);
+      setQuestion("");
     } catch {
       setError("Sorry, that's an error!");
     } finally {
