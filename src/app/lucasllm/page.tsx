@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "LucasLLM",
     description: "Lucas AI as a Service",
     authors: ["Lucas Amos"],
-    images: ["https://www.lucasamos.dev/images/books.jpg"]
+    images: ["https://www.lucasamos.dev/images/lucasnew.jpg"]
   }
 };
 
