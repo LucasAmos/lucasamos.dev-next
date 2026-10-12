@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "Lucas Amos - About",
     description: "About me",
     authors: ["Lucas Amos"],
-    images: ["https://www.lucasamos.dev/images/lucas.JPG"]
+    images: ["https://www.lucasamos.dev/images/lucasnew.jpg"]
   }
 };
 
@@ -46,7 +46,8 @@ const About: React.FC = async () => {
                 image={image}
                 width={300}
                 height={300}
-                sizes="(min-width: 1024px) calc((100vw/2)/4), (min-width: 640px) calc(100vw/4), 140px" />
+                sizes="(min-width: 1024px) calc((100vw/2)/4), (min-width: 640px) calc(100vw/4), 140px"
+              />
             </div>
           ))}
         </div>
