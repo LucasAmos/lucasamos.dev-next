@@ -23,14 +23,14 @@
     "@fortawesome/free-solid-svg-icons": "^7.3.1",
     "@fortawesome/react-fontawesome": "^3.5.0",
     "@lucasamos/sanity-studio": "^1.26.25",
-    "@portabletext/react": "^7.0.1",
+    "@portabletext/react": "^8.0.1",
     "@sanity/image-url": "^2.1.1",
-    "@sentry/nextjs": "^10.76.1",
+    "@sentry/nextjs": "^11.8.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@tailwindcss/typography": "^0.5.20",
     "@testing-library/dom": "^10.4.2",
     "@types/react-dom": "^19.2.4",
-    "cypress": "^15.21.1",
+    "cypress": "^16.2.0",
     "date-fns": "^4.4.0",
     "gray-matter": "^4.0.3",
     "next": "^16.4.0",
@@ -66,7 +66,7 @@
     "react-test-renderer": "^19.3.0",
     "typescript": "^6.0.3",
     "vite": "^8.3.3",
-    "vitest": "^4.1.11"
+    "vitest": "^5.0.5"
   },
   "packageManager": "yarn@4.13.0",
   "peerDependencies": {
