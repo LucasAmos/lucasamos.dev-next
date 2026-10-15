@@ -15,11 +15,6 @@ const links = [
 
 export default function Navbar(): React.JSX.Element {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   return (
     <>
