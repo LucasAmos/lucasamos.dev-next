@@ -1,10 +1,9 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import "../styles/global.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
-import { usePathname } from "next/navigation";
 
 const links = [
   ["Posts", "/"],
@@ -15,11 +14,6 @@ const links = [
 
 export default function Navbar(): React.JSX.Element {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   return (
     <>
