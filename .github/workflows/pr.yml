@@ -26,6 +26,12 @@ jobs:
       - name: echo
         run: echo ${{steps.vercel_preview_url.outputs.preview_url}}
 
+      - name: Cache Cypress
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+
       - name: Checkout repository
         uses: actions/checkout@v4
       - run: corepack enable
@@ -39,6 +45,15 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --immutable
+
+      - name: Install Cypress binary
+        run: yarn cypress install
+
+      - name: Verify Cypress
+        run: yarn cypress verify
+
+      - name: Run Cypress tests
+        run: yarn cypress run
 
       - name: Await preview deployment success
         uses: UnlyEd/github-action-await-vercel@dc8556d58bdb7f211f7b7af6052c29288c7419a4
