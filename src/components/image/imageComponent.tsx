@@ -1,5 +1,5 @@
-"use client"
-import { SanityImage } from "sanity-image"
+import { Image } from "next-sanity/image";
+import { urlFor } from "./sanityImageUrl";
 
 type ImageComponentProps = {
   width: number;
@@ -21,16 +21,15 @@ type ImageComponentProps = {
 function ImageComponent({ image, width, height, sizes }: ImageComponentProps) {
   if (!image.asset?.metadata?.lqip) return null;
   return (
-    <SanityImage
+    <Image
       id={image.asset._id}
-      projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
-      dataset={process.env.NEXT_PUBLIC_SANITY_DATASET}
+      src={urlFor(image).width(800).url()}
       key={image._key}
       width={width}
       height={height}
-      preview={image.asset.metadata.lqip}
       alt={image.caption || "Image"}
-      sizes={sizes} />
+      sizes={sizes}
+    />
   );
 }
 export default ImageComponent;
