@@ -142,58 +142,59 @@ function LucasLLM(): ReactNode {
     }
   }, [conversation]);
   return (
-    <div className="xs:h-[calc(100vh-240px)] sm:h-[calc(100vh-220px)] md:h-[calc(100vh-220px)] lg:h-[calc(100vh-130px)]">
-      {modalOpen && <TokenModal setToken={setToken} token={token} modal={setModalOpen} />}
-      <div className="class1 flex h-full min-h-0 flex-col">
-        <div className="class2 shrink-0">
-          <h1 className="font-Inter text-2xl font-medium tracking-tight text-[#1a202c]">
-            LucasLLM
-            {token ? (
+    <main>
+      <div className="xs:h-[calc(100vh-240px)] sm:h-[calc(100vh-220px)] md:h-[calc(100vh-220px)] lg:h-[calc(100vh-130px)]">
+        {modalOpen && <TokenModal setToken={setToken} token={token} modal={setModalOpen} />}
+        <div className="class1 flex h-full min-h-0 flex-col">
+          <div className="class2 shrink-0">
+            <h1 className="font-Inter text-2xl font-medium tracking-tight text-[#1a202c]">
+              LucasLLM
+              {token ? (
+                <FontAwesomeIcon
+                  className="cursor-pointer ml-1"
+                  icon={faUnlock}
+                  size="sm"
+                  onClick={() => setModalOpen(true)}
+                />
+              ) : (
+                <FontAwesomeIcon
+                  className="cursor-pointer"
+                  icon={faLock}
+                  size="sm"
+                  onClick={() => setModalOpen(true)}
+                />
+              )}
+            </h1>
+            Ask me about my career, AWS certifications, university studies, academic publishing
+            record or the books I have read
+          </div>
+          <div
+            ref={answerRef}
+            className="p-3 gap-2 flex flex-col min-h-0 flex-1 overflow-y-auto mt-4 border-t-purple/80 rounded-xl border-2"
+          >
+            {error && <div className={"text-red-600"}>{error} </div>}
+            {conversation &&
+              conversation.map((turn, index) => {
+                if (turn.role === "assistant") return <Answer key={index} text={turn.text} />;
+                else if (turn.role === "user") return <Question key={index} text={turn.text} />;
+                return null;
+              })}
+            {loading && (
               <FontAwesomeIcon
-                className="cursor-pointer ml-1"
-                icon={faUnlock}
-                size="sm"
-                onClick={() => setModalOpen(true)}
-              />
-            ) : (
-              <FontAwesomeIcon
-                className="cursor-pointer"
-                icon={faLock}
-                size="sm"
-                onClick={() => setModalOpen(true)}
+                icon={faEllipsis}
+                size="xl"
+                className="animate-bounce self-end mt-auto pt-3"
+                aria-label="Loading"
               />
             )}
-          </h1>
-          Ask me about my career, AWS certifications, university studies, academic publishing record
-          or the books I have read
-        </div>
-        <div
-          ref={answerRef}
-          className="p-3 gap-2 flex flex-col min-h-0 flex-1 overflow-y-auto mt-4 border-t-purple/80 rounded-xl border-2"
-        >
-          {error && <div className={"text-red-600"}>{error} </div>}
-          {conversation &&
-            conversation.map((turn, index) => {
-              if (turn.role === "assistant") return <Answer key={index} text={turn.text} />;
-              else if (turn.role === "user") return <Question key={index} text={turn.text} />;
-              return null;
-            })}
-          {loading && (
-            <FontAwesomeIcon
-              icon={faEllipsis}
-              size="xl"
-              className="animate-bounce self-end mt-auto pt-3"
-              aria-label="Loading"
-            />
-          )}
-        </div>
-        <div className="class4 mt-auto shrink-0">
-          <div className="flex flex-col mb-5">
-            <textarea
-              placeholder="Ask me a question"
-              onChange={(e) => handleInput(e, setQuestion)}
-              value={question}
-              className={`
+          </div>
+          <div className="class4 mt-auto shrink-0">
+            <div className="flex flex-col mb-5">
+              <textarea
+                placeholder="Ask me a question"
+                onChange={(e) => handleInput(e, setQuestion)}
+                value={question}
+                className={`
               overflow-y-auto
               border-solid
               border-2
@@ -204,21 +205,22 @@ function LucasLLM(): ReactNode {
               rounded-xl
               p-1
               mt-5`}
+              />
+            </div>
+
+            <SubmitButton
+              disabled={!question || loading}
+              loading={loading}
+              onClick={() => {
+                if (question) {
+                  handleSubmit(question);
+                  addMessage("user", question);
+                }
+              }}
             />
           </div>
-
-          <SubmitButton
-            disabled={!question || loading}
-            loading={loading}
-            onClick={() => {
-              if (question) {
-                handleSubmit(question);
-                addMessage("user", question);
-              }
-            }}
-          />
         </div>
       </div>
-    </div>
+    </main>
   );
 }

@@ -31,10 +31,12 @@ const About: React.FC = async () => {
 
   return (
     <>
-      <h1 className="mb-3 font-Inter text-3xl font-medium tracking-tight text-[#1a202c]">
-        {title}
-      </h1>
-      <PortableText value={content} components={portableTextComponents} />
+      <main>
+        <h1 className="mb-3 font-Inter text-3xl font-medium tracking-tight text-[#1a202c]">
+          {title}
+        </h1>
+        <PortableText value={content} components={portableTextComponents} />
+      </main>
       <div className="w-full ">
         {techStackSection && <TechStack stack={mapTechStackSectionProps(techStackSection)} />}
       </div>

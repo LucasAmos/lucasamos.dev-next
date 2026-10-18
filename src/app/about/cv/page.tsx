@@ -20,7 +20,7 @@ const CV: React.FC = async () => {
 
   const { title, content } = await client.getCV();
   return (
-    <>
+    <main>
       <h1 className="mb-3 font-Inter text-3xl font-medium tracking-tight text-[#1a202c]">
         {title}
       </h1>
@@ -34,7 +34,7 @@ const CV: React.FC = async () => {
       >
         <PortableText value={content} components={portableTextComponents} />
       </div>
-    </>
+    </main>
   );
 };
 

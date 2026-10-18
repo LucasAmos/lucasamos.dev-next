@@ -49,7 +49,7 @@ export default async function Page(props: Params): Promise<React.JSX.Element> {
 
   const { title, date, contentHtml } = post;
   return (
-    <div>
+    <main>
       <article className="prose">
         <h1 className="font-Inter text-3xl sm:text-4xl">{title}</h1>
         <div className="text-2xl text-slate-500 md:text-xl">
@@ -60,7 +60,7 @@ export default async function Page(props: Params): Promise<React.JSX.Element> {
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
       </article>
-    </div>
+    </main>
   );
 }
 
