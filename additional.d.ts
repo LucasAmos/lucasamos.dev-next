@@ -5,5 +5,7 @@ declare namespace NodeJS {
     SECRET_ACCESS_KEY: string;
     FROM_EMAIL: string;
     TO_EMAIL: string;
+    NEXT_PUBLIC_SANITY_PROJECT_ID: string;
+    NEXT_PUBLIC_SANITY_DATASET: string;
   }
 }

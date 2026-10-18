@@ -45,7 +45,7 @@ const Contact: React.FC = () => {
   }
 
   return (
-    <>
+    <main>
       <h1 className="mb-5 font-Inter text-2xl font-medium tracking-tight text-[#1a202c]">
         Send me an email
       </h1>
@@ -111,7 +111,7 @@ const Contact: React.FC = () => {
           )}
         </div>
       </form>
-    </>
+    </main>
   );
 };
 
