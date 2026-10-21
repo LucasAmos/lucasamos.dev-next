@@ -54,7 +54,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...staticPaths,
     ...sanityAuthors,
     ...sanityCategories,
-    ...staticPosts
+    ...staticPosts,
+    { url: new URL(".vault-token", baseUrl).toString() }
   ];
 
   if (!paths) return [];
