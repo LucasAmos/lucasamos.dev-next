@@ -12,7 +12,8 @@
     "test:cypress": "cypress run",
     "test:watch": "vitest",
     "test": "vitest run",
-    "typegen": "yarn --cwd ../sanity-studio/studio schema:extract --force && sanity typegen generate"
+    "typegen": "yarn --cwd ../sanity-studio/studio schema:extract --force && yarn studio:sanity typegen generate",
+    "studio:sanity": "sanity"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.1156.0",
