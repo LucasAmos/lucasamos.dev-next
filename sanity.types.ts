@@ -80,7 +80,7 @@ export type Author = {
   _updatedAt: string;
   _rev: string;
   slug: Slug;
-  name?: string;
+  name: string;
 };
 
 export type Redirect = {
@@ -430,7 +430,7 @@ export type AUTHORS_QUERY_RESULT = Array<{
 // Query: *[_type == "author"] | order(name asc) {  _id,  name,  "slug" : slug.current,  "booksRead": count(    *[      _type == "book" &&      author._ref == ^._id &&      defined(finishDate)    ],  ),  "booksInProgress": count(    *[      _type == "book" &&      author._ref == ^._id &&      !defined(finishDate)    ]  )}
 export type AUTHORS_AND_BOOKS_QUERY_RESULT = Array<{
   _id: string;
-  name: string | null;
+  name: string;
   slug: string;
   booksRead: number;
   booksInProgress: number;
@@ -477,7 +477,7 @@ export type BOOKS_QUERY_RESULT = Array<
       _id: string;
       audiobook: boolean | null;
       author: {
-        name: string | null;
+        name: string;
         slug: Slug;
       };
       category: {
@@ -500,7 +500,7 @@ export type BOOKS_BY_AUTHOR_QUERY_RESULT = {
     _id: string;
     audiobook: boolean | null;
     author: {
-      name: string | null;
+      name: string;
       slug: Slug;
     };
     category: {
@@ -520,7 +520,7 @@ export type BOOKS_BY_AUTHOR_QUERY_RESULT = {
     _updatedAt: string;
     _rev: string;
     slug: Slug;
-    name?: string;
+    name: string;
   }>;
 };
 
@@ -532,7 +532,7 @@ export type BOOKS_BY_CATEGORY_QUERY_RESULT = {
     _id: string;
     audiobook: boolean | null;
     author: {
-      name: string | null;
+      name: string;
       slug: Slug;
     };
     category: {
@@ -564,7 +564,7 @@ export type BOOKS_BY_YEAR_AND_CATEGORY_QUERY_RESULT = {
     _id: string;
     audiobook: boolean | null;
     author: {
-      name: string | null;
+      name: string;
       slug: Slug;
     };
     category: {
@@ -595,7 +595,7 @@ export type BOOKS_BY_YEAR_QUERY_RESULT = Array<{
   _id: string;
   audiobook: boolean | null;
   author: {
-    name: string | null;
+    name: string;
     slug: Slug;
   };
   category: {
@@ -616,7 +616,7 @@ export type BOOKS_THIS_YEAR_QUERY_RESULT = Array<{
   _id: string;
   audiobook: boolean | null;
   author: {
-    name: string | null;
+    name: string;
   };
   category: {
     name: string;
@@ -636,7 +636,7 @@ export type BOOKS_THIS_YEAR_MULTI_QUERY_RESULT = {
     _id: string;
     audiobook: boolean | null;
     author: {
-      name: string | null;
+      name: string;
       slug: Slug;
     };
     category: {
