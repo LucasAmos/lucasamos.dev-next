@@ -12,7 +12,10 @@ export function Book({ book }: BookProps) {
   console.log(book);
 
   if (book.test._type === "category") {
-    return <div>{book.test.test}</div>;
+    return <div>category: test: {book.test.test}</div>;
   }
-  return <div>{book.test.name}</div>;
+  if (book.test._type === "author") {
+    return <div>author: name: {book.test.name}</div>;
+  }
+  return <div>unknown</div>;
 }
