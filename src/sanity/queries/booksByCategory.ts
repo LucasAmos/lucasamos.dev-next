@@ -19,7 +19,8 @@ export const BOOKS_BY_CATEGORY_QUERY = defineQuery(`
       },
       _type == "category" => {
         _type,
-        name
+        name,
+        test
       }
     }
   },

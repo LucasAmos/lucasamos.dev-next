@@ -528,7 +528,7 @@ export type BOOKS_BY_AUTHOR_QUERY_RESULT = {
 
 // Source: src/sanity/queries/booksByCategory.ts
 // Variable: BOOKS_BY_CATEGORY_QUERY
-// Query: { 'books' :*[_type == "book" && finishDate != null && category->slug.current == $category] | order(startDate desc) {    _id,    _type,    audiobook,    author -> {name, slug},    category -> {name, slug},    estimated,    finishDate,    startDate,    title,    url,    test -> {      _type == "author" => {        _type,        name      },      _type == "category" => {        _type,        name      }    }  },  'category' :*[_type == "category" && slug.current == $category]  }
+// Query: { 'books' :*[_type == "book" && finishDate != null && category->slug.current == $category] | order(startDate desc) {    _id,    _type,    audiobook,    author -> {name, slug},    category -> {name, slug},    estimated,    finishDate,    startDate,    title,    url,    test -> {      _type == "author" => {        _type,        name      },      _type == "category" => {        _type,        name,        test      }    }  },  'category' :*[_type == "category" && slug.current == $category]  }
 export type BOOKS_BY_CATEGORY_QUERY_RESULT = {
   books: Array<{
     _id: string;
@@ -555,6 +555,7 @@ export type BOOKS_BY_CATEGORY_QUERY_RESULT = {
       | {
           _type: "category";
           name: string;
+          test: string;
         };
   }>;
   category: Array<{
@@ -740,7 +741,7 @@ declare global {
     '\n  *[_type == "author"] | order(name asc) {\n  _id,\n  name,\n  "slug" : slug.current,\n  "booksRead": count(\n    *[\n      _type == "book" &&\n      author._ref == ^._id &&\n      defined(finishDate)\n    ],\n  ),\n  "booksInProgress": count(\n    *[\n      _type == "book" &&\n      author._ref == ^._id &&\n      !defined(finishDate)\n    ]\n  )\n}\n': AUTHORS_AND_BOOKS_QUERY_RESULT;
     '\n   *[_type == "book" && finishDate ==null || finishDate >= $yearStart && finishDate <= $yearEnd] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  }\n': BOOKS_QUERY_RESULT;
     "\n  { 'books' :*[_type == \"book\" && finishDate != null && author->slug.current== $slug] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  },\n  'author' :*[_type == \"author\" && slug.current == $slug]\n  }\n": BOOKS_BY_AUTHOR_QUERY_RESULT;
-    '\n  { \'books\' :*[_type == "book" && finishDate != null && category->slug.current == $category] | order(startDate desc) {\n    _id,\n    _type,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url,\n    test -> {\n      _type == "author" => {\n        _type,\n        name\n      },\n      _type == "category" => {\n        _type,\n        name\n      }\n    }\n  },\n  \'category\' :*[_type == "category" && slug.current == $category]\n  }\n': BOOKS_BY_CATEGORY_QUERY_RESULT;
+    '\n  { \'books\' :*[_type == "book" && finishDate != null && category->slug.current == $category] | order(startDate desc) {\n    _id,\n    _type,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url,\n    test -> {\n      _type == "author" => {\n        _type,\n        name\n      },\n      _type == "category" => {\n        _type,\n        name,\n        test\n      }\n    }\n  },\n  \'category\' :*[_type == "category" && slug.current == $category]\n  }\n': BOOKS_BY_CATEGORY_QUERY_RESULT;
     "\n  { 'books' :*[_type == \"book\" && finishDate >= $yearStart && finishDate <= $yearEnd && category->slug.current == $category] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  },\n  'category' :*[_type == \"category\" && slug.current == $slug]\n  }\n": BOOKS_BY_YEAR_AND_CATEGORY_QUERY_RESULT;
     '\n  *[_type == "book" && finishDate >= $yearStart && finishDate <= $yearEnd] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name, slug},\n    category -> {name, slug},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  }\n': BOOKS_BY_YEAR_QUERY_RESULT;
     '\n  *[_type == "book" && (finishDate == null || finishDate >= $yearStart && finishDate <= $yearEnd)] | order(startDate desc) {\n    _id,\n    audiobook,\n    author -> {name},\n    category -> {name},\n    estimated,\n    finishDate,\n    startDate,\n    title,\n    url\n  }\n': BOOKS_THIS_YEAR_QUERY_RESULT;
