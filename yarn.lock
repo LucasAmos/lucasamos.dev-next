@@ -3060,9 +3060,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lucasamos/sanity-studio@npm:^1.26.29":
-  version: 1.26.29
-  resolution: "@lucasamos/sanity-studio@npm:1.26.29::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40lucasamos%2Fsanity-studio%2F1.26.29%2Fe9b65449da228f3ae8a78a4eac9892698f238cc5"
+"@lucasamos/sanity-studio@npm:^1.26.31":
+  version: 1.26.31
+  resolution: "@lucasamos/sanity-studio@npm:1.26.31::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40lucasamos%2Fsanity-studio%2F1.26.31%2F984957ce9e52cde9077ca0778bab9b3828efb66a"
   dependencies:
     "@fortawesome/fontawesome-svg-core": "npm:^7.3.1"
     "@fortawesome/free-regular-svg-icons": "npm:^7.3.1"
@@ -3074,7 +3074,9 @@ __metadata:
     release-it: "npm:^21.1.1"
     sanity: "npm:6.19.0"
     styled-components: "npm:^6.6.0"
-  checksum: 10c0/b76a0b548b86989be68872957b2548873be326c4e073705a024b9f3e0d88cb39f319ac613d594b4cdd536e10f5c7a3ac2ea09d2e3d05df4b25c9cf97cb384471
+  peerDependencies:
+    "@types/react": ^19.3.0
+  checksum: 10c0/e770173d3331781e6c4dd422529c15f87bc639ca48264bcb37eb4aca7d57765934cfbb4cfce1d3e748948f48623c6e350500033a079e5b0c2fe690fcdf2b5b57
   languageName: node
   linkType: hard
 
@@ -13859,7 +13861,7 @@ __metadata:
     "@fortawesome/free-regular-svg-icons": "npm:^7.3.1"
     "@fortawesome/free-solid-svg-icons": "npm:^7.3.1"
     "@fortawesome/react-fontawesome": "npm:^3.5.0"
-    "@lucasamos/sanity-studio": "npm:^1.26.29"
+    "@lucasamos/sanity-studio": "npm:^1.26.31"
     "@portabletext/react": "npm:^8.0.1"
     "@sanity/image-url": "npm:^2.1.1"
     "@sentry/nextjs": "npm:^11.8.0"
