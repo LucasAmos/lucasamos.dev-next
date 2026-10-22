@@ -4,6 +4,7 @@ import BooksView from "../../../../components/books";
 export const revalidate = 300;
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import { Book } from "../../../../components/Test";
 
 const client = new Sanity();
 
@@ -29,6 +30,7 @@ export default async function Books(props: any): Promise<React.JSX.Element> {
 
   return (
     <>
+      <Book book={books[0]}></Book>
       <h1 className="mb-5 font-Inter text-2xl">
         I have read{" "}
         <span className="text-t-violet">
