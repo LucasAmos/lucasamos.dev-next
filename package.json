@@ -23,7 +23,7 @@
     "@fortawesome/free-regular-svg-icons": "^7.3.1",
     "@fortawesome/free-solid-svg-icons": "^7.3.1",
     "@fortawesome/react-fontawesome": "^3.5.0",
-    "@lucasamos/sanity-studio": "^1.26.31",
+    "@lucasamos/sanity-studio": "^1.27.2",
     "@portabletext/react": "^8.0.1",
     "@sanity/image-url": "^2.1.1",
     "@sentry/nextjs": "^11.8.0",
