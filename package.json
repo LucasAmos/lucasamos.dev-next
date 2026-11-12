@@ -13,7 +13,10 @@
     "test:watch": "vitest",
     "test": "vitest run",
     "typegen": "yarn --cwd ../sanity-studio/studio schema:extract --force && yarn studio:sanity typegen generate",
-    "studio:sanity": "sanity"
+    "studio:sanity": "sanity",
+    "mcp:dev": "mcp-use dev --mcp-dir src/mcp",
+    "mcp:build": "mcp-use build --mcp-dir src/mcp",
+    "mcp:start": "mcp-use start --mcp-dir src/mcp"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.1156.0",
@@ -36,6 +39,7 @@
     "date-fns": "^4.4.0",
     "gray-matter": "^4.0.3",
     "mcp-handler": "^2.3.1",
+    "mcp-use": "^1.30.2",
     "next": "^16.4.2",
     "next-sanity": "^13.3.4",
     "postcss": "^8.5.31",
