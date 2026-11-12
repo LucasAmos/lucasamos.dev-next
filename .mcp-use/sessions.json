@@ -648,5 +648,161 @@
       "description": "mcp-use is a complete TypeScript framework for building and using MCP"
     },
     "protocolVersion": "unknown"
+  },
+  "d6f40372-1daf-40f1-ae2d-62bc4d59b871": {
+    "lastAccessedAt": 1794508383876,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "37b79c8f-f796-4e53-b5f0-582ba160f1cc": {
+    "lastAccessedAt": 1794508581895,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "05c00251-7698-459e-9d2a-742d3f46843b": {
+    "lastAccessedAt": 1794508716400,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "e1cdd426-5458-4c49-abf6-7bb24197bb8a": {
+    "lastAccessedAt": 1794508725728,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "cc943c8f-ae61-4eec-9d33-451db4fa7594": {
+    "lastAccessedAt": 1794510346302,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "f59c52f6-63f9-4e1b-a40b-b0324f1e5bc5": {
+    "lastAccessedAt": 1794510396849,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
   }
 }

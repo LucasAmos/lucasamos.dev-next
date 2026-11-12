@@ -1,6 +1,6 @@
 import { McpUseProvider, useWidget, type WidgetMetadata } from "mcp-use/react";
 import { z } from "zod";
-
+import "./styles.css";
 import Books from "../../../app/books/books";
 
 const propsSchema = z.object({

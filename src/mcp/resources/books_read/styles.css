@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@config "../../../../tailwind.config.js";
+
+@source "../../../../src/mcp/resources";
+@source "../../../../node_modules/mcp-use/**/*.{ts,tsx,js,jsx}";
+@source "../../../../src";
+
+@font-face {
+  font-display: swap;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../../../../public/fonts/Inter-roman.latin.var.woff2") format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 400;
+  src: url("../../../../public/fonts/Inter-italic.latin.var.woff2") format("woff");
+}
