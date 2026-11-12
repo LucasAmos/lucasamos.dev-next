@@ -53,13 +53,13 @@ function Container({ children }: { children: ReactNode; url: string | null }): R
 function Url({ href }: { href: string }): ReactNode {
   return (
     <a href={href} target="blank" className="inline-flex">
-      <span>Audio</span>
+      <FontAwesomeIcon icon={faUpRightFromSquare} />
     </a>
   );
 }
 
 function AudioBook(): ReactNode {
-  return <span>Audio</span>;
+  return <FontAwesomeIcon icon={faHeadphones} />;
 }
 
 function Duration({

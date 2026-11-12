@@ -11,9 +11,9 @@ const propsSchema = z.object({
 
 type Props = z.infer<typeof propsSchema>;
 
-// const domain = "https://comparisons-potentially-finances-lasting.trycloudflare.com";
+const domain = "https://prohibited-democracy-hrs-casinos.trycloudflare.com";
 // const domain = "http://localhost:3000"
-const domain = process.env.VERCEL_URL!;
+// const domain = process.env.VERCEL_URL!;
 
 export const widgetMetadata: WidgetMetadata = {
   description: "The books Lucas Amos has read this year, rendered inside the MCP widget iframe.",
@@ -21,8 +21,7 @@ export const widgetMetadata: WidgetMetadata = {
   metadata: {
     csp: {
       resourceDomains: [domain],
-      baseUriDomains: [domain],
-      connectDomains: [domain, `wss://spec-shuttle-ebook-rejected.trycloudflare.com`]
+      connectDomains: [domain]
     }
   }
 };
@@ -30,17 +29,9 @@ export const widgetMetadata: WidgetMetadata = {
 export default function DemoPageWidget() {
   const { props, isPending } = useWidget<Props>();
 
-  if (isPending) {
-    return (
-      <McpUseProvider autoSize>
-        <div className="p-5 text-sm text-zinc-500">Loading…</div>
-      </McpUseProvider>
-    );
-  }
-
   return (
     <McpUseProvider autoSize>
-      <Books {...props} />
+      {isPending ? <div className="p-5 text-sm text-zinc-500">Loading…</div> : <Books {...props} />}
     </McpUseProvider>
   );
 }

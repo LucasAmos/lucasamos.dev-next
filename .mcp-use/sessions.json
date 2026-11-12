@@ -994,5 +994,886 @@
       "version": "2.15.0"
     },
     "protocolVersion": "unknown"
+  },
+  "e887c76c-b13a-4d48-9e5a-d73ab5127011": {
+    "lastAccessedAt": 1794525261169,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "a106ac90-54a6-49af-9f4f-0f1e4c08944b": {
+    "lastAccessedAt": 1794525278660,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "4805aacf-7d91-421f-b7f0-924e71e47f39": {
+    "lastAccessedAt": 1794525587466,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "c7554b2b-4a22-4f5c-9ff7-9f779a7e9b70": {
+    "lastAccessedAt": 1794525581275
+  },
+  "02d66598-98da-49a6-80ff-ef5dd3a9274a": {
+    "lastAccessedAt": 1794525581957,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "0d55eb36-addf-4afb-b971-63da8b210db5": {
+    "lastAccessedAt": 1794525593004,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "56565217-927e-4312-90f5-8c35d1393c66": {
+    "lastAccessedAt": 1794525684423,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "17775ea9-44e8-498b-a6bb-42d758f0d6bf": {
+    "lastAccessedAt": 1794525622440,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      },
+      "tasks": {
+        "list": {},
+        "cancel": {},
+        "requests": {
+          "sampling": {
+            "createMessage": {}
+          },
+          "elicitation": {
+            "create": {}
+          }
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-inspector",
+      "version": "2.15.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "d2ad1bbe-abd7-48d7-8bf0-70a866969823": {
+    "lastAccessedAt": 1794525635975,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      },
+      "tasks": {
+        "list": {},
+        "cancel": {},
+        "requests": {
+          "sampling": {
+            "createMessage": {}
+          },
+          "elicitation": {
+            "create": {}
+          }
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-inspector",
+      "version": "2.15.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "0d2d353e-8b83-4743-b705-f0f26e2b36fa": {
+    "lastAccessedAt": 1794525661102
+  },
+  "f9aa774b-69da-4458-8c4e-74163c57850f": {
+    "lastAccessedAt": 1794525661666,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "d7218a58-4950-43da-b3cf-2c5352c9a4ca": {
+    "lastAccessedAt": 1794525674067
+  },
+  "85a296b1-1155-4f5b-ae4a-73b91dc61ce6": {
+    "lastAccessedAt": 1794525674572,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "c131fed1-b28f-4165-9e74-e247e525b238": {
+    "lastAccessedAt": 1794525722730,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "94bd2f75-b500-4a87-a492-4a0a8e66c32b": {
+    "lastAccessedAt": 1794525729048
+  },
+  "09bd227d-8f6f-48c1-8df7-1d6fe5f6f12b": {
+    "lastAccessedAt": 1794525729593,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "46adc445-8371-4872-b4ff-fd002b43efcc": {
+    "lastAccessedAt": 1794525773122
+  },
+  "9d21e795-2135-412f-b0e9-bdd12e85bd84": {
+    "lastAccessedAt": 1794525773568,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "cf631391-facd-4e30-9f5d-8432e6845379": {
+    "lastAccessedAt": 1794525774429,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "f4d90822-ab4c-405d-a4ea-e28dc68a5358": {
+    "lastAccessedAt": 1794525815068,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "fad8ba09-5939-4f3b-aeff-73bd520364ae": {
+    "lastAccessedAt": 1794525879678,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "0531a086-ffb5-4b5e-8cfe-35a44d31d018": {
+    "lastAccessedAt": 1794525883141,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "8d42f16c-136b-4531-9ea4-f0e5bc4bd9b1": {
+    "lastAccessedAt": 1794525883800,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "31f7e22d-3644-43d9-a559-c45d8b9f145c": {
+    "lastAccessedAt": 1794526015814,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "d3c68e6c-6d77-400d-b12c-ee9a69ad1244": {
+    "lastAccessedAt": 1794526016414,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "237d31c0-69c2-4ebb-9e0d-f4644df9eb6a": {
+    "lastAccessedAt": 1794526123747,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "2befe3f5-2f07-4310-981f-55bc6aa4a5e6": {
+    "lastAccessedAt": 1794526319265,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "ccdf3de0-6c0a-4426-84b4-8965b5dae461": {
+    "lastAccessedAt": 1794526184755,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "c6b89a5c-309b-43e5-afb9-09852abbaa74": {
+    "lastAccessedAt": 1794526185383,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "67d2699f-3ac9-4045-85bf-774dfc80c286": {
+    "lastAccessedAt": 1794526299321,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "0fc54131-c516-43af-88d5-6c1866aa0255": {
+    "lastAccessedAt": 1794526526611,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "398c7e53-ddd1-4643-bf2a-79b818f70b6c": {
+    "lastAccessedAt": 1794526527265,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "b8410616-18b4-4c5c-a249-7f96b3485197": {
+    "lastAccessedAt": 1794526586236
+  },
+  "15981dc6-6a53-4286-8fa4-a626f9c4388e": {
+    "lastAccessedAt": 1794526586979,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "aed6f8fd-865e-40b7-b448-a9fe61de693d": {
+    "lastAccessedAt": 1794526612078
+  },
+  "dde1aaf9-c619-4a50-acdd-7a25b2dea288": {
+    "lastAccessedAt": 1794526612725,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "e248ec59-ee8b-4e86-b4dd-997f45c88f85": {
+    "lastAccessedAt": 1794526613676,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "5d7cba52-cef4-434a-bf64-e400c5cd7d22": {
+    "lastAccessedAt": 1794526714579,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "c1cf3396-ec0a-4b55-a8db-e62e3657538f": {
+    "lastAccessedAt": 1794526715200,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "34883e61-ca26-4ced-a1d9-94a6118506d8": {
+    "lastAccessedAt": 1794526883402
+  },
+  "db179b18-929c-49db-88fb-9ee0b9d1a9e6": {
+    "lastAccessedAt": 1794526883924,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "edaa4d38-ae94-4d7b-ad14-d8e1d577e6e7": {
+    "lastAccessedAt": 1794526884094
+  },
+  "12bef117-5937-4ac8-aa12-8210da563db8": {
+    "lastAccessedAt": 1794526884449,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "52720b09-960f-4c79-bbdf-57f4013bc157": {
+    "lastAccessedAt": 1794527064265,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "2d30270f-03ab-428f-bcfb-2f8f7a707591": {
+    "lastAccessedAt": 1794527082626,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "ba72e3da-342c-4c51-a4a8-5a2ef69ba4dd": {
+    "lastAccessedAt": 1794527100011,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "c01f163e-a3c3-4916-ba8f-a3365cf7fc6f": {
+    "lastAccessedAt": 1794527100614,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "54fe2a8b-e528-4425-a826-79b01cda153e": {
+    "lastAccessedAt": 1794527303930
+  },
+  "343498a9-99b2-4f97-b1ae-f8c38a31516c": {
+    "lastAccessedAt": 1794527304607,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "c68b3bfc-816e-433d-8e3d-dd80ca2dac4d": {
+    "lastAccessedAt": 1794527344836
+  },
+  "9a6be587-d35e-42f6-865a-134143cf136e": {
+    "lastAccessedAt": 1794527345352,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "da574b58-1596-4fbb-a260-a390393b7356": {
+    "lastAccessedAt": 1794527346147,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "cf678ffb-6c86-4c83-9aeb-42e07b46a288": {
+    "lastAccessedAt": 1794527407692,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "7d2a5b73-bb1c-4116-ae8c-91b7a89fe408": {
+    "lastAccessedAt": 1794527408307,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "db0d88e4-98f5-4192-b376-263534e4e513": {
+    "lastAccessedAt": 1794527444926,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "63b5302f-4828-4df0-abb8-90cfaedb3699": {
+    "lastAccessedAt": 1794527445521,
+    "clientCapabilities": {
+      "experimental": {
+        "openai/visibility": {
+          "enabled": true
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "openai-mcp",
+      "version": "1.0.0"
+    },
+    "protocolVersion": "unknown"
   }
 }

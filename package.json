@@ -16,7 +16,8 @@
     "studio:sanity": "sanity",
     "mcp:dev": "mcp-use dev --mcp-dir src/mcp",
     "mcp:build": "mcp-use build --mcp-dir src/mcp",
-    "mcp:start": "mcp-use start --mcp-dir src/mcp"
+    "mcp:start": "mcp-use start --mcp-dir src/mcp",
+    "mcp:tunnel": "mcp-use dev --tunnel --entry src/mcp/server.ts"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.1156.0",
