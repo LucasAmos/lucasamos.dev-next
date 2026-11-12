@@ -13,7 +13,14 @@ type Props = z.infer<typeof propsSchema>;
 
 export const widgetMetadata: WidgetMetadata = {
   description: "The books Lucas Amos has read this year, rendered inside the MCP widget iframe.",
-  props: propsSchema
+  props: propsSchema,
+  metadata: {
+    csp: {
+      resourceDomains: ["http://localhost:3000"],
+      baseUriDomains: ["http://localhost:3000"],
+      connectDomains: ["http://localhost:3000", "ws://localhost:3000"]
+    }
+  }
 };
 
 export default function DemoPageWidget() {
