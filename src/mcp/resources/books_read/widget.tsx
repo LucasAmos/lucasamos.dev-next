@@ -11,14 +11,18 @@ const propsSchema = z.object({
 
 type Props = z.infer<typeof propsSchema>;
 
+// const domain = "https://comparisons-potentially-finances-lasting.trycloudflare.com";
+// const domain = "http://localhost:3000"
+const domain = process.env.VERCEL_URL!;
+
 export const widgetMetadata: WidgetMetadata = {
   description: "The books Lucas Amos has read this year, rendered inside the MCP widget iframe.",
   props: propsSchema,
   metadata: {
     csp: {
-      resourceDomains: ["http://localhost:3000"],
-      baseUriDomains: ["http://localhost:3000"],
-      connectDomains: ["http://localhost:3000", "ws://localhost:3000"]
+      resourceDomains: [domain],
+      baseUriDomains: [domain],
+      connectDomains: [domain, `wss://spec-shuttle-ebook-rejected.trycloudflare.com`]
     }
   }
 };
