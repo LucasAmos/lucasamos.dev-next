@@ -1,34 +1,9 @@
-import { createMcpHandler } from "mcp-handler";
-import { z } from "zod";
+import { handleMcpRequest } from "@/mcp/server";
 
-const handler = createMcpHandler((server) => {
-  server.registerTool(
-    "echo",
-    {
-      title: "Echo",
-      description: "Echo a message",
-      inputSchema: z
-        .object({
-          message: z.string().min(1).max(100).describe("Message to echo back")
-        })
-        .strict(),
-      outputSchema: z
-        .object({
-          message: z.string().describe("Echoed message")
-        })
-        .strict(),
-      annotations: {
-        readOnlyHint: true,
-        destructiveHint: false,
-        idempotentHint: true,
-        openWorldHint: false
-      }
-    },
-    async ({ message }: { message: any }) => ({
-      content: [{ type: "text", text: `Tool echo: ${message}` }],
-      structuredContent: { message }
-    })
-  );
-});
+export const runtime = "nodejs";
 
-export { handler as GET, handler as POST };
+export const GET = handleMcpRequest;
+export const POST = handleMcpRequest;
+export const DELETE = handleMcpRequest;
+export const HEAD = handleMcpRequest;
+export const OPTIONS = handleMcpRequest;

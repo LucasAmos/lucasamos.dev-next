@@ -1,5 +1,6 @@
 import { withSentryConfig } from "@sentry/nextjs/config";
 const config = {
+  serverExternalPackages: ["mcp-use"],
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "cdn.sanity.io", port: "", pathname: "/images/**" }

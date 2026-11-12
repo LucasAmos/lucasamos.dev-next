@@ -804,5 +804,195 @@
       "description": "mcp-use is a complete TypeScript framework for building and using MCP"
     },
     "protocolVersion": "unknown"
+  },
+  "71706750-939b-4125-ad0f-79c88308800f": {
+    "lastAccessedAt": 1794514157319,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "75d392af-8431-47d7-a062-111e05510700": {
+    "lastAccessedAt": 1794514469334,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "c33cb4cf-772c-45db-a863-ba99535c84ff": {
+    "lastAccessedAt": 1794514379294,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "b3150102-a9e9-49c5-ac3f-4c8764e02841": {
+    "lastAccessedAt": 1794514533672,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "9695bd34-db66-4dd2-9a01-e6f21dbbaa11": {
+    "lastAccessedAt": 1794514641525,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      },
+      "tasks": {
+        "list": {},
+        "cancel": {},
+        "requests": {
+          "sampling": {
+            "createMessage": {}
+          },
+          "elicitation": {
+            "create": {}
+          }
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-inspector",
+      "version": "2.15.0"
+    },
+    "protocolVersion": "unknown"
+  },
+  "65876658-90b3-4973-b23f-91ddd07df162": {
+    "lastAccessedAt": 1794514763715,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-use Inspector",
+      "title": "mcp-use",
+      "icons": [
+        {
+          "src": "https://mcp-use.com/logo.png"
+        }
+      ],
+      "version": "12.0.8",
+      "websiteUrl": "https://mcp-use.com",
+      "description": "mcp-use is a complete TypeScript framework for building and using MCP"
+    },
+    "protocolVersion": "unknown"
+  },
+  "ec3291d7-2224-458f-a41e-6a565a998d13": {
+    "lastAccessedAt": 1794514886451,
+    "clientCapabilities": {
+      "sampling": {},
+      "elicitation": {
+        "form": {},
+        "url": {}
+      },
+      "roots": {
+        "listChanged": true
+      },
+      "tasks": {
+        "list": {},
+        "cancel": {},
+        "requests": {
+          "sampling": {
+            "createMessage": {}
+          },
+          "elicitation": {
+            "create": {}
+          }
+        }
+      }
+    },
+    "clientInfo": {
+      "name": "mcp-inspector",
+      "version": "2.15.0"
+    },
+    "protocolVersion": "unknown"
   }
 }
