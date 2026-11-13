@@ -11,7 +11,7 @@ const propsSchema = z.object({
 
 type Props = z.infer<typeof propsSchema>;
 
-const domain = "https://prohibited-democracy-hrs-casinos.trycloudflare.com";
+const domain = "https://youthful-red.tunnel.mcp-use.run/mcp";
 // const domain = "http://localhost:3000"
 // const domain = process.env.VERCEL_URL!;
 
