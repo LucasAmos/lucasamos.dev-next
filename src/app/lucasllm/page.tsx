@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import LucasLLM from "./components/LucasLLM";
 import { ReactNode } from "react";
 
+export const revalidate = 300;
+
 export const metadata: Metadata = {
   title: "LucasLLM",
   description: "Lucas AI as a Service",
